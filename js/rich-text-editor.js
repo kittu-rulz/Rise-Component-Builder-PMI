@@ -2,23 +2,23 @@
 import { sanitizeRichText } from './utilities.js';
 
 export const PMI_BRAND_COLORS = [
-  { name: 'AT&T Blue', hex: '#0057B8' },
-  { name: 'AT&T Navy', hex: '#00388F' },
-  { name: 'AT&T Cyan', hex: '#009FDB' },
-  { name: 'Charcoal', hex: '#111827' },
-  { name: 'Muted Gray', hex: '#6B7280' },
-  { name: 'Alert Red', hex: '#DA291C' },
-  { name: 'Success Green', hex: '#00873D' },
-  { name: 'Warm Orange', hex: '#FF7300' },
-  { name: 'Deep Violet', hex: '#6B3FA0' }
+  { name: 'AT&T Blue', hex: '#4F17A8' },
+  { name: 'AT&T Navy', hex: '#4F17A8' },
+  { name: 'AT&T Cyan', hex: '#00799E' },
+  { name: 'Charcoal', hex: '#100522' },
+  { name: 'Muted Gray', hex: '#574E69' },
+  { name: 'Alert Red', hex: '#C41E08' },
+  { name: 'Success Green', hex: '#13600C' },
+  { name: 'Warm Orange', hex: '#D5340B' },
+  { name: 'Deep Violet', hex: '#4F17A8' }
 ];
 
 export const HIGHLIGHT_COLORS = [
-  { name: 'Yellow Glow', hex: '#FFF3CD' },
-  { name: 'Cyan Tint', hex: '#E0F7FA' },
-  { name: 'Green Tint', hex: '#D4EDDA' },
-  { name: 'Orange Tint', hex: '#FFE8D6' },
-  { name: 'Pink Tint', hex: '#F8D7DA' }
+  { name: 'Yellow Glow', hex: '#FDDECE' },
+  { name: 'Cyan Tint', hex: '#EEFAFA' },
+  { name: 'Green Tint', hex: '#BDFDBD' },
+  { name: 'Orange Tint', hex: '#FDDECE' },
+  { name: 'Pink Tint', hex: '#FFEDEC' }
 ];
 
 export const FONT_SIZES = [
@@ -847,7 +847,7 @@ export function createRichTextEditor({
         const customInput = document.createElement('input');
         customInput.type = 'color';
         customInput.className = 'rt-color-input';
-        customInput.value = '#0057B8';
+        customInput.value = '#4F17A8';
         customInput.addEventListener('input', () => {
           executeFormatting('textColor', customInput.value, editor);
           triggerChange();

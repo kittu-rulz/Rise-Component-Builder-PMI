@@ -10,7 +10,7 @@ async function seedAndOpen(page) {
   await page.evaluate(async () => {
     const { buildProjectSchemaV3, createComponentInstance, createSection } = await import('/js/project-schema.js');
     const { saveProject } = await import('/js/storage.js');
-    const cfg = { blockTitle: 'M', blockHeadline: 'Overview', items: [{ title: 'One', content: 'Body' }], colorPrimary: '#00388F', colorAccent: '#009FDB', colorBg: '#FFFFFF', colorText: '#000000', borderRadius: '8', shadowDepth: 'none', iconStyle: 'chevron' };
+    const cfg = { blockTitle: 'M', blockHeadline: 'Overview', items: [{ title: 'One', content: 'Body' }], colorPrimary: '#4F17A8', colorAccent: '#00799E', colorBg: '#FFFFFF', colorText: '#200F3B', borderRadius: '8', shadowDepth: 'none', iconStyle: 'chevron' };
     saveProject(buildProjectSchemaV3({
       name: 'Audit Course', sectionOrder: ['s1'],
       sections: { s1: createSection({ id: 's1', name: 'Module', componentOrder: ['c1'] }) },

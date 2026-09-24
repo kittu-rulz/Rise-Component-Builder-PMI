@@ -21,10 +21,10 @@ function compileComponent(componentId, configOverrides = {}, currentProjectId = 
     contextBandEnabled: false,
     contextBandText: '',
     contextBandAlignment: 'left',
-    colorPrimary: '#00388F',
-    colorAccent: '#009FDB',
+    colorPrimary: '#4F17A8',
+    colorAccent: '#00799E',
     colorBg: '#FFFFFF',
-    colorText: '#000000',
+    colorText: '#200F3B',
     borderRadius: '12',
     shadowDepth: 'none',
     borderOutline: true,
@@ -139,10 +139,10 @@ describe('Responsive Accordion reference integration', () => {
   test('accordion CSS defines AT&T cyan active indicators, 44px min touch targets, and focus-visible', () => {
     const html = compileComponent('accordion');
     expect(html).toContain('.accordion-item.active {');
-    expect(html).toContain('border-left: 4px solid var(--pmi-blue');
+    expect(html).toContain('border-left: 4px solid var(--pmi-aqua');
     expect(html).toContain('min-height: 44px');
     expect(html).toContain('.accordion-trigger:focus-visible');
-    expect(html).toContain('outline: 3px solid var(--pmi-cobalt');
+    expect(html).toContain('outline: 3px solid var(--pmi-violet');
     expect(html).toContain('@media (prefers-reduced-motion: reduce)');
   });
 
@@ -158,8 +158,8 @@ describe('CSS scoping and token isolation', () => {
   test('token block is dual-scoped to :root and .rise-block-wrapper', () => {
     const html = compileComponent('accordion');
     expect(html).toContain(':root, .rise-block-wrapper {');
-    expect(html).toContain('--pmi-blue: #009FDB;');
-    expect(html).toContain('--pmi-cobalt: #00388F;');
+    expect(html).toContain('--pmi-aqua: #00799E;');
+    expect(html).toContain('--pmi-violet: #4F17A8;');
     expect(html).toContain('--primary:');
     expect(html).toContain('--accent:');
   });
@@ -168,7 +168,7 @@ describe('CSS scoping and token isolation', () => {
     const html = compileComponent('accordion');
     const fragment = generateHtmlFragment(html);
     expect(fragment).toContain(':root, .rise-block-wrapper {');
-    expect(fragment).toContain('--pmi-blue: #009FDB;');
+    expect(fragment).toContain('--pmi-aqua: #00799E;');
     expect(fragment).toContain('class="rise-block-wrapper');
   });
 
@@ -194,10 +194,10 @@ describe('Saved-project compatibility and safe defaults', () => {
         blockTitle: 'OLD ACCORDION',
         blockHeadline: 'Legacy Headline',
         blockDesc: 'Old description',
-        colorPrimary: '#2563EB',
-        colorAccent: '#F59E0B',
+        colorPrimary: '#4F17A8',
+        colorAccent: '#D5340B',
         colorBg: '#FFFFFF',
-        colorText: '#1F2937',
+        colorText: '#200F3B',
         borderRadius: '12',
         shadowDepth: 'soft',
         borderOutline: true,

@@ -303,8 +303,8 @@ export function generateCSS() {
       gap: 4px;
       font-size: var(--pmi-fs-eyebrow, 12px);
       font-weight: 600;
-      color: var(--pmi-cta-bg, #00388F);
-      background-color: var(--pmi-grey-1, #F3F4F5);
+      color: var(--pmi-cta-bg, #4F17A8);
+      background-color: var(--pmi-neutral-50, #F7F4EF);
       padding: 2px 8px;
       border-radius: var(--pmi-radius-pill, 999px);
     }
@@ -323,7 +323,7 @@ export function generateCSS() {
     }
 
     .timeline-step:focus-visible {
-      outline: 3px solid var(--pmi-cobalt, var(--primary));
+      outline: 3px solid var(--pmi-violet, var(--primary));
       outline-offset: 2px;
     }
 
@@ -346,7 +346,7 @@ export function generateCSS() {
     }
 
     .step-toggle-btn:focus-visible {
-      outline: 3px solid var(--pmi-cobalt, var(--primary)) !important;
+      outline: 3px solid var(--pmi-violet, var(--primary)) !important;
       outline-offset: 2px !important;
     }
 

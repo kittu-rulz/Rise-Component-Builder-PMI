@@ -128,10 +128,10 @@ describe('Project Dashboard & Workspace Controller Tests', () => {
         blockTitle: 'Welcome',
         blockHeadline: 'Overview',
         items: [{ title: 'Item 1', content: 'Content 1' }],
-        colorPrimary: '#0057B8',
-        colorAccent: '#00A8E0',
+        colorPrimary: '#4F17A8',
+        colorAccent: '#0890BA',
         colorBg: '#FFFFFF',
-        colorText: '#000000',
+        colorText: '#200F3B',
         borderRadius: '8',
         shadowDepth: 'none',
         iconStyle: 'chevron'

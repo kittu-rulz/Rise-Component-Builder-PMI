@@ -65,8 +65,8 @@ async function seedCourse(page) {
       alt: 'Network diagram', caption: 'Figure', ...extra
     });
     const base = items => ({
-      blockTitle: 'Module', blockHeadline: 'Overview', items, colorPrimary: '#00388F', colorAccent: '#009FDB',
-      colorBg: '#FFFFFF', colorText: '#000000', borderRadius: '8', shadowDepth: 'none', iconStyle: 'chevron'
+      blockTitle: 'Module', blockHeadline: 'Overview', items, colorPrimary: '#4F17A8', colorAccent: '#00799E',
+      colorBg: '#FFFFFF', colorText: '#200F3B', borderRadius: '8', shadowDepth: 'none', iconStyle: 'chevron'
     });
     const project = buildProjectSchemaV3({
       name: 'Portable Course',

@@ -52,7 +52,7 @@ test('export contains selected content and theme, excludes unsafe executable mar
   await expect(code).toContainText('Exported');
   // This build is locked to a single AT&T theme (js/themes.js) — no Theme Manager exists
   // to switch themes, so the export always carries the AT&T Cobalt primary color.
-  await expect(code).toContainText('--primary: #00388F');
+  await expect(code).toContainText('--primary: #4F17A8');
   const exported = await code.textContent();
   expect(exported).not.toContain('<script>globalThis.bad=true</script>');
 
@@ -74,7 +74,7 @@ test('export contains selected content and theme, excludes unsafe executable mar
   await page.locator('#btn-download-rise-zip').click();
   const download = await downloadPromise;
   expect(download.suggestedFilename()).toMatch(/\.zip$/);
-  expect(html).toContain('--primary: #00388F');
+  expect(html).toContain('--primary: #4F17A8');
   const exportedPage = await context.newPage();
   exportedPage.on('console', message => { if (message.type() === 'error') errors.push(message.text()); });
   exportedPage.on('pageerror', error => errors.push(error.message));

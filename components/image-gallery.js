@@ -135,7 +135,7 @@ export function generateCSS() {
       transform: scale(0.98);
     }
     .gallery-item-card:focus-visible {
-      outline: 3px solid var(--pmi-cobalt, var(--primary));
+      outline: 3px solid var(--pmi-violet, var(--primary));
       outline-offset: 2px;
     }
     .gallery-item-card img {
@@ -201,14 +201,14 @@ export function generateCSS() {
     .lightbox-zoom-btn {
       background: none;
       border: 1px solid rgba(255,255,255,0.4);
-      color: #fff;
+      color: #FFFFFF;
       border-radius: 4px;
       padding: 2px 8px;
       font-size: 14px;
       cursor: pointer;
     }
     .lightbox-zoom-level {
-      color: #fff;
+      color: #FFFFFF;
       font-size: 12px;
       font-weight: 600;
       min-width: 40px;
@@ -255,7 +255,7 @@ export function generateCSS() {
       transform: scale(0.98);
     }
     .lightbox-close:focus-visible {
-      outline: 3px solid var(--pmi-cobalt, var(--primary));
+      outline: 3px solid var(--pmi-violet, var(--primary));
       outline-offset: 2px;
     }`;
 }

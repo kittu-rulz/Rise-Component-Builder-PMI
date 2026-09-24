@@ -1014,7 +1014,7 @@ export function getItemMediaCSS() {
 
     .item-media-caption {
       font-size: 11px;
-      color: var(--text-muted, #666);
+      color: var(--text-muted, #574E69);
       padding: 6px 8px;
       line-height: 1.35;
       text-align: center;
@@ -1032,7 +1032,7 @@ export function getItemMediaCSS() {
     .item-media-audio-label {
       font-size: 12px;
       font-weight: 600;
-      color: var(--text-main, #111);
+      color: var(--text-main, #200F3B);
     }
 
     .item-media-audio-player {
@@ -1045,7 +1045,7 @@ export function getItemMediaCSS() {
       width: 100%;
       border-radius: var(--pmi-radius-md, 8px);
       overflow: hidden;
-      background-color: #000;
+      background-color: #200F3B;
       display: flex;
       flex-direction: column;
     }
@@ -1060,7 +1060,7 @@ export function getItemMediaCSS() {
       margin-top: 6px;
       padding: 6px 10px;
       background-color: var(--bg-app, rgba(0, 0, 0, 0.03));
-      border: 1px solid var(--border-color, #E5E7EB);
+      border: 1px solid var(--border-color, #E7E4DC);
       border-radius: 6px;
       font-size: 12px;
     }
@@ -1068,14 +1068,14 @@ export function getItemMediaCSS() {
     .item-media-transcript-toggle {
       cursor: pointer;
       font-weight: 600;
-      color: var(--primary, #0057B8);
+      color: var(--primary, #4F17A8);
       user-select: none;
     }
 
     .item-media-transcript-body {
       margin-top: 8px;
       line-height: 1.45;
-      color: var(--text-main, #333);
+      color: var(--text-main, #200F3B);
       max-height: 180px;
       overflow-y: auto;
       white-space: pre-wrap;

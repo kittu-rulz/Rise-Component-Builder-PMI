@@ -248,7 +248,7 @@ export function generateCSS() {
       transform: scale(0.98);
     }
     .scenario-choice-btn:focus-visible {
-      outline: 3px solid var(--pmi-cobalt, var(--primary));
+      outline: 3px solid var(--pmi-violet, var(--primary));
       outline-offset: 2px;
     }
     .choice-points-badge {
@@ -261,17 +261,17 @@ export function generateCSS() {
     /* Positive score — AT&T Lime as a low-alpha accent fill with black text
        (brand rule: Lime is an accent, never a text colour). */
     .choice-points-badge.pos {
-      background-color: rgba(145, 220, 0, 0.22);
-      color: #000000;
+      background-color: rgba(25, 127, 16, 0.22);
+      color: #200F3B;
     }
     /* Negative score — AT&T has no red; Cobalt plus the explicit minus value
        carries the meaning (never colour alone). */
     .choice-points-badge.neg {
-      background-color: rgba(0, 56, 143, 0.10);
-      color: var(--pmi-cta-bg, #00388F);
+      background-color: rgba(79, 23, 168, 0.10);
+      color: var(--pmi-cta-bg, #4F17A8);
     }
     .scenario-feedback-balloon {
-      background-color: var(--pmi-grey-1, #F3F4F5);
+      background-color: var(--pmi-neutral-50, #F7F4EF);
       border: 1px solid var(--border-color);
       border-radius: var(--pmi-radius-md, var(--border-radius, 12px));
       padding: var(--pmi-space-4, 16px);

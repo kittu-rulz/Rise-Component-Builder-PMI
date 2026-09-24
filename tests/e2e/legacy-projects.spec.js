@@ -8,8 +8,8 @@ const legacy = {
   id: 'p-legacy', schemaVersion: 1, name: 'My Old Project', componentId: 'accordion',
   createdAt: '2026-01-01T00:00:00Z', updatedAt: '2026-01-02T00:00:00Z',
   config: {
-    blockTitle: 'T', blockHeadline: 'H', blockDesc: 'D', colorPrimary: '#00388F', colorAccent: '#009FDB',
-    colorBg: '#FFFFFF', colorText: '#000000', borderRadius: '12', shadowDepth: 'soft', iconStyle: 'chevron',
+    blockTitle: 'T', blockHeadline: 'H', blockDesc: 'D', colorPrimary: '#4F17A8', colorAccent: '#00799E',
+    colorBg: '#FFFFFF', colorText: '#200F3B', borderRadius: '12', shadowDepth: 'soft', iconStyle: 'chevron',
     completionMsg: 'Done', borderOutline: true, accordionMulti: true, accordionAnimation: true, trackCompletion: false,
     items: [{ title: 'Legacy item', content: 'Legacy body' }]
   }

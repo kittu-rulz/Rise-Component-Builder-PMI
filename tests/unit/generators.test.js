@@ -199,8 +199,8 @@ describe('process flow: per-item estimated duration', () => {
 
 describe('info grid: per-item accent color', () => {
   test('applies a valid hex accentColor as the icon color', () => {
-    const html = infoGrid.generateHTML({ items: [{ title: 'Card', content: 'Desc', accentColor: '#16A34A' }] });
-    expect(new JSDOM(html).window.document.querySelector('.info-grid-icon').getAttribute('style')).toBe('color:#16A34A;');
+    const html = infoGrid.generateHTML({ items: [{ title: 'Card', content: 'Desc', accentColor: '#197F10' }] });
+    expect(new JSDOM(html).window.document.querySelector('.info-grid-icon').getAttribute('style')).toBe('color:#197F10;');
   });
 
   test('falls back to the theme accent (no inline color) when accentColor is unset', () => {

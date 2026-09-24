@@ -27,7 +27,7 @@ test('a full authoring session: create, edit, save, reopen, preflight, export, a
   // 4. Design is locked to the single AT&T theme (js/themes.js) in this build — no
   // Design & Style tab exists to change it. Verify the locked theme token reaches the
   // live preview instead of an author-chosen override.
-  await expect.poll(() => previewFrame.locator('html').evaluate(el => getComputedStyle(el).getPropertyValue('--primary').trim())).toBe('#00388F');
+  await expect.poll(() => previewFrame.locator('html').evaluate(el => getComputedStyle(el).getPropertyValue('--primary').trim())).toBe('#4F17A8');
 
   // 5. Enable completion tracking for this block.
   await page.locator('.editor-tab[data-tab="completion"]').click();

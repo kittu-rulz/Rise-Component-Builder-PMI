@@ -473,10 +473,10 @@ export function describeStorageUsage({ supported, usage, quota, failed } = {}) {
 
 export function sanitizePreviewConfig(config, componentId) {
   const result = structuredClone(config);
-  result.colorPrimary = sanitizeCSSColor(config.colorPrimary, '#00388F');
-  result.colorAccent = sanitizeCSSColor(config.colorAccent, '#009FDB');
+  result.colorPrimary = sanitizeCSSColor(config.colorPrimary, '#4F17A8');
+  result.colorAccent = sanitizeCSSColor(config.colorAccent, '#00799E');
   result.colorBg = sanitizeCSSColor(config.colorBg, '#FFFFFF');
-  result.colorText = sanitizeCSSColor(config.colorText, '#000000');
+  result.colorText = sanitizeCSSColor(config.colorText, '#200F3B');
   result.borderRadius = String(sanitizeCSSNumber(config.borderRadius, { minimum: 0, maximum: 100, fallback: 12 }));
   result.shadowDepth = ['none', 'soft', 'medium', 'premium'].includes(config.shadowDepth) ? config.shadowDepth : 'soft';
   result.iconStyle = ['chevron', 'plus-minus', 'arrow'].includes(config.iconStyle) ? config.iconStyle : 'chevron';
@@ -530,7 +530,7 @@ export function sanitizePreviewConfig(config, componentId) {
     if (item.iconFit !== undefined) safeItem.iconFit = item.iconFit === 'cover' ? 'cover' : 'contain';
     if (item.x !== undefined) safeItem.x = String(sanitizeCSSNumber(item.x, { minimum: 0, maximum: 100, fallback: 50 }));
     if (item.y !== undefined) safeItem.y = String(sanitizeCSSNumber(item.y, { minimum: 0, maximum: 100, fallback: 50 }));
-    if (item.accentColor !== undefined) safeItem.accentColor = sanitizeCSSColor(item.accentColor, '#009FDB');
+    if (item.accentColor !== undefined) safeItem.accentColor = sanitizeCSSColor(item.accentColor, '#00799E');
     if (item.durationMinutes !== undefined) safeItem.durationMinutes = sanitizeCSSNumber(item.durationMinutes, { minimum: 0, maximum: 999, fallback: 0 });
     // interactive-video's body/question are richtext fields rendered client-side via
     // innerHTML (components/interactive-video.js's generateJS, not generateHTML), so —

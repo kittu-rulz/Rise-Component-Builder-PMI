@@ -206,7 +206,7 @@ export function generateCSS() {
       position: relative;
       width: 100%;
       aspect-ratio: 16 / 9;
-      background-color: var(--pmi-black, #000000);
+      background-color: var(--pmi-off-black, #200F3B);
       border-radius: var(--pmi-radius-lg, 20px);
       overflow: hidden;
     }
@@ -275,7 +275,7 @@ export function generateCSS() {
       background-color: var(--bg-card);
     }
     .iv-checkpoint-chip:focus-visible {
-      outline: 3px solid var(--pmi-cobalt, var(--primary));
+      outline: 3px solid var(--pmi-violet, var(--primary));
       outline-offset: 2px;
     }
     .iv-checkpoint-chip.iv-chip-active {
@@ -306,7 +306,7 @@ export function generateCSS() {
       transition: background-color 150ms ease;
     }
     .iv-checkpoint-chip.iv-state-visited .iv-chip-status-dot {
-      background-color: var(--accent, #009FDB);
+      background-color: var(--accent, #00799E);
     }
     .iv-checkpoint-chip.iv-state-completed .iv-chip-status-dot {
       background-color: var(--border-color);
@@ -328,7 +328,7 @@ export function generateCSS() {
       gap: var(--pmi-space-3, 12px);
     }
     .iv-interaction-panel:focus-visible {
-      outline: 3px solid var(--pmi-cobalt, var(--primary));
+      outline: 3px solid var(--pmi-violet, var(--primary));
       outline-offset: 2px;
     }
     .iv-interaction-panel[hidden] {

@@ -9,7 +9,7 @@ async function courseOverview(page, components = { c1: { name: 'Lesson', type: '
   await page.evaluate(async comps => {
     const { buildProjectSchemaV3, createComponentInstance, createSection } = await import('/js/project-schema.js');
     const { saveProject } = await import('/js/storage.js');
-    const cfg = { blockTitle: 'M', blockHeadline: 'Overview', items: [{ title: 'One', content: 'Body' }], colorPrimary: '#00388F', colorAccent: '#009FDB', colorBg: '#FFFFFF', colorText: '#000000', borderRadius: '8', shadowDepth: 'none', iconStyle: 'chevron' };
+    const cfg = { blockTitle: 'M', blockHeadline: 'Overview', items: [{ title: 'One', content: 'Body' }], colorPrimary: '#4F17A8', colorAccent: '#00799E', colorBg: '#FFFFFF', colorText: '#200F3B', borderRadius: '8', shadowDepth: 'none', iconStyle: 'chevron' };
     const built = {};
     for (const [id, c] of Object.entries(comps)) built[id] = createComponentInstance({ id, name: c.name, type: c.type, config: c.config || cfg });
     saveProject(buildProjectSchemaV3({
@@ -53,7 +53,7 @@ test('a Multiple Choice block added to a course gets its own title, not INTERACT
 });
 
 test('a block saved earlier with the leaked Accordion header is repaired when opened, and real text is kept', async ({ page }) => {
-  const leaked = { blockTitle: 'INTERACTIVE ACCORDION', blockHeadline: 'Explore the Core Dimensions', blockDesc: 'Click on the headers below to discover detailed insights.', items: [{ title: 'Q', content: 'A', label: 'A', correct: true }, { title: 'Q2', content: 'B', label: 'B', correct: false }], colorPrimary: '#00388F', colorAccent: '#009FDB', colorBg: '#FFFFFF', colorText: '#000000', borderRadius: '8', shadowDepth: 'none' };
+  const leaked = { blockTitle: 'INTERACTIVE ACCORDION', blockHeadline: 'Explore the Core Dimensions', blockDesc: 'Click on the headers below to discover detailed insights.', items: [{ title: 'Q', content: 'A', label: 'A', correct: true }, { title: 'Q2', content: 'B', label: 'B', correct: false }], colorPrimary: '#4F17A8', colorAccent: '#00799E', colorBg: '#FFFFFF', colorText: '#200F3B', borderRadius: '8', shadowDepth: 'none' };
   await courseOverview(page, { c1: { name: 'Old Quiz', type: 'multiple-choice', config: leaked } });
   await page.locator('.component-row').first().click();
   await page.locator('[data-action="open-focus-editor"]').first().click();

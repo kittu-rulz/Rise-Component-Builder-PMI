@@ -35,7 +35,7 @@ export const BASE_RESET_CSS = `
     sub, sup { font-size: 75%; line-height: 0; position: relative; vertical-align: baseline; }
     sup { top: -0.5em; }
     sub { bottom: -0.25em; }
-    a { color: var(--accent, #0057B8); text-underline-offset: 2px; }
+    a { color: var(--accent, #4F17A8); text-underline-offset: 2px; }
 
     /* Interactive Block Shell */
     .rise-block-wrapper {
@@ -99,7 +99,7 @@ export const BASE_RESET_CSS = `
       font-size: var(--pmi-fs-eyebrow, 0.75rem);
       font-weight: var(--pmi-w-bold, 700);
       letter-spacing: var(--pmi-ls-eyebrow, 0.08em);
-      color: var(--pmi-cobalt, #00388F);
+      color: var(--pmi-violet, #4F17A8);
       text-transform: uppercase;
       margin-bottom: 8px;
     }
@@ -107,14 +107,14 @@ export const BASE_RESET_CSS = `
     .block-header.header-editorial .block-headline {
       font-size: clamp(1.625rem, 4vw, 2rem);
       font-weight: var(--pmi-w-bold, 700);
-      color: var(--pmi-heading-contrast, #000000);
+      color: var(--pmi-heading-contrast, #200F3B);
       line-height: var(--pmi-lh-heading, 1.25);
     }
 
     .block-header.header-editorial .header-cyan-rule {
       width: 36px;
       height: 3px;
-      background-color: var(--pmi-blue, #009FDB);
+      background-color: var(--pmi-aqua, #00799E);
       margin-top: 10px;
       margin-bottom: 12px;
       border-radius: 2px;
@@ -123,19 +123,19 @@ export const BASE_RESET_CSS = `
     .block-header.header-editorial .block-desc {
       font-size: var(--pmi-fs-body, 1rem);
       line-height: var(--pmi-lh-body, 1.5);
-      color: var(--pmi-text, #000000);
+      color: var(--pmi-text, #200F3B);
       margin-top: 10px;
       max-width: 70ch;
     }
 
     /* Optional Context Band */
     .block-context-band {
-      background-color: var(--pmi-grey-1, #F3F4F5);
-      border-top: 2px solid var(--pmi-blue, #009FDB);
+      background-color: var(--pmi-neutral-50, #F7F4EF);
+      border-top: 2px solid var(--pmi-aqua, #00799E);
       border-radius: 0 0 var(--pmi-radius-md, 12px) var(--pmi-radius-md, 12px);
       padding: calc(14px * var(--spacing-scale)) calc(18px * var(--spacing-scale));
       margin-bottom: calc(24px * var(--spacing-scale));
-      color: var(--pmi-text, #000000);
+      color: var(--pmi-text, #200F3B);
       box-shadow: var(--pmi-shadow-1, 0 1px 2px rgba(0,0,0,0.06));
     }
 
@@ -159,14 +159,14 @@ export const BASE_RESET_CSS = `
     /* Shared Surface & Media Treatments */
     .pmi-surface, .pmi-card {
       background-color: var(--pmi-surface, #FFFFFF);
-      border: 1px solid var(--pmi-border, #DCDFE3);
+      border: 1px solid var(--pmi-border, #E7E4DC);
       border-radius: var(--pmi-radius-lg, 20px);
       box-shadow: var(--pmi-shadow-1, 0 1px 2px rgba(0,0,0,0.06));
     }
 
     .pmi-surface-sunken {
-      background-color: var(--pmi-grey-1, #F3F4F5);
-      border: 1px solid var(--pmi-border, #DCDFE3);
+      background-color: var(--pmi-neutral-50, #F7F4EF);
+      border: 1px solid var(--pmi-border, #E7E4DC);
       border-radius: var(--pmi-radius-lg, 20px);
     }
 
@@ -206,7 +206,7 @@ export const SHARED_A11Y_CSS = `
     }
 
     :where(button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"]), [role="button"], [role="tab"], [role="radio"]):focus-visible {
-      outline: 3px solid var(--pmi-cobalt, var(--primary));
+      outline: 3px solid var(--pmi-violet, var(--primary));
       outline-offset: 2px;
       box-shadow: 0 0 0 2px var(--bg-card);
     }

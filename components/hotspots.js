@@ -393,7 +393,7 @@ export function generateCSS() {
     }
 
     .hotspot-zoom-btn:focus-visible {
-      outline: 3px solid var(--pmi-color-cobalt, #00388F);
+      outline: 3px solid var(--pmi-color-cobalt, #4F17A8);
       outline-offset: 1px;
     }
 
@@ -478,7 +478,7 @@ export function generateCSS() {
       height: 36px;
       background-color: var(--primary);
       border: 2px solid var(--bg-card);
-      color: var(--on-primary, #ffffff);
+      color: var(--on-primary, #FFFFFF);
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -529,7 +529,7 @@ export function generateCSS() {
     }
 
     .hotspot-pin:focus-visible {
-      outline: 3px solid var(--pmi-color-cobalt, #00388F);
+      outline: 3px solid var(--pmi-color-cobalt, #4F17A8);
       outline-offset: 3px;
     }
 
@@ -554,8 +554,8 @@ export function generateCSS() {
       right: -3px;
       width: 15px;
       height: 15px;
-      background-color: var(--pmi-green, #91DC00);
-      color: #000000;
+      background-color: var(--pmi-green, #197F10);
+      color: #200F3B;
       border: 1.5px solid var(--bg-card);
       border-radius: 50%;
       display: none;
@@ -679,7 +679,7 @@ export function generateCSS() {
       font-weight: var(--pmi-fw-semibold, 600);
       text-transform: uppercase;
       letter-spacing: 0.5px;
-      color: var(--pmi-blue-300, #00C9FF);
+      color: var(--pmi-blue-300, #68D8ED);
     }
 
     .hotspot-callout-title {
@@ -714,7 +714,7 @@ export function generateCSS() {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      color: var(--pmi-blue-300, #00C9FF);
+      color: var(--pmi-blue-300, #68D8ED);
     }
 
     .hotspot-audio-elem {
@@ -733,7 +733,7 @@ export function generateCSS() {
     .hotspot-audio-transcript summary {
       cursor: pointer;
       font-weight: var(--pmi-fw-semibold, 600);
-      color: var(--pmi-blue-300, #00C9FF);
+      color: var(--pmi-blue-300, #68D8ED);
     }
 
     .hotspot-audio-transcript .transcript-body {

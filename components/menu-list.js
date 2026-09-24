@@ -139,7 +139,7 @@ export function generateCSS() {
       transition: border-color 0.2s;
     }
     .menu-search-input:focus-visible {
-      outline: 3px solid var(--pmi-cobalt, var(--primary));
+      outline: 3px solid var(--pmi-violet, var(--primary));
       outline-offset: 2px;
       border-color: var(--primary);
     }
@@ -182,7 +182,7 @@ export function generateCSS() {
       color: var(--on-primary);
     }
     .quickjump-chip:focus-visible {
-      outline: 3px solid var(--pmi-cobalt, var(--primary));
+      outline: 3px solid var(--pmi-violet, var(--primary));
       outline-offset: 2px;
     }
     .menu-drawer-list {
@@ -202,8 +202,8 @@ export function generateCSS() {
       box-shadow: var(--pmi-shadow-2, 0 4px 6px -1px rgba(0, 0, 0, 0.1));
     }
     .menu-drawer-item.active {
-      border-color: var(--pmi-blue, var(--primary));
-      border-left: 4px solid var(--pmi-blue, var(--primary));
+      border-color: var(--pmi-aqua, var(--primary));
+      border-left: 4px solid var(--pmi-aqua, var(--primary));
     }
     .menu-item-summary {
       padding: var(--pmi-space-4, 16px) var(--pmi-space-5, 24px);
@@ -216,7 +216,7 @@ export function generateCSS() {
       user-select: none;
     }
     .menu-item-summary:focus-visible {
-      outline: 3px solid var(--pmi-cobalt, var(--primary));
+      outline: 3px solid var(--pmi-violet, var(--primary));
       outline-offset: -2px;
     }
     .menu-item-left {
@@ -259,7 +259,7 @@ export function generateCSS() {
       font-weight: 600;
       padding: 2px 8px;
       border-radius: var(--pmi-radius-pill, 999px);
-      background-color: var(--bg-body, #F3F4F5);
+      background-color: var(--bg-body, #F7F4EF);
       color: var(--text-muted);
       border: 1px solid var(--border-color);
     }
@@ -272,7 +272,7 @@ export function generateCSS() {
       transform: rotate(180deg);
     }
     .menu-item-desc {
-      background-color: var(--pmi-grey-1, #F3F4F5);
+      background-color: var(--pmi-neutral-50, #F7F4EF);
       border-top: 1px solid var(--border-color);
     }
     .menu-item-desc-inner {

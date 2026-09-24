@@ -19,7 +19,7 @@ function customProps(css) {
   return map;
 }
 
-describe('AT&T token layer', () => {
+describe('PMI token layer', () => {
   test('js/pmi-tokens.js is a verbatim copy of design/pmi-tokens.css :root declarations', async () => {
     const canonical = await readFile(join(repoRoot, 'design', 'pmi-tokens.css'), 'utf8');
     const rootBody = /:root\s*{([\s\S]*)}/.exec(canonical);
@@ -37,12 +37,16 @@ describe('AT&T token layer', () => {
     const css = await readFile(join(repoRoot, 'design', 'pmi-tokens.css'), 'utf8');
     const props = customProps(css);
     for (const [name, value] of [
-      ['--pmi-blue', '#009FDB'],
-      ['--pmi-cobalt', '#00388F'],
-      ['--pmi-lime', '#91DC00'],
+      ['--pmi-aqua', '#00799E'],
+      ['--pmi-violet', '#4F17A8'],
+      ['--pmi-green', '#197F10'],
       ['--pmi-fs-body', '1rem'],
-      ['--pmi-radius-lg', '20px'],
-      ['--pmi-radius-xl', '32px']
+      ['--pmi-radius-sm', '4px'],
+      ['--pmi-radius-lg', '24px'],
+      ['--pmi-radius-xl', '24px'],
+      ['--pmi-aqua-bright', '#05BFE0'],
+      ['--pmi-off-black', '#200F3B'],
+      ['--pmi-neutral-50', '#F7F4EF']
     ]) {
       expect(props.get(name)).toBe(value);
     }
@@ -56,9 +60,9 @@ describe('every compiled export carries the token layer and its fonts inline', (
     test(`${id}: :root has the --pmi-* block`, () => {
       const html = compileExportFixture(id);
       const pmiProps = customProps(html);
-      expect(pmiProps.get('--pmi-blue')).toBe('#009FDB');
-      expect(pmiProps.get('--pmi-cobalt')).toBe('#00388F');
-      expect(pmiProps.get('--pmi-radius-xl')).toBe('32px');
+      expect(pmiProps.get('--pmi-aqua')).toBe('#00799E');
+      expect(pmiProps.get('--pmi-violet')).toBe('#4F17A8');
+      expect(pmiProps.get('--pmi-radius-xl')).toBe('24px');
       // The theme layer is still present and still the active one.
       expect(html).toContain('--primary:');
       expect(html).toContain('--accent:');

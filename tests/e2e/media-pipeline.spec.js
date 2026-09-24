@@ -12,7 +12,7 @@ async function uploadCanvasImage(fileInputLocator, { width, height, name = 'canv
     canvas.width = canvasWidth;
     canvas.height = canvasHeight;
     const context = canvas.getContext('2d');
-    context.fillStyle = '#3366ff';
+    context.fillStyle = '#8243D6';
     context.fillRect(0, 0, canvasWidth, canvasHeight);
     const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
     const file = new File([blob], fileName, { type: 'image/png' });

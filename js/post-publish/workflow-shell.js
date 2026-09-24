@@ -358,7 +358,7 @@ export function createPostPublishWorkflow({ onBack = null } = {}) {
         </div>
       </div>
 
-      <p class="ppt-demo-label" role="note" style="margin: 0 0 8px; padding: 8px 12px; border: 1px solid #F59E0B; background: #FFFBEB; border-radius: 8px; font-size: 0.8125rem;">
+      <p class="ppt-demo-label" role="note" style="margin: 0 0 8px; padding: 8px 12px; border: 1px solid #D5340B; background: #FEF7F3; border-radius: 8px; font-size: 0.8125rem;">
         <strong>Demo simulator — not your uploaded course.</strong> This is a made-up course page used to show how the tools look and behave with your settings. Your uploaded package has not been opened or rendered, so this preview does not validate it.
       </p>
       <div class="ppt-preview-frame-shell">
@@ -536,8 +536,8 @@ export function createPostPublishWorkflow({ onBack = null } = {}) {
         <span class="breadcrumb-current">Rise Post-Publish Toolkit</span>
       </div>
     </div>
-    <h1 class="ppt-page-title" style="font-size: 1.5rem; font-weight: 700; margin: 0 0 4px 0; color: var(--text-main, #111);">Persistent Course Tools</h1>
-    <p style="font-size: 0.875rem; color: var(--text-muted, #666); margin: 0 0 16px 0;">Add persistent glossary, resources, and help to an exported Rise course.</p>
+    <h1 class="ppt-page-title" style="font-size: 1.5rem; font-weight: 700; margin: 0 0 4px 0; color: var(--text-main, #200F3B);">Persistent Course Tools</h1>
+    <p style="font-size: 0.875rem; color: var(--text-muted, #574E69); margin: 0 0 16px 0;">Add persistent glossary, resources, and help to an exported Rise course.</p>
   `;
 
   const backBtn = workflowHeader.querySelector('#ppt-back-btn');

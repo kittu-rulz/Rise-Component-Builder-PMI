@@ -158,13 +158,13 @@ describe('comparison slider component', () => {
 
   test('applies custom stageBgColor variable to the stage', () => {
     const html = comparisonSlider.generateHTML({
-      stageBgColor: '#00388F',
+      stageBgColor: '#4F17A8',
       items: [{
         beforeImage: 'https://example.com/b.jpg',
         afterImage: 'https://example.com/a.jpg'
       }]
     }, INSTANCE_ID);
 
-    expect(html).toContain('--comparison-stage-bg: #00388F');
+    expect(html).toContain('--comparison-stage-bg: #4F17A8');
   });
 });

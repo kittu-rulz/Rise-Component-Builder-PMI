@@ -349,7 +349,7 @@ export class ProjectQaView {
                 Editorial status: <strong>${audit.editorial.readyCount} Ready</strong>, <strong>${audit.editorial.inReviewCount} In Review</strong>, <strong>${audit.editorial.draftCount} Draft</strong> ·
                 Export: <strong>${pending ? 'checking…' : audit.exportReadiness ? (audit.exportReadiness.canExport ? 'can be built' : 'blocked') : this.escapeHtml(audit.overallStatus)}</strong>
               </p>
-              <div style="margin-top: 10px; font-size: 0.8125rem; color: #555555; display: flex; gap: 14px; flex-wrap: wrap;">
+              <div style="margin-top: 10px; font-size: 0.8125rem; color: #200F3B; display: flex; gap: 14px; flex-wrap: wrap;">
                 <span>🛑 <strong>${audit.counts.blockers}</strong> blockers</span>
                 <span>⚠️ <strong>${audit.counts.errors}</strong> errors</span>
                 <span>📋 <strong>${audit.counts.warnings}</strong> warnings</span>
@@ -357,18 +357,18 @@ export class ProjectQaView {
                 <span>✅ <strong>${audit.counts.passed}</strong> passed</span>
               </div>
 
-              <details class="qa-score-explainer" style="margin-top: 14px; background: #FFFFFF; border: 1px solid var(--pmi-border, #DCDFE3); border-radius: 8px; padding: 10px 14px; font-size: 0.8125rem;">
-                <summary style="font-weight: 600; cursor: pointer; color: var(--pmi-cobalt, #00388F);">
+              <details class="qa-score-explainer" style="margin-top: 14px; background: #FFFFFF; border: 1px solid var(--pmi-border, #E7E4DC); border-radius: 8px; padding: 10px 14px; font-size: 0.8125rem;">
+                <summary style="font-weight: 600; cursor: pointer; color: var(--pmi-violet, #4F17A8);">
                   What do these statuses mean?
                 </summary>
-                <div style="margin-top: 8px; color: var(--pmi-text, #333); line-height: 1.5;">
+                <div style="margin-top: 8px; color: var(--pmi-text, #200F3B); line-height: 1.5;">
                   <p style="margin: 0 0 6px 0;">Three things are reported separately, and none is a percentage:</p>
                   <ul style="margin: 0 0 8px 18px; padding: 0;">
                     <li><strong>Technical checks:</strong> the same automated Preflight rules the editor runs (required fields, accessibility, media, contrast, layout measurements), applied to all ${audit.totalComponents} components. “Passed” means none of those automated rules found a warning or blocker; it is not a WCAG conformance certificate or a guarantee of Rise compatibility.</li>
                     <li><strong>Editorial status:</strong> the Draft / In Review / Ready label authors set on each component. Draft is a workflow note, not a defect.</li>
                     <li><strong>Export:</strong> whether anything stops the package being built (for example a missing uploaded file).</li>
                   </ul>
-                  <p style="margin: 0; font-size: 0.75rem; color: #666;">
+                  <p style="margin: 0; font-size: 0.75rem; color: #574E69;">
                     <em>Layout measurements are heuristics taken in this Builder's own preview with collapsed sections opened. Confirm in Rise's own preview before publishing.</em>
                   </p>
                 </div>
@@ -376,7 +376,7 @@ export class ProjectQaView {
             </div>
             <div class="workspace-banner-metrics">
               <div class="metric-card">
-                <p class="metric-value" style="font-size: 1.125rem; color: ${pending ? '#6B7280' : audit.overallStatus === 'Ready to Export' ? '#10B981' : (audit.overallStatus === 'In Progress' || audit.overallStatus === 'Ready with warnings') ? '#B45309' : '#EF4444'};">
+                <p class="metric-value" style="font-size: 1.125rem; color: ${pending ? '#574E69' : audit.overallStatus === 'Ready to Export' ? '#197F10' : (audit.overallStatus === 'In Progress' || audit.overallStatus === 'Ready with warnings') ? '#741C06' : '#FD3321'};">
                   ${pending ? 'Checking…' : this.escapeHtml(audit.overallStatus)}
                 </p>
                 <p class="metric-label">Overall status</p>
@@ -390,7 +390,7 @@ export class ProjectQaView {
               <button class="filter-chip ${this.state.filterSeverity === 'all' ? 'active' : ''}" data-sev="all">
                 All Components (${audit.componentReports.length})
               </button>
-              <button class="filter-chip ${this.state.filterSeverity === 'blocker' ? 'active' : ''}" data-sev="blocker" style="${audit.counts.blockers > 0 ? 'color: #D32F2F; font-weight: 700;' : ''}">
+              <button class="filter-chip ${this.state.filterSeverity === 'blocker' ? 'active' : ''}" data-sev="blocker" style="${audit.counts.blockers > 0 ? 'color: #C41E08; font-weight: 700;' : ''}">
                 🛑 Blockers (${audit.counts.blockers})
               </button>
               <button class="filter-chip ${this.state.filterSeverity === 'error' ? 'active' : ''}" data-sev="error">
@@ -415,7 +415,7 @@ export class ProjectQaView {
           <div class="sections-list">
             ${filteredReports.length > 0 ? filteredReports.map(item => `
               <div class="section-card" style="margin-bottom: 16px;">
-                <div class="section-card-header" style="background: var(--pmi-grey-1, #F8F9FA); padding: 14px 20px; border-bottom: 1px solid var(--pmi-border, #E5E7EB); display: flex; justify-content: space-between; align-items: center;">
+                <div class="section-card-header" style="background: var(--pmi-neutral-50, #F7F4EF); padding: 14px 20px; border-bottom: 1px solid var(--pmi-border, #E7E4DC); display: flex; justify-content: space-between; align-items: center;">
                   <div class="section-header-left" style="display: flex; align-items: center; gap: 12px;">
                     <span class="component-type-badge">${this.escapeHtml(item.component.type)}</span>
                     <h3 class="section-title" style="margin: 0; font-size: 1.05rem;">${this.escapeHtml(item.component.name)}</h3>
@@ -434,16 +434,16 @@ export class ProjectQaView {
                         ${iss.severity}
                       </span>
                       <div style="flex: 1;">
-                        <strong style="color: var(--pmi-heading-contrast, #111);">${this.escapeHtml(iss.title)}:</strong>
-                        <span style="color: var(--pmi-text, #333); margin-left: 4px;">${this.escapeHtml(iss.message)}</span>
-                        ${iss.formats?.length ? `<span style="display: block; font-size: 0.75rem; color: #555; margin-top: 2px;">Affects: ${this.escapeHtml(iss.formats.join(', '))}</span>` : ''}
-                        ${iss.remediation ? `<span style="display: block; font-size: 0.75rem; color: #555; margin-top: 2px;">Fix: ${this.escapeHtml(iss.remediation)}</span>` : ''}
-                        ${iss.preventsExport ? `<span style="display: block; font-size: 0.75rem; color: #D32F2F; font-weight: 600; margin-top: 2px;">🛑 Prevents package export</span>` : ''}
+                        <strong style="color: var(--pmi-heading-contrast, #200F3B);">${this.escapeHtml(iss.title)}:</strong>
+                        <span style="color: var(--pmi-text, #200F3B); margin-left: 4px;">${this.escapeHtml(iss.message)}</span>
+                        ${iss.formats?.length ? `<span style="display: block; font-size: 0.75rem; color: #200F3B; margin-top: 2px;">Affects: ${this.escapeHtml(iss.formats.join(', '))}</span>` : ''}
+                        ${iss.remediation ? `<span style="display: block; font-size: 0.75rem; color: #200F3B; margin-top: 2px;">Fix: ${this.escapeHtml(iss.remediation)}</span>` : ''}
+                        ${iss.preventsExport ? `<span style="display: block; font-size: 0.75rem; color: #C41E08; font-weight: 600; margin-top: 2px;">🛑 Prevents package export</span>` : ''}
                       </div>
                     </div>
                   `).join('') : `
-                    <p style="margin: 0; font-size: 0.875rem; color: #10B981; display: flex; align-items: center; gap: 8px; font-weight: 500;">
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                    <p style="margin: 0; font-size: 0.875rem; color: #197F10; display: flex; align-items: center; gap: 8px; font-weight: 500;">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#197F10" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
                       ${pending ? 'Running technical checks…' : 'No findings from the automated technical, content and metadata checks.'}
                     </p>
                   `}
@@ -451,7 +451,7 @@ export class ProjectQaView {
               </div>
             `).join('') : `
               <div class="dashboard-empty-state">
-                <h3 class="empty-state-title" style="color: #2E7D32;">No components match the selected QA filter!</h3>
+                <h3 class="empty-state-title" style="color: #197F10;">No components match the selected QA filter!</h3>
                 <p class="empty-state-subtitle">Adjust your filter chips or search query above to review other findings.</p>
               </div>
             `}
@@ -466,30 +466,30 @@ export class ProjectQaView {
   getSeverityRowStyle(severity) {
     switch (severity) {
       case 'blocker':
-        return 'background: rgba(224, 88, 77, 0.05); border-left: 3px solid #D32F2F;';
+        return 'background: rgba(224, 88, 77, 0.05); border-left: 3px solid #C41E08;';
       case 'error':
-        return 'background: rgba(216, 67, 21, 0.05); border-left: 3px solid #D84315;';
+        return 'background: rgba(216, 67, 21, 0.05); border-left: 3px solid #C41E08;';
       case 'warning':
-        return 'background: rgba(245, 127, 23, 0.05); border-left: 3px solid #F57F17;';
+        return 'background: rgba(245, 127, 23, 0.05); border-left: 3px solid #EB4D0A;';
       case 'recommendation':
-        return 'background: rgba(2, 119, 189, 0.05); border-left: 3px solid #0277BD;';
+        return 'background: rgba(2, 119, 189, 0.05); border-left: 3px solid #00799E;';
       default:
-        return 'background: rgba(46, 125, 50, 0.05); border-left: 3px solid #2E7D32;';
+        return 'background: rgba(46, 125, 50, 0.05); border-left: 3px solid #197F10;';
     }
   }
 
   getSeverityBadgeStyle(severity) {
     switch (severity) {
       case 'blocker':
-        return 'background: #FEECEB; color: #D32F2F; border: 1px solid #FFCDD2;';
+        return 'background: #FFEDEC; color: #C41E08; border: 1px solid #FFEDEC;';
       case 'error':
-        return 'background: #FFF3E0; color: #D84315; border: 1px solid #FFE0B2;';
+        return 'background: #FEF7F3; color: #C41E08; border: 1px solid #FFBC9C;';
       case 'warning':
-        return 'background: #FFFDE7; color: #F57F17; border: 1px solid #FFF59D;';
+        return 'background: #FEF7F3; color: #EB4D0A; border: 1px solid #FFBC9C;';
       case 'recommendation':
-        return 'background: #E1F5FE; color: #0277BD; border: 1px solid #B3E5FC;';
+        return 'background: #EEFAFA; color: #00799E; border: 1px solid #C8F0F9;';
       default:
-        return 'background: #E8F5E9; color: #2E7D32; border: 1px solid #C8E6C9;';
+        return 'background: #F2F5F2; color: #197F10; border: 1px solid #BDFDBD;';
     }
   }
 
@@ -566,6 +566,6 @@ export class ProjectQaView {
       .replace(/</g, '&lt;')
       .replace(/>/g, '&gt;')
       .replace(/"/g, '&quot;')
-      .replace(/'/g, '&#039;');
+      .replace(/'/g, '&#2A0C5A;');
   }
 }

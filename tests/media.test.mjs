@@ -42,7 +42,7 @@ function createMemoryLocalStorage() {
 function baseConfig(items) {
   return {
     blockTitle: 'MEDIA', blockHeadline: 'Media test', blockDesc: 'Test content',
-    colorPrimary: '#2563EB', colorAccent: '#B45309', colorBg: '#FFFFFF', colorText: '#1F2937',
+    colorPrimary: '#4F17A8', colorAccent: '#741C06', colorBg: '#FFFFFF', colorText: '#200F3B',
     borderRadius: '12', shadowDepth: 'soft', borderOutline: true, accordionMulti: true,
     accordionAnimation: true, iconStyle: 'chevron', trackCompletion: false,
     completionMsg: 'Complete', items

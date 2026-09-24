@@ -9,7 +9,7 @@ const componentRegistry = Object.fromEntries(COMPONENT_REGISTRY.map(entry => [en
 
 const baseFields = {
   blockTitle: 'TEST BLOCK', blockHeadline: 'Test Headline', blockDesc: 'Test description.',
-  colorPrimary: '#2563EB', colorAccent: '#F59E0B', colorBg: '#FFFFFF', colorText: '#1F2937',
+  colorPrimary: '#4F17A8', colorAccent: '#D5340B', colorBg: '#FFFFFF', colorText: '#200F3B',
   borderRadius: '12', shadowDepth: 'soft', borderOutline: true,
   trackCompletion: true, completionMsg: 'Activity Complete!'
 };

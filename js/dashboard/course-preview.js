@@ -283,10 +283,10 @@ export class CoursePreviewView {
           </div>
         </header>
 
-        <main class="workspace-container course-preview-workspace-main" style="display: flex; flex-direction: column; align-items: center; background: var(--bg-canvas, #F4F6F9); min-height: calc(100vh - 120px); padding: 24px 16px;">
+        <main class="workspace-container course-preview-workspace-main" style="display: flex; flex-direction: column; align-items: center; background: var(--bg-canvas, #F7F4EF); min-height: calc(100vh - 120px); padding: 24px 16px;">
           <div class="course-preview-header-meta" style="width: 100%; max-width: ${maxCanvasWidth}; transition: max-width 0.25s ease; margin-bottom: 16px; display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 8px;">
-            <h1 class="workspace-title" style="font-size: 1.5rem; font-weight: 700; margin: 0; color: #111;">Course Preview</h1>
-            <div class="preview-viewport-info-banner" style="font-size: 0.8125rem; color: #555;">
+            <h1 class="workspace-title" style="font-size: 1.5rem; font-weight: 700; margin: 0; color: #200F3B;">Course Preview</h1>
+            <div class="preview-viewport-info-banner" style="font-size: 0.8125rem; color: #200F3B;">
               Showing: <strong>${deviceLabel}</strong> · ${pluralize(orderedItems.filter(i => i.type === 'component').length, 'component')} in sequence
             </div>
           </div>
@@ -298,9 +298,9 @@ export class CoursePreviewView {
               return orderedItems.map((item, index) => {
                 if (item.type === 'section-header') {
                   return `
-                    <div class="course-preview-section-header" style="border-bottom: 2px solid var(--pmi-cobalt, #00388F); padding-bottom: 10px; margin-top: ${index === 0 ? '0' : '20px'};">
-                      <h2 style="font-size: 1.375rem; font-weight: 700; color: var(--pmi-cobalt, #00388F); margin: 0 0 4px 0;">${escapeHTML(item.title)}</h2>
-                      ${item.description ? `<p style="font-size: 0.875rem; color: #666; margin: 0;">${escapeHTML(item.description)}</p>` : ''}
+                    <div class="course-preview-section-header" style="border-bottom: 2px solid var(--pmi-violet, #4F17A8); padding-bottom: 10px; margin-top: ${index === 0 ? '0' : '20px'};">
+                      <h2 style="font-size: 1.375rem; font-weight: 700; color: var(--pmi-violet, #4F17A8); margin: 0 0 4px 0;">${escapeHTML(item.title)}</h2>
+                      ${item.description ? `<p style="font-size: 0.875rem; color: #574E69; margin: 0;">${escapeHTML(item.description)}</p>` : ''}
                     </div>
                   `;
                 }
@@ -314,12 +314,12 @@ export class CoursePreviewView {
                 return `
                   <div class="course-preview-block ${this.state.showBoundaries ? 'outline-boundary' : ''}" 
                        id="preview-block-${comp.id}"
-                       style="background: #ffffff; border: 1px solid #DCDFE3; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.04); position: relative;">
-                    <div class="course-preview-block-header" style="display: flex; justify-content: space-between; align-items: center; padding: 10px 18px; background: #FAFAFA; border-bottom: 1px solid #EFEFEF;">
+                       style="background: #FFFFFF; border: 1px solid #E7E4DC; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.04); position: relative;">
+                    <div class="course-preview-block-header" style="display: flex; justify-content: space-between; align-items: center; padding: 10px 18px; background: #F7F4EF; border-bottom: 1px solid #F7F4EF;">
                       <div style="display: flex; align-items: center; gap: 10px; min-width: 0;">
-                        <span class="preview-comp-order-badge preview-sequence-badge" style="font-size: 0.75rem; font-weight: 700; background: #E4E7EC; color: #333; padding: 2px 8px; border-radius: 12px; flex-shrink: 0;">${compCounter}</span>
-                        <h3 style="font-size: 0.9375rem; font-weight: 600; color: #111; margin: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${escapeHTML(comp.name)}</h3>
-                        <span class="component-type-badge" style="font-size: 0.75rem; background: rgba(0, 56, 143, 0.08); color: var(--pmi-cobalt, #00388F); padding: 2px 8px; border-radius: 4px; flex-shrink: 0;">${escapeHTML(typeName)}</span>
+                        <span class="preview-comp-order-badge preview-sequence-badge" style="font-size: 0.75rem; font-weight: 700; background: #E7E4DC; color: #200F3B; padding: 2px 8px; border-radius: 12px; flex-shrink: 0;">${compCounter}</span>
+                        <h3 style="font-size: 0.9375rem; font-weight: 600; color: #200F3B; margin: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${escapeHTML(comp.name)}</h3>
+                        <span class="component-type-badge" style="font-size: 0.75rem; background: rgba(79, 23, 168, 0.08); color: var(--pmi-violet, #4F17A8); padding: 2px 8px; border-radius: 4px; flex-shrink: 0;">${escapeHTML(typeName)}</span>
                       </div>
                       <div style="display: flex; align-items: center; gap: 8px; flex-shrink: 0;">
                         <button type="button" class="btn btn-secondary btn-sm" data-action="edit-preview-comp" data-comp-id="${comp.id}" aria-label="Edit component: ${escapeHTML(comp.name)}" style="padding: 6px 12px; font-size: 0.8125rem; display: inline-flex; align-items: center; gap: 6px;">
@@ -329,7 +329,7 @@ export class CoursePreviewView {
                       </div>
                     </div>
 
-                  <div class="component-rendered-container" style="padding: 16px; min-height: 180px; position: relative; background: #ffffff;">
+                  <div class="component-rendered-container" style="padding: 16px; min-height: 180px; position: relative; background: #FFFFFF;">
                     ${compiled.success ? `
                       <iframe 
                         id="iframe-comp-${comp.id}"
@@ -341,7 +341,7 @@ export class CoursePreviewView {
                         style="width: 100%; border: none; min-height: 200px; display: block; overflow: hidden; transition: height 0.2s ease;">
                       </iframe>
                     ` : `
-                      <div class="course-preview-error-card" style="padding: 20px; background: #FFF5F5; border: 1px solid #FEB2B2; border-radius: 8px; color: #C53030;">
+                      <div class="course-preview-error-card" style="padding: 20px; background: #FFEDEC; border: 1px solid #FFB0A9; border-radius: 8px; color: #C41E08;">
                         <h4 style="margin: 0 0 8px 0; font-size: 0.9375rem; font-weight: 700;">Could not render ${escapeHTML(comp.name)}</h4>
                         <p style="margin: 0 0 12px 0; font-size: 0.875rem;">${escapeHTML(compiled.error)}</p>
                         <button type="button" class="btn btn-secondary btn-sm" data-action="edit-preview-comp" data-comp-id="${comp.id}">
@@ -356,9 +356,9 @@ export class CoursePreviewView {
             })()}
 
             ${orderedItems.length === 0 ? `
-              <div class="dashboard-empty-state" style="width: 100%; text-align: center; padding: 48px 24px; background: #ffffff; border-radius: 16px; border: 1px dashed #DCDFE3;">
+              <div class="dashboard-empty-state" style="width: 100%; text-align: center; padding: 48px 24px; background: #FFFFFF; border-radius: 16px; border: 1px dashed #E7E4DC;">
                 <h3 class="empty-state-title" style="margin: 0 0 8px 0; font-size: 1.25rem;">No components in this course project yet</h3>
-                <p class="empty-state-subtitle" style="color: #666; margin: 0 0 20px 0;">Add sections and components in the Course Workspace to preview the complete interactive flow here.</p>
+                <p class="empty-state-subtitle" style="color: #574E69; margin: 0 0 20px 0;">Add sections and components in the Course Workspace to preview the complete interactive flow here.</p>
                 <button type="button" class="btn btn-primary" id="preview-empty-back-btn">Return to Course Workspace</button>
               </div>
             ` : ''}

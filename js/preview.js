@@ -86,17 +86,17 @@ export function generateIframeContent(appState, componentRegistry, colorToRgba) 
     .map(font => CUSTOM_FONT_FACES_BY_FAMILY[font]).filter(Boolean).join('\n\n');
   const density = c.spacingDensity || themeTokens.spacingDensity || 'standard';
   const spacingScale = { compact: 0.82, standard: 1, comfortable: 1, spacious: 1.18 }[density] || 1;
-  const primaryLight = toRgba(c.colorPrimary, 0.12, 'rgba(0, 56, 143, 0.12)');
-  const primaryTint = toRgba(c.colorPrimary, 0.05, 'rgba(0, 56, 143, 0.05)');
-  const focusRing = toRgba(c.colorPrimary, 0.16, 'rgba(0, 56, 143, 0.16)');
-  const accentLight = toRgba(c.colorAccent, 0.14, 'rgba(0, 159, 219, 0.14)');
-  const accentTint = toRgba(c.colorAccent, 0.07, 'rgba(0, 159, 219, 0.07)');
+  const primaryLight = toRgba(c.colorPrimary, 0.12, 'rgba(79, 23, 168, 0.12)');
+  const primaryTint = toRgba(c.colorPrimary, 0.05, 'rgba(79, 23, 168, 0.05)');
+  const focusRing = toRgba(c.colorPrimary, 0.16, 'rgba(79, 23, 168, 0.16)');
+  const accentLight = toRgba(c.colorAccent, 0.14, 'rgba(0, 121, 158, 0.14)');
+  const accentTint = toRgba(c.colorAccent, 0.07, 'rgba(0, 121, 158, 0.07)');
   // Feedback-panel tints: not AT&T brand colors (success/danger are neutral-palette
   // status tokens, not derived from --primary/--accent), so opacity-based tinting here
   // isn't the "improvised brand shade" the AT&T theme rules prohibit — it only bars
   // inventing tints of the blue brand colors themselves.
-  const successTint = toRgba(themeTokens.success, 0.1, 'rgba(145, 220, 0, 0.1)');
-  const dangerTint = toRgba(themeTokens.danger, 0.1, 'rgba(0, 56, 143, 0.1)');
+  const successTint = toRgba(themeTokens.success, 0.1, 'rgba(25, 127, 16, 0.1)');
+  const dangerTint = toRgba(themeTokens.danger, 0.1, 'rgba(79, 23, 168, 0.1)');
   const onPrimary = themeTokens.surface;
   const onAccent = themeTokens.surface;
 

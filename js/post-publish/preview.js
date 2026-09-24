@@ -22,8 +22,8 @@ export async function generateSimulatorPreviewHTML(config) {
       margin: 0;
       padding: 0;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      background-color: #F8FAFC;
-      color: #1E293B;
+      background-color: #EFEDF3;
+      color: #1A0837;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
@@ -32,7 +32,7 @@ export async function generateSimulatorPreviewHTML(config) {
     /* Mock Rise Header */
     .mock-rise-header {
       background-color: #FFFFFF;
-      border-bottom: 1px solid #E2E8F0;
+      border-bottom: 1px solid #E7E4DC;
       padding: 14px 28px;
       display: flex;
       align-items: center;
@@ -45,7 +45,7 @@ export async function generateSimulatorPreviewHTML(config) {
     .mock-rise-course-title {
       font-size: 15px;
       font-weight: 700;
-      color: #00388F;
+      color: #4F17A8;
       display: flex;
       align-items: center;
       gap: 8px;
@@ -53,7 +53,7 @@ export async function generateSimulatorPreviewHTML(config) {
 
     .mock-rise-nav-crumbs {
       font-size: 13px;
-      color: #64748B;
+      color: #574E69;
     }
 
     /* Mock Rise Course Canvas */
@@ -69,11 +69,11 @@ export async function generateSimulatorPreviewHTML(config) {
     }
 
     .mock-rise-hero {
-      background: linear-gradient(135deg, #00388F 0%, #0057B8 100%);
+      background: linear-gradient(135deg, #4F17A8 0%, #4F17A8 100%);
       color: #FFFFFF;
       padding: 36px 32px;
       border-radius: 16px;
-      box-shadow: 0 10px 25px rgba(0, 56, 143, 0.15);
+      box-shadow: 0 10px 25px rgba(79, 23, 168, 0.15);
     }
 
     .mock-rise-hero h1 {
@@ -91,7 +91,7 @@ export async function generateSimulatorPreviewHTML(config) {
 
     .mock-rise-lesson-block {
       background-color: #FFFFFF;
-      border: 1px solid #E2E8F0;
+      border: 1px solid #E7E4DC;
       border-radius: 12px;
       padding: 28px;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
@@ -101,13 +101,13 @@ export async function generateSimulatorPreviewHTML(config) {
       margin: 0 0 12px;
       font-size: 20px;
       font-weight: 700;
-      color: #0F172A;
+      color: #100522;
     }
 
     .mock-rise-lesson-block p {
       font-size: 15px;
       line-height: 1.6;
-      color: #334155;
+      color: #200F3B;
       margin: 0 0 16px;
     }
 

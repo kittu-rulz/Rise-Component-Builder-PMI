@@ -111,7 +111,7 @@ export function generateCSS() {
       color: var(--text-main);
     }
     .blank-input {
-      border: 1.5px solid var(--border-color, #DCDFE3);
+      border: 1.5px solid var(--border-color, #E7E4DC);
       border-radius: var(--pmi-radius-sm, 6px);
       background-color: var(--bg-card, #FFFFFF);
       padding: 6px 12px;
@@ -126,7 +126,7 @@ export function generateCSS() {
       margin: 0 4px;
     }
     .blank-input:focus-visible {
-      outline: 3px solid var(--pmi-cobalt, var(--primary));
+      outline: 3px solid var(--pmi-violet, var(--primary));
       outline-offset: 2px;
       border-color: var(--primary);
     }
@@ -169,7 +169,7 @@ export function generateCSS() {
       text-decoration: underline;
     }
     .blank-hint-box {
-      background-color: var(--bg-body, #F3F4F5);
+      background-color: var(--bg-body, #F7F4EF);
       border: 1px dashed var(--border-color);
       border-radius: var(--pmi-radius-sm, 6px);
       padding: 6px 12px;
@@ -201,7 +201,7 @@ export function generateCSS() {
       transform: scale(0.98);
     }
     .quiz-submit-btn:focus-visible {
-      outline: 3px solid var(--pmi-cobalt, var(--primary));
+      outline: 3px solid var(--pmi-violet, var(--primary));
       outline-offset: 2px;
     }
     .quiz-feedback {
@@ -287,12 +287,12 @@ export function generateJS(config, instanceId) {
         if (isCorrect) {
           input.classList.add('is-correct');
           input.setAttribute('aria-invalid', 'false');
-          if (badge) { badge.innerHTML = fbCheckIcon + ' Correct'; badge.style.color = 'var(--pmi-cta-bg, #00388F)'; }
+          if (badge) { badge.innerHTML = fbCheckIcon + ' Correct'; badge.style.color = 'var(--pmi-cta-bg, #4F17A8)'; }
         } else if (val.trim()) {
           allCorrect = false;
           input.classList.add('is-incorrect');
           input.setAttribute('aria-invalid', 'true');
-          if (badge) { badge.innerHTML = fbCrossIcon + ' Incorrect'; badge.style.color = 'var(--pmi-cta-bg, #00388F)'; }
+          if (badge) { badge.innerHTML = fbCrossIcon + ' Incorrect'; badge.style.color = 'var(--pmi-cta-bg, #4F17A8)'; }
         } else {
           allCorrect = false;
           input.removeAttribute('aria-invalid');

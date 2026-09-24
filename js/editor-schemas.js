@@ -314,7 +314,7 @@ export const editorSchemas = {
       field('metricLabel', 'Metric Callout Label (Optional)', 'text', { required: false, default: '', maxLength: 30 }),
       field('content', 'Card Description', 'richtext', { required: true, default: 'Description layout parameters.' }),
       ...visualIconFields,
-      field('accentColor', 'Card Accent Color', 'color', { required: false, default: '#009FDB' })
+      field('accentColor', 'Card Accent Color', 'color', { required: false, default: '#00799E' })
     ]
   },
   'pricing-comparison': {

@@ -8,9 +8,9 @@ const rootDir = join(__dirname, '..');
 const componentsDir = join(rootDir, 'components');
 
 const APPROVED_BRAND_HEXES = new Set([
-  '#009FDB', '#00388F', '#49EEDC', '#91DC00', '#F3F4F5',
-  '#DCDFE3', '#BDC2C7', '#000000', '#FFFFFF', '#0079B1',
-  '#00C9FF', '#002A6B', '#4B5563', '#FFF', '#000'
+  '#00799E', '#4F17A8', '#68D8ED', '#197F10', '#F7F4EF',
+  '#E7E4DC', '#CFCBC2', '#200F3B', '#FFFFFF', '#00799E',
+  '#68D8ED', '#371075', '#200F3B', '#FFFFFF', '#200F3B'
 ]);
 
 const EMOJI_REGEX = /[\u{1F300}-\u{1F9FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}\u{1F600}-\u{1F64F}\u{1F1E6}-\u{1F1FF}\u{1FA70}-\u{1FAFF}→➔➜▶▼▲◀✓✔✕✖★☆]/u;

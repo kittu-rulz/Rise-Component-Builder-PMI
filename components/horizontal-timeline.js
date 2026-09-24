@@ -98,7 +98,7 @@ export function generateCSS() {
       padding: 6px 4px 14px;
       overflow-x: auto;
       scrollbar-width: thin;
-      scrollbar-color: var(--border-color, #DCDFE3) transparent;
+      scrollbar-color: var(--border-color, #E7E4DC) transparent;
       -webkit-overflow-scrolling: touch;
     }
     .timeline-nodes-row::-webkit-scrollbar {
@@ -108,7 +108,7 @@ export function generateCSS() {
       background: transparent;
     }
     .timeline-nodes-row::-webkit-scrollbar-thumb {
-      background-color: var(--border-color, #DCDFE3);
+      background-color: var(--border-color, #E7E4DC);
       border-radius: 999px;
     }
     .timeline-nodes-row::-webkit-scrollbar-thumb:hover {
@@ -139,7 +139,7 @@ export function generateCSS() {
       right: 50%;
       top: 11px;
       height: 2px;
-      background-color: var(--border-color, #DCDFE3);
+      background-color: var(--border-color, #E7E4DC);
       z-index: 1;
     }
     .timeline-node:first-child::before {
@@ -149,7 +149,7 @@ export function generateCSS() {
       outline: none;
     }
     .timeline-node:focus-visible .node-marker {
-      outline: 3px solid var(--pmi-cobalt, var(--primary));
+      outline: 3px solid var(--pmi-violet, var(--primary));
       outline-offset: 2px;
     }
     .timeline-node:active .node-marker {
@@ -238,7 +238,7 @@ export function generateCSS() {
       width: 100%;
     }
     .timeline-media-popup-btn:focus-visible {
-      outline: 3px solid var(--pmi-cobalt, var(--primary));
+      outline: 3px solid var(--pmi-violet, var(--primary));
       outline-offset: 2px;
     }
     .timeline-slide-thumb {
@@ -256,7 +256,7 @@ export function generateCSS() {
       bottom: 6px;
       right: 6px;
       background: rgba(0,0,0,0.7);
-      color: #fff;
+      color: #FFFFFF;
       font-size: 11px;
       font-weight: 600;
       padding: 2px 6px;

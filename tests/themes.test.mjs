@@ -28,7 +28,7 @@ function memoryStorage() {
 function baseConfig() {
   return {
     blockTitle: 'Theme test', blockHeadline: 'Theme output', blockDesc: 'Description',
-    colorPrimary: '#2563EB', colorAccent: '#B45309', colorBg: '#FFFFFF', colorText: '#1F2937',
+    colorPrimary: '#4F17A8', colorAccent: '#741C06', colorBg: '#FFFFFF', colorText: '#200F3B',
     borderRadius: '12', shadowDepth: 'soft', borderOutline: true, accordionMulti: true,
     accordionAnimation: true, iconStyle: 'chevron', trackCompletion: false,
     completionMsg: 'Complete', items: [{ title: 'Item', content: 'Content' }]
@@ -72,8 +72,8 @@ test('custom theme creation, saving, deletion, and default selection persist loc
 
 test('saving current styling creates a custom theme with component overrides resolved', () => {
   const theme = BUILT_IN_THEMES[0];
-  const custom = createThemeFromCurrentStyling('Current Styling', theme, { primary: '#123456', fontFamily: 'Roboto' });
-  assert.equal(custom.tokens.primary, '#123456');
+  const custom = createThemeFromCurrentStyling('Current Styling', theme, { primary: '#230A49', fontFamily: 'Roboto' });
+  assert.equal(custom.tokens.primary, '#230A49');
   assert.equal(custom.tokens.fontFamily, 'Roboto');
   assert.equal(custom.isBuiltIn, false);
 });
@@ -81,11 +81,11 @@ test('saving current styling creates a custom theme with component overrides res
 test('component overrides take precedence and resetting them restores active theme values', () => {
   const theme = BUILT_IN_THEMES[0];
   const overridden = applyThemeToConfig(baseConfig(), theme, {
-    primary: '#123456', accent: '#654321', background: '#FAFAFA', text: '#111111',
+    primary: '#230A49', accent: '#451409', background: '#F7F4EF', text: '#200F3B',
     borderRadius: 20, shadow: 'premium', fontFamily: 'Roboto'
   });
-  assert.equal(overridden.colorPrimary, '#123456');
-  assert.equal(overridden.themeTokens.surface, '#FAFAFA');
+  assert.equal(overridden.colorPrimary, '#230A49');
+  assert.equal(overridden.themeTokens.surface, '#F7F4EF');
   assert.equal(overridden.themeTokens.fontFamily, 'Roboto');
   const reset = applyThemeToConfig(overridden, theme, {});
   assert.equal(reset.colorPrimary, theme.tokens.primary);
@@ -96,13 +96,13 @@ test('project persistence retains the active theme snapshot, overrides, and inde
   globalThis.localStorage = memoryStorage();
   const theme = BUILT_IN_THEMES[0];
   const project = buildProject({
-    name: 'Themed project', componentId: 'accordion', config: applyThemeToConfig(baseConfig(), theme, { accent: '#704F00' }),
-    activeTheme: theme, componentOverrides: { accent: '#704F00' }, uiTheme: 'dark',
+    name: 'Themed project', componentId: 'accordion', config: applyThemeToConfig(baseConfig(), theme, { accent: '#451409' }),
+    activeTheme: theme, componentOverrides: { accent: '#451409' }, uiTheme: 'dark',
     settings: { defaultFont: 'Lato', exportFormat: 'web', autosave: true, aiEnabled: false }
   });
   const reopened = getProject(saveProject(project).id);
   assert.equal(reopened.theme.id, theme.id);
-  assert.equal(reopened.componentOverrides.accent, '#704F00');
+  assert.equal(reopened.componentOverrides.accent, '#451409');
   assert.equal(reopened.uiTheme, 'dark');
   delete globalThis.localStorage;
 });
@@ -126,7 +126,7 @@ test('contrast validation reports exact ratios, normal and large text results, a
   assert.equal(report.length, 7);
   assert.ok(report.every(row => typeof row.ratio === 'number' && typeof row.normalText === 'boolean' && typeof row.largeText === 'boolean'));
   const lowContrast = createCustomTheme({
-    name: 'Low Contrast', tokens: { ...accessible.tokens, text: '#777777', background: '#777777' }
+    name: 'Low Contrast', tokens: { ...accessible.tokens, text: '#574E69', background: '#574E69' }
   });
   const failure = validateThemeContrast(lowContrast).find(row => row.label === 'Primary text on background');
   assert.equal(failure.normalText, false);

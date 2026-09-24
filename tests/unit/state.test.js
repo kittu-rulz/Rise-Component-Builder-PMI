@@ -30,9 +30,9 @@ describe('application state', () => {
   test('theme application, component override, and reset produce predictable state', () => {
     const theme = BUILT_IN_THEMES[0];
     appState.activeTheme = structuredClone(theme);
-    appState.componentOverrides = normalizeComponentOverrides({ primary: '#123456' });
+    appState.componentOverrides = normalizeComponentOverrides({ primary: '#230A49' });
     appState.config = applyThemeToConfig(appState.config, appState.activeTheme, appState.componentOverrides);
-    expect(appState.config.colorPrimary).toBe('#123456');
+    expect(appState.config.colorPrimary).toBe('#230A49');
     appState.componentOverrides = {};
     appState.config = applyThemeToConfig(appState.config, appState.activeTheme, appState.componentOverrides);
     expect(appState.config.colorPrimary).toBe(theme.tokens.primary);

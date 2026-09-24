@@ -222,7 +222,7 @@ export function createMediaUploadControl({
         const missingNotice = document.createElement('div');
         missingNotice.className = 'media-missing-notice';
         missingNotice.setAttribute('role', 'alert');
-        missingNotice.style.color = '#B91C1C';
+        missingNotice.style.color = '#931706';
         missingNotice.style.fontSize = '12px';
         missingNotice.style.marginTop = '4px';
         missingNotice.innerHTML = `
@@ -230,7 +230,7 @@ export function createMediaUploadControl({
           <div style="display: flex; gap: 6px; margin-top: 4px;">
             <button type="button" class="btn btn-secondary btn-small" data-action="pick-replacement" style="font-size: 11px; padding: 2px 8px;">Choose Replacement</button>
             <button type="button" class="btn btn-secondary btn-small" data-action="upload-replacement" style="font-size: 11px; padding: 2px 8px;">Upload Replacement</button>
-            <button type="button" class="btn btn-text btn-small" data-action="clear-reference" style="font-size: 11px; padding: 2px 8px; color: #DC2626;">Remove Reference</button>
+            <button type="button" class="btn btn-text btn-small" data-action="clear-reference" style="font-size: 11px; padding: 2px 8px; color: #C41E08;">Remove Reference</button>
           </div>
         `;
 

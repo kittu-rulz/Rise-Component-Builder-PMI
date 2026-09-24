@@ -113,7 +113,7 @@ export class ProjectMediaView {
               <p class="workspace-desc">
                 Assets are stored in this browser on this device (IndexedDB). The library is <strong>shared by every project in this browser</strong>, not kept per course. <strong>Export JSON</strong> saves media references only, not the files; use <strong>Export Package</strong> (in the Open Project menu) or a course ZIP to carry the files themselves.
               </p>
-              <div style="margin-top: 8px; font-size: 0.8125rem; color: #555555; display: flex; gap: 16px;">
+              <div style="margin-top: 8px; font-size: 0.8125rem; color: #200F3B; display: flex; gap: 16px;">
                 <span>Total Assets: <strong>${this.state.mediaList.length}</strong></span>
                 <span>Storage Footprint: <strong>${totalMb} MB</strong></span>
               </div>
@@ -136,7 +136,7 @@ export class ProjectMediaView {
           </div>
 
           ${this.state.isLoading ? `
-            <p style="text-align:center; padding: 40px; color:#666;">Loading project media library...</p>
+            <p style="text-align:center; padding: 40px; color:#574E69;">Loading project media library...</p>
           ` : items.length > 0 ? `
             <div class="dashboard-projects-grid">
               ${items.map(item => this.renderMediaCard(item)).join('')}
@@ -179,13 +179,13 @@ export class ProjectMediaView {
         </p>
 
         <div class="project-card-stats" style="flex-direction: column; align-items: flex-start; gap: 4px;">
-          <span style="font-size: 0.75rem; font-weight: 700; color: #555;">Used in ${refs.length} ${refs.length === 1 ? 'place' : 'places'}:</span>
+          <span style="font-size: 0.75rem; font-weight: 700; color: #200F3B;">Used in ${refs.length} ${refs.length === 1 ? 'place' : 'places'}:</span>
           ${refs.length > 0 ? `
             <div style="display: flex; flex-wrap: wrap; gap: 4px;">
               ${refs.map(r => `<span class="component-status-badge draft" style="font-size: 11px;">${this.escapeHtml(r)}</span>`).join('')}
             </div>
           ` : `
-            <span style="font-size: 11px; color: #999;">Unreferenced</span>
+            <span style="font-size: 11px; color: #808080;">Unreferenced</span>
           `}
         </div>
       </div>
@@ -314,22 +314,22 @@ export class ProjectMediaView {
         .join('');
 
       overlay.innerHTML = `
-        <div class="modal-dialog" style="max-width: 540px; width: 92vw; background: #fff; border-radius: 8px; box-shadow: 0 12px 36px rgba(0,0,0,0.25); overflow: hidden;">
-          <div class="modal-header" style="padding: 16px 20px; border-bottom: 1px solid #E2E8F0; background: #FEF2F2;">
-            <h3 style="margin: 0; color: #991B1B; font-size: 1.125rem; font-weight: 700;">⚠️ Asset In Use (${usage.totalUses} ${usage.totalUses === 1 ? 'Reference' : 'References'})</h3>
+        <div class="modal-dialog" style="max-width: 540px; width: 92vw; background: #FFFFFF; border-radius: 8px; box-shadow: 0 12px 36px rgba(0,0,0,0.25); overflow: hidden;">
+          <div class="modal-header" style="padding: 16px 20px; border-bottom: 1px solid #E7E4DC; background: #FFEDEC;">
+            <h3 style="margin: 0; color: #931706; font-size: 1.125rem; font-weight: 700;">⚠️ Asset In Use (${usage.totalUses} ${usage.totalUses === 1 ? 'Reference' : 'References'})</h3>
           </div>
-          <div class="modal-body" style="padding: 20px; font-size: 0.875rem; color: #334155; line-height: 1.5;">
+          <div class="modal-body" style="padding: 20px; font-size: 0.875rem; color: #200F3B; line-height: 1.5;">
             <p style="margin: 0 0 12px;"><strong>“${this.escapeHtml(asset?.name || 'Asset')}”</strong> is currently used in the following components:</p>
-            <div style="max-height: 140px; overflow-y: auto; background: #F8FAFC; padding: 10px 14px; border-radius: 6px; border: 1px solid #E2E8F0; margin-bottom: 14px;">
+            <div style="max-height: 140px; overflow-y: auto; background: #EFEDF3; padding: 10px 14px; border-radius: 6px; border: 1px solid #E7E4DC; margin-bottom: 14px;">
               <ul style="margin: 0; padding-left: 20px; font-size: 0.8125rem;">
                 ${affectedList}
               </ul>
             </div>
-            <p style="margin: 0; color: #64748B; font-size: 0.8125rem;">
+            <p style="margin: 0; color: #574E69; font-size: 0.8125rem;">
               Deleting this asset will leave missing media placeholders in the affected components. You can replace all references with another asset first.
             </p>
           </div>
-          <div class="modal-footer" style="padding: 14px 20px; border-top: 1px solid #E2E8F0; display: flex; justify-content: flex-end; gap: 8px; flex-wrap: wrap;">
+          <div class="modal-footer" style="padding: 14px 20px; border-top: 1px solid #E7E4DC; display: flex; justify-content: flex-end; gap: 8px; flex-wrap: wrap;">
             <button type="button" class="btn btn-text" id="dlg-cancel-btn">Cancel</button>
             <button type="button" class="btn btn-secondary" id="dlg-replace-btn">Replace References</button>
             <button type="button" class="btn btn-danger" id="dlg-delete-btn">Delete Anyway</button>
@@ -359,7 +359,7 @@ export class ProjectMediaView {
       .replace(/</g, '&lt;')
       .replace(/>/g, '&gt;')
       .replace(/"/g, '&quot;')
-      .replace(/'/g, '&#039;');
+      .replace(/'/g, '&#2A0C5A;');
   }
 }
 

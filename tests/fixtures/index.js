@@ -15,14 +15,14 @@ export const customTheme = {
   id: 'fixture-custom-theme', name: 'Fixture Custom Theme', description: 'Reusable test theme.',
   organization: 'Test', isBuiltIn: false, isLocked: false,
   createdAt: '2026-01-01T00:00:00.000Z', updatedAt: '2026-01-01T00:00:00.000Z',
-  tokens: { ...cleanTheme.tokens, primary: '#174EA6', accent: '#7A3E00' }
+  tokens: { ...cleanTheme.tokens, primary: '#371075', accent: '#451409' }
 };
 export const invalidTheme = { ...customTheme, tokens: { ...customTheme.tokens, primary: 'blue' } };
 
 export function componentConfig(items = [{ title: 'First item', content: 'First description' }]) {
   return applyThemeToConfig({
     blockTitle: 'TEST COMPONENT', blockHeadline: 'Fixture headline', blockDesc: 'Fixture instructions',
-    colorPrimary: '#2563EB', colorAccent: '#F59E0B', colorBg: '#FFFFFF', colorText: '#1F2937',
+    colorPrimary: '#4F17A8', colorAccent: '#D5340B', colorBg: '#FFFFFF', colorText: '#200F3B',
     borderRadius: '12', shadowDepth: 'soft', borderOutline: true, accordionMulti: true,
     accordionAnimation: true, iconStyle: 'chevron', trackCompletion: true,
     completionMsg: 'Activity complete', items: structuredClone(items)

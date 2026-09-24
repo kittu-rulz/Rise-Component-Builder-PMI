@@ -130,7 +130,7 @@ export function generateCSS() {
 
     .flip-card:focus-visible .flip-card-front,
     .flip-card:focus-visible .flip-card-back {
-      outline: 3px solid var(--pmi-cobalt, var(--primary));
+      outline: 3px solid var(--pmi-violet, var(--primary));
       outline-offset: 2px;
     }
 
@@ -240,12 +240,12 @@ export function generateCSS() {
     }
 
     .flip-status-badge.flip-status-know {
-      background-color: var(--pmi-grey-2, var(--border-color));
+      background-color: var(--pmi-neutral-100, var(--border-color));
       color: var(--text-main);
     }
 
     .flip-status-badge.flip-status-review {
-      background-color: var(--pmi-grey-2, var(--border-color));
+      background-color: var(--pmi-neutral-100, var(--border-color));
       color: var(--text-main);
     }
 
@@ -319,7 +319,7 @@ export function generateCSS() {
     }
 
     .flip-classify-btn:focus-visible, .flip-filter-chip:focus-visible, .flip-review-filter-btn:focus-visible, .flip-reset-btn:focus-visible, .flip-summary-reset-btn:focus-visible {
-      outline: 3px solid var(--pmi-cobalt, var(--primary));
+      outline: 3px solid var(--pmi-violet, var(--primary));
       outline-offset: 2px;
     }
 

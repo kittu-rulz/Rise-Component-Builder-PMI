@@ -4,20 +4,20 @@
  */
 
 :root {
-  --rcb-ppt-blue: #0057B8;
-  --rcb-ppt-cobalt: #00388F;
-  --rcb-ppt-navy: #002B66;
-  --rcb-ppt-cyan: #009FDB;
-  --rcb-ppt-dark-bg: #121824;
-  --rcb-ppt-dark-surface: #1E2638;
+  --rcb-ppt-blue: #4F17A8;
+  --rcb-ppt-cobalt: #4F17A8;
+  --rcb-ppt-navy: #1A0837;
+  --rcb-ppt-cyan: #00799E;
+  --rcb-ppt-dark-bg: #100522;
+  --rcb-ppt-dark-surface: #200F3B;
   --rcb-ppt-dark-border: rgba(255, 255, 255, 0.12);
-  --rcb-ppt-dark-text: #F3F4F6;
-  --rcb-ppt-dark-muted: #9CA3AF;
-  --rcb-ppt-light-bg: #F8FAFC;
+  --rcb-ppt-dark-text: #F7F4EF;
+  --rcb-ppt-dark-muted: #CFCBC2;
+  --rcb-ppt-light-bg: #EFEDF3;
   --rcb-ppt-light-surface: #FFFFFF;
-  --rcb-ppt-light-border: #E2E8F0;
-  --rcb-ppt-light-text: #0F172A;
-  --rcb-ppt-light-muted: #64748B;
+  --rcb-ppt-light-border: #E7E4DC;
+  --rcb-ppt-light-text: #100522;
+  --rcb-ppt-light-muted: #574E69;
   --rcb-ppt-radius: 12px;
   --rcb-ppt-zindex: 999999;
 }
@@ -33,7 +33,7 @@
   padding: 10px 20px;
   border-radius: 9999px;
   border: 1px solid rgba(255, 255, 255, 0.25);
-  box-shadow: 0 8px 24px rgba(0, 56, 143, 0.28), 0 2px 6px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 8px 24px rgba(79, 23, 168, 0.28), 0 2px 6px rgba(0, 0, 0, 0.08);
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   font-size: 15px;
   font-weight: 600;
@@ -47,7 +47,7 @@
 
 .rcb-ppt-launcher-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 12px 30px rgba(0, 56, 143, 0.36), 0 4px 10px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 12px 30px rgba(79, 23, 168, 0.36), 0 4px 10px rgba(0, 0, 0, 0.12);
 }
 
 .rcb-ppt-launcher-btn:active {
@@ -61,7 +61,7 @@
 
 .rcb-ppt-theme-cobalt .rcb-ppt-launcher-btn { background-color: var(--rcb-ppt-cobalt); }
 .rcb-ppt-theme-navy .rcb-ppt-launcher-btn { background-color: var(--rcb-ppt-navy); }
-.rcb-ppt-theme-cyan .rcb-ppt-launcher-btn { background-color: var(--rcb-ppt-cyan); color: #000; }
+.rcb-ppt-theme-cyan .rcb-ppt-launcher-btn { background-color: var(--rcb-ppt-cyan); color: #200F3B; }
 
 .rcb-ppt-launcher-icon {
   display: flex;
@@ -297,7 +297,7 @@
 
 .rcb-ppt-az-btn.rcb-ppt-selected {
   background-color: var(--rcb-ppt-blue);
-  color: #fff;
+  color: #FFFFFF;
   border-color: var(--rcb-ppt-blue);
 }
 
@@ -325,7 +325,7 @@
 
 .rcb-ppt-cat-pill.rcb-ppt-selected {
   background-color: var(--rcb-ppt-blue);
-  color: #fff;
+  color: #FFFFFF;
   border-color: var(--rcb-ppt-blue);
 }
 
@@ -360,12 +360,12 @@
   font-weight: 600;
   padding: 2px 6px;
   border-radius: 4px;
-  background-color: rgba(0, 87, 184, 0.1);
+  background-color: rgba(79, 23, 168, 0.1);
   color: var(--rcb-ppt-blue);
 }
 
 .rcb-ppt-surface-dark .rcb-ppt-gloss-abbrev {
-  background-color: rgba(0, 159, 219, 0.15);
+  background-color: rgba(0, 121, 158, 0.15);
   color: var(--rcb-ppt-cyan);
 }
 
@@ -445,7 +445,7 @@
   padding: 8px 14px;
   border-radius: 8px;
   background-color: var(--rcb-ppt-blue);
-  color: #fff;
+  color: #FFFFFF;
   text-decoration: none;
   font-size: 13px;
   font-weight: 600;
@@ -455,7 +455,7 @@
 
 .rcb-ppt-surface-dark .rcb-ppt-res-action-btn {
   background-color: var(--rcb-ppt-cyan);
-  color: #000;
+  color: #200F3B;
 }
 
 /* Help & Support Cards */
@@ -505,7 +505,7 @@
   border-radius: 6px;
   font-size: 12px;
   font-weight: 600;
-  background-color: rgba(0, 87, 184, 0.1);
+  background-color: rgba(79, 23, 168, 0.1);
   color: var(--rcb-ppt-blue);
   text-decoration: none;
   border: none;
@@ -513,7 +513,7 @@
 }
 
 .rcb-ppt-surface-dark .rcb-ppt-contact-action {
-  background-color: rgba(0, 159, 219, 0.15);
+  background-color: rgba(0, 121, 158, 0.15);
   color: var(--rcb-ppt-cyan);
 }
 

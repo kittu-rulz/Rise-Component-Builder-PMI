@@ -209,7 +209,7 @@ export function generateCSS() {
       transform: scale(0.95);
     }
     .tabs-nav-arrow:focus-visible {
-      outline: 3px solid var(--pmi-cobalt, var(--primary));
+      outline: 3px solid var(--pmi-violet, var(--primary));
       outline-offset: 2px;
     }
     .tabs-nav-arrow:disabled,
@@ -258,14 +258,14 @@ export function generateCSS() {
       transform: scale(0.98);
     }
     .tab-btn:focus-visible {
-      outline: 3px solid var(--pmi-cobalt, var(--primary));
+      outline: 3px solid var(--pmi-violet, var(--primary));
       outline-offset: 2px;
     }
     .tab-btn[aria-disabled="true"] {
       cursor: not-allowed;
-      background: var(--pmi-grey-2, #DCDFE3);
-      border-color: var(--pmi-grey-2, #DCDFE3);
-      color: var(--pmi-grey-3, #BDC2C7);
+      background: var(--pmi-neutral-100, #E7E4DC);
+      border-color: var(--pmi-neutral-100, #E7E4DC);
+      color: var(--pmi-neutral-200, #CFCBC2);
       opacity: 0.7;
     }
     .tab-label-text {

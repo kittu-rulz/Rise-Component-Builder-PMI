@@ -50,33 +50,33 @@ const handleArrowsVerticalIcon = `<svg width="18" height="18" viewBox="0 0 24 24
 
 function renderSchematicBeforeSvg() {
   return `<svg class="comparison-fallback-svg before-svg" viewBox="0 0 800 450" width="100%" height="100%" aria-hidden="true">
-    <rect width="800" height="450" fill="var(--bg-body, #F3F4F5)"/>
-    <g stroke="var(--border-color, #DCDFE3)" stroke-width="2" stroke-dasharray="6,6">
+    <rect width="800" height="450" fill="var(--bg-body, #F7F4EF)"/>
+    <g stroke="var(--border-color, #E7E4DC)" stroke-width="2" stroke-dasharray="6,6">
       <line x1="100" y1="120" x2="700" y2="120"/>
       <line x1="100" y1="225" x2="700" y2="225"/>
       <line x1="100" y1="330" x2="700" y2="330"/>
     </g>
-    <rect x="120" y="160" width="220" height="130" rx="16" fill="var(--bg-card, #FFFFFF)" stroke="var(--border-color, #DCDFE3)" stroke-width="2"/>
-    <circle cx="170" cy="225" r="28" fill="var(--pmi-grey-2, #DCDFE3)"/>
-    <rect x="220" y="200" width="90" height="12" rx="6" fill="var(--text-muted, #4B5563)"/>
-    <rect x="220" y="225" width="60" height="10" rx="5" fill="var(--border-color, #DCDFE3)"/>
-    <text x="400" y="235" font-family="var(--pmi-font-sans, sans-serif)" font-size="20" font-weight="700" fill="var(--text-muted, #4B5563)" text-anchor="middle">Legacy Baseline Architecture</text>
+    <rect x="120" y="160" width="220" height="130" rx="16" fill="var(--bg-card, #FFFFFF)" stroke="var(--border-color, #E7E4DC)" stroke-width="2"/>
+    <circle cx="170" cy="225" r="28" fill="var(--pmi-neutral-100, #E7E4DC)"/>
+    <rect x="220" y="200" width="90" height="12" rx="6" fill="var(--text-muted, #200F3B)"/>
+    <rect x="220" y="225" width="60" height="10" rx="5" fill="var(--border-color, #E7E4DC)"/>
+    <text x="400" y="235" font-family="var(--pmi-font-sans, sans-serif)" font-size="20" font-weight="700" fill="var(--text-muted, #200F3B)" text-anchor="middle">Legacy Baseline Architecture</text>
   </svg>`;
 }
 
 function renderSchematicAfterSvg() {
   return `<svg class="comparison-fallback-svg after-svg" viewBox="0 0 800 450" width="100%" height="100%" aria-hidden="true">
     <rect width="800" height="450" fill="var(--bg-card, #FFFFFF)"/>
-    <g stroke="var(--pmi-blue, #009FDB)" stroke-width="2" opacity="0.35">
+    <g stroke="var(--pmi-aqua, #00799E)" stroke-width="2" opacity="0.35">
       <line x1="100" y1="120" x2="700" y2="120"/>
       <line x1="100" y1="225" x2="700" y2="225"/>
       <line x1="100" y1="330" x2="700" y2="330"/>
     </g>
-    <rect x="460" y="160" width="220" height="130" rx="16" fill="var(--bg-body, #F3F4F5)" stroke="var(--pmi-blue, #009FDB)" stroke-width="2"/>
-    <circle cx="510" cy="225" r="28" fill="var(--pmi-blue, #009FDB)"/>
-    <rect x="560" y="200" width="90" height="12" rx="6" fill="var(--primary, #00388F)"/>
-    <rect x="560" y="225" width="60" height="10" rx="5" fill="var(--pmi-blue, #009FDB)"/>
-    <text x="400" y="235" font-family="var(--pmi-font-sans, sans-serif)" font-size="20" font-weight="700" fill="var(--primary, #00388F)" text-anchor="middle">Upgraded 5G Fiber Core</text>
+    <rect x="460" y="160" width="220" height="130" rx="16" fill="var(--bg-body, #F7F4EF)" stroke="var(--pmi-aqua, #00799E)" stroke-width="2"/>
+    <circle cx="510" cy="225" r="28" fill="var(--pmi-aqua, #00799E)"/>
+    <rect x="560" y="200" width="90" height="12" rx="6" fill="var(--primary, #4F17A8)"/>
+    <rect x="560" y="225" width="60" height="10" rx="5" fill="var(--pmi-aqua, #00799E)"/>
+    <text x="400" y="235" font-family="var(--pmi-font-sans, sans-serif)" font-size="20" font-weight="700" fill="var(--primary, #4F17A8)" text-anchor="middle">Upgraded 5G Fiber Core</text>
   </svg>`;
 }
 
@@ -304,7 +304,7 @@ export function generateCSS() {
       transform: translate(-50%, -50%) scale(0.96);
     }
     .comparison-handle:focus-visible {
-      outline: 3px solid var(--pmi-cobalt, var(--primary));
+      outline: 3px solid var(--pmi-violet, var(--primary));
       outline-offset: 2px;
     }
     @media (prefers-reduced-motion: reduce) {

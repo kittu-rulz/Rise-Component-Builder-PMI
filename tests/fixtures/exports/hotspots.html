@@ -46,14 +46,14 @@
 }
     :root, .rise-block-wrapper {
 
-      --primary: #00388F;
-      --accent: #009FDB;
-      --primary-hover: #002A6B;
+      --primary: #4F17A8;
+      --accent: #00799E;
+      --primary-hover: #371075;
       --bg-body: #FFFFFF;
       --bg-card: #FFFFFF;
-      --text-main: #000000;
-      --text-muted: #4B5563;
-      --border-color: #DCDFE3;
+      --text-main: #200F3B;
+      --text-muted: #200F3B;
+      --border-color: #E7E4DC;
       --border-radius: 12px;
       --button-radius: 20px;
       --border-style: 1px solid var(--border-color);
@@ -62,16 +62,16 @@
       --heading-font-family: 'ATT Aleck Sans', sans-serif;
       --spacing-scale: 1;
       --animation-speed: 200ms;
-      --primary-light: rgba(0, 56, 143, 0.12);
-      --primary-tint: rgba(0, 56, 143, 0.05);
-      --focus-ring: rgba(0, 56, 143, 0.16);
-      --accent-light: rgba(0, 159, 219, 0.14);
-      --accent-tint: rgba(0, 159, 219, 0.07);
-      --success: #91DC00;
-      --warning: #00388F;
-      --danger: #00388F;
-      --success-tint: rgba(145, 220, 0, 0.1);
-      --danger-tint: rgba(0, 56, 143, 0.1);
+      --primary-light: rgba(79, 23, 168, 0.12);
+      --primary-tint: rgba(79, 23, 168, 0.05);
+      --focus-ring: rgba(79, 23, 168, 0.16);
+      --accent-light: rgba(0, 121, 158, 0.14);
+      --accent-tint: rgba(0, 121, 158, 0.07);
+      --success: #197F10;
+      --warning: #4F17A8;
+      --danger: #4F17A8;
+      --success-tint: rgba(25, 127, 16, 0.1);
+      --danger-tint: rgba(79, 23, 168, 0.1);
       --on-primary: #FFFFFF;
       --on-accent: #FFFFFF;
       --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.06);
@@ -81,44 +81,59 @@
       /* AT&T brand token layer (js/pmi-tokens.js ← design/pmi-tokens.css). Present in
          every artifact; not yet consumed by component CSS — the color/type/curvature
          passes wire it in. Theme tokens above stay the active layer for now. */
-  /* Primary — AT&T Blue must be dominant wherever possible */
-  --pmi-blue: #009FDB;
+  /* Primary — Violet. Violet 500 is 10.4:1 on white, so it carries text, buttons and focus. */
+  --pmi-violet: #4F17A8;
+  --pmi-violet-dark: #371075;    /* Violet 600 — hover / pressed */
+  --pmi-violet-tint: #EFEDF3;    /* Violet 50 — selected backgrounds */
   --pmi-white: #FFFFFF;
 
-  /* Secondary — support only; never out-weigh AT&T Blue. Cobalt is the CTA color. */
-  --pmi-cobalt: #00388F;
-  --pmi-mint: #49EEDC;
-  --pmi-lime: #91DC00;
+  /* Secondary — Aqua. Aqua 500 (5.0:1 on white) carries accent text and marks. Aqua 300 is the
+     logo colour but only 2.2:1 on white: decorative fills and graphics only, never text. */
+  --pmi-aqua: #00799E;           /* Aqua 500 */
+  --pmi-aqua-dark: #005C77;      /* Aqua 600 */
+  --pmi-aqua-bright: #05BFE0;    /* Aqua 300 — decorative only */
+  --pmi-aqua-soft: #68D8ED;      /* Aqua 200 */
+
+  /* Tertiary — Tangerine is a supporting player; use sparingly. */
+  --pmi-tangerine: #D5340B;      /* Tangerine 500 (4.9:1) */
+  --pmi-tangerine-dark: #A12608; /* Tangerine 600 */
+  --pmi-tangerine-bright: #FF610F; /* Tangerine 300 — decorative only */
+
+  /* Status colours (pmi.org ramps; not in the colour guide). 500 shades are text-safe on white. */
+  --pmi-green: #197F10;
+  --pmi-red: #C41E08;
 
   /* Neutrals */
-  --pmi-grey-1: #F3F4F5;
-  --pmi-grey-2: #DCDFE3;
-  --pmi-grey-3: #BDC2C7;
-  --pmi-black: #000000;
+  --pmi-neutral-50: #F7F4EF;     /* alternative background */
+  --pmi-neutral-100: #E7E4DC;    /* borders (from pmi.org) */
+  --pmi-neutral-200: #CFCBC2;    /* strong borders (from pmi.org) */
+  --pmi-soft-gray: #808080;      /* decorative; 4.0:1 on white so not for body text */
+  --pmi-muted: #574E69;          /* muted text: Off-Black at 75% on white */
+  --pmi-off-black: #200F3B;      /* Violet 800 — text and buttons */
 
-  /* AT&T Blue gradient — limited use, full ramp only, never partial, never re-authored */
-  --pmi-blue-dark: #0079B1;   /* 15% darker */
-  --pmi-blue-light: #00C9FF;  /* 15% lighter */
-  --pmi-gradient: linear-gradient(90deg, #0079B1 0%, #009FDB 50%, #00C9FF 100%);
+  /* Gradient — as on pmi.org: Tangerine 500 -> Violet 500 -> deep violet. Limited use, full ramp only. */
+  --pmi-gradient: linear-gradient(90deg, #D5340B 0%, #4F17A8 55%, #230A49 100%);
 
   /* Semantic roles (derived only from the values above) */
-  --pmi-text: #000000;
+  --pmi-text: #200F3B;
   --pmi-text-on-dark: #FFFFFF;
-  --pmi-heading: #009FDB;        /* preferred headline color */
-  --pmi-heading-contrast: #000000;
+  --pmi-heading: #4F17A8;        /* preferred headline color */
+  --pmi-heading-contrast: #200F3B;
   --pmi-surface: #FFFFFF;
-  --pmi-surface-sunken: #F3F4F5;
-  --pmi-border: #DCDFE3;
-  --pmi-border-strong: #BDC2C7;
-  --pmi-focus: #00388F;
-  --pmi-cta-bg: #00388F;
+  --pmi-surface-sunken: #F7F4EF;
+  --pmi-border: #E7E4DC;
+  --pmi-border-strong: #CFCBC2;
+  --pmi-focus: #4F17A8;
+  --pmi-cta-bg: #4F17A8;
   --pmi-cta-fg: #FFFFFF;
-  --pmi-cta-bg-hover: #002A6B;   /* Cobalt darkened for state only — not a new brand color */
+  --pmi-cta-bg-hover: #371075;   /* Violet 600 — state only, not a new brand color */
 
-  /* Type */
-  --pmi-font-sans: "ATT Aleck Sans", "AT&T Aleck Sans", Helvetica, Arial, sans-serif;
-  --pmi-font-cd: "ATT Aleck Cd", "ATT Aleck Sans", Helvetica, Arial, sans-serif;
-  --pmi-font-slab: "ATT Aleck Slab", Georgia, serif;
+  /* Type — Aeonik is the primary typeface (headlines, titles, body); GT Pressura Mono is the
+     secondary (subtitles, captions, footers). Aptos then Arial are PMI's own template fallbacks. */
+  --pmi-font-sans: "Aeonik", Aptos, Arial, sans-serif;
+  --pmi-font-mono: "GT Pressura Mono", "Courier New", monospace;
+  --pmi-font-cd: "Aeonik", Aptos, Arial, sans-serif;
+  --pmi-font-slab: "GT Pressura Mono", "Courier New", monospace;
 
   --pmi-w-light: 300;
   --pmi-w-regular: 400;
@@ -153,11 +168,11 @@
 
   /* Curvature — rounded rectangles are the brand's long-form/digital curvature asset.
      Radius scales with container size so corners read consistently. */
-  --pmi-radius-sm: 8px;    /* chips, badges, inputs */
-  --pmi-radius-md: 12px;   /* buttons, small cards */
-  --pmi-radius-lg: 20px;   /* content cards, accordion rows */
-  --pmi-radius-xl: 32px;   /* full-width block shells */
-  --pmi-radius-pill: 999px;
+  --pmi-radius-sm: 4px;    /* buttons, inputs, checkboxes (pmi.org: 4px) */
+  --pmi-radius-md: 8px;    /* small cards, menus */
+  --pmi-radius-lg: 24px;   /* content cards, accordion rows (pmi.org: 24px) */
+  --pmi-radius-xl: 24px;   /* full-width block shells */
+  --pmi-radius-pill: 9999px; /* chips, tags, pill buttons (pmi.org) */
 
   /* Elevation — restrained; brand leans on curvature and color, not shadow */
   --pmi-shadow-1: 0 1px 2px rgba(0,0,0,0.06), 0 1px 8px rgba(0,0,0,0.04);
@@ -195,7 +210,7 @@
     sub, sup { font-size: 75%; line-height: 0; position: relative; vertical-align: baseline; }
     sup { top: -0.5em; }
     sub { bottom: -0.25em; }
-    a { color: var(--accent, #0057B8); text-underline-offset: 2px; }
+    a { color: var(--accent, #4F17A8); text-underline-offset: 2px; }
 
     /* Interactive Block Shell */
     .rise-block-wrapper {
@@ -259,7 +274,7 @@
       font-size: var(--pmi-fs-eyebrow, 0.75rem);
       font-weight: var(--pmi-w-bold, 700);
       letter-spacing: var(--pmi-ls-eyebrow, 0.08em);
-      color: var(--pmi-cobalt, #00388F);
+      color: var(--pmi-violet, #4F17A8);
       text-transform: uppercase;
       margin-bottom: 8px;
     }
@@ -267,14 +282,14 @@
     .block-header.header-editorial .block-headline {
       font-size: clamp(1.625rem, 4vw, 2rem);
       font-weight: var(--pmi-w-bold, 700);
-      color: var(--pmi-heading-contrast, #000000);
+      color: var(--pmi-heading-contrast, #200F3B);
       line-height: var(--pmi-lh-heading, 1.25);
     }
 
     .block-header.header-editorial .header-cyan-rule {
       width: 36px;
       height: 3px;
-      background-color: var(--pmi-blue, #009FDB);
+      background-color: var(--pmi-aqua, #00799E);
       margin-top: 10px;
       margin-bottom: 12px;
       border-radius: 2px;
@@ -283,19 +298,19 @@
     .block-header.header-editorial .block-desc {
       font-size: var(--pmi-fs-body, 1rem);
       line-height: var(--pmi-lh-body, 1.5);
-      color: var(--pmi-text, #000000);
+      color: var(--pmi-text, #200F3B);
       margin-top: 10px;
       max-width: 70ch;
     }
 
     /* Optional Context Band */
     .block-context-band {
-      background-color: var(--pmi-grey-1, #F3F4F5);
-      border-top: 2px solid var(--pmi-blue, #009FDB);
+      background-color: var(--pmi-neutral-50, #F7F4EF);
+      border-top: 2px solid var(--pmi-aqua, #00799E);
       border-radius: 0 0 var(--pmi-radius-md, 12px) var(--pmi-radius-md, 12px);
       padding: calc(14px * var(--spacing-scale)) calc(18px * var(--spacing-scale));
       margin-bottom: calc(24px * var(--spacing-scale));
-      color: var(--pmi-text, #000000);
+      color: var(--pmi-text, #200F3B);
       box-shadow: var(--pmi-shadow-1, 0 1px 2px rgba(0,0,0,0.06));
     }
 
@@ -319,14 +334,14 @@
     /* Shared Surface & Media Treatments */
     .pmi-surface, .pmi-card {
       background-color: var(--pmi-surface, #FFFFFF);
-      border: 1px solid var(--pmi-border, #DCDFE3);
+      border: 1px solid var(--pmi-border, #E7E4DC);
       border-radius: var(--pmi-radius-lg, 20px);
       box-shadow: var(--pmi-shadow-1, 0 1px 2px rgba(0,0,0,0.06));
     }
 
     .pmi-surface-sunken {
-      background-color: var(--pmi-grey-1, #F3F4F5);
-      border: 1px solid var(--pmi-border, #DCDFE3);
+      background-color: var(--pmi-neutral-50, #F7F4EF);
+      border: 1px solid var(--pmi-border, #E7E4DC);
       border-radius: var(--pmi-radius-lg, 20px);
     }
 
@@ -473,7 +488,7 @@
     }
 
     .hotspot-zoom-btn:focus-visible {
-      outline: 3px solid var(--pmi-color-cobalt, #00388F);
+      outline: 3px solid var(--pmi-color-cobalt, #4F17A8);
       outline-offset: 1px;
     }
 
@@ -558,7 +573,7 @@
       height: 36px;
       background-color: var(--primary);
       border: 2px solid var(--bg-card);
-      color: var(--on-primary, #ffffff);
+      color: var(--on-primary, #FFFFFF);
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -609,7 +624,7 @@
     }
 
     .hotspot-pin:focus-visible {
-      outline: 3px solid var(--pmi-color-cobalt, #00388F);
+      outline: 3px solid var(--pmi-color-cobalt, #4F17A8);
       outline-offset: 3px;
     }
 
@@ -634,8 +649,8 @@
       right: -3px;
       width: 15px;
       height: 15px;
-      background-color: var(--pmi-green, #91DC00);
-      color: #000000;
+      background-color: var(--pmi-green, #197F10);
+      color: #200F3B;
       border: 1.5px solid var(--bg-card);
       border-radius: 50%;
       display: none;
@@ -759,7 +774,7 @@
       font-weight: var(--pmi-fw-semibold, 600);
       text-transform: uppercase;
       letter-spacing: 0.5px;
-      color: var(--pmi-blue-300, #00C9FF);
+      color: var(--pmi-blue-300, #68D8ED);
     }
 
     .hotspot-callout-title {
@@ -794,7 +809,7 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      color: var(--pmi-blue-300, #00C9FF);
+      color: var(--pmi-blue-300, #68D8ED);
     }
 
     .hotspot-audio-elem {
@@ -813,7 +828,7 @@
     .hotspot-audio-transcript summary {
       cursor: pointer;
       font-weight: var(--pmi-fw-semibold, 600);
-      color: var(--pmi-blue-300, #00C9FF);
+      color: var(--pmi-blue-300, #68D8ED);
     }
 
     .hotspot-audio-transcript .transcript-body {
@@ -1075,7 +1090,7 @@
     }
 
     :where(button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"]), [role="button"], [role="tab"], [role="radio"]):focus-visible {
-      outline: 3px solid var(--pmi-cobalt, var(--primary));
+      outline: 3px solid var(--pmi-violet, var(--primary));
       outline-offset: 2px;
       box-shadow: 0 0 0 2px var(--bg-card);
     }

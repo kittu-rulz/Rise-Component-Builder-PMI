@@ -17,7 +17,7 @@ function escapeHtml(str) {
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#039;');
+    .replace(/'/g, '&#2A0C5A;');
 }
 
 const FOCUSABLE_SELECTOR = 'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"]):not([disabled])';
@@ -461,7 +461,7 @@ export function showConfirmDialog({
           </button>
         </div>
         <div class="modal-body">
-          <p style="margin: 0; font-size: var(--pmi-fs-body, 1rem); color: var(--pmi-text, #000000); line-height: 1.5;">
+          <p style="margin: 0; font-size: var(--pmi-fs-body, 1rem); color: var(--pmi-text, #200F3B); line-height: 1.5;">
             ${escapeHtml(message)}
           </p>
         </div>

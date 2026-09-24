@@ -196,8 +196,8 @@ export function generateCSS() {
       bottom: 22px;
       left: 50%;
       transform: translateX(-50%);
-      background: #000;
-      color: #fff;
+      background: #200F3B;
+      color: #FFFFFF;
       font-size: 12px;
       font-weight: 500;
       padding: 6px 10px;
@@ -244,7 +244,7 @@ export function generateCSS() {
       transform: scale(0.98);
     }
     .pricing-action-btn:focus-visible {
-      outline: 3px solid var(--pmi-cobalt, var(--primary));
+      outline: 3px solid var(--pmi-violet, var(--primary));
       outline-offset: 2px;
     }
 
@@ -289,7 +289,7 @@ export function generateCSS() {
       text-align: center;
     }
     .matrix-tier-cell.highlighted {
-      background-color: rgba(0, 87, 184, 0.04);
+      background-color: rgba(79, 23, 168, 0.04);
     }
     .matrix-badge {
       display: block;
@@ -300,7 +300,7 @@ export function generateCSS() {
       margin-top: 2px;
     }
     .matrix-check {
-      color: var(--pmi-cta-bg, #00388F);
+      color: var(--pmi-cta-bg, #4F17A8);
       font-weight: 800;
       font-size: 16px;
     }

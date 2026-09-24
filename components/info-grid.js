@@ -99,7 +99,7 @@ export function generateCSS() {
       transform: scale(0.98);
     }
     .info-grid-item:focus-visible {
-      outline: 3px solid var(--pmi-cobalt, var(--primary));
+      outline: 3px solid var(--pmi-violet, var(--primary));
       outline-offset: 2px;
     }
     .info-grid-item.active {

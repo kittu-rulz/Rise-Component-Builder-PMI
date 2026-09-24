@@ -483,7 +483,7 @@ export class DashboardView {
           <div class="modal-header">
             <div>
               <h2 id="create-project-modal-title" class="modal-title">Create Course Project</h2>
-              <p style="margin: 2px 0 0 0; font-size: 0.8125rem; color: #666;">Choose a starting structure and configure project details.</p>
+              <p style="margin: 2px 0 0 0; font-size: 0.8125rem; color: #574E69;">Choose a starting structure and configure project details.</p>
             </div>
             <button id="modal-close-btn" class="project-menu-btn" aria-label="Close dialog" type="button">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
@@ -496,41 +496,41 @@ export class DashboardView {
                 <label class="form-label" style="font-weight: 700; margin-bottom: 8px; display: block;">Select Starting Point</label>
                 <div class="starter-cards-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px;">
                   <!-- Card 1: 3-Module Starter -->
-                  <div class="starter-point-card ${selectedTemplate === 'standard' ? 'active' : ''}" data-starter-tpl="standard" tabindex="0" role="radio" aria-checked="${selectedTemplate === 'standard'}" style="border: 2px solid ${selectedTemplate === 'standard' ? 'var(--pmi-cobalt, #00388F)' : 'var(--pmi-border, #DCDFE3)'}; background: ${selectedTemplate === 'standard' ? '#F0F7FF' : 'var(--pmi-surface, #FFF)'}; border-radius: 10px; padding: 12px; cursor: pointer; display: flex; flex-direction: column; gap: 6px;">
+                  <div class="starter-point-card ${selectedTemplate === 'standard' ? 'active' : ''}" data-starter-tpl="standard" tabindex="0" role="radio" aria-checked="${selectedTemplate === 'standard'}" style="border: 2px solid ${selectedTemplate === 'standard' ? 'var(--pmi-violet, #4F17A8)' : 'var(--pmi-border, #E7E4DC)'}; background: ${selectedTemplate === 'standard' ? '#EFEDF3' : 'var(--pmi-surface, #FFFFFF)'}; border-radius: 10px; padding: 12px; cursor: pointer; display: flex; flex-direction: column; gap: 6px;">
                     <div style="display: flex; justify-content: space-between; align-items: center;">
-                      <span style="font-weight: 700; font-size: 0.875rem; color: var(--pmi-cobalt, #00388F);">3-Module Sample Course</span>
-                      <span style="font-size: 0.75rem; color: ${selectedTemplate === 'standard' ? 'var(--pmi-cobalt, #00388F)' : '#999'};">★</span>
+                      <span style="font-weight: 700; font-size: 0.875rem; color: var(--pmi-violet, #4F17A8);">3-Module Sample Course</span>
+                      <span style="font-size: 0.75rem; color: ${selectedTemplate === 'standard' ? 'var(--pmi-violet, #4F17A8)' : '#808080'};">★</span>
                     </div>
-                    <p style="margin: 0; font-size: 0.75rem; color: #555; line-height: 1.3;">Fiber Deployment, 5G Architecture &amp; Compliance.</p>
-                    <span style="font-size: 0.6875rem; background: rgba(0, 56, 143, 0.08); color: var(--pmi-cobalt, #00388F); padding: 1px 6px; border-radius: 4px; align-self: flex-start; margin-top: auto;">Recommended</span>
+                    <p style="margin: 0; font-size: 0.75rem; color: #200F3B; line-height: 1.3;">Fiber Deployment, 5G Architecture &amp; Compliance.</p>
+                    <span style="font-size: 0.6875rem; background: rgba(79, 23, 168, 0.08); color: var(--pmi-violet, #4F17A8); padding: 1px 6px; border-radius: 4px; align-self: flex-start; margin-top: auto;">Recommended</span>
                   </div>
 
                   <!-- Card 2: Blank Course -->
-                  <div class="starter-point-card ${selectedTemplate === 'blank' ? 'active' : ''}" data-starter-tpl="blank" tabindex="0" role="radio" aria-checked="${selectedTemplate === 'blank'}" style="border: 2px solid ${selectedTemplate === 'blank' ? 'var(--pmi-cobalt, #00388F)' : 'var(--pmi-border, #DCDFE3)'}; background: ${selectedTemplate === 'blank' ? '#F0F7FF' : 'var(--pmi-surface, #FFF)'}; border-radius: 10px; padding: 12px; cursor: pointer; display: flex; flex-direction: column; gap: 6px;">
-                    <span style="font-weight: 700; font-size: 0.875rem; color: #111;">Blank Course</span>
-                    <p style="margin: 0; font-size: 0.75rem; color: #555; line-height: 1.3;">Empty workspace for custom outlines.</p>
-                    <span style="font-size: 0.6875rem; background: #EFEFEF; color: #555; padding: 1px 6px; border-radius: 4px; align-self: flex-start; margin-top: auto;">Custom</span>
+                  <div class="starter-point-card ${selectedTemplate === 'blank' ? 'active' : ''}" data-starter-tpl="blank" tabindex="0" role="radio" aria-checked="${selectedTemplate === 'blank'}" style="border: 2px solid ${selectedTemplate === 'blank' ? 'var(--pmi-violet, #4F17A8)' : 'var(--pmi-border, #E7E4DC)'}; background: ${selectedTemplate === 'blank' ? '#EFEDF3' : 'var(--pmi-surface, #FFFFFF)'}; border-radius: 10px; padding: 12px; cursor: pointer; display: flex; flex-direction: column; gap: 6px;">
+                    <span style="font-weight: 700; font-size: 0.875rem; color: #200F3B;">Blank Course</span>
+                    <p style="margin: 0; font-size: 0.75rem; color: #200F3B; line-height: 1.3;">Empty workspace for custom outlines.</p>
+                    <span style="font-size: 0.6875rem; background: #F7F4EF; color: #200F3B; padding: 1px 6px; border-radius: 4px; align-self: flex-start; margin-top: auto;">Custom</span>
                   </div>
 
                   <!-- Card 3: Single Component -->
-                  <div class="starter-point-card ${selectedTemplate === 'single' ? 'active' : ''}" data-starter-tpl="single" tabindex="0" role="radio" aria-checked="${selectedTemplate === 'single'}" style="border: 2px solid ${selectedTemplate === 'single' ? 'var(--pmi-cobalt, #00388F)' : 'var(--pmi-border, #DCDFE3)'}; background: ${selectedTemplate === 'single' ? '#F0F7FF' : 'var(--pmi-surface, #FFF)'}; border-radius: 10px; padding: 12px; cursor: pointer; display: flex; flex-direction: column; gap: 6px;">
-                    <span style="font-weight: 700; font-size: 0.875rem; color: #111;">Single Block</span>
-                    <p style="margin: 0; font-size: 0.75rem; color: #555; line-height: 1.3;">Accordion starter block.</p>
-                    <span style="font-size: 0.6875rem; background: #EFEFEF; color: #555; padding: 1px 6px; border-radius: 4px; align-self: flex-start; margin-top: auto;">Quick Edit</span>
+                  <div class="starter-point-card ${selectedTemplate === 'single' ? 'active' : ''}" data-starter-tpl="single" tabindex="0" role="radio" aria-checked="${selectedTemplate === 'single'}" style="border: 2px solid ${selectedTemplate === 'single' ? 'var(--pmi-violet, #4F17A8)' : 'var(--pmi-border, #E7E4DC)'}; background: ${selectedTemplate === 'single' ? '#EFEDF3' : 'var(--pmi-surface, #FFFFFF)'}; border-radius: 10px; padding: 12px; cursor: pointer; display: flex; flex-direction: column; gap: 6px;">
+                    <span style="font-weight: 700; font-size: 0.875rem; color: #200F3B;">Single Block</span>
+                    <p style="margin: 0; font-size: 0.75rem; color: #200F3B; line-height: 1.3;">Accordion starter block.</p>
+                    <span style="font-size: 0.6875rem; background: #F7F4EF; color: #200F3B; padding: 1px 6px; border-radius: 4px; align-self: flex-start; margin-top: auto;">Quick Edit</span>
                   </div>
 
                   <!-- Card 4: Import Existing Project -->
-                  <div class="starter-point-card ${selectedTemplate === 'import' ? 'active' : ''}" data-starter-tpl="import" tabindex="0" role="radio" aria-checked="${selectedTemplate === 'import'}" style="border: 2px solid ${selectedTemplate === 'import' ? 'var(--pmi-cobalt, #00388F)' : 'var(--pmi-border, #DCDFE3)'}; background: ${selectedTemplate === 'import' ? '#F0F7FF' : 'var(--pmi-surface, #FFF)'}; border-radius: 10px; padding: 12px; cursor: pointer; display: flex; flex-direction: column; gap: 6px;">
-                    <span style="font-weight: 700; font-size: 0.875rem; color: #111;">Import Project</span>
-                    <p style="margin: 0; font-size: 0.75rem; color: #555; line-height: 1.3;">Upload saved JSON package.</p>
-                    <span style="font-size: 0.6875rem; background: #EFEFEF; color: #555; padding: 1px 6px; border-radius: 4px; align-self: flex-start; margin-top: auto;">File upload</span>
+                  <div class="starter-point-card ${selectedTemplate === 'import' ? 'active' : ''}" data-starter-tpl="import" tabindex="0" role="radio" aria-checked="${selectedTemplate === 'import'}" style="border: 2px solid ${selectedTemplate === 'import' ? 'var(--pmi-violet, #4F17A8)' : 'var(--pmi-border, #E7E4DC)'}; background: ${selectedTemplate === 'import' ? '#EFEDF3' : 'var(--pmi-surface, #FFFFFF)'}; border-radius: 10px; padding: 12px; cursor: pointer; display: flex; flex-direction: column; gap: 6px;">
+                    <span style="font-weight: 700; font-size: 0.875rem; color: #200F3B;">Import Project</span>
+                    <p style="margin: 0; font-size: 0.75rem; color: #200F3B; line-height: 1.3;">Upload saved JSON package.</p>
+                    <span style="font-size: 0.6875rem; background: #F7F4EF; color: #200F3B; padding: 1px 6px; border-radius: 4px; align-self: flex-start; margin-top: auto;">File upload</span>
                   </div>
                 </div>
                 <input type="hidden" id="np-template" value="${selectedTemplate}" />
               </div>
 
               ${selectedTemplate === 'import' ? `
-                <div class="form-group" style="background: var(--pmi-surface-sunken, #FAFAFA); padding: 16px; border-radius: 8px; border: 1.5px dashed var(--pmi-border, #CBD5E1); text-align: center;">
+                <div class="form-group" style="background: var(--pmi-surface-sunken, #F7F4EF); padding: 16px; border-radius: 8px; border: 1.5px dashed var(--pmi-border, #E7E4DC); text-align: center;">
                   <label for="np-import-file" style="display: block; font-weight: 600; font-size: 0.875rem; margin-bottom: 8px;">Select Course Project JSON File</label>
                   <input type="file" id="np-import-file" accept=".json" style="font-size: 0.8125rem;" required />
                 </div>
@@ -992,7 +992,7 @@ export class DashboardView {
       .replace(/</g, '&lt;')
       .replace(/>/g, '&gt;')
       .replace(/"/g, '&quot;')
-      .replace(/'/g, '&#039;');
+      .replace(/'/g, '&#2A0C5A;');
   }
 }
 

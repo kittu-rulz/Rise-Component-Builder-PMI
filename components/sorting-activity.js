@@ -195,7 +195,7 @@ export function generateCSS() {
       transform: scale(0.98);
     }
     .target-btn:focus-visible {
-      outline: 3px solid var(--pmi-cobalt, var(--primary));
+      outline: 3px solid var(--pmi-violet, var(--primary));
       outline-offset: 2px;
     }
     .target-btn.active {
@@ -280,7 +280,7 @@ export function generateCSS() {
       transform: scale(0.98);
     }
     .quiz-submit-btn:focus-visible {
-      outline: 3px solid var(--pmi-cobalt, var(--primary));
+      outline: 3px solid var(--pmi-violet, var(--primary));
       outline-offset: 2px;
     }
     .quiz-feedback {
@@ -321,7 +321,7 @@ export function generateJS(config, instanceId) {
       el.replaceChildren();
       el.insertAdjacentHTML('beforeend', iconSvg + ' ');
       el.appendChild(document.createTextNode(label));
-      el.style.color = 'var(--pmi-cta-bg, #00388F)';
+      el.style.color = 'var(--pmi-cta-bg, #4F17A8)';
     }
 
     function updateMistakeHUD() {

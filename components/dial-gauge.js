@@ -112,14 +112,14 @@ export function generateHTML(config, instanceId) {
           <div class="dial-svg-stage" id="${instanceId}-stage">
             <svg class="dial-gauge-svg" viewBox="0 0 300 180" width="100%" height="100%" aria-hidden="true">
               <!-- Background Arc -->
-              <path class="dial-track-bg" d="M 30 150 A 120 120 0 0 1 270 150" fill="none" stroke="var(--border-color, #DCDFE3)" stroke-width="20" stroke-linecap="round"/>
+              <path class="dial-track-bg" d="M 30 150 A 120 120 0 0 1 270 150" fill="none" stroke="var(--border-color, #E7E4DC)" stroke-width="20" stroke-linecap="round"/>
               <!-- Active Progress Arc -->
-              <path class="dial-track-active" id="${instanceId}-active-arc" d="M 30 150 A 120 120 0 0 1 270 150" fill="none" stroke="var(--primary, #00388F)" stroke-width="20" stroke-linecap="round" stroke-dasharray="377" stroke-dashoffset="188"/>
+              <path class="dial-track-active" id="${instanceId}-active-arc" d="M 30 150 A 120 120 0 0 1 270 150" fill="none" stroke="var(--primary, #4F17A8)" stroke-width="20" stroke-linecap="round" stroke-dasharray="377" stroke-dashoffset="188"/>
               <!-- Needle Indicator centered at (150, 150) -->
               <g transform="translate(150, 150)">
                 <g class="dial-needle-group" id="${instanceId}-needle" style="transform: rotate(${initNeedleAngle}deg);" transform="rotate(${initNeedleAngle})">
-                  <polygon points="-4,-10 0,-108 4,-10" fill="var(--primary, #00388F)"/>
-                  <circle cx="0" cy="0" r="16" fill="var(--primary, #00388F)"/>
+                  <polygon points="-4,-10 0,-108 4,-10" fill="var(--primary, #4F17A8)"/>
+                  <circle cx="0" cy="0" r="16" fill="var(--primary, #4F17A8)"/>
                   <circle cx="0" cy="0" r="7" fill="var(--bg-card, #FFFFFF)"/>
                 </g>
               </g>
@@ -206,7 +206,7 @@ export function generateCSS() {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      color: var(--primary, #00388F);
+      color: var(--primary, #4F17A8);
       flex-shrink: 0;
     }
     .dial-title {
@@ -235,7 +235,7 @@ export function generateCSS() {
       }
     }
     .dial-interactive-panel {
-      background-color: var(--bg-body, #F3F4F5);
+      background-color: var(--bg-body, #F7F4EF);
       border-radius: var(--pmi-radius-md, 16px);
       padding: var(--pmi-space-4, 16px);
       display: flex;
@@ -268,7 +268,7 @@ export function generateCSS() {
       font-family: var(--pmi-font-sans, sans-serif);
       font-size: var(--pmi-fs-xs, 0.8125rem);
       font-weight: var(--pmi-fw-bold, 700);
-      fill: var(--text-muted, #4B5563);
+      fill: var(--text-muted, #200F3B);
     }
     .dial-readout {
       display: flex;
@@ -278,13 +278,13 @@ export function generateCSS() {
     .dial-readout-value {
       font-size: var(--pmi-fs-h2, 1.75rem);
       font-weight: var(--pmi-fw-bold, 700);
-      color: var(--primary, #00388F);
+      color: var(--primary, #4F17A8);
       font-variant-numeric: tabular-nums;
     }
     .dial-readout-unit {
       font-size: var(--pmi-fs-body, 1rem);
       font-weight: var(--pmi-fw-medium, 500);
-      color: var(--text-muted, #4B5563);
+      color: var(--text-muted, #200F3B);
     }
     .dial-controls-group {
       display: flex;
@@ -301,12 +301,12 @@ export function generateCSS() {
       width: 100%;
       height: 8px;
       border-radius: 4px;
-      background: var(--border-color, #DCDFE3);
-      accent-color: var(--primary, #00388F);
+      background: var(--border-color, #E7E4DC);
+      accent-color: var(--primary, #4F17A8);
       cursor: pointer;
     }
     .dial-slider-input:focus-visible {
-      outline: 3px solid var(--primary, #00388F);
+      outline: 3px solid var(--primary, #4F17A8);
       outline-offset: 2px;
     }
     .dial-direct-input-wrap {
@@ -314,14 +314,14 @@ export function generateCSS() {
       align-items: center;
       gap: 4px;
       background-color: var(--bg-card, #FFFFFF);
-      border: 1px solid var(--border-color, #DCDFE3);
+      border: 1px solid var(--border-color, #E7E4DC);
       border-radius: var(--pmi-radius-sm, 8px);
       padding: 4px 8px;
       flex-shrink: 0;
     }
     .dial-direct-input-wrap:focus-within {
-      border-color: var(--primary, #00388F);
-      outline: 2px solid var(--primary, #00388F);
+      border-color: var(--primary, #4F17A8);
+      outline: 2px solid var(--primary, #4F17A8);
     }
     .dial-number-input {
       width: 60px;
@@ -341,13 +341,13 @@ export function generateCSS() {
       margin: 0;
     }
     .dial-number-input:focus-visible {
-      outline: 3px solid var(--primary, #00388F);
+      outline: 3px solid var(--primary, #4F17A8);
       outline-offset: 2px;
     }
     .dial-number-unit {
       font-size: var(--pmi-fs-xs, 0.8125rem);
       font-weight: var(--pmi-fw-medium, 500);
-      color: var(--text-muted, #4B5563);
+      color: var(--text-muted, #200F3B);
     }
     .dial-actions-bar {
       display: flex;
@@ -360,10 +360,10 @@ export function generateCSS() {
       justify-content: center;
       min-height: 36px;
       padding: 4px var(--pmi-space-3, 12px);
-      border: 1px solid var(--border-color, #DCDFE3);
+      border: 1px solid var(--border-color, #E7E4DC);
       border-radius: 9999px;
       background-color: transparent;
-      color: var(--text-muted, #4B5563);
+      color: var(--text-muted, #200F3B);
       font-family: var(--pmi-font-sans, sans-serif);
       font-size: var(--pmi-fs-xs, 0.8125rem);
       font-weight: var(--pmi-fw-semibold, 600);
@@ -371,12 +371,12 @@ export function generateCSS() {
       transition: all 150ms ease;
     }
     .dial-reset-btn:hover {
-      border-color: var(--primary, #00388F);
-      color: var(--primary, #00388F);
+      border-color: var(--primary, #4F17A8);
+      color: var(--primary, #4F17A8);
       background-color: var(--bg-card, #FFFFFF);
     }
     .dial-reset-btn:focus-visible {
-      outline: 3px solid var(--primary, #00388F);
+      outline: 3px solid var(--primary, #4F17A8);
       outline-offset: 2px;
     }
     .dial-presets-row {
@@ -392,7 +392,7 @@ export function generateCSS() {
       align-items: center;
       padding: var(--pmi-space-2, 8px) var(--pmi-space-3, 12px);
       border-radius: var(--pmi-radius-sm, 12px);
-      border: 1px solid var(--border-color, #DCDFE3);
+      border: 1px solid var(--border-color, #E7E4DC);
       background-color: var(--bg-card, #FFFFFF);
       color: var(--text-main);
       cursor: pointer;
@@ -403,20 +403,20 @@ export function generateCSS() {
       min-width: 80px;
     }
     .dial-preset-btn:focus-visible {
-      outline: 3px solid var(--primary, #00388F);
+      outline: 3px solid var(--primary, #4F17A8);
       outline-offset: 2px;
     }
     .dial-preset-btn:hover {
-      border-color: var(--pmi-blue, #009FDB);
-      background-color: var(--pmi-grey-1, #F3F4F5);
+      border-color: var(--pmi-aqua, #00799E);
+      background-color: var(--pmi-neutral-50, #F7F4EF);
     }
     .dial-preset-btn.is-active {
-      border-color: var(--primary, #00388F);
-      background-color: var(--primary, #00388F);
+      border-color: var(--primary, #4F17A8);
+      background-color: var(--primary, #4F17A8);
       color: #FFFFFF;
     }
     .dial-preset-btn.is-active .dial-preset-val {
-      color: var(--pmi-blue, #009FDB);
+      color: var(--pmi-aqua, #00799E);
     }
     .dial-preset-label {
       font-size: var(--pmi-fs-xs, 0.8125rem);
@@ -425,12 +425,12 @@ export function generateCSS() {
     }
     .dial-preset-val {
       font-size: var(--pmi-fs-xs, 0.8125rem);
-      color: var(--text-muted, #4B5563);
+      color: var(--text-muted, #200F3B);
       font-variant-numeric: tabular-nums;
     }
     .dial-insight-panel {
       background-color: var(--bg-card, #FFFFFF);
-      border: 1px solid var(--border-color, #DCDFE3);
+      border: 1px solid var(--border-color, #E7E4DC);
       border-radius: var(--pmi-radius-md, 16px);
       padding: var(--pmi-space-5, 24px);
       display: flex;
@@ -443,7 +443,7 @@ export function generateCSS() {
       display: inline-block;
       padding: 4px var(--pmi-space-3, 12px);
       border-radius: 9999px;
-      background-color: var(--pmi-blue, #009FDB);
+      background-color: var(--pmi-aqua, #00799E);
       color: #FFFFFF;
       font-size: var(--pmi-fs-xs, 0.8125rem);
       font-weight: var(--pmi-fw-bold, 700);
@@ -453,7 +453,7 @@ export function generateCSS() {
     .dial-insight-title {
       font-size: var(--pmi-fs-h3, 1.25rem);
       font-weight: var(--pmi-fw-bold, 700);
-      color: var(--primary, #00388F);
+      color: var(--primary, #4F17A8);
       margin: 0;
     }
     .dial-insight-body {

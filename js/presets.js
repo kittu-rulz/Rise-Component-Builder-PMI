@@ -648,17 +648,17 @@ export const WORKPLACE_PRESETS = [
         {
           title: 'Relentless Network Reliability',
           content: 'Engineering five-nines (99.999%) availability across core transport backbones with self-healing optical meshes and automated fast-reroute protocols.',
-          accentColor: '#009FDB'
+          accentColor: '#00799E'
         },
         {
           title: 'Zero-Trust Security by Design',
           content: 'Verifying every request, user identity, and endpoint continuously with microsegmented networks and hardware-backed multi-factor authentication.',
-          accentColor: '#0568AE'
+          accentColor: '#00799E'
         },
         {
           title: 'Proactive Telemetry & Support',
           content: 'Leveraging real-time machine learning telemetry to predict optical degradation and dispatch repair crews before customer impact occurs.',
-          accentColor: '#00A3E0'
+          accentColor: '#0890BA'
         }
       ]
     }

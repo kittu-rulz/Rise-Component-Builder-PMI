@@ -144,7 +144,7 @@ export function generateCSS() {
       transition: border-color 0.2s;
     }
     .button-list-search-input:focus-visible {
-      outline: 3px solid var(--pmi-cobalt, var(--primary));
+      outline: 3px solid var(--pmi-violet, var(--primary));
       outline-offset: 2px;
       border-color: var(--primary);
     }
@@ -217,7 +217,7 @@ export function generateCSS() {
       transform: scale(0.98);
     }
     .link-button-item:focus-visible {
-      outline: 3px solid var(--pmi-cobalt, var(--primary));
+      outline: 3px solid var(--pmi-violet, var(--primary));
       outline-offset: 2px;
     }
     .btn-label-wrap {
@@ -241,7 +241,7 @@ export function generateCSS() {
     }
     .link-button-item.variant-secondary .btn-meta-pill,
     .link-button-item.variant-outline .btn-meta-pill {
-      background-color: var(--bg-body, #F3F4F5);
+      background-color: var(--bg-body, #F7F4EF);
       color: var(--text-main);
     }
     .btn-icon-wrap {

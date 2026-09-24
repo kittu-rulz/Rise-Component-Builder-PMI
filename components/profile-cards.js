@@ -105,7 +105,7 @@ export function generateCSS() {
       transform: scale(0.98);
     }
     .profile-card-item:focus-visible {
-      outline: 3px solid var(--pmi-cobalt, var(--primary));
+      outline: 3px solid var(--pmi-violet, var(--primary));
       outline-offset: 2px;
     }
     .profile-card-item.active {
@@ -150,7 +150,7 @@ export function generateCSS() {
       font-size: var(--pmi-fs-eyebrow, 11px);
       font-weight: 700;
       color: var(--primary);
-      background-color: rgba(0, 87, 184, 0.08);
+      background-color: rgba(79, 23, 168, 0.08);
       padding: 2px 8px;
       border-radius: var(--pmi-radius-pill, 999px);
       text-transform: uppercase;

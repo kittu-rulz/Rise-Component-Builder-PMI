@@ -269,7 +269,7 @@ export function generateCSS() {
       width: 100%;
       border-radius: var(--pmi-radius-lg, 20px);
       overflow: hidden;
-      background-color: var(--pmi-black, #000000);
+      background-color: var(--pmi-off-black, #200F3B);
     }
     .video-wrapper video {
       display: block;
@@ -364,7 +364,7 @@ export function generateCSS() {
       transform: translate(-50%, -50%) scale(0.98);
     }
     .video-overlay-play:focus-visible, .video-skip-btn:focus-visible, .video-mini-play:focus-visible, .video-control-btn:focus-visible, .video-rate-btn:focus-visible, .video-resume-btn:focus-visible, .video-restart-choice-btn:focus-visible {
-      outline: 3px solid var(--pmi-cobalt, var(--primary));
+      outline: 3px solid var(--pmi-violet, var(--primary));
       outline-offset: 2px;
     }
     .video-skip-btn:active, .video-mini-play:active, .video-control-btn:active, .video-rate-btn:active, .video-resume-btn:active, .video-restart-choice-btn:active {

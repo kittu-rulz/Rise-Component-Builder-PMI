@@ -128,7 +128,7 @@ describe('Rise Component Builder AT&T 10/10 Production-Readiness Standards', () 
         name: 'Preview Test Course'
       });
       project.theme = {
-        accentColor: '#0057B8',
+        accentColor: '#4F17A8',
         contrastMode: 'dark-contrast'
       };
       project.sectionOrder = ['sec-1'];

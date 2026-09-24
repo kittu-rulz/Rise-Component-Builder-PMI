@@ -815,7 +815,7 @@ describe('P07: requiredContrastRatio — WCAG large-text exception', () => {
 
 describe('P07: general-insufficient-contrast reports the correct threshold in its message', () => {
   test('the failing-contrast message names 4.5:1 for these normal-size pairs', () => {
-    const failingTheme = { ...theme, tokens: { ...theme.tokens, text: '#AAAAAA', surface: '#FFFFFF' } };
+    const failingTheme = { ...theme, tokens: { ...theme.tokens, text: '#CFCBC2', surface: '#FFFFFF' } };
     const issues = collectSyncIssues({
       componentId: 'accordion', schema: getComponentById(COMPONENT_REGISTRY, 'accordion').editorSchema,
       config: buildConfig('accordion'), theme: failingTheme, componentOverrides: {},
@@ -980,17 +980,17 @@ describe.each(['audio-player', 'video-frame'])('%s: chapters/transcript Prefligh
 describe('Prompt 8: AT&T Brand Compliance Preflight Rules', () => {
   test('brand-color-literal: non-brand color override is a Blocking error', () => {
     const issues = issuesFor('accordion', buildConfig('accordion'), {
-      componentOverrides: { primary: '#FF0000' }
+      componentOverrides: { primary: '#C41E08' }
     });
     const found = issues.find(item => item.ruleId === 'brand-color-literal');
     expect(found).toBeDefined();
     expect(found.severity).toBe(SEVERITY.BLOCKING);
-    expect(found.explanation).toContain('#FF0000');
+    expect(found.explanation).toContain('#C41E08');
   });
 
   test('brand-color-literal: approved AT&T brand tokens pass with zero errors', () => {
     const issues = issuesFor('accordion', buildConfig('accordion'), {
-      componentOverrides: { primary: '#00388F', accent: '#009FDB' }
+      componentOverrides: { primary: '#4F17A8', accent: '#00799E' }
     });
     expect(issues.some(item => item.ruleId === 'brand-color-literal')).toBe(false);
   });
@@ -1043,14 +1043,14 @@ describe('Prompt 8: AT&T Brand Compliance Preflight Rules', () => {
     expect(issues.some(item => item.ruleId === 'brand-icon-source')).toBe(false);
   });
 
-  test('brand-contrast-ratio: AT&T Blue (#009FDB) text on white is flagged as a Warning', () => {
+  test('brand-contrast-ratio: AT&T Blue (#00799E) text on white is flagged as a Warning', () => {
     const issues = issuesFor('accordion', buildConfig('accordion'), {
-      componentOverrides: { text: '#009FDB' }
+      componentOverrides: { text: '#00799E' }
     });
     const found = issues.find(item => item.ruleId === 'brand-contrast-ratio');
     expect(found).toBeDefined();
     expect(found.severity).toBe(SEVERITY.WARNING);
-    expect(found.explanation).toContain('#009FDB');
+    expect(found.explanation).toContain('#00799E');
     expect(found.explanation).toContain('24px');
   });
 

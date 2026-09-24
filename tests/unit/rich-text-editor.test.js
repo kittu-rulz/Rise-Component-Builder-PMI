@@ -10,8 +10,8 @@ import { sanitizeInlineStyle, sanitizeRichText } from '../../js/utilities.js';
 
 describe('sanitizeInlineStyle', () => {
   test('allows safe color and background-color styles', () => {
-    expect(sanitizeInlineStyle('color: #0057B8; background-color: #FFF3CD')).toBe(
-      'color: #0057B8; background-color: #FFF3CD'
+    expect(sanitizeInlineStyle('color: #4F17A8; background-color: #FDDECE')).toBe(
+      'color: #4F17A8; background-color: #FDDECE'
     );
   });
 
@@ -25,8 +25,8 @@ describe('sanitizeInlineStyle', () => {
     expect(sanitizeInlineStyle('color: red; position: fixed; z-index: 9999; behavior: url(x.htc)')).toBe(
       'color: red'
     );
-    expect(sanitizeInlineStyle('background: url(javascript:alert(1)); color: #111827')).toBe(
-      'color: #111827'
+    expect(sanitizeInlineStyle('background: url(javascript:alert(1)); color: #100522')).toBe(
+      'color: #100522'
     );
     expect(sanitizeInlineStyle('color: expression(alert(1))')).toBe('');
   });
@@ -34,16 +34,16 @@ describe('sanitizeInlineStyle', () => {
 
 describe('sanitizeRichText with inline formatting', () => {
   test('preserves styled span elements with allowed properties', () => {
-    const input = '<span style="color: #0057B8; font-size: 18px;">Formatted Text</span>';
+    const input = '<span style="color: #4F17A8; font-size: 18px;">Formatted Text</span>';
     const output = sanitizeRichText(input);
-    expect(output).toContain('<span style="color: #0057B8; font-size: 18px">Formatted Text</span>');
+    expect(output).toContain('<span style="color: #4F17A8; font-size: 18px">Formatted Text</span>');
   });
 
   test('preserves underline and mark elements', () => {
-    const input = '<u>Underlined</u> <mark style="background-color: #FFF3CD;">Highlighted</mark>';
+    const input = '<u>Underlined</u> <mark style="background-color: #FDDECE;">Highlighted</mark>';
     const output = sanitizeRichText(input);
     expect(output).toContain('<u>Underlined</u>');
-    expect(output).toContain('<mark style="background-color: #FFF3CD">Highlighted</mark>');
+    expect(output).toContain('<mark style="background-color: #FDDECE">Highlighted</mark>');
   });
 
   test('preserves list tags ul, ol, li', () => {
@@ -60,9 +60,9 @@ describe('sanitizeRichText with inline formatting', () => {
   });
 
   test('preserves styled div and p elements', () => {
-    const input = '<div style="text-align: center; color: #0057B8;">Centered Text</div><p style="font-size: 18px;">Large</p>';
+    const input = '<div style="text-align: center; color: #4F17A8;">Centered Text</div><p style="font-size: 18px;">Large</p>';
     const output = sanitizeRichText(input);
-    expect(output).toContain('<div style="text-align: center; color: #0057B8">Centered Text</div>');
+    expect(output).toContain('<div style="text-align: center; color: #4F17A8">Centered Text</div>');
     expect(output).toContain('<p style="font-size: 18px">Large</p>');
   });
 
@@ -199,7 +199,7 @@ describe('createRichTextEditor UI component', () => {
 
   test('contains AT&T brand color palette and font sizes', () => {
     expect(PMI_BRAND_COLORS.length).toBeGreaterThanOrEqual(8);
-    expect(PMI_BRAND_COLORS.some(c => c.hex === '#0057B8')).toBe(true);
+    expect(PMI_BRAND_COLORS.some(c => c.hex === '#4F17A8')).toBe(true);
     expect(FONT_SIZES.length).toBeGreaterThanOrEqual(4);
     expect(HIGHLIGHT_COLORS.length).toBeGreaterThanOrEqual(3);
   });

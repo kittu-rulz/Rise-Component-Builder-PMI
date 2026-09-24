@@ -1232,19 +1232,19 @@ function checkSortingActivityCategories(config) {
 
 // Official AT&T token hex palette (from design/pmi-tokens.css and themes.js)
 const PMI_BRAND_HEX_VALUES = new Set([
-  '#009FDB', // --pmi-blue (Primary AT&T Blue)
-  '#00388F', // --pmi-cobalt (CTA / Secondary Cobalt)
-  '#49EEDC', // --pmi-mint (Secondary Mint)
-  '#91DC00', // --pmi-lime (Secondary Lime accent)
-  '#F3F4F5', // --pmi-grey-1 (Sunken surface neutral)
-  '#DCDFE3', // --pmi-grey-2 (Border neutral)
-  '#BDC2C7', // --pmi-grey-3 (Border strong neutral)
-  '#000000', // --pmi-black (Text neutral)
+  '#00799E', // --pmi-aqua (Primary AT&T Blue)
+  '#4F17A8', // --pmi-violet (CTA / Secondary Cobalt)
+  '#68D8ED', // --pmi-aqua-soft (Secondary Mint)
+  '#197F10', // --pmi-green (Secondary Lime accent)
+  '#F7F4EF', // --pmi-neutral-50 (Sunken surface neutral)
+  '#E7E4DC', // --pmi-neutral-100 (Border neutral)
+  '#CFCBC2', // --pmi-neutral-200 (Border strong neutral)
+  '#200F3B', // --pmi-off-black (Text neutral)
   '#FFFFFF', // --pmi-white (Surface neutral)
-  '#0079B1', // --pmi-blue-dark (Gradient stop)
-  '#00C9FF', // --pmi-blue-light (Gradient stop)
-  '#002A6B', // --pmi-cta-bg-hover (Cobalt hover state)
-  '#4B5563'  // Muted text high-contrast neutral
+  '#00799E', // --pmi-aqua-dark (Gradient stop)
+  '#68D8ED', // --pmi-aqua-soft (Gradient stop)
+  '#371075', // --pmi-cta-bg-hover (Cobalt hover state)
+  '#200F3B'  // Muted text high-contrast neutral
 ]);
 
 function normalizeBrandHex(hex) {
@@ -1279,7 +1279,7 @@ function checkBrandColorLiterals(componentOverrides = {}, config = {}) {
       const hex = normalizeBrandHex(val);
       if (!PMI_BRAND_HEX_VALUES.has(hex)) {
         issues.push(issue('brand-color-literal', SEVERITY.BLOCKING, CATEGORY.BRAND,
-          `${label} ("${val}") is not an approved AT&T brand color token. Use AT&T Blue (#009FDB), Cobalt (#00388F), Neutrals, or standard design tokens.`,
+          `${label} ("${val}") is not an approved AT&T brand color token. Use AT&T Blue (#00799E), Cobalt (#4F17A8), Neutrals, or standard design tokens.`,
           { fieldId: key }));
       }
     }
@@ -1352,18 +1352,18 @@ function checkBrandIconSource(schema = {}, config = {}) {
   return issues;
 }
 
-// 5. Contrast ratio with #009FDB under 24px check (WARNING)
+// 5. Contrast ratio with #00799E under 24px check (WARNING)
 function checkBrandContrastRatio(theme, componentOverrides) {
   const tokens = resolveThemeTokens(theme, componentOverrides);
   const issues = [];
   const textHex = normalizeBrandHex(tokens.text);
   const surfaceHex = normalizeBrandHex(tokens.surface);
 
-  // Specifically check AT&T Blue (#009FDB) used as text color against white/light surface for small text
-  if (textHex === '#009FDB' && (surfaceHex === '#FFFFFF' || surfaceHex === '#F3F4F5')) {
-    const ratio = contrastRatio('#009FDB', surfaceHex);
+  // Specifically check AT&T Blue (#00799E) used as text color against white/light surface for small text
+  if (textHex === '#00799E' && (surfaceHex === '#FFFFFF' || surfaceHex === '#F7F4EF')) {
+    const ratio = contrastRatio('#00799E', surfaceHex);
     issues.push(issue('brand-contrast-ratio', SEVERITY.WARNING, CATEGORY.BRAND,
-      `AT&T Blue (#009FDB) has a ${ratio.toFixed(1)}:1 contrast ratio on ${surfaceHex} and passes WCAG AA only for large text (≥24px or ≥18.66px bold). Use Black (#000000) or Cobalt (#00388F) for copy under 24px.`,
+      `AT&T Blue (#00799E) has a ${ratio.toFixed(1)}:1 contrast ratio on ${surfaceHex} and passes WCAG AA only for large text (≥24px or ≥18.66px bold). Use Black (#200F3B) or Cobalt (#4F17A8) for copy under 24px.`,
       { fieldId: 'textColor' }));
   }
 
@@ -1375,7 +1375,7 @@ function checkBrandFocusVisible(componentOverrides = {}) {
   const issues = [];
   if (componentOverrides?.focusOutline === 'none' || componentOverrides?.disableFocusRing === true) {
     issues.push(issue('brand-focus-visible', SEVERITY.WARNING, CATEGORY.BRAND,
-      'Focus outlines must not be removed on interactive elements. AT&T standards require a 3px Cobalt (#00388F) focus ring with 2px offset for keyboard accessibility.',
+      'Focus outlines must not be removed on interactive elements. AT&T standards require a 3px Cobalt (#4F17A8) focus ring with 2px offset for keyboard accessibility.',
       { fieldId: 'focusRing' }));
   }
   return issues;

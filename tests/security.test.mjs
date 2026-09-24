@@ -25,10 +25,10 @@ function stateFor(componentId, overrides = {}) {
       blockTitle: hostile,
       blockHeadline: hostile,
       blockDesc: hostile,
-      colorPrimary: overrides.colorPrimary || '#2563EB',
-      colorAccent: '#F59E0B',
+      colorPrimary: overrides.colorPrimary || '#4F17A8',
+      colorAccent: '#D5340B',
       colorBg: '#FFFFFF',
-      colorText: '#1F2937',
+      colorText: '#200F3B',
       borderRadius: overrides.borderRadius || '12',
       shadowDepth: 'soft',
       borderOutline: true,
@@ -105,13 +105,13 @@ test('URL policy accepts only explicitly safe protocols', () => {
 
 test('generated component document contains safe HTML, CSS, URLs, and inline JSON', () => {
   const html = generateIframeContent(stateFor('accordion', {
-    colorPrimary: '#fff;} </style><script>bad()</script>',
+    colorPrimary: '#FFFFFF;} </style><script>bad()</script>',
     borderRadius: '12; background:url(javascript:bad)',
     font: `Lato';}</style><script>bad()</script>`
   }), registry, toRgba);
   assert.equal((html.match(/<\/script>/gi) || []).length, 1);
   assert.ok(!html.includes('background:url(javascript:bad)'));
-  assert.ok(!html.includes('#fff;}'));
+  assert.ok(!html.includes('#FFFFFF;}'));
   assert.ok(!html.includes("Lato';}"));
   assert.ok(html.includes('Content-Security-Policy'));
   assert.ok(html.includes('&lt;angle&gt;'));

@@ -247,13 +247,13 @@ export async function buildCoursePackZip({ courseTitle = 'AT&T Course Interactio
   <title>${escapeHTML(courseTitle)} — Interactive Component Pack</title>
   <style>
     :root {
-      --primary: #00388F;
-      --pmi-blue: #009FDB;
-      --bg: #F3F4F5;
+      --primary: #4F17A8;
+      --pmi-aqua: #00799E;
+      --bg: #F7F4EF;
       --card-bg: #FFFFFF;
-      --text: #000000;
-      --text-muted: #4B5563;
-      --border: #DCDFE3;
+      --text: #200F3B;
+      --text-muted: #200F3B;
+      --border: #E7E4DC;
       --radius: 16px;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -282,7 +282,7 @@ export async function buildCoursePackZip({ courseTitle = 'AT&T Course Interactio
       display: inline-block;
       padding: 4px 12px;
       border-radius: 999px;
-      background-color: var(--pmi-blue);
+      background-color: var(--pmi-aqua);
       color: #FFFFFF;
       font-size: 0.75rem;
       font-weight: 700;
@@ -318,7 +318,7 @@ export async function buildCoursePackZip({ courseTitle = 'AT&T Course Interactio
     }
     .card:hover {
       border-color: var(--primary);
-      box-shadow: 0 4px 16px rgba(0, 56, 143, 0.12);
+      box-shadow: 0 4px 16px rgba(79, 23, 168, 0.12);
       transform: translateY(-2px);
     }
     .card-cat {

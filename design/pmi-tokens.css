@@ -1,46 +1,62 @@
-/* AT&T Brand Identity System — design tokens for Rise components
-   Source: AT&T Brand identity system (Standarization deck) + ATT Aleck font family.
-   Every color below is a documented brand value. Do not add colors outside this file. */
+/* PMI Brand Identity System — design tokens for Rise components
+   Source: PMI Brand Guide (colors, 2024) and pmi.org's published tokens; palette values and the
+   reasoning for each choice are in design/PMI-BRAND-EXTRACT.md.
+   Every color below is a documented PMI brand value. Do not add colors outside this file. */
 
 :root {
-  /* Primary — AT&T Blue must be dominant wherever possible */
-  --pmi-blue: #009FDB;
+  /* Primary — Violet. Violet 500 is 10.4:1 on white, so it carries text, buttons and focus. */
+  --pmi-violet: #4F17A8;
+  --pmi-violet-dark: #371075;    /* Violet 600 — hover / pressed */
+  --pmi-violet-tint: #EFEDF3;    /* Violet 50 — selected backgrounds */
   --pmi-white: #FFFFFF;
 
-  /* Secondary — support only; never out-weigh AT&T Blue. Cobalt is the CTA color. */
-  --pmi-cobalt: #00388F;
-  --pmi-mint: #49EEDC;
-  --pmi-lime: #91DC00;
+  /* Secondary — Aqua. Aqua 500 (5.0:1 on white) carries accent text and marks. Aqua 300 is the
+     logo colour but only 2.2:1 on white: decorative fills and graphics only, never text. */
+  --pmi-aqua: #00799E;           /* Aqua 500 */
+  --pmi-aqua-dark: #005C77;      /* Aqua 600 */
+  --pmi-aqua-bright: #05BFE0;    /* Aqua 300 — decorative only */
+  --pmi-aqua-soft: #68D8ED;      /* Aqua 200 */
+
+  /* Tertiary — Tangerine is a supporting player; use sparingly. */
+  --pmi-tangerine: #D5340B;      /* Tangerine 500 (4.9:1) */
+  --pmi-tangerine-dark: #A12608; /* Tangerine 600 */
+  --pmi-tangerine-bright: #FF610F; /* Tangerine 300 — decorative only */
+
+  /* Status colours (pmi.org ramps; not in the colour guide). 500 shades are text-safe on white. */
+  --pmi-green: #197F10;
+  --pmi-red: #C41E08;
 
   /* Neutrals */
-  --pmi-grey-1: #F3F4F5;
-  --pmi-grey-2: #DCDFE3;
-  --pmi-grey-3: #BDC2C7;
-  --pmi-black: #000000;
+  --pmi-neutral-50: #F7F4EF;     /* alternative background */
+  --pmi-neutral-100: #E7E4DC;    /* borders (from pmi.org) */
+  --pmi-neutral-200: #CFCBC2;    /* strong borders (from pmi.org) */
+  --pmi-soft-gray: #808080;      /* decorative; 4.0:1 on white so not for body text */
+  --pmi-muted: #574E69;          /* muted text: Off-Black at 75% on white */
+  --pmi-off-black: #200F3B;      /* Violet 800 — text and buttons */
 
-  /* AT&T Blue gradient — limited use, full ramp only, never partial, never re-authored */
-  --pmi-blue-dark: #0079B1;   /* 15% darker */
-  --pmi-blue-light: #00C9FF;  /* 15% lighter */
-  --pmi-gradient: linear-gradient(90deg, #0079B1 0%, #009FDB 50%, #00C9FF 100%);
+  /* Gradient — as on pmi.org: Tangerine 500 -> Violet 500 -> deep violet. Limited use, full ramp only. */
+  --pmi-gradient: linear-gradient(90deg, #D5340B 0%, #4F17A8 55%, #230A49 100%);
 
   /* Semantic roles (derived only from the values above) */
-  --pmi-text: #000000;
+  --pmi-text: #200F3B;
   --pmi-text-on-dark: #FFFFFF;
-  --pmi-heading: #009FDB;        /* preferred headline color */
-  --pmi-heading-contrast: #000000;
+  --pmi-heading: #4F17A8;        /* preferred headline color */
+  --pmi-heading-contrast: #200F3B;
   --pmi-surface: #FFFFFF;
-  --pmi-surface-sunken: #F3F4F5;
-  --pmi-border: #DCDFE3;
-  --pmi-border-strong: #BDC2C7;
-  --pmi-focus: #00388F;
-  --pmi-cta-bg: #00388F;
+  --pmi-surface-sunken: #F7F4EF;
+  --pmi-border: #E7E4DC;
+  --pmi-border-strong: #CFCBC2;
+  --pmi-focus: #4F17A8;
+  --pmi-cta-bg: #4F17A8;
   --pmi-cta-fg: #FFFFFF;
-  --pmi-cta-bg-hover: #002A6B;   /* Cobalt darkened for state only — not a new brand color */
+  --pmi-cta-bg-hover: #371075;   /* Violet 600 — state only, not a new brand color */
 
-  /* Type */
-  --pmi-font-sans: "ATT Aleck Sans", "AT&T Aleck Sans", Helvetica, Arial, sans-serif;
-  --pmi-font-cd: "ATT Aleck Cd", "ATT Aleck Sans", Helvetica, Arial, sans-serif;
-  --pmi-font-slab: "ATT Aleck Slab", Georgia, serif;
+  /* Type — Aeonik is the primary typeface (headlines, titles, body); GT Pressura Mono is the
+     secondary (subtitles, captions, footers). Aptos then Arial are PMI's own template fallbacks. */
+  --pmi-font-sans: "Aeonik", Aptos, Arial, sans-serif;
+  --pmi-font-mono: "GT Pressura Mono", "Courier New", monospace;
+  --pmi-font-cd: "Aeonik", Aptos, Arial, sans-serif;
+  --pmi-font-slab: "GT Pressura Mono", "Courier New", monospace;
 
   --pmi-w-light: 300;
   --pmi-w-regular: 400;
@@ -75,11 +91,11 @@
 
   /* Curvature — rounded rectangles are the brand's long-form/digital curvature asset.
      Radius scales with container size so corners read consistently. */
-  --pmi-radius-sm: 8px;    /* chips, badges, inputs */
-  --pmi-radius-md: 12px;   /* buttons, small cards */
-  --pmi-radius-lg: 20px;   /* content cards, accordion rows */
-  --pmi-radius-xl: 32px;   /* full-width block shells */
-  --pmi-radius-pill: 999px;
+  --pmi-radius-sm: 4px;    /* buttons, inputs, checkboxes (pmi.org: 4px) */
+  --pmi-radius-md: 8px;    /* small cards, menus */
+  --pmi-radius-lg: 24px;   /* content cards, accordion rows (pmi.org: 24px) */
+  --pmi-radius-xl: 24px;   /* full-width block shells */
+  --pmi-radius-pill: 9999px; /* chips, tags, pill buttons (pmi.org) */
 
   /* Elevation — restrained; brand leans on curvature and color, not shadow */
   --pmi-shadow-1: 0 1px 2px rgba(0,0,0,0.06), 0 1px 8px rgba(0,0,0,0.04);

@@ -168,12 +168,12 @@ export function generateCSS() {
   return `
     .confidence-matrix-card {
       background-color: var(--bg-card, #FFFFFF);
-      border: 1px solid var(--border-color, #DCDFE3);
+      border: 1px solid var(--border-color, #E7E4DC);
       border-radius: var(--pmi-radius-lg, 24px);
       padding: var(--pmi-space-6, 32px);
       box-shadow: var(--shadow-style);
       font-family: var(--pmi-font-sans, sans-serif);
-      color: var(--text-color, #000000);
+      color: var(--text-color, #200F3B);
       box-sizing: border-box;
       width: 100%;
       display: flex;
@@ -192,43 +192,43 @@ export function generateCSS() {
       width: 44px;
       height: 44px;
       border-radius: var(--pmi-radius-sm, 12px);
-      background-color: var(--bg-body, #F3F4F5);
-      color: var(--primary, #00388F);
+      background-color: var(--bg-body, #F7F4EF);
+      color: var(--primary, #4F17A8);
       flex-shrink: 0;
     }
     .confidence-title {
       font-size: var(--pmi-fs-h2, 1.5rem);
       font-weight: var(--pmi-fw-bold, 700);
       line-height: var(--pmi-lh-heading, 1.25);
-      color: var(--text-color, #000000);
+      color: var(--text-color, #200F3B);
       margin: 0;
     }
     .confidence-instructions {
       font-size: var(--pmi-fs-body, 1rem);
       line-height: var(--pmi-lh-body, 1.5);
-      color: var(--text-secondary, #4B5563);
+      color: var(--text-secondary, #200F3B);
       margin: 0;
     }
     .confidence-summary-bar {
       display: flex;
       flex-direction: column;
       gap: var(--pmi-space-2, 8px);
-      background-color: var(--bg-body, #F3F4F5);
-      border: 1px solid var(--border-color, #DCDFE3);
+      background-color: var(--bg-body, #F7F4EF);
+      border: 1px solid var(--border-color, #E7E4DC);
       border-radius: var(--pmi-radius-md, 16px);
       padding: var(--pmi-space-4, 16px);
     }
     .confidence-summary-track {
       width: 100%;
       height: 10px;
-      background-color: var(--border-color, #DCDFE3);
+      background-color: var(--border-color, #E7E4DC);
       border-radius: 9999px;
       overflow: hidden;
       position: relative;
     }
     .confidence-progress-fill {
       height: 100%;
-      background: linear-gradient(90deg, var(--pmi-blue, #009FDB), var(--primary, #00388F));
+      background: linear-gradient(90deg, var(--pmi-aqua, #00799E), var(--primary, #4F17A8));
       border-radius: 9999px;
       transition: width 350ms cubic-bezier(0.4, 0, 0.2, 1);
     }
@@ -243,7 +243,7 @@ export function generateCSS() {
       align-items: center;
       font-size: var(--pmi-fs-sm, 0.875rem);
       font-weight: var(--pmi-fw-semibold, 600);
-      color: var(--text-color, #000000);
+      color: var(--text-color, #200F3B);
     }
     .confidence-matrix-rows {
       display: flex;
@@ -252,7 +252,7 @@ export function generateCSS() {
     }
     .confidence-item-row {
       background-color: var(--bg-card, #FFFFFF);
-      border: 1px solid var(--border-color, #DCDFE3);
+      border: 1px solid var(--border-color, #E7E4DC);
       border-radius: var(--pmi-radius-md, 16px);
       padding: var(--pmi-space-5, 24px);
       display: flex;
@@ -261,8 +261,8 @@ export function generateCSS() {
       transition: border-color 200ms ease, box-shadow 200ms ease;
     }
     .confidence-item-row.is-rated {
-      border-color: var(--primary, #00388F);
-      box-shadow: 0 2px 8px rgba(0, 56, 143, 0.08);
+      border-color: var(--primary, #4F17A8);
+      box-shadow: 0 2px 8px rgba(79, 23, 168, 0.08);
     }
     .confidence-item-meta {
       display: flex;
@@ -274,8 +274,8 @@ export function generateCSS() {
       display: inline-block;
       padding: 3px var(--pmi-space-3, 12px);
       border-radius: 9999px;
-      background-color: var(--bg-body, #F3F4F5);
-      color: var(--primary, #00388F);
+      background-color: var(--bg-body, #F7F4EF);
+      color: var(--primary, #4F17A8);
       font-size: var(--pmi-fs-xs, 0.8125rem);
       font-weight: var(--pmi-fw-bold, 700);
       text-transform: uppercase;
@@ -283,19 +283,19 @@ export function generateCSS() {
     }
     .confidence-item-num {
       font-size: var(--pmi-fs-xs, 0.8125rem);
-      color: var(--text-secondary, #4B5563);
+      color: var(--text-secondary, #200F3B);
       font-weight: var(--pmi-fw-medium, 500);
     }
     .confidence-item-title {
       font-size: var(--pmi-fs-h4, 1.125rem);
       font-weight: var(--pmi-fw-bold, 700);
-      color: var(--text-color, #000000);
+      color: var(--text-color, #200F3B);
       margin: 0 0 var(--pmi-space-2, 8px) 0;
     }
     .confidence-item-desc {
       font-size: var(--pmi-fs-body, 1rem);
       line-height: var(--pmi-lh-body, 1.5);
-      color: var(--text-secondary, #4B5563);
+      color: var(--text-secondary, #200F3B);
       margin: 0;
     }
     .confidence-rating-group {
@@ -317,31 +317,31 @@ export function generateCSS() {
       text-align: center;
       padding: var(--pmi-space-3, 12px) var(--pmi-space-2, 8px);
       min-height: 72px;
-      border: 1px solid var(--border-color, #DCDFE3);
+      border: 1px solid var(--border-color, #E7E4DC);
       border-radius: var(--pmi-radius-md, 16px);
-      background-color: var(--bg-body, #F3F4F5);
-      color: var(--text-color, #000000);
+      background-color: var(--bg-body, #F7F4EF);
+      color: var(--text-color, #200F3B);
       font-family: var(--pmi-font-sans, sans-serif);
       cursor: pointer;
       position: relative;
       transition: all 180ms cubic-bezier(0.4, 0, 0.2, 1);
     }
     .confidence-rating-btn:hover {
-      background-color: var(--border-color, #DCDFE3);
-      border-color: var(--primary, #00388F);
+      background-color: var(--border-color, #E7E4DC);
+      border-color: var(--primary, #4F17A8);
     }
     .confidence-rating-btn:focus-visible {
-      outline: 3px solid var(--primary, #00388F);
+      outline: 3px solid var(--primary, #4F17A8);
       outline-offset: 2px;
     }
     .confidence-rating-btn.is-selected {
-      background-color: var(--primary, #00388F);
-      border-color: var(--primary, #00388F);
+      background-color: var(--primary, #4F17A8);
+      border-color: var(--primary, #4F17A8);
       color: #FFFFFF;
-      box-shadow: 0 4px 12px rgba(0, 56, 143, 0.25);
+      box-shadow: 0 4px 12px rgba(79, 23, 168, 0.25);
     }
     .confidence-rating-btn.is-selected .confidence-rating-sub {
-      color: #DCDFE3;
+      color: #E7E4DC;
     }
     .confidence-rating-btn.is-selected .confidence-rating-check {
       opacity: 1;
@@ -359,7 +359,7 @@ export function generateCSS() {
     }
     .confidence-rating-sub {
       font-size: 0.75rem;
-      color: var(--text-secondary, #4B5563);
+      color: var(--text-secondary, #200F3B);
       margin-top: 2px;
       line-height: 1.2;
     }
@@ -372,8 +372,8 @@ export function generateCSS() {
       transition: opacity 150ms ease, transform 150ms ease;
     }
     .confidence-diagnostic-panel {
-      background-color: var(--bg-body, #F3F4F5);
-      border: 1px solid var(--border-color, #DCDFE3);
+      background-color: var(--bg-body, #F7F4EF);
+      border: 1px solid var(--border-color, #E7E4DC);
       border-radius: var(--pmi-radius-lg, 24px);
       padding: var(--pmi-space-5, 24px);
       display: flex;
@@ -395,14 +395,14 @@ export function generateCSS() {
     .confidence-diagnostic-title {
       font-size: var(--pmi-fs-h4, 1.125rem);
       font-weight: var(--pmi-fw-bold, 700);
-      color: var(--text-color, #000000);
+      color: var(--text-color, #200F3B);
       margin: 0;
     }
     .confidence-tier-badge {
       display: inline-block;
       padding: 4px var(--pmi-space-3, 12px);
       border-radius: 9999px;
-      background-color: var(--primary, #00388F);
+      background-color: var(--primary, #4F17A8);
       color: #FFFFFF;
       font-size: var(--pmi-fs-xs, 0.8125rem);
       font-weight: var(--pmi-fw-bold, 700);
@@ -412,7 +412,7 @@ export function generateCSS() {
     .confidence-diagnostic-summary {
       font-size: var(--pmi-fs-body, 1rem);
       line-height: var(--pmi-lh-body, 1.5);
-      color: var(--text-secondary, #4B5563);
+      color: var(--text-secondary, #200F3B);
       margin: 0;
     }
     .confidence-breakdown-grid {
@@ -427,7 +427,7 @@ export function generateCSS() {
     }
     .confidence-breakdown-col {
       background-color: var(--bg-card, #FFFFFF);
-      border: 1px solid var(--border-color, #DCDFE3);
+      border: 1px solid var(--border-color, #E7E4DC);
       border-radius: var(--pmi-radius-md, 16px);
       padding: var(--pmi-space-4, 16px);
       display: flex;
@@ -440,15 +440,15 @@ export function generateCSS() {
       gap: var(--pmi-space-2, 8px);
     }
     .strengths-col .confidence-col-icon {
-      color: var(--pmi-green, #91DC00);
+      color: var(--pmi-green, #197F10);
     }
     .growth-col .confidence-col-icon {
-      color: var(--pmi-blue, #009FDB);
+      color: var(--pmi-aqua, #00799E);
     }
     .confidence-col-header h5 {
       font-size: var(--pmi-fs-sm, 0.875rem);
       font-weight: var(--pmi-fw-bold, 700);
-      color: var(--text-color, #000000);
+      color: var(--text-color, #200F3B);
       margin: 0;
     }
     .confidence-pill-list {
@@ -463,8 +463,8 @@ export function generateCSS() {
       font-size: var(--pmi-fs-sm, 0.875rem);
       padding: var(--pmi-space-2, 8px) var(--pmi-space-3, 12px);
       border-radius: var(--pmi-radius-sm, 12px);
-      background-color: var(--bg-body, #F3F4F5);
-      color: var(--text-color, #000000);
+      background-color: var(--bg-body, #F7F4EF);
+      color: var(--text-color, #200F3B);
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -472,7 +472,7 @@ export function generateCSS() {
     .confidence-pill-score {
       font-weight: var(--pmi-fw-bold, 700);
       font-size: var(--pmi-fs-xs, 0.8125rem);
-      color: var(--primary, #00388F);
+      color: var(--primary, #4F17A8);
     }
     .confidence-reflection-box {
       display: flex;
@@ -480,12 +480,12 @@ export function generateCSS() {
       gap: var(--pmi-space-2, 8px);
       margin-top: var(--pmi-space-3, 12px);
       padding-top: var(--pmi-space-4, 16px);
-      border-top: 1px solid var(--border-color, #DCDFE3);
+      border-top: 1px solid var(--border-color, #E7E4DC);
     }
     .confidence-reflection-label {
       font-size: var(--pmi-fs-sm, 0.875rem);
       font-weight: var(--pmi-fw-bold, 700);
-      color: var(--text-color, #000000);
+      color: var(--text-color, #200F3B);
     }
     .confidence-reflection-input {
       width: 100%;
@@ -494,15 +494,15 @@ export function generateCSS() {
       font-family: var(--pmi-font-sans, sans-serif);
       font-size: var(--pmi-fs-sm, 0.875rem);
       line-height: var(--pmi-lh-body, 1.5);
-      border: 1px solid var(--border-color, #DCDFE3);
+      border: 1px solid var(--border-color, #E7E4DC);
       border-radius: var(--pmi-radius-md, 12px);
       background-color: var(--bg-card, #FFFFFF);
-      color: var(--text-color, #000000);
+      color: var(--text-color, #200F3B);
       resize: vertical;
       min-height: 72px;
     }
     .confidence-reflection-input:focus-visible {
-      outline: 3px solid var(--primary, #00388F);
+      outline: 3px solid var(--primary, #4F17A8);
       outline-offset: 2px;
     }
     .confidence-actions-bar {
@@ -519,23 +519,23 @@ export function generateCSS() {
       justify-content: center;
       min-height: 44px;
       padding: var(--pmi-space-2, 8px) var(--pmi-space-5, 20px);
-      border: 1px solid var(--primary, #00388F);
+      border: 1px solid var(--primary, #4F17A8);
       border-radius: 9999px;
-      background-color: var(--primary, #00388F);
+      background-color: var(--primary, #4F17A8);
       color: #FFFFFF;
       font-family: var(--pmi-font-sans, sans-serif);
       font-size: var(--pmi-fs-sm, 0.875rem);
       font-weight: var(--pmi-fw-bold, 700);
       cursor: pointer;
       transition: all 150ms ease;
-      box-shadow: 0 2px 6px rgba(0, 56, 143, 0.2);
+      box-shadow: 0 2px 6px rgba(79, 23, 168, 0.2);
     }
     .confidence-print-btn:hover:not(:disabled) {
       background-color: var(--primary-hover);
       border-color: var(--primary-hover);
     }
     .confidence-print-btn:focus-visible {
-      outline: 3px solid var(--primary, #00388F);
+      outline: 3px solid var(--primary, #4F17A8);
       outline-offset: 2px;
     }
     .confidence-print-btn:disabled {
@@ -549,10 +549,10 @@ export function generateCSS() {
       justify-content: center;
       min-height: 44px;
       padding: var(--pmi-space-2, 8px) var(--pmi-space-4, 16px);
-      border: 1px solid var(--border-color, #DCDFE3);
+      border: 1px solid var(--border-color, #E7E4DC);
       border-radius: 9999px;
       background-color: transparent;
-      color: var(--text-secondary, #4B5563);
+      color: var(--text-secondary, #200F3B);
       font-family: var(--pmi-font-sans, sans-serif);
       font-size: var(--pmi-fs-sm, 0.875rem);
       font-weight: var(--pmi-fw-semibold, 600);
@@ -560,12 +560,12 @@ export function generateCSS() {
       transition: all 150ms ease;
     }
     .confidence-reset-btn:hover {
-      background-color: var(--bg-body, #F3F4F5);
-      color: var(--text-color, #000000);
-      border-color: var(--primary, #00388F);
+      background-color: var(--bg-body, #F7F4EF);
+      color: var(--text-color, #200F3B);
+      border-color: var(--primary, #4F17A8);
     }
     .confidence-reset-btn:focus-visible {
-      outline: 3px solid var(--primary, #00388F);
+      outline: 3px solid var(--primary, #4F17A8);
       outline-offset: 2px;
     }
     @media print {
@@ -575,14 +575,14 @@ export function generateCSS() {
       }
       .confidence-matrix-card {
         box-shadow: none !important;
-        border: 1px solid var(--border-color, #DCDFE3) !important;
+        border: 1px solid var(--border-color, #E7E4DC) !important;
         padding: var(--pmi-space-4, 16px) !important;
         page-break-inside: avoid;
       }
       .confidence-diagnostic-panel {
         display: flex !important;
-        border: 1px solid var(--border-color, #DCDFE3) !important;
-        background-color: var(--bg-body, #F3F4F5) !important;
+        border: 1px solid var(--border-color, #E7E4DC) !important;
+        background-color: var(--bg-body, #F7F4EF) !important;
       }
       .confidence-item-row {
         page-break-inside: avoid;

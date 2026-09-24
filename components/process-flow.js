@@ -185,15 +185,15 @@ export function generateCSS() {
       transform: scale(1.1);
     }
     .p-dot.completed {
-      background-color: var(--pmi-cta-bg, #00388F);
-      color: #FFF;
+      background-color: var(--pmi-cta-bg, #4F17A8);
+      color: #FFFFFF;
     }
     .p-dot:disabled {
       opacity: 0.5;
       cursor: default;
     }
     .p-dot:focus-visible {
-      outline: 3px solid var(--pmi-cobalt, var(--primary));
+      outline: 3px solid var(--pmi-violet, var(--primary));
       outline-offset: 2px;
     }
     .p-dot-check {
@@ -364,8 +364,8 @@ export function generateCSS() {
     .summary-check-icon {
       width: 22px;
       height: 22px;
-      background-color: var(--pmi-cta-bg, #00388F);
-      color: #FFF;
+      background-color: var(--pmi-cta-bg, #4F17A8);
+      color: #FFFFFF;
       border-radius: 50%;
       display: flex;
       align-items: center;
@@ -424,9 +424,9 @@ export function generateCSS() {
       color: var(--primary);
     }
     .process-controls-row .btn:disabled {
-      background-color: var(--pmi-grey-2, #DCDFE3);
-      color: var(--pmi-grey-3, #BDC2C7);
-      border-color: var(--pmi-grey-2, #DCDFE3);
+      background-color: var(--pmi-neutral-100, #E7E4DC);
+      color: var(--pmi-neutral-200, #CFCBC2);
+      border-color: var(--pmi-neutral-100, #E7E4DC);
       cursor: not-allowed;
       opacity: 0.6;
     }
@@ -434,7 +434,7 @@ export function generateCSS() {
       transform: scale(0.98);
     }
     .process-controls-row .btn:focus-visible {
-      outline: 3px solid var(--pmi-cobalt, var(--primary));
+      outline: 3px solid var(--pmi-violet, var(--primary));
       outline-offset: 2px;
     }`;
 }

@@ -176,7 +176,7 @@ export function generateCSS() {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      color: var(--primary, #00388F);
+      color: var(--primary, #4F17A8);
       flex-shrink: 0;
     }
     .carousel-title {
@@ -202,7 +202,7 @@ export function generateCSS() {
     .carousel-track-wrapper {
       overflow: hidden;
       border-radius: var(--pmi-radius-md, 16px);
-      background-color: var(--bg-body, #F3F4F5);
+      background-color: var(--bg-body, #F7F4EF);
       padding: var(--pmi-space-3, 12px);
       touch-action: pan-y;
       cursor: grab;
@@ -236,7 +236,7 @@ export function generateCSS() {
     }
     .carousel-card-inner {
       background-color: var(--bg-card, #FFFFFF);
-      border: 1px solid var(--border-color, #DCDFE3);
+      border: 1px solid var(--border-color, #E7E4DC);
       border-radius: var(--pmi-radius-md, 16px);
       padding: var(--pmi-space-5, 24px);
       display: flex;
@@ -254,8 +254,8 @@ export function generateCSS() {
       display: inline-block;
       padding: 3px var(--pmi-space-3, 12px);
       border-radius: 9999px;
-      background-color: var(--bg-body, #F3F4F5);
-      color: var(--primary, #00388F);
+      background-color: var(--bg-body, #F7F4EF);
+      color: var(--primary, #4F17A8);
       font-size: var(--pmi-fs-xs, 0.8125rem);
       font-weight: var(--pmi-fw-bold, 700);
       text-transform: uppercase;
@@ -277,7 +277,7 @@ export function generateCSS() {
       font-size: var(--pmi-fs-h3, 1.25rem);
       font-weight: var(--pmi-fw-bold, 700);
       line-height: var(--pmi-lh-heading, 1.3);
-      color: var(--primary, #00388F);
+      color: var(--primary, #4F17A8);
       margin: 0;
     }
     .carousel-card-body {
@@ -295,7 +295,7 @@ export function generateCSS() {
       align-items: center;
       padding: var(--pmi-space-2, 8px) var(--pmi-space-4, 16px);
       border-radius: var(--pmi-radius-sm, 12px);
-      background-color: var(--primary, #00388F);
+      background-color: var(--primary, #4F17A8);
       color: #FFFFFF;
       text-decoration: none;
       font-family: var(--pmi-font-sans, sans-serif);
@@ -305,10 +305,10 @@ export function generateCSS() {
       transition: background-color 180ms ease;
     }
     .carousel-card-btn:hover {
-      background-color: var(--pmi-blue, #009FDB);
+      background-color: var(--pmi-aqua, #00799E);
     }
     .carousel-card-btn:focus-visible {
-      outline: 3px solid var(--primary, #00388F);
+      outline: 3px solid var(--primary, #4F17A8);
       outline-offset: 2px;
     }
     .carousel-controls-bar {
@@ -325,28 +325,28 @@ export function generateCSS() {
       width: 44px;
       height: 44px;
       border-radius: 50%;
-      border: 1px solid var(--border-color, #DCDFE3);
+      border: 1px solid var(--border-color, #E7E4DC);
       background-color: var(--bg-card, #FFFFFF);
-      color: var(--primary, #00388F);
+      color: var(--primary, #4F17A8);
       cursor: pointer;
       transition: all 180ms ease;
       flex-shrink: 0;
     }
     .carousel-nav-btn:hover:not(:disabled) {
-      border-color: var(--primary, #00388F);
-      background-color: var(--primary, #00388F);
+      border-color: var(--primary, #4F17A8);
+      background-color: var(--primary, #4F17A8);
       color: #FFFFFF;
     }
     .carousel-nav-btn:focus-visible {
-      outline: 3px solid var(--primary, #00388F);
+      outline: 3px solid var(--primary, #4F17A8);
       outline-offset: 2px;
     }
     .carousel-nav-btn:disabled {
       opacity: 0.35;
       cursor: not-allowed;
-      border-color: var(--border-color, #DCDFE3);
-      background-color: var(--bg-body, #F3F4F5);
-      color: var(--text-muted, #4B5563);
+      border-color: var(--border-color, #E7E4DC);
+      background-color: var(--bg-body, #F7F4EF);
+      color: var(--text-muted, #200F3B);
     }
     .carousel-counter {
       font-family: var(--pmi-font-sans, sans-serif);
@@ -369,21 +369,21 @@ export function generateCSS() {
       height: 12px;
       border-radius: 6px;
       border: none;
-      background-color: var(--border-color, #DCDFE3);
+      background-color: var(--border-color, #E7E4DC);
       cursor: pointer;
       padding: 0;
       transition: all 200ms ease;
     }
     .carousel-dot-btn:hover {
-      background-color: var(--pmi-blue, #009FDB);
+      background-color: var(--pmi-aqua, #00799E);
     }
     .carousel-dot-btn:focus-visible {
-      outline: 3px solid var(--primary, #00388F);
+      outline: 3px solid var(--primary, #4F17A8);
       outline-offset: 2px;
     }
     .carousel-dot-btn.is-active {
       width: 28px;
-      background-color: var(--primary, #00388F);
+      background-color: var(--primary, #4F17A8);
     }
   `;
 }

@@ -390,7 +390,7 @@ export function generateCSS() {
       transform: scale(0.98);
     }
     .aud-play-btn:focus-visible, .aud-skip-btn:focus-visible, .aud-vol-btn:focus-visible, .aud-rate-btn:focus-visible, .aud-resume-btn:focus-visible, .aud-restart-choice-btn:focus-visible {
-      outline: 3px solid var(--pmi-cobalt, var(--primary));
+      outline: 3px solid var(--pmi-violet, var(--primary));
       outline-offset: 2px;
     }
     /* Replay/Forward are secondary to the main play button — smaller, outlined rather than

@@ -148,7 +148,7 @@ export function generateCSS() {
     }
 
     .accordion-trigger:focus-visible {
-      outline: 3px solid var(--pmi-cobalt, var(--primary)) !important;
+      outline: 3px solid var(--pmi-violet, var(--primary)) !important;
       outline-offset: 2px !important;
       box-shadow: none;
     }
@@ -184,7 +184,7 @@ export function generateCSS() {
       letter-spacing: 0.4px;
       padding: 2px 10px;
       border-radius: var(--pmi-radius-pill, 999px);
-      background-color: var(--pmi-grey-2, var(--border-color));
+      background-color: var(--pmi-neutral-100, var(--border-color));
       color: var(--text-main);
     }
 
@@ -195,13 +195,13 @@ export function generateCSS() {
     }
 
     .accordion-item.active {
-      border-color: var(--pmi-blue, var(--primary));
-      border-left: 4px solid var(--pmi-blue, var(--primary));
+      border-color: var(--pmi-aqua, var(--primary));
+      border-left: 4px solid var(--pmi-aqua, var(--primary));
     }
 
     .accordion-item.active .acc-arrow {
       transform: rotate(180deg);
-      color: var(--pmi-blue, var(--primary));
+      color: var(--pmi-aqua, var(--primary));
     }
 
     .acc-plus-minus {
@@ -235,7 +235,7 @@ export function generateCSS() {
 
     .accordion-item.active .acc-plus-minus::before,
     .accordion-item.active .acc-plus-minus::after {
-      background-color: var(--pmi-blue, var(--primary));
+      background-color: var(--pmi-aqua, var(--primary));
     }
 
     .accordion-item.active .acc-plus-minus::after {
@@ -288,7 +288,7 @@ export function generateCSS() {
     }
 
     .accordion-search-input:focus-visible {
-      outline: 3px solid var(--pmi-cobalt, var(--primary)) !important;
+      outline: 3px solid var(--pmi-violet, var(--primary)) !important;
       outline-offset: 2px !important;
     }
 
@@ -315,7 +315,7 @@ export function generateCSS() {
     }
 
     .accordion-toolbar-btn:focus-visible, .accordion-search-clear:focus-visible {
-      outline: 3px solid var(--pmi-cobalt, var(--primary)) !important;
+      outline: 3px solid var(--pmi-violet, var(--primary)) !important;
       outline-offset: 2px !important;
     }
 

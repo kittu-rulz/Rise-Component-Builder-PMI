@@ -46,8 +46,8 @@ function preset(id, name, description, organization, tokens, options = {}) {
 // This build is locked to a single theme derived from AT&T's own design system
 // (ATT Design System/All_ATTAleck_Fonts, ATT design system.xd — kept local-only,
 // see .gitignore). Values traced directly to the brand source:
-//   - primary (#00388F, Cobalt): "Cobalt is typically used for CTA buttons."
-//   - accent (#009FDB, AT&T Primary Blue): per explicit brand direction, this is
+//   - primary (#4F17A8, Cobalt): "Cobalt is typically used for CTA buttons."
+//   - accent (#00799E, AT&T Primary Blue): per explicit brand direction, this is
 //     the literal brand primary — not a substitute. Note: at this weight/size it
 //     only reaches 3.01:1 contrast against white, below the 4.5:1 WCAG AA
 //     threshold for small text (e.g. the block label), which is a known,
@@ -55,7 +55,7 @@ function preset(id, name, description, organization, tokens, options = {}) {
 //   - buttonRadius (20): measured directly from the brand's own button spec
 //     artboard (a 150x40 button rectangle with a 20px corner radius — fully
 //     pill-shaped, not a modest rounding).
-//   - background/surface/text/border: White, White, Black, Grey 2 (#DCDFE3) from
+//   - background/surface/text/border: White, White, Black, Grey 2 (#E7E4DC) from
 //     the brand's neutral-tones swatch — background kept flat white (not Grey 1)
 //     per explicit direction to keep every component's base color white only.
 // Values the brand book never specifies (mutedText, success/warning/danger,
@@ -65,9 +65,9 @@ function preset(id, name, description, organization, tokens, options = {}) {
 // not a brand-specified color.
 export const BUILT_IN_THEMES = Object.freeze([
   preset('pmi-standard', 'AT&T Standard', 'The standardized AT&T brand theme — the only theme in this build.', 'AT&T', {
-    fontFamily: 'ATT Aleck Sans', headingFontFamily: 'ATT Aleck Sans', primary: '#00388F', primaryHover: '#002A6B', accent: '#009FDB',
-    background: '#FFFFFF', surface: '#FFFFFF', text: '#000000', mutedText: '#4B5563', border: '#DCDFE3',
-    success: '#91DC00', warning: '#00388F', danger: '#00388F', borderRadius: 12, buttonRadius: 20,
+    fontFamily: 'ATT Aleck Sans', headingFontFamily: 'ATT Aleck Sans', primary: '#4F17A8', primaryHover: '#371075', accent: '#00799E',
+    background: '#FFFFFF', surface: '#FFFFFF', text: '#200F3B', mutedText: '#200F3B', border: '#E7E4DC',
+    success: '#197F10', warning: '#4F17A8', danger: '#4F17A8', borderRadius: 12, buttonRadius: 20,
     shadow: 'soft', spacingDensity: 'comfortable', animationSpeed: 200
   }, { isLocked: true })
 ]);
@@ -235,12 +235,12 @@ export function contrastRatio(foreground, background) {
 
 function contrastResult(label, foregroundToken, backgroundToken, tokens) {
   const ratio = contrastRatio(tokens[foregroundToken], tokens[backgroundToken]);
-  const blackRatio = contrastRatio('#000000', tokens[backgroundToken]);
+  const blackRatio = contrastRatio('#200F3B', tokens[backgroundToken]);
   const whiteRatio = contrastRatio('#FFFFFF', tokens[backgroundToken]);
   return {
     label, foregroundToken, backgroundToken, ratio: Number(ratio.toFixed(2)),
     normalText: ratio >= 4.5, largeText: ratio >= 3,
-    suggested: ratio >= 4.5 ? null : (blackRatio >= whiteRatio ? '#000000' : '#FFFFFF')
+    suggested: ratio >= 4.5 ? null : (blackRatio >= whiteRatio ? '#200F3B' : '#FFFFFF')
   };
 }
 

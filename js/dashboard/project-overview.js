@@ -288,7 +288,7 @@ export class ProjectOverviewView {
       }
       return `${html}${autoResizeScript}`;
     } catch (err) {
-      return `<!DOCTYPE html><html><body><div style="padding:20px;color:#c00;font-family:sans-serif;">Unable to render preview: ${escapeHTML(err.message)}</div></body></html>`;
+      return `<!DOCTYPE html><html><body><div style="padding:20px;color:#931706;font-family:sans-serif;">Unable to render preview: ${escapeHTML(err.message)}</div></body></html>`;
     }
   }
 
@@ -298,7 +298,7 @@ export class ProjectOverviewView {
       this.container.innerHTML = `
         <div class="project-workspace-view">
           <div class="workspace-container" style="padding: 40px; text-align: center;">
-            <p style="font-size: 1.125rem; color: #666; margin-bottom: 16px;">Course project not found.</p>
+            <p style="font-size: 1.125rem; color: #574E69; margin-bottom: 16px;">Course project not found.</p>
             <button id="wp-back-btn" class="btn btn-primary">Back to Projects</button>
           </div>
         </div>
@@ -555,10 +555,10 @@ export class ProjectOverviewView {
           </div>
         </div>
 
-        <div class="canvas-viewport-container" style="display: flex; justify-content: center; width: 100%; overflow-x: auto; background: var(--pmi-surface-sunken, #F8FAFC); border-radius: 12px; padding: 16px;">
-          <div class="canvas-device-wrapper" style="${deviceWidthStyle} transition: width 0.2s ease; background: #FFFFFF; border: 1px solid var(--pmi-border, #E2E8F0); border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.04); overflow: hidden;">
-            <div class="canvas-component-topbar" style="padding: 8px 14px; background: var(--pmi-surface-sunken, #FAFAFA); border-bottom: 1px solid var(--pmi-border, #EAEAEA); display: flex; justify-content: space-between; align-items: center;">
-              <span style="font-size: 0.75rem; font-weight: 700; color: #555;">Live Preview</span>
+        <div class="canvas-viewport-container" style="display: flex; justify-content: center; width: 100%; overflow-x: auto; background: var(--pmi-surface-sunken, #EFEDF3); border-radius: 12px; padding: 16px;">
+          <div class="canvas-device-wrapper" style="${deviceWidthStyle} transition: width 0.2s ease; background: #FFFFFF; border: 1px solid var(--pmi-border, #E7E4DC); border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.04); overflow: hidden;">
+            <div class="canvas-component-topbar" style="padding: 8px 14px; background: var(--pmi-surface-sunken, #F7F4EF); border-bottom: 1px solid var(--pmi-border, #E7E4DC); display: flex; justify-content: space-between; align-items: center;">
+              <span style="font-size: 0.75rem; font-weight: 700; color: #200F3B;">Live Preview</span>
               <button class="btn btn-primary btn-sm" data-action="open-focus-editor" data-comp-id="${selectedComp.id}" style="padding: 3px 10px; font-size: 0.75rem; display: inline-flex; align-items: center; gap: 4px;">
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg>
                 <span>Open Focus Editor</span>
@@ -590,10 +590,10 @@ export class ProjectOverviewView {
         <div class="canvas-viewport-frame" style="padding: 24px;">
           <div style="max-width: 580px; display: flex; flex-direction: column; gap: 14px; text-align: left; width: 100%;">
             <div>
-              <h3 style="margin: 0 0 4px 0; font-size: 1.125rem; font-weight: 700; color: var(--text-main, #111);">${escapeHTML(selectedSec.name)}</h3>
-              <p style="margin: 0; font-size: 0.875rem; color: #64748B;">${escapeHTML(selectedSec.description || 'Section Module Overview')}</p>
+              <h3 style="margin: 0 0 4px 0; font-size: 1.125rem; font-weight: 700; color: var(--text-main, #200F3B);">${escapeHTML(selectedSec.name)}</h3>
+              <p style="margin: 0; font-size: 0.875rem; color: #574E69;">${escapeHTML(selectedSec.description || 'Section Module Overview')}</p>
             </div>
-            <div style="font-size: 0.8125rem; font-weight: 600; color: #475569;">
+            <div style="font-size: 0.8125rem; font-weight: 600; color: #200F3B;">
               ${compIds.length} ${compIds.length === 1 ? 'Component' : 'Components'} in this section:
             </div>
             <div style="display: flex; flex-direction: column; gap: 8px;">
@@ -602,10 +602,10 @@ export class ProjectOverviewView {
                 if (!c) return '';
                 const reg = getComponentById(COMPONENT_REGISTRY, c.type);
                 return `
-                  <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; background: #FFF; border: 1px solid var(--pmi-border, #E2E8F0); border-radius: 8px;">
+                  <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; background: #FFFFFF; border: 1px solid var(--pmi-border, #E7E4DC); border-radius: 8px;">
                     <div>
-                      <span style="font-weight: 700; font-size: 0.875rem; color: #111;">${escapeHTML(c.name)}</span>
-                      <span style="margin-left: 8px; font-size: 0.6875rem; background: rgba(0, 56, 143, 0.08); color: var(--pmi-cobalt, #00388F); padding: 1px 6px; border-radius: 4px;">${escapeHTML(reg?.name || c.type)}</span>
+                      <span style="font-weight: 700; font-size: 0.875rem; color: #200F3B;">${escapeHTML(c.name)}</span>
+                      <span style="margin-left: 8px; font-size: 0.6875rem; background: rgba(79, 23, 168, 0.08); color: var(--pmi-violet, #4F17A8); padding: 1px 6px; border-radius: 4px;">${escapeHTML(reg?.name || c.type)}</span>
                     </div>
                     <button class="btn btn-secondary btn-sm" data-action="select-comp-preview" data-comp-id="${c.id}" style="padding: 4px 10px; font-size: 0.75rem;">
                       Preview Block
@@ -614,8 +614,8 @@ export class ProjectOverviewView {
                 `;
               }).join('')}
               ${compIds.length === 0 ? `
-                <div style="padding: 24px; text-align: center; background: #FFF; border: 1px dashed var(--pmi-border, #CBD5E1); border-radius: 8px;">
-                  <p style="font-size: 0.8125rem; color: #64748B; margin: 0 0 8px 0;">No components added to this section yet.</p>
+                <div style="padding: 24px; text-align: center; background: #FFFFFF; border: 1px dashed var(--pmi-border, #E7E4DC); border-radius: 8px;">
+                  <p style="font-size: 0.8125rem; color: #574E69; margin: 0 0 8px 0;">No components added to this section yet.</p>
                   <button class="btn btn-primary btn-sm" data-action="add-comp-to-sec" data-sec-id="${selectedId}">+ Add Component</button>
                 </div>
               ` : ''}
@@ -636,11 +636,11 @@ export class ProjectOverviewView {
 
       <div class="canvas-viewport-frame" style="min-height: 420px; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 32px; text-align: center;">
         <div style="max-width: 500px; display: flex; flex-direction: column; align-items: center; gap: 14px;">
-          <div style="width: 64px; height: 64px; border-radius: 16px; background: rgba(0, 56, 143, 0.08); color: var(--pmi-cobalt, #00388F); display: flex; align-items: center; justify-content: center;">
+          <div style="width: 64px; height: 64px; border-radius: 16px; background: rgba(79, 23, 168, 0.08); color: var(--pmi-violet, #4F17A8); display: flex; align-items: center; justify-content: center;">
             <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
           </div>
-          <h2 style="font-size: 1.125rem; font-weight: 700; margin: 0; color: var(--text-main, #111);">Course Authoring &amp; Flow Canvas</h2>
-          <p style="font-size: 0.875rem; color: #64748B; margin: 0; line-height: 1.5;">Select any component from the Course Outline to preview, configure its properties, or enter the full Focus Editor.</p>
+          <h2 style="font-size: 1.125rem; font-weight: 700; margin: 0; color: var(--text-main, #200F3B);">Course Authoring &amp; Flow Canvas</h2>
+          <p style="font-size: 0.875rem; color: #574E69; margin: 0; line-height: 1.5;">Select any component from the Course Outline to preview, configure its properties, or enter the full Focus Editor.</p>
           <button class="btn btn-primary btn-sm" id="wp-preview-canvas-btn" style="margin-top: 6px; padding: 8px 18px; font-size: 0.8125rem;">
             Launch Full Course Preview
           </button>
@@ -661,7 +661,7 @@ export class ProjectOverviewView {
       return `
         <div class="inspector-header">
           <h3 class="inspector-title">Component Inspector</h3>
-          <span class="project-client-badge" style="background: rgba(0, 56, 143, 0.08); color: var(--pmi-cobalt, #00388F);">${escapeHTML(typeLabel)}</span>
+          <span class="project-client-badge" style="background: rgba(79, 23, 168, 0.08); color: var(--pmi-violet, #4F17A8);">${escapeHTML(typeLabel)}</span>
         </div>
 
         <div class="inspector-body">
@@ -681,12 +681,12 @@ export class ProjectOverviewView {
 
           <div class="inspector-prop-group">
             <span class="inspector-label">Learning Purpose</span>
-            <span style="font-size: 0.8125rem; color: #555;">${escapeHTML(regEntry?.description || 'Interactive Learning Block')}</span>
+            <span style="font-size: 0.8125rem; color: #200F3B;">${escapeHTML(regEntry?.description || 'Interactive Learning Block')}</span>
           </div>
 
           <div class="inspector-prop-group">
             <span class="inspector-label">Standards & Compatibility</span>
-            <div style="display: flex; flex-direction: column; gap: 4px; font-size: 0.75rem; color: #444;">
+            <div style="display: flex; flex-direction: column; gap: 4px; font-size: 0.75rem; color: #200F3B;">
               <span>• Designed for Articulate Rise 360</span>
               <span>• Built to support WCAG 2.2 AA requirements</span>
               <span>• Responsive mobile/desktop layout</span>
@@ -720,17 +720,17 @@ export class ProjectOverviewView {
         <div class="inspector-body">
           <div class="inspector-prop-group">
             <label class="inspector-label">Section Name</label>
-            <span style="font-weight: 700; font-size: 0.875rem; color: #111;">${escapeHTML(sec?.name || 'Section')}</span>
+            <span style="font-weight: 700; font-size: 0.875rem; color: #200F3B;">${escapeHTML(sec?.name || 'Section')}</span>
           </div>
 
           <div class="inspector-prop-group">
             <label class="inspector-label">Description</label>
-            <span style="font-size: 0.8125rem; color: #555;">${escapeHTML(sec?.description || 'No section description.')}</span>
+            <span style="font-size: 0.8125rem; color: #200F3B;">${escapeHTML(sec?.description || 'No section description.')}</span>
           </div>
 
           <div class="inspector-prop-group">
             <span class="inspector-label">Section Summary</span>
-            <span style="font-size: 0.8125rem; color: #555;">Contains ${count} component instances.</span>
+            <span style="font-size: 0.8125rem; color: #200F3B;">Contains ${count} component instances.</span>
           </div>
         </div>
 
@@ -754,50 +754,50 @@ export class ProjectOverviewView {
     return `
       <div class="inspector-header">
         <h3 class="inspector-title">Course Inspector</h3>
-        <span class="project-client-badge" style="background: rgba(0, 56, 143, 0.08); color: var(--pmi-cobalt, #00388F);">Accessibility Checks Included</span>
+        <span class="project-client-badge" style="background: rgba(79, 23, 168, 0.08); color: var(--pmi-violet, #4F17A8);">Accessibility Checks Included</span>
       </div>
 
       <div class="inspector-body">
         <div class="inspector-prop-group">
           <span class="inspector-label">Course Title</span>
-          <span style="font-weight: 700; font-size: 0.875rem; color: #111;">${escapeHTML(project.name)}</span>
+          <span style="font-weight: 700; font-size: 0.875rem; color: #200F3B;">${escapeHTML(project.name)}</span>
         </div>
 
         <div class="inspector-prop-group">
           <span class="inspector-label">Course Target</span>
-          <span style="color: var(--pmi-cobalt, #00388F); font-weight: 600; font-size: 0.8125rem;">Designed for Articulate Rise 360</span>
+          <span style="color: var(--pmi-violet, #4F17A8); font-weight: 600; font-size: 0.8125rem;">Designed for Articulate Rise 360</span>
         </div>
 
         <div class="inspector-prop-group">
           <span class="inspector-label">Editorial Scope</span>
-          <span style="font-size: 0.8125rem; color: #555;">${totalComponents} interactive ${totalComponents === 1 ? 'component' : 'components'} across ${Object.keys(project.sections || {}).length} sections</span>
+          <span style="font-size: 0.8125rem; color: #200F3B;">${totalComponents} interactive ${totalComponents === 1 ? 'component' : 'components'} across ${Object.keys(project.sections || {}).length} sections</span>
         </div>
 
-        <div class="inspector-prop-group" style="border-top: 1px solid var(--pmi-border, #EFEFEF); padding-top: 10px;">
+        <div class="inspector-prop-group" style="border-top: 1px solid var(--pmi-border, #F7F4EF); padding-top: 10px;">
           <span class="inspector-label">Pre-Export QA Health</span>
           ${hasContent ? `
             <div style="display: flex; flex-direction: column; gap: 6px;">
               <div style="display: flex; justify-content: space-between; align-items: center;">
-                <span style="font-size: 0.8125rem; font-weight: 600; color: #1E293B;">Overall Readiness:</span>
+                <span style="font-size: 0.8125rem; font-weight: 600; color: #1A0837;">Overall Readiness:</span>
                 <span class="badge ${qa.overallStatusClass}" style="font-size: 0.75rem;">${escapeHTML(qa.overallStatus)} (${qa.overallScore}%)</span>
               </div>
-              <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.75rem; color: #64748B;">
+              <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.75rem; color: #574E69;">
                 <span>Technical Checks:</span>
-                <span style="font-weight: 600; color: #334155;">${qa.technicalScore}%</span>
+                <span style="font-weight: 600; color: #200F3B;">${qa.technicalScore}%</span>
               </div>
-              <div style="display: flex; gap: 6px; font-size: 0.6875rem; color: #64748B; margin-top: 2px;">
+              <div style="display: flex; gap: 6px; font-size: 0.6875rem; color: #574E69; margin-top: 2px;">
                 <span>${qa.editorial.readyCount} Ready</span> • 
                 <span>${qa.editorial.inReviewCount} In Review</span> • 
                 <span>${qa.editorial.draftCount} Draft</span>
               </div>
               ${(qa.counts.blockers > 0 || qa.counts.errors > 0 || qa.counts.warnings > 0) ? `
-                <div style="font-size: 0.6875rem; color: ${qa.counts.blockers > 0 ? '#DC2626' : '#D97706'}; font-weight: 600;">
+                <div style="font-size: 0.6875rem; color: ${qa.counts.blockers > 0 ? '#C41E08' : '#A12608'}; font-weight: 600;">
                   ${qa.counts.blockers > 0 ? `${qa.counts.blockers} blocker(s) ` : ''}${qa.counts.errors > 0 ? `${qa.counts.errors} error(s) ` : ''}${qa.counts.warnings > 0 ? `${qa.counts.warnings} warning(s)` : ''}
                 </div>
               ` : ''}
             </div>
           ` : `
-            <span style="font-size: 0.8125rem; color: #64748B; font-style: italic;">No content to evaluate</span>
+            <span style="font-size: 0.8125rem; color: #574E69; font-style: italic;">No content to evaluate</span>
           `}
         </div>
       </div>
@@ -931,8 +931,8 @@ export class ProjectOverviewView {
             ${filteredCompIds.map((cId, idx) => this.renderComponentRow(project, cId, sectionId, idx, filteredCompIds.length)).join('')}
           ` : allCompIds.length === 0 ? `
             <div class="section-quick-start-box">
-              <p style="font-size: 0.875rem; font-weight: 600; color: #1E293B; margin: 0 0 4px 0;">Start building ${escapeHTML(section.name)}</p>
-              <p style="font-size: 0.8125rem; color: #64748B; margin: 0 0 10px 0;">Add an interactive component to this section:</p>
+              <p style="font-size: 0.875rem; font-weight: 600; color: #1A0837; margin: 0 0 4px 0;">Start building ${escapeHTML(section.name)}</p>
+              <p style="font-size: 0.8125rem; color: #574E69; margin: 0 0 10px 0;">Add an interactive component to this section:</p>
               <div class="quick-add-chips-grid">
                 <button type="button" class="btn btn-secondary btn-sm quick-add-chip" data-action="quick-add-comp" data-sec-id="${sectionId}" data-comp-type="accordion">
                   + Accordion
@@ -1289,37 +1289,37 @@ export class ProjectOverviewView {
             </button>
           </div>
           <div class="modal-body" style="display: flex; flex-direction: column; gap: 16px;">
-            <div style="background: var(--pmi-surface-sunken, #F4F6F9); padding: 14px; border-radius: 10px; display: flex; justify-content: center; align-items: center; border: 1px solid var(--pmi-border, #EAEAEA);">
+            <div style="background: var(--pmi-surface-sunken, #F7F4EF); padding: 14px; border-radius: 10px; display: flex; justify-content: center; align-items: center; border: 1px solid var(--pmi-border, #E7E4DC);">
               ${comp.thumbnail || getComponentThumbnailSvg(comp.id, { width: 220, height: 110 })}
             </div>
 
             <div>
-              <h4 style="margin: 0 0 4px 0; font-size: 0.875rem; font-weight: 700; color: var(--text-main, #111);">Description &amp; Purpose</h4>
-              <p style="margin: 0; font-size: 0.8125rem; color: #555; line-height: 1.5;">${escapeHTML(comp.description)}</p>
+              <h4 style="margin: 0 0 4px 0; font-size: 0.875rem; font-weight: 700; color: var(--text-main, #200F3B);">Description &amp; Purpose</h4>
+              <p style="margin: 0; font-size: 0.8125rem; color: #200F3B; line-height: 1.5;">${escapeHTML(comp.description)}</p>
             </div>
 
             ${comp.bestWhen ? `
               <div>
-                <h4 style="margin: 0 0 4px 0; font-size: 0.875rem; font-weight: 700; color: var(--text-main, #111);">Recommended Use Cases</h4>
-                <p style="margin: 0; font-size: 0.8125rem; color: #555; line-height: 1.5;">${escapeHTML(comp.bestWhen)}</p>
+                <h4 style="margin: 0 0 4px 0; font-size: 0.875rem; font-weight: 700; color: var(--text-main, #200F3B);">Recommended Use Cases</h4>
+                <p style="margin: 0; font-size: 0.8125rem; color: #200F3B; line-height: 1.5;">${escapeHTML(comp.bestWhen)}</p>
               </div>
             ` : ''}
 
             ${comp.differentiator ? `
-              <div style="background: #F0FDF4; border: 1px solid #BBF7D0; padding: 10px 14px; border-radius: 8px;">
-                <h4 style="margin: 0 0 2px 0; font-size: 0.8125rem; font-weight: 700; color: #15803D;">Why Choose This Component:</h4>
-                <p style="margin: 0; font-size: 0.75rem; color: #166534; line-height: 1.4;">${escapeHTML(comp.differentiator)}</p>
+              <div style="background: #F2F5F2; border: 1px solid #BDFDBD; padding: 10px 14px; border-radius: 8px;">
+                <h4 style="margin: 0 0 2px 0; font-size: 0.8125rem; font-weight: 700; color: #13600C;">Why Choose This Component:</h4>
+                <p style="margin: 0; font-size: 0.75rem; color: #0D4409; line-height: 1.4;">${escapeHTML(comp.differentiator)}</p>
               </div>
             ` : ''}
 
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; font-size: 0.8125rem; background: var(--pmi-surface-sunken, #FAFAFA); padding: 12px; border-radius: 8px;">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; font-size: 0.8125rem; background: var(--pmi-surface-sunken, #F7F4EF); padding: 12px; border-radius: 8px;">
               <div>
                 <strong>Rise Compatibility:</strong>
-                <p style="margin: 2px 0 0 0; color: #555;">${escapeHTML(comp.riseEquivalent || 'Designed for seamless Rise integration')}</p>
+                <p style="margin: 2px 0 0 0; color: #200F3B;">${escapeHTML(comp.riseEquivalent || 'Designed for seamless Rise integration')}</p>
               </div>
               <div>
                 <strong>Accessibility Support:</strong>
-                <p style="margin: 2px 0 0 0; color: #555;">Built to support WCAG 2.2 AA requirements with full keyboard navigation.</p>
+                <p style="margin: 2px 0 0 0; color: #200F3B;">Built to support WCAG 2.2 AA requirements with full keyboard navigation.</p>
               </div>
             </div>
           </div>

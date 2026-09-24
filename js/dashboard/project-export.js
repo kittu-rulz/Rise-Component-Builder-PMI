@@ -303,7 +303,7 @@ export function showPreExportReviewDialog(options, maybeOnProceed = null, maybeO
 
     const escapeHtml = (str) => {
       if (typeof str !== 'string') return '';
-      return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;');
+      return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#2A0C5A;');
     };
 
     const build = () => {
@@ -320,10 +320,10 @@ export function showPreExportReviewDialog(options, maybeOnProceed = null, maybeO
       .filter(issue => issue.severity === 'blocker' || issue.severity === 'error' || issue.severity === 'warning')
       .map(issue => ({ issue, name: report.component.name })));
     const findingsHtml = listed.length ? `
-          <div style="border: 1px solid var(--pmi-border, #DCDFE3); border-radius: 12px; padding: 14px; font-size: 0.8125rem;">
-            <div style="font-weight: 700; margin-bottom: 6px; color: var(--pmi-heading-contrast, #000);">Findings (${listed.length})</div>
+          <div style="border: 1px solid var(--pmi-border, #E7E4DC); border-radius: 12px; padding: 14px; font-size: 0.8125rem;">
+            <div style="font-weight: 700; margin-bottom: 6px; color: var(--pmi-heading-contrast, #200F3B);">Findings (${listed.length})</div>
             <ul style="margin: 0; padding-left: 18px; line-height: 1.5; max-height: 180px; overflow: auto;">
-              ${listed.slice(0, 12).map(({ issue, name }) => `<li><strong>${escapeHtml(issue.severity)}</strong> — ${escapeHtml(name)}: ${escapeHtml(issue.title)}${issue.formats?.length && issue.source === 'preflight' ? ` <span style="color: #555;">(affects ${escapeHtml(issue.formats.join(', '))})</span>` : ''}</li>`).join('')}
+              ${listed.slice(0, 12).map(({ issue, name }) => `<li><strong>${escapeHtml(issue.severity)}</strong> — ${escapeHtml(name)}: ${escapeHtml(issue.title)}${issue.formats?.length && issue.source === 'preflight' ? ` <span style="color: #200F3B;">(affects ${escapeHtml(issue.formats.join(', '))})</span>` : ''}</li>`).join('')}
               ${listed.length > 12 ? `<li>…and ${listed.length - 12} more in Course QA.</li>` : ''}
             </ul>
           </div>` : '';
@@ -333,7 +333,7 @@ export function showPreExportReviewDialog(options, maybeOnProceed = null, maybeO
         <div class="modal-header">
           <div>
             <h2 id="pmi-export-review-title" class="modal-title">Pre-Export Package Review</h2>
-            <p style="margin: 4px 0 0 0; font-size: 0.8125rem; color: var(--pmi-text-muted, #707780);">
+            <p style="margin: 4px 0 0 0; font-size: 0.8125rem; color: var(--pmi-text-muted, #574E69);">
               Review package contents, QA findings, and readiness status before generating ZIP
             </p>
           </div>
@@ -347,27 +347,27 @@ export function showPreExportReviewDialog(options, maybeOnProceed = null, maybeO
 
         <div class="modal-body" style="display: flex; flex-direction: column; gap: 16px;">
           <!-- Course Info Summary Card -->
-          <div style="background: var(--pmi-grey-1, #F3F4F5); border: 1px solid var(--pmi-border, #DCDFE3); border-radius: 12px; padding: 16px;">
+          <div style="background: var(--pmi-neutral-50, #F7F4EF); border: 1px solid var(--pmi-border, #E7E4DC); border-radius: 12px; padding: 16px;">
             <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px;">
               <div>
                 <span class="project-client-badge" style="margin-bottom: 4px; display: inline-block;">${escapeHtml(project.clientLabel || 'AT&T')}</span>
-                <h3 style="margin: 0; font-size: 1.125rem; font-weight: 700; color: var(--pmi-heading-contrast, #000000);">${escapeHtml(project.name)}</h3>
+                <h3 style="margin: 0; font-size: 1.125rem; font-weight: 700; color: var(--pmi-heading-contrast, #200F3B);">${escapeHtml(project.name)}</h3>
               </div>
               <span class="project-card-status ${qaReport.overallStatusClass}" style="margin: 0; font-size: 0.75rem; font-weight: 700;">${escapeHtml(qaReport.overallStatus)}</span>
             </div>
             
             <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; font-size: 0.8125rem;">
-              <div style="background: var(--pmi-surface, #FFFFFF); padding: 8px 12px; border-radius: 8px; border: 1px solid var(--pmi-border, #DCDFE3);">
-                <div style="color: var(--pmi-text-muted, #707780); font-size: 0.75rem;">Structure</div>
-                <div style="font-weight: 700; color: var(--pmi-text, #000);">${totalSecs} ${totalSecs === 1 ? 'Section' : 'Sections'} · ${totalComps} ${totalComps === 1 ? 'Component' : 'Components'}</div>
+              <div style="background: var(--pmi-surface, #FFFFFF); padding: 8px 12px; border-radius: 8px; border: 1px solid var(--pmi-border, #E7E4DC);">
+                <div style="color: var(--pmi-text-muted, #574E69); font-size: 0.75rem;">Structure</div>
+                <div style="font-weight: 700; color: var(--pmi-text, #200F3B);">${totalSecs} ${totalSecs === 1 ? 'Section' : 'Sections'} · ${totalComps} ${totalComps === 1 ? 'Component' : 'Components'}</div>
               </div>
-              <div style="background: var(--pmi-surface, #FFFFFF); padding: 8px 12px; border-radius: 8px; border: 1px solid var(--pmi-border, #DCDFE3);">
-                <div style="color: var(--pmi-text-muted, #707780); font-size: 0.75rem;">Editorial Status</div>
-                <div style="font-weight: 700; color: var(--pmi-text, #000);">${qaReport.editorial.readyCount} Ready · ${qaReport.editorial.draftCount} Draft</div>
+              <div style="background: var(--pmi-surface, #FFFFFF); padding: 8px 12px; border-radius: 8px; border: 1px solid var(--pmi-border, #E7E4DC);">
+                <div style="color: var(--pmi-text-muted, #574E69); font-size: 0.75rem;">Editorial Status</div>
+                <div style="font-weight: 700; color: var(--pmi-text, #200F3B);">${qaReport.editorial.readyCount} Ready · ${qaReport.editorial.draftCount} Draft</div>
               </div>
-              <div style="background: var(--pmi-surface, #FFFFFF); padding: 8px 12px; border-radius: 8px; border: 1px solid var(--pmi-border, #DCDFE3);">
-                <div style="color: var(--pmi-text-muted, #707780); font-size: 0.75rem;">Technical QA</div>
-                <div style="font-weight: 700; color: var(--pmi-text, #000);">${pending ? 'Running checks…' : readinessFailed ? 'Not completed' : escapeHtml(describeTechnicalStatus(qaReport).replace(/^Technical checks: /, ''))}</div>
+              <div style="background: var(--pmi-surface, #FFFFFF); padding: 8px 12px; border-radius: 8px; border: 1px solid var(--pmi-border, #E7E4DC);">
+                <div style="color: var(--pmi-text-muted, #574E69); font-size: 0.75rem;">Technical QA</div>
+                <div style="font-weight: 700; color: var(--pmi-text, #200F3B);">${pending ? 'Running checks…' : readinessFailed ? 'Not completed' : escapeHtml(describeTechnicalStatus(qaReport).replace(/^Technical checks: /, ''))}</div>
               </div>
             </div>
           </div>
@@ -379,40 +379,40 @@ export function showPreExportReviewDialog(options, maybeOnProceed = null, maybeO
             </div>
           ` : hasBlockers ? `
             <div style="background: rgba(224, 88, 77, 0.08); border: 1px solid rgba(224, 88, 77, 0.3); border-radius: 12px; padding: 14px; display: flex; gap: 12px; align-items: flex-start;">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#E0584D" stroke-width="2" style="flex-shrink: 0; margin-top: 2px;"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#F41E0B" stroke-width="2" style="flex-shrink: 0; margin-top: 2px;"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
               <div>
-                <div style="font-weight: 700; font-size: 0.875rem; color: #E0584D; margin-bottom: 4px;">Export Blocked (${qaReport.counts.blockers} Blocker${qaReport.counts.blockers > 1 ? 's' : ''})</div>
-                <p style="margin: 0; font-size: 0.8125rem; color: var(--pmi-text, #000); line-height: 1.4;">
+                <div style="font-weight: 700; font-size: 0.875rem; color: #F41E0B; margin-bottom: 4px;">Export Blocked (${qaReport.counts.blockers} Blocker${qaReport.counts.blockers > 1 ? 's' : ''})</div>
+                <p style="margin: 0; font-size: 0.8125rem; color: var(--pmi-text, #200F3B); line-height: 1.4;">
                   One or more components have critical blockers that prevent generating functional web packages. Please resolve them in Course QA before exporting.
                 </p>
               </div>
             </div>
           ` : hasErrors ? `
             <div style="background: rgba(216, 67, 21, 0.08); border: 1px solid rgba(216, 67, 21, 0.3); border-radius: 12px; padding: 14px; display: flex; gap: 12px; align-items: flex-start;">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D84315" stroke-width="2" style="flex-shrink: 0; margin-top: 2px;"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C41E08" stroke-width="2" style="flex-shrink: 0; margin-top: 2px;"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
               <div>
-                <div style="font-weight: 700; font-size: 0.875rem; color: #D84315; margin-bottom: 4px;">Technical Errors Detected (${qaReport.counts.errors} Error${qaReport.counts.errors > 1 ? 's' : ''}, ${qaReport.counts.warnings} Warning${qaReport.counts.warnings > 1 ? 's' : ''})</div>
-                <p style="margin: 0; font-size: 0.8125rem; color: var(--pmi-text, #000); line-height: 1.4;">
+                <div style="font-weight: 700; font-size: 0.875rem; color: #C41E08; margin-bottom: 4px;">Technical Errors Detected (${qaReport.counts.errors} Error${qaReport.counts.errors > 1 ? 's' : ''}, ${qaReport.counts.warnings} Warning${qaReport.counts.warnings > 1 ? 's' : ''})</div>
+                <p style="margin: 0; font-size: 0.8125rem; color: var(--pmi-text, #200F3B); line-height: 1.4;">
                   Technical quality errors exist (such as missing item titles). Exporting now is intended only for development drafts.
                 </p>
               </div>
             </div>
           ` : (hasWarnings || hasDrafts) ? `
             <div style="background: rgba(255, 153, 0, 0.08); border: 1px solid rgba(255, 153, 0, 0.3); border-radius: 12px; padding: 14px; display: flex; gap: 12px; align-items: flex-start;">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D97706" stroke-width="2" style="flex-shrink: 0; margin-top: 2px;"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#A12608" stroke-width="2" style="flex-shrink: 0; margin-top: 2px;"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
               <div>
-                <div style="font-weight: 700; font-size: 0.875rem; color: #B45309; margin-bottom: 4px;">Readiness Notice (${qaReport.editorial.draftCount} Draft${qaReport.editorial.draftCount !== 1 ? 's' : ''}, ${qaReport.counts.warnings} Warning${qaReport.counts.warnings !== 1 ? 's' : ''})</div>
-                <p style="margin: 0; font-size: 0.8125rem; color: var(--pmi-text, #000); line-height: 1.4;">
+                <div style="font-weight: 700; font-size: 0.875rem; color: #741C06; margin-bottom: 4px;">Readiness Notice (${qaReport.editorial.draftCount} Draft${qaReport.editorial.draftCount !== 1 ? 's' : ''}, ${qaReport.counts.warnings} Warning${qaReport.counts.warnings !== 1 ? 's' : ''})</div>
+                <p style="margin: 0; font-size: 0.8125rem; color: var(--pmi-text, #200F3B); line-height: 1.4;">
                   Course components are still marked as Draft or have non-blocking warnings. You can export now for drafting, or review in Course QA first.
                 </p>
               </div>
             </div>
           ` : `
             <div style="background: rgba(0, 138, 0, 0.08); border: 1px solid rgba(0, 138, 0, 0.3); border-radius: 12px; padding: 14px; display: flex; gap: 12px; align-items: flex-start;">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#008A00" stroke-width="2" style="flex-shrink: 0; margin-top: 2px;"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#13600C" stroke-width="2" style="flex-shrink: 0; margin-top: 2px;"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
               <div>
-                <div style="font-weight: 700; font-size: 0.875rem; color: #008A00; margin-bottom: 4px;">No blocking issues or warnings found</div>
-                <p style="margin: 0; font-size: 0.8125rem; color: var(--pmi-text, #000); line-height: 1.4;">
+                <div style="font-weight: 700; font-size: 0.875rem; color: #13600C; margin-bottom: 4px;">No blocking issues or warnings found</div>
+                <p style="margin: 0; font-size: 0.8125rem; color: var(--pmi-text, #200F3B); line-height: 1.4;">
                   ${readinessFailed
                     ? 'The full technical checks could not run, so only basic structure checks were applied. '
                     : 'The automated Preflight checks found nothing to fix. '}Automated checks cannot certify accessibility conformance or Rise compatibility; review the package in Rise before publishing.
@@ -424,9 +424,9 @@ export function showPreExportReviewDialog(options, maybeOnProceed = null, maybeO
           ${findingsHtml}
 
           <!-- Package Details -->
-          <div style="border: 1px solid var(--pmi-border, #DCDFE3); border-radius: 12px; padding: 14px; font-size: 0.8125rem;">
-            <div style="font-weight: 700; margin-bottom: 6px; color: var(--pmi-heading-contrast, #000);">Package Format Details:</div>
-            <ul style="margin: 0; padding-left: 18px; color: var(--pmi-text-muted, #555); line-height: 1.5;">
+          <div style="border: 1px solid var(--pmi-border, #E7E4DC); border-radius: 12px; padding: 14px; font-size: 0.8125rem;">
+            <div style="font-weight: 700; margin-bottom: 6px; color: var(--pmi-heading-contrast, #200F3B);">Package Format Details:</div>
+            <ul style="margin: 0; padding-left: 18px; color: var(--pmi-text-muted, #200F3B); line-height: 1.5;">
               <li>Organized folders for each section and component HTML bundle.</li>
               <li>Includes <code>manifest.json</code> course hierarchy and <code>project-backup.json</code>.</li>
               <li>Every uploaded media file is packaged inside each component's own <code>assets/</code> folder; export stops if any file is missing.</li>
@@ -452,7 +452,7 @@ export function showPreExportReviewDialog(options, maybeOnProceed = null, maybeO
                 Export Blocked
               </button>
             ` : hasErrors ? `
-              <button id="pmi-export-review-proceed-btn" class="btn-pmi-primary" type="button" style="background: #D84315;">
+              <button id="pmi-export-review-proceed-btn" class="btn-pmi-primary" type="button" style="background: #C41E08;">
                 Export Draft Package With Known Errors
               </button>
             ` : (hasWarnings || hasDrafts) ? `
