@@ -57,27 +57,27 @@ Production-ready workplace scenarios (Cybersecurity Incident Response, CSAT Targ
 All component templates, stylesheets, and export generators strictly adhere to the official **AT&T Brand Standards** specified in [`design/ATT-Rise-Design-Standards.md`](design/ATT-Rise-Design-Standards.md).
 
 ### 1. Color System & Design Tokens
-- Sourced directly from `design/att-tokens.css`.
+- Sourced directly from `design/pmi-tokens.css`.
 - **AT&T Blue (`#009FDB`)** is the primary brand color.
 - **Cobalt (`#00388F`)** is reserved for actionable CTA buttons and interactive emphasis.
 - **Neutrals**: Surface White (`#FFFFFF`), Sunken Neutral (`#F3F4F5`), Border Grey 2 (`#DCDFE3`), Border Strong Grey 3 (`#BDC2C7`), Text Black (`#000000`).
 
 ### 2. Typography
-- Standardized on the official **AT&T Aleck Sans** font family (`var(--att-font-sans)`).
+- Standardized on the official **AT&T Aleck Sans** font family (`var(--pmi-font-sans)`).
 - **Five self-hosted WOFF2 cuts** embedded directly into exported HTML (Regular 400, Italic 400, Medium 500, Bold 700, Bold Italic 700).
 - **16px body floor**: All learner-facing body copy maintains a 16px minimum floor with `1.5` line-height.
 
 ### 3. Curvature & Geometry
-- Outer block shells: `--att-radius-xl` (32px)
-- Content cards & accordion rows: `--att-radius-lg` (20px)
-- Buttons & form controls: `--att-radius-md` (12px)
-- Badges & progress tracks: `--att-radius-pill` / `--att-radius-sm` (8px)
+- Outer block shells: `--pmi-radius-xl` (32px)
+- Content cards & accordion rows: `--pmi-radius-lg` (20px)
+- Buttons & form controls: `--pmi-radius-md` (12px)
+- Badges & progress tracks: `--pmi-radius-pill` / `--pmi-radius-sm` (8px)
 
 ### 4. Iconography
 - Standardized on the official **AT&T Functional SVG Icon Library**.
 
 ### 5. Interaction States & Accessibility
-- **Focus visible**: 3px solid `--att-cobalt` (`#00388F`) outline with 2px offset.
+- **Focus visible**: 3px solid `--pmi-cobalt` (`#00388F`) outline with 2px offset.
 - **Touch targets**: 44×44px minimum touch target size.
 - **Motion**: Zeroed out under `@media (prefers-reduced-motion: reduce)`.
 - **WCAG AA Compliance**: High-contrast text/surface pairs with contrast ratios >= 4.5:1.

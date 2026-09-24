@@ -16,7 +16,7 @@ describe('application state', () => {
 
   test('initial state has a valid component config and independent UI/component themes', () => {
     expect(appState.config.items.length).toBeGreaterThan(0);
-    expect(appState.activeTheme.id).toBe('att-standard');
+    expect(appState.activeTheme.id).toBe('pmi-standard');
     expect(appState.uiTheme).toBe('light');
   });
 
@@ -45,6 +45,6 @@ describe('application state', () => {
     saveDraft(validProject({ name: 'Restored Draft' }));
     const restored = loadDraft();
     expect(restored.name).toBe('Restored Draft');
-    expect(restored.theme.id).toBe('att-standard');
+    expect(restored.theme.id).toBe('pmi-standard');
   });
 });

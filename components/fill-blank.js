@@ -1,11 +1,11 @@
 import { getEditorSchema } from '../js/editor-schemas.js';
 import { escapeHTML, serializeForInlineScript } from '../js/utilities.js';
 import { validateFillBlankAnswers, combineValidationResults } from '../js/validation-utils.js';
-import { getAttIconSvg } from '../js/att-icons.js';
+import { getPmiIconSvg } from '../js/pmi-icons.js';
 
-const HINT_ICON = getAttIconSvg('information-circle', { width: 14, height: 14, ariaHidden: true });
-const CHECK_ICON = getAttIconSvg('check-circle-filled', { width: 13, height: 13, ariaHidden: true });
-const CROSS_ICON = getAttIconSvg('close-circle-filled', { width: 13, height: 13, ariaHidden: true });
+const HINT_ICON = getPmiIconSvg('information-circle', { width: 14, height: 14, ariaHidden: true });
+const CHECK_ICON = getPmiIconSvg('check-circle-filled', { width: 13, height: 13, ariaHidden: true });
+const CROSS_ICON = getPmiIconSvg('close-circle-filled', { width: 13, height: 13, ariaHidden: true });
 
 /**
  * Fill-in-the-Blank Component Configuration
@@ -68,26 +68,26 @@ export function generateCSS() {
     .fill-blank-container {
       background-color: var(--bg-card);
       border: var(--border-style);
-      border-radius: var(--att-radius-lg, var(--border-radius, 20px));
+      border-radius: var(--pmi-radius-lg, var(--border-radius, 20px));
       box-shadow: var(--shadow-style);
-      padding: var(--att-space-5, 24px);
+      padding: var(--pmi-space-5, 24px);
       display: flex;
       flex-direction: column;
-      gap: var(--att-space-4, 16px);
+      gap: var(--pmi-space-4, 16px);
     }
     .blank-sentence-card {
       display: flex;
       flex-direction: column;
-      gap: var(--att-space-2, 8px);
+      gap: var(--pmi-space-2, 8px);
       border-bottom: 1px dashed var(--border-color);
-      padding-bottom: var(--att-space-4, 14px);
+      padding-bottom: var(--pmi-space-4, 14px);
     }
     .blank-sentence-card:last-child {
       border-bottom: none;
     }
     .blank-sentence-main {
       display: flex;
-      gap: var(--att-space-3, 12px);
+      gap: var(--pmi-space-3, 12px);
       align-items: flex-start;
     }
     .sentence-num {
@@ -99,23 +99,23 @@ export function generateCSS() {
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: var(--att-fs-body-sm, 13px);
+      font-size: var(--pmi-fs-body-sm, 13px);
       font-weight: 700;
       flex-shrink: 0;
       margin-top: 4px;
     }
     .blank-sentence-content {
-      font-size: var(--att-fs-body, 16px);
-      line-height: var(--att-lh-body, 1.6);
+      font-size: var(--pmi-fs-body, 16px);
+      line-height: var(--pmi-lh-body, 1.6);
       max-width: 70ch;
       color: var(--text-main);
     }
     .blank-input {
       border: 1.5px solid var(--border-color, #DCDFE3);
-      border-radius: var(--att-radius-sm, 6px);
+      border-radius: var(--pmi-radius-sm, 6px);
       background-color: var(--bg-card, #FFFFFF);
       padding: 6px 12px;
-      font-size: var(--att-fs-body, 16px);
+      font-size: var(--pmi-fs-body, 16px);
       font-weight: 600;
       color: var(--text-main);
       min-width: 140px;
@@ -126,7 +126,7 @@ export function generateCSS() {
       margin: 0 4px;
     }
     .blank-input:focus-visible {
-      outline: 3px solid var(--att-cobalt, var(--primary));
+      outline: 3px solid var(--pmi-cobalt, var(--primary));
       outline-offset: 2px;
       border-color: var(--primary);
     }
@@ -141,7 +141,7 @@ export function generateCSS() {
       background-color: var(--danger-tint);
     }
     .blank-status-badge {
-      font-size: var(--att-fs-eyebrow, 12px);
+      font-size: var(--pmi-fs-eyebrow, 12px);
       font-weight: 700;
       margin-left: 8px;
       display: inline-block;
@@ -157,7 +157,7 @@ export function generateCSS() {
       background: none;
       border: none;
       color: var(--primary);
-      font-size: var(--att-fs-body-sm, 13px);
+      font-size: var(--pmi-fs-body-sm, 13px);
       font-weight: 600;
       cursor: pointer;
       padding: 2px 4px;
@@ -171,9 +171,9 @@ export function generateCSS() {
     .blank-hint-box {
       background-color: var(--bg-body, #F3F4F5);
       border: 1px dashed var(--border-color);
-      border-radius: var(--att-radius-sm, 6px);
+      border-radius: var(--pmi-radius-sm, 6px);
       padding: 6px 12px;
-      font-size: var(--att-fs-body-sm, 13px);
+      font-size: var(--pmi-fs-body-sm, 13px);
       color: var(--text-muted);
       animation: fadeIn 0.2s ease;
     }
@@ -181,11 +181,11 @@ export function generateCSS() {
       align-self: flex-start;
       margin-top: 10px;
       padding: 10px 24px;
-      border-radius: var(--button-radius, var(--att-radius-pill, 999px));
+      border-radius: var(--button-radius, var(--pmi-radius-pill, 999px));
       border: none;
       background-color: var(--primary);
       color: var(--on-primary);
-      font-size: var(--att-fs-body, 16px);
+      font-size: var(--pmi-fs-body, 16px);
       font-weight: 600;
       cursor: pointer;
       min-height: 44px;
@@ -201,15 +201,15 @@ export function generateCSS() {
       transform: scale(0.98);
     }
     .quiz-submit-btn:focus-visible {
-      outline: 3px solid var(--att-cobalt, var(--primary));
+      outline: 3px solid var(--pmi-cobalt, var(--primary));
       outline-offset: 2px;
     }
     .quiz-feedback {
-      margin-top: var(--att-space-4, 16px);
-      padding: var(--att-space-4, 16px) var(--att-space-5, 24px);
-      border-radius: var(--att-radius-md, var(--border-radius, 12px));
-      font-size: var(--att-fs-body, 16px);
-      line-height: var(--att-lh-body, 1.5);
+      margin-top: var(--pmi-space-4, 16px);
+      padding: var(--pmi-space-4, 16px) var(--pmi-space-5, 24px);
+      border-radius: var(--pmi-radius-md, var(--border-radius, 12px));
+      font-size: var(--pmi-fs-body, 16px);
+      line-height: var(--pmi-lh-body, 1.5);
       max-width: 70ch;
       animation: fadeIn 0.3s ease;
     }
@@ -287,12 +287,12 @@ export function generateJS(config, instanceId) {
         if (isCorrect) {
           input.classList.add('is-correct');
           input.setAttribute('aria-invalid', 'false');
-          if (badge) { badge.innerHTML = fbCheckIcon + ' Correct'; badge.style.color = 'var(--att-cta-bg, #00388F)'; }
+          if (badge) { badge.innerHTML = fbCheckIcon + ' Correct'; badge.style.color = 'var(--pmi-cta-bg, #00388F)'; }
         } else if (val.trim()) {
           allCorrect = false;
           input.classList.add('is-incorrect');
           input.setAttribute('aria-invalid', 'true');
-          if (badge) { badge.innerHTML = fbCrossIcon + ' Incorrect'; badge.style.color = 'var(--att-cta-bg, #00388F)'; }
+          if (badge) { badge.innerHTML = fbCrossIcon + ' Incorrect'; badge.style.color = 'var(--pmi-cta-bg, #00388F)'; }
         } else {
           allCorrect = false;
           input.removeAttribute('aria-invalid');

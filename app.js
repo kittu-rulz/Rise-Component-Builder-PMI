@@ -2,7 +2,7 @@
 // @ts-nocheck -- extensive untyped document.getElementById() DOM wiring; see docs/TESTING-STRATEGY.md "Type checking".
 // Opt back in incrementally as sections of this file are typed or migrated into the component registry (docs/ARCHITECTURE.md §1).
 
-import { appState, resetConfig } from './js/state.js';
+import { appState, defaultBlockHeader, repairLeakedAccordionHeader, resetConfig } from './js/state.js';
 import { APP_VERSION, parseVersionBuildDate } from './js/version.js';
 import {
   buildProject, clearDraft, deleteProject, duplicateProject, getProject, importProjectJson,
@@ -43,7 +43,7 @@ import { ProjectMediaView } from './js/dashboard/project-media.js';
 import { CoursePreviewView } from './js/dashboard/course-preview.js';
 import { ProjectQaView } from './js/dashboard/project-qa.js';
 import { downloadCourseProjectZip, showPreExportReviewDialog } from './js/dashboard/project-export.js';
-import { isolateModal, clearAllModalIsolations } from './js/dashboard/att-modal.js';
+import { isolateModal, clearAllModalIsolations } from './js/dashboard/pmi-modal.js';
 // app.js is the composition root and is explicitly allowed to depend on any module,
 // including one specific component's own file (docs/ARCHITECTURE.md "Important
 // dependencies") — reused here only for its MM:SS/H:MM:SS formatter, so the builder's own
@@ -949,11 +949,25 @@ document.addEventListener('DOMContentLoaded', async () => {
    * already opened the save dialog and stashed `action` in pendingActionAfterSave; the
    * caller should not also run `action` itself.
    */
+  /**
+   * Names what the unsaved-changes prompt is about. Never says "Untitled project" while a
+   * named course is open: a block inside a course is “<block>” in “<course>”.
+   */
+  function describeActiveWork() {
+    const course = appState.activeProject?.name;
+    const block = appState.activeComponentInstance?.name || appState.currentProjectName;
+    if (course && block && block !== course) return `“${block}” in “${course}”`;
+    if (course) return `“${course}”`;
+    if (block) return `“${block}”`;
+    const type = appState.selectedComponent?.title || appState.selectedComponent?.name;
+    return type ? `Your new ${type} block (not saved yet)` : 'Your work';
+  }
+
   async function guardUnsavedChanges(action) {
     if (!appState.isDirty) return true;
     const result = await openConfirmDialog({
       title: 'Unsaved changes',
-      message: `“${appState.currentProjectName || 'Untitled project'}” has unsaved changes. Save before continuing?`,
+      message: `${describeActiveWork()} has unsaved changes. Save before continuing?`,
       confirmLabel: 'Discard',
       cancelLabel: 'Cancel',
       danger: true,
@@ -1588,6 +1602,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     
     appState.config.blockTitle = inputBlockTitle.value;
     appState.config.blockHeadline = inputBlockHeadline.value;
+    if (catEntry.id !== 'accordion') {
+      // The base config is the Accordion demo; its description is wrong for other blocks.
+      appState.config.blockDesc = defaultBlockHeader(title).blockDesc;
+      inputBlockDesc.value = appState.config.blockDesc;
+    }
     
     // Set Favorites icon look
     setFavoriteButtonState(appState.favorites.has(catEntry.id));
@@ -2869,6 +2888,9 @@ document.addEventListener('DOMContentLoaded', async () => {
       }
       resetConfig();
       appState.config = { ...appState.config, ...structuredClone(comp.config), items: structuredClone(comp.config?.items || []) };
+      // A block saved before new blocks got their own header still holds the Accordion demo
+      // text; swap exactly those strings for ones derived from the block's own name.
+      appState.config = repairLeakedAccordionHeader(appState.config, component.id, component.title || component.name || comp.name);
       appState.activeProject = project;
       appState.activeComponentInstance = comp;
       appState.currentProjectId = project.id;
@@ -2999,7 +3021,10 @@ document.addEventListener('DOMContentLoaded', async () => {
       const saved = saveProject(buildCurrentProject(name, asNew));
       appState.currentProjectId = saved.id;
       appState.currentProjectName = saved.name;
-      saveDraft(saved);
+      // An explicit save leaves nothing to recover; a draft equal to the project would only
+      // make the dashboard call already-saved work an "unsaved working draft".
+      window.clearTimeout(draftTimer);
+      clearDraft();
       // Set before closeModal() so modal-save's own settler (above) sees isDirty already
       // false and correctly leaves pendingActionAfterSave alone for this success path.
       appState.isDirty = false;
@@ -3251,7 +3276,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         appState.currentProjectId = saved.id;
         appState.currentProjectName = saved.name;
         appState.isDirty = false;
-        saveDraft(saved);
+        window.clearTimeout(draftTimer);
+        clearDraft();
         updateProjectStatusDisplay();
         showToast(`Duplicated block as “${saved.name}”.`, 'success');
       } catch (error) {
@@ -3279,7 +3305,10 @@ document.addEventListener('DOMContentLoaded', async () => {
           saveProject(proj);
           appState.activeProject = proj;
           appState.isDirty = false;
-          saveDraft(buildCurrentProject(appState.currentProjectName, false));
+          // Nothing left to recover after an explicit save: a draft that equals the saved
+          // project would only make the dashboard offer to "resume" work that is already saved.
+          window.clearTimeout(draftTimer);
+          clearDraft();
           updateProjectStatusDisplay();
           showToast(`Saved component “${appState.activeComponentInstance.name}” to ${proj.name}.`, 'success');
           return;
@@ -3908,7 +3937,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     return [
       { id: 'brand', name: 'Brand & Typography', state: getPillarState(brandIssues), count: brandIssues.length },
-      { id: 'a11y', name: 'WCAG 2.1 AA Accessibility', state: getPillarState(a11yIssues), count: a11yIssues.length },
+      { id: 'a11y', name: 'Accessibility (WCAG 2.2 AA, automated checks)', state: getPillarState(a11yIssues), count: a11yIssues.length },
       { id: 'rise', name: 'Rise 360 Compatibility', state: getPillarState(riseIssues), count: riseIssues.length },
       { id: 'media', name: 'Media & Asset Budgets', state: getPillarState(mediaIssues), count: mediaIssues.length }
     ];

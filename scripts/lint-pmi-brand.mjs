@@ -53,7 +53,7 @@ function lintComponentFile(filePath, filename) {
     }
 
     // 2. Check for non-Aleck font-family in CSS declarations
-    if (lineText.includes('font-family:') && !lineText.includes('ATT Aleck') && !lineText.includes('var(--att-font') && !lineText.includes('var(--font-family') && !lineText.includes('var(--heading-font-family')) {
+    if (lineText.includes('font-family:') && !lineText.includes('ATT Aleck') && !lineText.includes('var(--pmi-font') && !lineText.includes('var(--font-family') && !lineText.includes('var(--heading-font-family')) {
       reportViolation(`components/${filename}`, lineNum, `Learner-facing font-family declaration must use AT&T Aleck font family.`);
     }
 

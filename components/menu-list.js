@@ -1,6 +1,6 @@
 import { getEditorSchema } from '../js/editor-schemas.js';
 import { escapeAttribute, escapeHTML, sanitizeRichText } from '../js/utilities.js';
-import { getAttIconSvg } from '../js/att-icons.js';
+import { getPmiIconSvg } from '../js/pmi-icons.js';
 
 export const id = 'menu-list';
 export const name = 'Secondary Menu Drawer';
@@ -17,8 +17,8 @@ export const defaultConfig = {
 };
 export const editorSchema = getEditorSchema(id);
 
-const chevronDownIcon = getAttIconSvg('chevron-down', { className: 'menu-arrow', width: 16, height: 16, ariaHidden: true });
-const searchIcon = getAttIconSvg('search', { width: 14, height: 14, ariaHidden: true });
+const chevronDownIcon = getPmiIconSvg('chevron-down', { className: 'menu-arrow', width: 16, height: 16, ariaHidden: true });
+const searchIcon = getPmiIconSvg('search', { width: 14, height: 14, ariaHidden: true });
 
 export function generateHTML(config, instanceId) {
   const searchable = config.searchable === true;
@@ -106,7 +106,7 @@ export function generateCSS() {
     .menu-explorer-container {
       display: flex;
       flex-direction: column;
-      gap: var(--att-space-4, 16px);
+      gap: var(--pmi-space-4, 16px);
       width: 100%;
     }
     .menu-search-wrap {
@@ -129,29 +129,29 @@ export function generateCSS() {
       width: 100%;
       padding: 10px 14px 10px 38px;
       border: 1px solid var(--border-color);
-      border-radius: var(--att-radius-pill, 999px);
+      border-radius: var(--pmi-radius-pill, 999px);
       background-color: var(--bg-card);
       color: var(--text-main);
-      font-size: var(--att-fs-body-sm, 14px);
+      font-size: var(--pmi-fs-body-sm, 14px);
       font-family: var(--font-family, inherit);
       min-height: 44px;
       box-sizing: border-box;
       transition: border-color 0.2s;
     }
     .menu-search-input:focus-visible {
-      outline: 3px solid var(--att-cobalt, var(--primary));
+      outline: 3px solid var(--pmi-cobalt, var(--primary));
       outline-offset: 2px;
       border-color: var(--primary);
     }
     .menu-quickjump-bar {
       display: flex;
       align-items: center;
-      gap: var(--att-space-2, 8px);
+      gap: var(--pmi-space-2, 8px);
       flex-wrap: wrap;
       padding-bottom: 4px;
     }
     .quickjump-label {
-      font-size: var(--att-fs-eyebrow, 12px);
+      font-size: var(--pmi-fs-eyebrow, 12px);
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.5px;
@@ -160,9 +160,9 @@ export function generateCSS() {
     .quickjump-chip {
       background-color: var(--bg-card);
       border: 1px solid var(--border-color);
-      border-radius: var(--att-radius-pill, 999px);
+      border-radius: var(--pmi-radius-pill, 999px);
       padding: 4px 12px;
-      font-size: var(--att-fs-eyebrow, 12px);
+      font-size: var(--pmi-fs-eyebrow, 12px);
       font-weight: 600;
       color: var(--text-main);
       cursor: pointer;
@@ -182,31 +182,31 @@ export function generateCSS() {
       color: var(--on-primary);
     }
     .quickjump-chip:focus-visible {
-      outline: 3px solid var(--att-cobalt, var(--primary));
+      outline: 3px solid var(--pmi-cobalt, var(--primary));
       outline-offset: 2px;
     }
     .menu-drawer-list {
       display: flex;
       flex-direction: column;
-      gap: var(--att-space-3, 12px);
+      gap: var(--pmi-space-3, 12px);
     }
     .menu-drawer-item {
       background-color: var(--bg-card);
       border: var(--border-style);
-      border-radius: var(--att-radius-lg, var(--border-radius, 20px));
+      border-radius: var(--pmi-radius-lg, var(--border-radius, 20px));
       box-shadow: var(--shadow-style);
       overflow: hidden;
       transition: all 0.2s;
     }
     .menu-drawer-item:hover {
-      box-shadow: var(--att-shadow-2, 0 4px 6px -1px rgba(0, 0, 0, 0.1));
+      box-shadow: var(--pmi-shadow-2, 0 4px 6px -1px rgba(0, 0, 0, 0.1));
     }
     .menu-drawer-item.active {
-      border-color: var(--att-blue, var(--primary));
-      border-left: 4px solid var(--att-blue, var(--primary));
+      border-color: var(--pmi-blue, var(--primary));
+      border-left: 4px solid var(--pmi-blue, var(--primary));
     }
     .menu-item-summary {
-      padding: var(--att-space-4, 16px) var(--att-space-5, 24px);
+      padding: var(--pmi-space-4, 16px) var(--pmi-space-5, 24px);
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -216,49 +216,49 @@ export function generateCSS() {
       user-select: none;
     }
     .menu-item-summary:focus-visible {
-      outline: 3px solid var(--att-cobalt, var(--primary));
+      outline: 3px solid var(--pmi-cobalt, var(--primary));
       outline-offset: -2px;
     }
     .menu-item-left {
       display: flex;
       align-items: center;
-      gap: var(--att-space-3, 14px);
+      gap: var(--pmi-space-3, 14px);
       flex: 1;
     }
     .menu-num {
-      font-size: var(--att-fs-body, 1rem);
-      font-weight: var(--att-fw-bold, 700);
+      font-size: var(--pmi-fs-body, 1rem);
+      font-weight: var(--pmi-fw-bold, 700);
       color: var(--primary);
       flex-shrink: 0;
     }
     .menu-title-wrap {
       display: flex;
       align-items: center;
-      gap: var(--att-space-2, 8px);
+      gap: var(--pmi-space-2, 8px);
       flex-wrap: wrap;
     }
     .menu-title {
-      font-size: var(--att-fs-body, 1rem);
-      font-weight: var(--att-fw-bold, 700);
-      line-height: var(--att-lh-heading, 1.25);
+      font-size: var(--pmi-fs-body, 1rem);
+      font-weight: var(--pmi-fw-bold, 700);
+      line-height: var(--pmi-lh-heading, 1.25);
       color: var(--text-main);
       text-wrap: pretty;
     }
     .menu-badge {
-      font-size: var(--att-fs-eyebrow, 11px);
+      font-size: var(--pmi-fs-eyebrow, 11px);
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.4px;
       padding: 2px 8px;
-      border-radius: var(--att-radius-pill, 999px);
+      border-radius: var(--pmi-radius-pill, 999px);
       background-color: var(--primary);
       color: var(--on-primary);
     }
     .menu-category-tag {
-      font-size: var(--att-fs-eyebrow, 11px);
+      font-size: var(--pmi-fs-eyebrow, 11px);
       font-weight: 600;
       padding: 2px 8px;
-      border-radius: var(--att-radius-pill, 999px);
+      border-radius: var(--pmi-radius-pill, 999px);
       background-color: var(--bg-body, #F3F4F5);
       color: var(--text-muted);
       border: 1px solid var(--border-color);
@@ -272,18 +272,18 @@ export function generateCSS() {
       transform: rotate(180deg);
     }
     .menu-item-desc {
-      background-color: var(--att-grey-1, #F3F4F5);
+      background-color: var(--pmi-grey-1, #F3F4F5);
       border-top: 1px solid var(--border-color);
     }
     .menu-item-desc-inner {
-      padding: var(--att-space-4, 16px) var(--att-space-5, 24px) var(--att-space-4, 16px) 52px;
-      font-size: var(--att-fs-body, 1rem);
-      line-height: var(--att-lh-body, 1.5);
+      padding: var(--pmi-space-4, 16px) var(--pmi-space-5, 24px) var(--pmi-space-4, 16px) 52px;
+      font-size: var(--pmi-fs-body, 1rem);
+      line-height: var(--pmi-lh-body, 1.5);
       color: var(--text-muted);
       max-width: 70ch;
     }
     .menu-no-results {
-      font-size: var(--att-fs-body, 14px);
+      font-size: var(--pmi-fs-body, 14px);
       color: var(--text-muted);
       font-style: italic;
       padding: 8px 0;

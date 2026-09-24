@@ -8,6 +8,7 @@ import { generateIframeContent } from '../preview.js';
 import { COMPONENT_MODULES, COMPONENT_REGISTRY, normalizeComponentType } from '../component-registry.js';
 import { toRgba as colorToRgba, escapeHTML, pluralize } from '../utilities.js';
 import { showPreExportReviewDialog, buildCourseProjectZip, downloadCourseProjectZip } from './project-export.js';
+import { showToast } from '../toast.js';
 
 export class CoursePreviewView {
   constructor({ container = null, projectId = null, onBack = null, onOpenQa = null, onOpenPreview = null, onEditComponent = null } = {}) {
@@ -297,8 +298,8 @@ export class CoursePreviewView {
               return orderedItems.map((item, index) => {
                 if (item.type === 'section-header') {
                   return `
-                    <div class="course-preview-section-header" style="border-bottom: 2px solid var(--att-cobalt, #00388F); padding-bottom: 10px; margin-top: ${index === 0 ? '0' : '20px'};">
-                      <h2 style="font-size: 1.375rem; font-weight: 700; color: var(--att-cobalt, #00388F); margin: 0 0 4px 0;">${escapeHTML(item.title)}</h2>
+                    <div class="course-preview-section-header" style="border-bottom: 2px solid var(--pmi-cobalt, #00388F); padding-bottom: 10px; margin-top: ${index === 0 ? '0' : '20px'};">
+                      <h2 style="font-size: 1.375rem; font-weight: 700; color: var(--pmi-cobalt, #00388F); margin: 0 0 4px 0;">${escapeHTML(item.title)}</h2>
                       ${item.description ? `<p style="font-size: 0.875rem; color: #666; margin: 0;">${escapeHTML(item.description)}</p>` : ''}
                     </div>
                   `;
@@ -318,7 +319,7 @@ export class CoursePreviewView {
                       <div style="display: flex; align-items: center; gap: 10px; min-width: 0;">
                         <span class="preview-comp-order-badge preview-sequence-badge" style="font-size: 0.75rem; font-weight: 700; background: #E4E7EC; color: #333; padding: 2px 8px; border-radius: 12px; flex-shrink: 0;">${compCounter}</span>
                         <h3 style="font-size: 0.9375rem; font-weight: 600; color: #111; margin: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${escapeHTML(comp.name)}</h3>
-                        <span class="component-type-badge" style="font-size: 0.75rem; background: rgba(0, 56, 143, 0.08); color: var(--att-cobalt, #00388F); padding: 2px 8px; border-radius: 4px; flex-shrink: 0;">${escapeHTML(typeName)}</span>
+                        <span class="component-type-badge" style="font-size: 0.75rem; background: rgba(0, 56, 143, 0.08); color: var(--pmi-cobalt, #00388F); padding: 2px 8px; border-radius: 4px; flex-shrink: 0;">${escapeHTML(typeName)}</span>
                       </div>
                       <div style="display: flex; align-items: center; gap: 8px; flex-shrink: 0;">
                         <button type="button" class="btn btn-secondary btn-sm" data-action="edit-preview-comp" data-comp-id="${comp.id}" aria-label="Edit component: ${escapeHTML(comp.name)}" style="padding: 6px 12px; font-size: 0.8125rem; display: inline-flex; align-items: center; gap: 6px;">
@@ -398,8 +399,10 @@ export class CoursePreviewView {
         onProceed: async (id) => {
           try {
             await downloadCourseProjectZip(id);
+            showToast('Course package exported successfully!', 'success');
           } catch (err) {
             console.error('Export failed:', err);
+            showToast(`Export failed: ${err.message}`, 'error', 8000);
           }
         },
         onViewQa: this.onOpenQa

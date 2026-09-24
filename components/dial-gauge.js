@@ -1,6 +1,6 @@
 import { getEditorSchema } from '../js/editor-schemas.js';
 import { escapeAttribute, escapeHTML, sanitizeRichText } from '../js/utilities.js';
-import { getAttIconSvg } from '../js/att-icons.js';
+import { getPmiIconSvg } from '../js/pmi-icons.js';
 
 /**
  * Interactive Metric Dial / Gauge Component
@@ -58,7 +58,7 @@ export const defaultConfig = {
 
 export const editorSchema = getEditorSchema(id);
 
-const meterIcon = getAttIconSvg('high-meter', { width: 20, height: 20, ariaHidden: true });
+const meterIcon = getPmiIconSvg('high-meter', { width: 20, height: 20, ariaHidden: true });
 
 export function generateHTML(config, instanceId) {
   const minVal = Number.isFinite(Number(config.minValue)) ? Number(config.minValue) : 0;
@@ -190,17 +190,17 @@ export function generateCSS() {
     .dial-gauge-card {
       background-color: var(--bg-card);
       border: var(--border-style);
-      border-radius: var(--att-radius-lg, var(--border-radius, 20px));
+      border-radius: var(--pmi-radius-lg, var(--border-radius, 20px));
       box-shadow: var(--shadow-style);
-      padding: var(--att-space-5, 24px);
+      padding: var(--pmi-space-5, 24px);
       display: flex;
       flex-direction: column;
-      gap: var(--att-space-4, 16px);
+      gap: var(--pmi-space-4, 16px);
     }
     .dial-header {
       display: flex;
       align-items: center;
-      gap: var(--att-space-3, 12px);
+      gap: var(--pmi-space-3, 12px);
     }
     .dial-header-icon {
       display: inline-flex;
@@ -210,23 +210,23 @@ export function generateCSS() {
       flex-shrink: 0;
     }
     .dial-title {
-      font-size: var(--att-fs-h3, 1.25rem);
-      font-weight: var(--att-fw-bold, 700);
-      line-height: var(--att-lh-heading, 1.25);
+      font-size: var(--pmi-fs-h3, 1.25rem);
+      font-weight: var(--pmi-fw-bold, 700);
+      line-height: var(--pmi-lh-heading, 1.25);
       color: var(--text-main);
       text-wrap: pretty;
       margin: 0;
     }
     .dial-description {
-      font-size: var(--att-fs-body, 1rem);
-      line-height: var(--att-lh-body, 1.5);
+      font-size: var(--pmi-fs-body, 1rem);
+      line-height: var(--pmi-lh-body, 1.5);
       color: var(--text-main);
       margin: 0;
     }
     .dial-main-layout {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: var(--att-space-5, 24px);
+      gap: var(--pmi-space-5, 24px);
       align-items: stretch;
     }
     @media (max-width: 768px) {
@@ -236,12 +236,12 @@ export function generateCSS() {
     }
     .dial-interactive-panel {
       background-color: var(--bg-body, #F3F4F5);
-      border-radius: var(--att-radius-md, 16px);
-      padding: var(--att-space-4, 16px);
+      border-radius: var(--pmi-radius-md, 16px);
+      padding: var(--pmi-space-4, 16px);
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: var(--att-space-3, 12px);
+      gap: var(--pmi-space-3, 12px);
     }
     .dial-svg-stage {
       width: 100%;
@@ -265,31 +265,31 @@ export function generateCSS() {
       transition: stroke-dashoffset 250ms cubic-bezier(0.4, 0, 0.2, 1);
     }
     .dial-scale-label {
-      font-family: var(--att-font-sans, sans-serif);
-      font-size: var(--att-fs-xs, 0.8125rem);
-      font-weight: var(--att-fw-bold, 700);
+      font-family: var(--pmi-font-sans, sans-serif);
+      font-size: var(--pmi-fs-xs, 0.8125rem);
+      font-weight: var(--pmi-fw-bold, 700);
       fill: var(--text-muted, #4B5563);
     }
     .dial-readout {
       display: flex;
       align-items: baseline;
-      gap: var(--att-space-2, 8px);
+      gap: var(--pmi-space-2, 8px);
     }
     .dial-readout-value {
-      font-size: var(--att-fs-h2, 1.75rem);
-      font-weight: var(--att-fw-bold, 700);
+      font-size: var(--pmi-fs-h2, 1.75rem);
+      font-weight: var(--pmi-fw-bold, 700);
       color: var(--primary, #00388F);
       font-variant-numeric: tabular-nums;
     }
     .dial-readout-unit {
-      font-size: var(--att-fs-body, 1rem);
-      font-weight: var(--att-fw-medium, 500);
+      font-size: var(--pmi-fs-body, 1rem);
+      font-weight: var(--pmi-fw-medium, 500);
       color: var(--text-muted, #4B5563);
     }
     .dial-controls-group {
       display: flex;
       align-items: center;
-      gap: var(--att-space-3, 12px);
+      gap: var(--pmi-space-3, 12px);
       width: 100%;
     }
     .dial-slider-wrapper {
@@ -315,7 +315,7 @@ export function generateCSS() {
       gap: 4px;
       background-color: var(--bg-card, #FFFFFF);
       border: 1px solid var(--border-color, #DCDFE3);
-      border-radius: var(--att-radius-sm, 8px);
+      border-radius: var(--pmi-radius-sm, 8px);
       padding: 4px 8px;
       flex-shrink: 0;
     }
@@ -328,9 +328,9 @@ export function generateCSS() {
       border: none;
       background: transparent;
       color: var(--text-main);
-      font-family: var(--att-font-sans, sans-serif);
-      font-size: var(--att-fs-sm, 0.875rem);
-      font-weight: var(--att-fw-bold, 700);
+      font-family: var(--pmi-font-sans, sans-serif);
+      font-size: var(--pmi-fs-sm, 0.875rem);
+      font-weight: var(--pmi-fw-bold, 700);
       font-variant-numeric: tabular-nums;
       text-align: right;
       padding: 2px 0;
@@ -345,8 +345,8 @@ export function generateCSS() {
       outline-offset: 2px;
     }
     .dial-number-unit {
-      font-size: var(--att-fs-xs, 0.8125rem);
-      font-weight: var(--att-fw-medium, 500);
+      font-size: var(--pmi-fs-xs, 0.8125rem);
+      font-weight: var(--pmi-fw-medium, 500);
       color: var(--text-muted, #4B5563);
     }
     .dial-actions-bar {
@@ -359,14 +359,14 @@ export function generateCSS() {
       align-items: center;
       justify-content: center;
       min-height: 36px;
-      padding: 4px var(--att-space-3, 12px);
+      padding: 4px var(--pmi-space-3, 12px);
       border: 1px solid var(--border-color, #DCDFE3);
       border-radius: 9999px;
       background-color: transparent;
       color: var(--text-muted, #4B5563);
-      font-family: var(--att-font-sans, sans-serif);
-      font-size: var(--att-fs-xs, 0.8125rem);
-      font-weight: var(--att-fw-semibold, 600);
+      font-family: var(--pmi-font-sans, sans-serif);
+      font-size: var(--pmi-fs-xs, 0.8125rem);
+      font-weight: var(--pmi-fw-semibold, 600);
       cursor: pointer;
       transition: all 150ms ease;
     }
@@ -382,7 +382,7 @@ export function generateCSS() {
     .dial-presets-row {
       display: flex;
       flex-wrap: wrap;
-      gap: var(--att-space-2, 8px);
+      gap: var(--pmi-space-2, 8px);
       width: 100%;
       justify-content: center;
     }
@@ -390,13 +390,13 @@ export function generateCSS() {
       display: inline-flex;
       flex-direction: column;
       align-items: center;
-      padding: var(--att-space-2, 8px) var(--att-space-3, 12px);
-      border-radius: var(--att-radius-sm, 12px);
+      padding: var(--pmi-space-2, 8px) var(--pmi-space-3, 12px);
+      border-radius: var(--pmi-radius-sm, 12px);
       border: 1px solid var(--border-color, #DCDFE3);
       background-color: var(--bg-card, #FFFFFF);
       color: var(--text-main);
       cursor: pointer;
-      font-family: var(--att-font-sans, sans-serif);
+      font-family: var(--pmi-font-sans, sans-serif);
       transition: all 180ms ease;
       min-height: 44px;
       flex: 1 1 calc(33.333% - 8px);
@@ -407,8 +407,8 @@ export function generateCSS() {
       outline-offset: 2px;
     }
     .dial-preset-btn:hover {
-      border-color: var(--att-blue, #009FDB);
-      background-color: var(--att-grey-1, #F3F4F5);
+      border-color: var(--pmi-blue, #009FDB);
+      background-color: var(--pmi-grey-1, #F3F4F5);
     }
     .dial-preset-btn.is-active {
       border-color: var(--primary, #00388F);
@@ -416,49 +416,49 @@ export function generateCSS() {
       color: #FFFFFF;
     }
     .dial-preset-btn.is-active .dial-preset-val {
-      color: var(--att-blue, #009FDB);
+      color: var(--pmi-blue, #009FDB);
     }
     .dial-preset-label {
-      font-size: var(--att-fs-xs, 0.8125rem);
-      font-weight: var(--att-fw-bold, 700);
+      font-size: var(--pmi-fs-xs, 0.8125rem);
+      font-weight: var(--pmi-fw-bold, 700);
       text-align: center;
     }
     .dial-preset-val {
-      font-size: var(--att-fs-xs, 0.8125rem);
+      font-size: var(--pmi-fs-xs, 0.8125rem);
       color: var(--text-muted, #4B5563);
       font-variant-numeric: tabular-nums;
     }
     .dial-insight-panel {
       background-color: var(--bg-card, #FFFFFF);
       border: 1px solid var(--border-color, #DCDFE3);
-      border-radius: var(--att-radius-md, 16px);
-      padding: var(--att-space-5, 24px);
+      border-radius: var(--pmi-radius-md, 16px);
+      padding: var(--pmi-space-5, 24px);
       display: flex;
       flex-direction: column;
-      gap: var(--att-space-3, 12px);
+      gap: var(--pmi-space-3, 12px);
       justify-content: center;
     }
     .dial-insight-badge {
       align-self: flex-start;
       display: inline-block;
-      padding: 4px var(--att-space-3, 12px);
+      padding: 4px var(--pmi-space-3, 12px);
       border-radius: 9999px;
-      background-color: var(--att-blue, #009FDB);
+      background-color: var(--pmi-blue, #009FDB);
       color: #FFFFFF;
-      font-size: var(--att-fs-xs, 0.8125rem);
-      font-weight: var(--att-fw-bold, 700);
+      font-size: var(--pmi-fs-xs, 0.8125rem);
+      font-weight: var(--pmi-fw-bold, 700);
       text-transform: uppercase;
       letter-spacing: 0.04em;
     }
     .dial-insight-title {
-      font-size: var(--att-fs-h3, 1.25rem);
-      font-weight: var(--att-fw-bold, 700);
+      font-size: var(--pmi-fs-h3, 1.25rem);
+      font-weight: var(--pmi-fw-bold, 700);
       color: var(--primary, #00388F);
       margin: 0;
     }
     .dial-insight-body {
-      font-size: var(--att-fs-body, 1rem);
-      line-height: var(--att-lh-body, 1.5);
+      font-size: var(--pmi-fs-body, 1rem);
+      line-height: var(--pmi-lh-body, 1.5);
       color: var(--text-main);
     }
   `;

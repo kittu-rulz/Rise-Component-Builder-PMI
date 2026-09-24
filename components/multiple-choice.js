@@ -79,24 +79,24 @@ export function generateCSS() {
     .quiz-block {
       display: flex;
       flex-direction: column;
-      gap: var(--att-space-3, 12px);
+      gap: var(--pmi-space-3, 12px);
     }
 
     .quiz-options {
       display: flex;
       flex-direction: column;
-      gap: var(--att-space-2, 8px);
+      gap: var(--pmi-space-2, 8px);
     }
 
     .quiz-option {
       background-color: var(--bg-card);
       border: var(--border-style);
-      border-radius: var(--att-radius-md, var(--border-radius, 12px));
+      border-radius: var(--pmi-radius-md, var(--border-radius, 12px));
       box-shadow: var(--shadow-style);
-      padding: var(--att-space-4, 16px) var(--att-space-5, 24px);
+      padding: var(--pmi-space-4, 16px) var(--pmi-space-5, 24px);
       display: flex;
       align-items: center;
-      gap: var(--att-space-3, 12px);
+      gap: var(--pmi-space-3, 12px);
       cursor: pointer;
       transition: all 0.2s ease;
     }
@@ -146,40 +146,40 @@ export function generateCSS() {
     }
 
     .option-text {
-      font-size: var(--att-fs-body, 16px);
-      line-height: var(--att-lh-body, 1.5);
+      font-size: var(--pmi-fs-body, 16px);
+      line-height: var(--pmi-lh-body, 1.5);
       font-weight: 500;
     }
 
     .option-correct-flag {
-      font-size: var(--att-fs-body-sm, 14px);
+      font-size: var(--pmi-fs-body-sm, 14px);
       font-weight: 700;
       color: var(--success);
     }
 
     .quiz-confidence-block {
-      margin-top: var(--att-space-2, 8px);
+      margin-top: var(--pmi-space-2, 8px);
     }
 
     .quiz-confidence-label {
-      font-size: var(--att-fs-body-sm, 14px);
+      font-size: var(--pmi-fs-body-sm, 14px);
       font-weight: 600;
       color: var(--text-muted);
-      margin-bottom: var(--att-space-2, 8px);
+      margin-bottom: var(--pmi-space-2, 8px);
     }
 
     .quiz-confidence-options {
       display: flex;
       flex-wrap: wrap;
-      gap: var(--att-space-2, 8px);
+      gap: var(--pmi-space-2, 8px);
     }
 
     .quiz-confidence-option {
       background-color: var(--bg-card);
       border: var(--border-style);
-      border-radius: var(--button-radius, var(--att-radius-pill, 999px));
+      border-radius: var(--button-radius, var(--pmi-radius-pill, 999px));
       padding: 8px 16px;
-      font-size: var(--att-fs-body-sm, 14px);
+      font-size: var(--pmi-fs-body-sm, 14px);
       font-weight: 600;
       cursor: pointer;
       min-height: 44px;
@@ -203,11 +203,11 @@ export function generateCSS() {
       align-self: flex-start;
       margin-top: 10px;
       padding: 10px 24px;
-      border-radius: var(--button-radius, var(--att-radius-pill, 999px));
+      border-radius: var(--button-radius, var(--pmi-radius-pill, 999px));
       border: none;
       background-color: var(--primary);
       color: var(--on-primary);
-      font-size: var(--att-fs-body, 16px);
+      font-size: var(--pmi-fs-body, 16px);
       font-weight: 600;
       cursor: pointer;
       min-height: 44px;
@@ -222,7 +222,7 @@ export function generateCSS() {
     }
 
     .quiz-option:focus-visible {
-      outline: 3px solid var(--att-cobalt, var(--primary));
+      outline: 3px solid var(--pmi-cobalt, var(--primary));
       outline-offset: 2px;
     }
 
@@ -231,7 +231,7 @@ export function generateCSS() {
     }
 
     .quiz-confidence-option:focus-visible {
-      outline: 3px solid var(--att-cobalt, var(--primary));
+      outline: 3px solid var(--pmi-cobalt, var(--primary));
       outline-offset: 2px;
     }
 
@@ -244,13 +244,13 @@ export function generateCSS() {
     }
 
     .quiz-submit-btn:focus-visible {
-      outline: 3px solid var(--att-cobalt, var(--primary));
+      outline: 3px solid var(--pmi-cobalt, var(--primary));
       outline-offset: 2px;
     }
 
     .quiz-submit-btn[aria-disabled="true"] {
-      background-color: var(--att-grey-2, #DCDFE3);
-      color: var(--att-grey-3, #BDC2C7);
+      background-color: var(--pmi-grey-2, #DCDFE3);
+      color: var(--pmi-grey-3, #BDC2C7);
       opacity: 0.7;
       cursor: not-allowed;
     }
@@ -260,18 +260,18 @@ export function generateCSS() {
     }
 
     .quiz-reset-btn:focus-visible {
-      outline: 3px solid var(--att-cobalt, var(--primary));
+      outline: 3px solid var(--pmi-cobalt, var(--primary));
       outline-offset: 2px;
     }
 
     .quiz-reset-btn {
       align-self: flex-start;
       padding: 8px 20px;
-      border-radius: var(--button-radius, var(--att-radius-pill, 999px));
+      border-radius: var(--button-radius, var(--pmi-radius-pill, 999px));
       border: var(--border-style);
       background-color: transparent;
       color: var(--text-main);
-      font-size: var(--att-fs-body-sm, 14px);
+      font-size: var(--pmi-fs-body-sm, 14px);
       font-weight: 600;
       cursor: pointer;
       min-height: 44px;
@@ -281,20 +281,20 @@ export function generateCSS() {
     }
 
     .quiz-hint {
-      padding: var(--att-space-3, 12px) var(--att-space-4, 16px);
-      border-radius: var(--att-radius-md, var(--border-radius, 12px));
+      padding: var(--pmi-space-3, 12px) var(--pmi-space-4, 16px);
+      border-radius: var(--pmi-radius-md, var(--border-radius, 12px));
       border: 1px dashed var(--border-color);
-      font-size: var(--att-fs-body-sm, 14px);
+      font-size: var(--pmi-fs-body-sm, 14px);
       line-height: 1.5;
       color: var(--text-main);
     }
 
     .quiz-feedback {
-      margin-top: var(--att-space-4, 16px);
-      padding: var(--att-space-4, 16px) var(--att-space-5, 24px);
-      border-radius: var(--att-radius-lg, var(--border-radius, 20px));
-      font-size: var(--att-fs-body, 16px);
-      line-height: var(--att-lh-body, 1.5);
+      margin-top: var(--pmi-space-4, 16px);
+      padding: var(--pmi-space-4, 16px) var(--pmi-space-5, 24px);
+      border-radius: var(--pmi-radius-lg, var(--border-radius, 20px));
+      font-size: var(--pmi-fs-body, 16px);
+      line-height: var(--pmi-lh-body, 1.5);
       max-width: 70ch;
       animation: fadeIn 0.3s ease;
     }

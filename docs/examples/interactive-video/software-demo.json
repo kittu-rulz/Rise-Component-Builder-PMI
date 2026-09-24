@@ -68,7 +68,7 @@
     ]
   },
   "theme": {
-    "id": "att-standard",
+    "id": "pmi-standard",
     "schemaVersion": 1,
     "name": "AT&T Standard",
     "description": "The standardized AT&T brand theme — the only theme in this build.",

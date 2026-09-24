@@ -88,22 +88,22 @@
   --shadow-inset: inset 0 2px 4px 0 rgba(0, 0, 0, 0.3);
 
   /* AT&T Brand Token Dark Overrides */
-  --att-surface: #1E293B;
-  --att-surface-sunken: #0B1120;
-  --att-text: #F1F5F9;
-  --att-text-on-dark: #FFFFFF;
-  --att-heading: #38BDF8;
-  --att-heading-contrast: #FFFFFF;
-  --att-border: #334155;
-  --att-border-strong: #475569;
-  --att-grey-1: #0F172A;
-  --att-grey-2: #334155;
-  --att-grey-3: #64748B;
-  --att-black: #FFFFFF;
-  --att-cta-bg: #0079B1;
-  --att-cta-bg-hover: #005F8C;
-  --att-shadow-1: 0 2px 8px rgba(0, 0, 0, 0.3);
-  --att-shadow-2: 0 6px 20px rgba(0, 0, 0, 0.45);
+  --pmi-surface: #1E293B;
+  --pmi-surface-sunken: #0B1120;
+  --pmi-text: #F1F5F9;
+  --pmi-text-on-dark: #FFFFFF;
+  --pmi-heading: #38BDF8;
+  --pmi-heading-contrast: #FFFFFF;
+  --pmi-border: #334155;
+  --pmi-border-strong: #475569;
+  --pmi-grey-1: #0F172A;
+  --pmi-grey-2: #334155;
+  --pmi-grey-3: #64748B;
+  --pmi-black: #FFFFFF;
+  --pmi-cta-bg: #0079B1;
+  --pmi-cta-bg-hover: #005F8C;
+  --pmi-shadow-1: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --pmi-shadow-2: 0 6px 20px rgba(0, 0, 0, 0.45);
 }
 
 /* Base Resets */
@@ -276,7 +276,7 @@ a {
   padding: 1px 6px;
   border-radius: 9999px;
   background: linear-gradient(135deg, rgba(0, 56, 143, 0.1) 0%, rgba(0, 159, 219, 0.15) 100%);
-  color: var(--att-cobalt, #00388F);
+  color: var(--pmi-cobalt, #00388F);
   border: 1px solid rgba(0, 159, 219, 0.3);
   line-height: 1.3;
 }
@@ -412,7 +412,7 @@ a {
 }
 
 .tubelight-nav-item:hover {
-  color: var(--att-cobalt, #00388F);
+  color: var(--pmi-cobalt, #00388F);
 }
 
 [data-theme="dark"] .tubelight-nav-item:hover {
@@ -420,7 +420,7 @@ a {
 }
 
 .tubelight-nav-item.is-active {
-  color: var(--att-cobalt, #00388F);
+  color: var(--pmi-cobalt, #00388F);
   background: rgba(0, 56, 143, 0.07);
 }
 
@@ -929,7 +929,7 @@ a {
 .post-publish-nav-item .badge-published {
   font-size: 10px;
   background-color: rgba(0, 56, 143, 0.08);
-  color: var(--att-cobalt, #00388F);
+  color: var(--pmi-cobalt, #00388F);
   border: 1px solid rgba(0, 56, 143, 0.2);
   margin-left: auto;
   align-self: center;
@@ -4265,12 +4265,12 @@ input[type="number"]:focus::-webkit-inner-spin-button {
 }
 
 .project-status.is-saving .status-dot {
-  background-color: var(--att-blue, #009FDB);
+  background-color: var(--pmi-blue, #009FDB);
   animation: statusPulse 1s infinite ease-in-out;
 }
 
 .project-status.is-saving {
-  color: var(--att-blue, #009FDB);
+  color: var(--pmi-blue, #009FDB);
   background-color: rgba(0, 159, 219, 0.1);
   border-color: rgba(0, 159, 219, 0.25);
 }
@@ -5543,7 +5543,7 @@ input[type="number"]:focus::-webkit-inner-spin-button {
 }
 
 .rich-text-contenteditable a {
-  color: var(--att-cobalt, #0057B8);
+  color: var(--pmi-cobalt, #0057B8);
   text-decoration: underline;
   text-underline-offset: 2px;
   font-weight: 500;
@@ -5551,7 +5551,7 @@ input[type="number"]:focus::-webkit-inner-spin-button {
 }
 
 .rich-text-contenteditable a:hover {
-  color: var(--att-navy, #00388F);
+  color: var(--pmi-navy, #00388F);
   text-decoration-thickness: 2px;
 }
 

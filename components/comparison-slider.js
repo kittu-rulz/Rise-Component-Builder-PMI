@@ -1,6 +1,6 @@
 import { getEditorSchema } from '../js/editor-schemas.js';
 import { escapeAttribute, escapeHTML, sanitizeCSSColor, sanitizeRichText, sanitizeURL } from '../js/utilities.js';
-import { getAttIconSvg } from '../js/att-icons.js';
+import { getPmiIconSvg } from '../js/pmi-icons.js';
 
 /**
  * Before & After Comparison Slider Component
@@ -45,7 +45,7 @@ export const defaultConfig = {
 
 export const editorSchema = getEditorSchema(id);
 
-const handleArrowsHorizontalIcon = getAttIconSvg('arrows-horizontal', { width: 18, height: 18, ariaHidden: true });
+const handleArrowsHorizontalIcon = getPmiIconSvg('arrows-horizontal', { width: 18, height: 18, ariaHidden: true });
 const handleArrowsVerticalIcon = `<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3l4 4h-3v10h3l-4 4-4-4h3V7H8z"/></svg>`;
 
 function renderSchematicBeforeSvg() {
@@ -57,26 +57,26 @@ function renderSchematicBeforeSvg() {
       <line x1="100" y1="330" x2="700" y2="330"/>
     </g>
     <rect x="120" y="160" width="220" height="130" rx="16" fill="var(--bg-card, #FFFFFF)" stroke="var(--border-color, #DCDFE3)" stroke-width="2"/>
-    <circle cx="170" cy="225" r="28" fill="var(--att-grey-2, #DCDFE3)"/>
+    <circle cx="170" cy="225" r="28" fill="var(--pmi-grey-2, #DCDFE3)"/>
     <rect x="220" y="200" width="90" height="12" rx="6" fill="var(--text-muted, #4B5563)"/>
     <rect x="220" y="225" width="60" height="10" rx="5" fill="var(--border-color, #DCDFE3)"/>
-    <text x="400" y="235" font-family="var(--att-font-sans, sans-serif)" font-size="20" font-weight="700" fill="var(--text-muted, #4B5563)" text-anchor="middle">Legacy Baseline Architecture</text>
+    <text x="400" y="235" font-family="var(--pmi-font-sans, sans-serif)" font-size="20" font-weight="700" fill="var(--text-muted, #4B5563)" text-anchor="middle">Legacy Baseline Architecture</text>
   </svg>`;
 }
 
 function renderSchematicAfterSvg() {
   return `<svg class="comparison-fallback-svg after-svg" viewBox="0 0 800 450" width="100%" height="100%" aria-hidden="true">
     <rect width="800" height="450" fill="var(--bg-card, #FFFFFF)"/>
-    <g stroke="var(--att-blue, #009FDB)" stroke-width="2" opacity="0.35">
+    <g stroke="var(--pmi-blue, #009FDB)" stroke-width="2" opacity="0.35">
       <line x1="100" y1="120" x2="700" y2="120"/>
       <line x1="100" y1="225" x2="700" y2="225"/>
       <line x1="100" y1="330" x2="700" y2="330"/>
     </g>
-    <rect x="460" y="160" width="220" height="130" rx="16" fill="var(--bg-body, #F3F4F5)" stroke="var(--att-blue, #009FDB)" stroke-width="2"/>
-    <circle cx="510" cy="225" r="28" fill="var(--att-blue, #009FDB)"/>
+    <rect x="460" y="160" width="220" height="130" rx="16" fill="var(--bg-body, #F3F4F5)" stroke="var(--pmi-blue, #009FDB)" stroke-width="2"/>
+    <circle cx="510" cy="225" r="28" fill="var(--pmi-blue, #009FDB)"/>
     <rect x="560" y="200" width="90" height="12" rx="6" fill="var(--primary, #00388F)"/>
-    <rect x="560" y="225" width="60" height="10" rx="5" fill="var(--att-blue, #009FDB)"/>
-    <text x="400" y="235" font-family="var(--att-font-sans, sans-serif)" font-size="20" font-weight="700" fill="var(--primary, #00388F)" text-anchor="middle">Upgraded 5G Fiber Core</text>
+    <rect x="560" y="225" width="60" height="10" rx="5" fill="var(--pmi-blue, #009FDB)"/>
+    <text x="400" y="235" font-family="var(--pmi-font-sans, sans-serif)" font-size="20" font-weight="700" fill="var(--primary, #00388F)" text-anchor="middle">Upgraded 5G Fiber Core</text>
   </svg>`;
 }
 
@@ -148,24 +148,24 @@ export function generateCSS() {
     .comparison-slider-card {
       background-color: var(--bg-card);
       border: var(--border-style);
-      border-radius: var(--att-radius-lg, var(--border-radius, 20px));
+      border-radius: var(--pmi-radius-lg, var(--border-radius, 20px));
       box-shadow: var(--shadow-style);
-      padding: var(--att-space-5, 24px);
+      padding: var(--pmi-space-5, 24px);
       display: flex;
       flex-direction: column;
-      gap: var(--att-space-4, 16px);
+      gap: var(--pmi-space-4, 16px);
     }
     .comparison-title {
-      font-size: var(--att-fs-h3, 1.25rem);
-      font-weight: var(--att-fw-bold, 700);
-      line-height: var(--att-lh-heading, 1.25);
+      font-size: var(--pmi-fs-h3, 1.25rem);
+      font-weight: var(--pmi-fw-bold, 700);
+      line-height: var(--pmi-lh-heading, 1.25);
       color: var(--text-main);
       text-wrap: pretty;
       margin: 0;
     }
     .comparison-description {
-      font-size: var(--att-fs-body, 1rem);
-      line-height: var(--att-lh-body, 1.5);
+      font-size: var(--pmi-fs-body, 1rem);
+      line-height: var(--pmi-lh-body, 1.5);
       color: var(--text-muted);
       max-width: 70ch;
       margin: 0;
@@ -175,7 +175,7 @@ export function generateCSS() {
       width: 100%;
       aspect-ratio: var(--comparison-aspect-ratio, 16 / 9);
       min-height: 240px;
-      border-radius: var(--att-radius-md, 12px);
+      border-radius: var(--pmi-radius-md, 12px);
       overflow: hidden;
       user-select: none;
       -webkit-user-select: none;
@@ -214,12 +214,12 @@ export function generateCSS() {
     }
     .comparison-badge {
       position: absolute;
-      font-size: var(--att-fs-eyebrow, 0.75rem);
-      font-weight: var(--att-fw-bold, 700);
+      font-size: var(--pmi-fs-eyebrow, 0.75rem);
+      font-weight: var(--pmi-fw-bold, 700);
       text-transform: uppercase;
       letter-spacing: 0.5px;
       padding: 6px 14px;
-      border-radius: var(--att-radius-pill, 999px);
+      border-radius: var(--pmi-radius-pill, 999px);
       z-index: 5;
       pointer-events: none;
       box-shadow: var(--shadow-sm);
@@ -283,12 +283,12 @@ export function generateCSS() {
       background-color: var(--primary);
       color: var(--on-primary);
       border: 3px solid var(--bg-card);
-      box-shadow: var(--att-shadow-2, 0 4px 6px -1px rgba(0, 0, 0, 0.2));
+      box-shadow: var(--pmi-shadow-2, 0 4px 6px -1px rgba(0, 0, 0, 0.2));
       display: flex;
       align-items: center;
       justify-content: center;
       pointer-events: auto;
-      transition: background-color var(--att-dur-base, 0.2s) ease, transform 0.1s ease;
+      transition: background-color var(--pmi-dur-base, 0.2s) ease, transform 0.1s ease;
       touch-action: none;
     }
     .orientation-horizontal .comparison-handle {
@@ -304,7 +304,7 @@ export function generateCSS() {
       transform: translate(-50%, -50%) scale(0.96);
     }
     .comparison-handle:focus-visible {
-      outline: 3px solid var(--att-cobalt, var(--primary));
+      outline: 3px solid var(--pmi-cobalt, var(--primary));
       outline-offset: 2px;
     }
     @media (prefers-reduced-motion: reduce) {

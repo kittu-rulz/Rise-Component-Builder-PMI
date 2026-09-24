@@ -1,6 +1,6 @@
 import fs from 'fs';
 
-const rawFunctional = JSON.parse(fs.readFileSync('ATT Design System/Claude Promts/ATT Design System Icons/icons/att-functional-icons.json', 'utf8'));
+const rawFunctional = JSON.parse(fs.readFileSync('ATT Design System/Claude Promts/ATT Design System Icons/icons/pmi-functional-icons.json', 'utf8'));
 
 function cleanSvgMarkup(body) {
   let cleaned = body;
@@ -39,26 +39,26 @@ const jsContent = `/**
  *
  * Rules:
  * - Functional icons are black/white only, using \`fill="currentColor"\`.
- * - Sized with --att-icon-* tokens (default 32x32 viewBox).
+ * - Sized with --pmi-icon-* tokens (default 32x32 viewBox).
  * - Accessible: aria-hidden="true" when decorative, role="img" + <title> when meaningful.
  */
 
-export const ATT_FUNCTIONAL_ICONS = ${JSON.stringify(functionalIcons, null, 2)};
+export const PMI_FUNCTIONAL_ICONS = ${JSON.stringify(functionalIcons, null, 2)};
 
 /**
  * Renders an inline AT&T functional SVG icon.
  * @param {string} name - Icon name (e.g. 'chevron-down', 'play', 'check-circle-filled')
  * @param {Object} [options]
  * @param {string} [options.className=''] - CSS class names
- * @param {number|string} [options.width] - Width attribute/style (e.g. 24, 'var(--att-icon-md, 24px)')
+ * @param {number|string} [options.width] - Width attribute/style (e.g. 24, 'var(--pmi-icon-md, 24px)')
  * @param {number|string} [options.height] - Height attribute/style
  * @param {string} [options.title] - Accessible title. If provided, role="img" is added.
  * @param {boolean} [options.ariaHidden=true] - aria-hidden attribute (forced false if title provided)
  * @param {string} [options.style] - Inline CSS style string
  * @returns {string} SVG HTML string
  */
-export function getAttIconSvg(name, options = {}) {
-  const icon = ATT_FUNCTIONAL_ICONS[name];
+export function getPmiIconSvg(name, options = {}) {
+  const icon = PMI_FUNCTIONAL_ICONS[name];
   if (!icon) {
     console.warn(\`[AT&T Icons] Unknown icon name: "\${name}"\`);
     return '';
@@ -96,10 +96,10 @@ export function getAttIconSvg(name, options = {}) {
  * @param {string} name
  * @returns {{cat: string, viewBox: string, body: string}|null}
  */
-export function getAttIconData(name) {
-  return ATT_FUNCTIONAL_ICONS[name] || null;
+export function getPmiIconData(name) {
+  return PMI_FUNCTIONAL_ICONS[name] || null;
 }
 `;
 
-fs.writeFileSync('js/att-icons.js', jsContent, 'utf8');
-console.log(`Successfully generated js/att-icons.js (${(jsContent.length / 1024).toFixed(1)} KB)`);
+fs.writeFileSync('js/pmi-icons.js', jsContent, 'utf8');
+console.log(`Successfully generated js/pmi-icons.js (${(jsContent.length / 1024).toFixed(1)} KB)`);

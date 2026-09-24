@@ -83,12 +83,12 @@ export function generateCSS() {
     .horizontal-timeline-container {
       background-color: var(--bg-card);
       border: var(--border-style);
-      border-radius: var(--att-radius-lg, var(--border-radius, 20px));
+      border-radius: var(--pmi-radius-lg, var(--border-radius, 20px));
       box-shadow: var(--shadow-style);
-      padding: var(--att-space-5, 24px);
+      padding: var(--pmi-space-5, 24px);
       display: flex;
       flex-direction: column;
-      gap: var(--att-space-5, 20px);
+      gap: var(--pmi-space-5, 20px);
       position: relative;
     }
     .timeline-nodes-row {
@@ -149,7 +149,7 @@ export function generateCSS() {
       outline: none;
     }
     .timeline-node:focus-visible .node-marker {
-      outline: 3px solid var(--att-cobalt, var(--primary));
+      outline: 3px solid var(--pmi-cobalt, var(--primary));
       outline-offset: 2px;
     }
     .timeline-node:active .node-marker {
@@ -170,8 +170,8 @@ export function generateCSS() {
       z-index: 2;
     }
     .node-marker-label {
-      font-size: var(--att-fs-eyebrow, 0.75rem);
-      font-weight: var(--att-fw-bold, 700);
+      font-size: var(--pmi-fs-eyebrow, 0.75rem);
+      font-weight: var(--pmi-fw-bold, 700);
       line-height: 1;
       color: var(--primary);
     }
@@ -182,8 +182,8 @@ export function generateCSS() {
       color: var(--on-primary);
     }
     .node-label {
-      font-size: var(--att-fs-body-sm, 0.875rem);
-      font-weight: var(--att-fw-medium, 500);
+      font-size: var(--pmi-fs-body-sm, 0.875rem);
+      font-weight: var(--pmi-fw-medium, 500);
       color: var(--text-muted);
       margin-top: 8px;
       text-align: center;
@@ -193,13 +193,13 @@ export function generateCSS() {
     }
     .timeline-node.active .node-label {
       color: var(--primary);
-      font-weight: var(--att-fw-bold, 700);
+      font-weight: var(--pmi-fw-bold, 700);
     }
     .timeline-slider-box {
       background-color: var(--bg-body);
       border: 1px solid var(--border-color);
-      border-radius: var(--att-radius-md, var(--border-radius, 12px));
-      padding: var(--att-space-5, 20px);
+      border-radius: var(--pmi-radius-md, var(--border-radius, 12px));
+      padding: var(--pmi-space-5, 20px);
       min-height: 120px;
       position: relative;
       touch-action: pan-y;
@@ -215,7 +215,7 @@ export function generateCSS() {
     .timeline-slide-layout.has-media {
       display: grid;
       grid-template-columns: 180px 1fr;
-      gap: var(--att-space-4, 16px);
+      gap: var(--pmi-space-4, 16px);
       align-items: start;
     }
     @media (max-width: 600px) {
@@ -229,7 +229,7 @@ export function generateCSS() {
     .timeline-media-popup-btn {
       background: none;
       border: 1px solid var(--border-color);
-      border-radius: var(--att-radius-md, 8px);
+      border-radius: var(--pmi-radius-md, 8px);
       padding: 0;
       cursor: pointer;
       overflow: hidden;
@@ -238,7 +238,7 @@ export function generateCSS() {
       width: 100%;
     }
     .timeline-media-popup-btn:focus-visible {
-      outline: 3px solid var(--att-cobalt, var(--primary));
+      outline: 3px solid var(--pmi-cobalt, var(--primary));
       outline-offset: 2px;
     }
     .timeline-slide-thumb {
@@ -263,16 +263,16 @@ export function generateCSS() {
       border-radius: 4px;
     }
     .timeline-slide h4 {
-      font-size: var(--att-fs-h4, 1.125rem);
-      font-weight: var(--att-fw-bold, 700);
-      line-height: var(--att-lh-heading, 1.25);
+      font-size: var(--pmi-fs-h4, 1.125rem);
+      font-weight: var(--pmi-fw-bold, 700);
+      line-height: var(--pmi-lh-heading, 1.25);
       margin-bottom: 8px;
       color: var(--text-main);
       text-wrap: pretty;
     }
     .timeline-slide p {
-      font-size: var(--att-fs-body, 1rem);
-      line-height: var(--att-lh-body, 1.5);
+      font-size: var(--pmi-fs-body, 1rem);
+      line-height: var(--pmi-lh-body, 1.5);
       color: var(--text-muted);
       max-width: 70ch;
       margin: 0;
@@ -281,16 +281,16 @@ export function generateCSS() {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-top: var(--att-space-4, 16px);
-      padding-top: var(--att-space-3, 12px);
+      margin-top: var(--pmi-space-4, 16px);
+      padding-top: var(--pmi-space-3, 12px);
       border-top: 1px solid var(--border-color);
     }
     .timeline-nav-btn {
       background-color: var(--bg-card);
       border: var(--border-style);
-      border-radius: var(--att-radius-pill, 999px);
+      border-radius: var(--pmi-radius-pill, 999px);
       padding: 6px 14px;
-      font-size: var(--att-fs-body-sm, 14px);
+      font-size: var(--pmi-fs-body-sm, 14px);
       font-weight: 600;
       color: var(--text-main);
       cursor: pointer;
@@ -304,7 +304,7 @@ export function generateCSS() {
       cursor: not-allowed;
     }
     .timeline-step-indicator {
-      font-size: var(--att-fs-body-sm, 14px);
+      font-size: var(--pmi-fs-body-sm, 14px);
       font-weight: 600;
       color: var(--text-muted);
     }
@@ -335,7 +335,7 @@ export function generateCSS() {
       position: relative;
       background: var(--bg-card);
       padding: 16px;
-      border-radius: var(--att-radius-lg, 12px);
+      border-radius: var(--pmi-radius-lg, 12px);
       max-width: 90vw;
       max-height: 90vh;
       display: flex;
@@ -348,7 +348,7 @@ export function generateCSS() {
       max-width: 100%;
       max-height: 70vh;
       object-fit: contain;
-      border-radius: var(--att-radius-sm, 4px);
+      border-radius: var(--pmi-radius-sm, 4px);
     }
     .timeline-lightbox-caption {
       margin-top: 8px;

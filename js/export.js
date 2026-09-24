@@ -248,7 +248,7 @@ export async function buildCoursePackZip({ courseTitle = 'AT&T Course Interactio
   <style>
     :root {
       --primary: #00388F;
-      --att-blue: #009FDB;
+      --pmi-blue: #009FDB;
       --bg: #F3F4F5;
       --card-bg: #FFFFFF;
       --text: #000000;
@@ -258,7 +258,7 @@ export async function buildCoursePackZip({ courseTitle = 'AT&T Course Interactio
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      font-family: var(--att-font-sans, sans-serif);
+      font-family: var(--pmi-font-sans, sans-serif);
       background-color: var(--bg);
       color: var(--text);
       padding: 40px 20px;
@@ -282,7 +282,7 @@ export async function buildCoursePackZip({ courseTitle = 'AT&T Course Interactio
       display: inline-block;
       padding: 4px 12px;
       border-radius: 999px;
-      background-color: var(--att-blue);
+      background-color: var(--pmi-blue);
       color: #FFFFFF;
       font-size: 0.75rem;
       font-weight: 700;

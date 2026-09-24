@@ -10,7 +10,7 @@
  */
 
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
-import { isolateModal } from '../../js/dashboard/att-modal.js';
+import { isolateModal } from '../../js/dashboard/pmi-modal.js';
 import { ProjectOverviewView } from '../../js/dashboard/project-overview.js';
 import { DashboardView } from '../../js/dashboard/dashboard-view.js';
 import { CoursePreviewView } from '../../js/dashboard/course-preview.js';

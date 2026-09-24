@@ -5,12 +5,12 @@
 
 import {
   clearDraft, deleteProject, duplicateProject, exportProjectJson, getProject,
-  importProjectJson, loadDraft, loadProjects, saveProject, toggleFavoriteProject
+  compareDraftToSaved, importProjectJson, loadDraft, loadProjects, saveProject, toggleFavoriteProject
 } from '../storage.js';
 import {
   buildProjectSchemaV3, createComponentInstance, createSection
 } from '../project-schema.js';
-import { showPromptDialog, showConfirmDialog, isolateModal } from './att-modal.js';
+import { showPromptDialog, showConfirmDialog, isolateModal } from './pmi-modal.js';
 import { showToast } from '../toast.js';
 
 export class DashboardView {
@@ -145,7 +145,15 @@ export class DashboardView {
     if (!this.container) return;
     const projects = this.getFilteredAndSortedProjects();
     const allProjects = loadProjects();
-    const activeDraft = loadDraft();
+    // Only offer a recovery draft when it holds something the saved project does not.
+    const draftRecord = loadDraft();
+    const draftStatus = compareDraftToSaved(draftRecord, allProjects);
+    const activeDraft = draftStatus.recoverable ? draftRecord : null;
+    const draftSavedAt = activeDraft?.updatedAt ? new Date(activeDraft.updatedAt) : null;
+    const draftWhen = draftSavedAt && !Number.isNaN(draftSavedAt.getTime()) ? draftSavedAt.toLocaleString() : 'earlier';
+    const draftRelation = draftStatus.reason === 'differs'
+      ? `It has changes that are not in the saved project “${this.escapeHtml(draftStatus.savedName)}”.`
+      : 'It has never been saved as a project.';
 
     // Clear any previous modal rendered in modal host if modal is closed
     const modalHost = this.getModalHost();
@@ -162,10 +170,10 @@ export class DashboardView {
           <header class="dashboard-hero-section">
             <div class="dashboard-hero-content">
               <div class="dashboard-hero-eyebrow">
-                <span class="hero-brand-pill">Aptara Learning Interaction Studio</span>
+                <span class="hero-brand-pill">Aptara Learning Interaction Studio · AT&amp;T edition</span>
                 <span class="hero-compliance-pill">
                   <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                  WCAG 2.2 AA &amp; Brand Verified
+                  Built for WCAG 2.2 AA · brand-checked
                 </span>
               </div>
 
@@ -186,13 +194,13 @@ export class DashboardView {
                 </div>
                 <div class="hero-stat-divider"></div>
                 <div class="hero-stat-item">
-                  <span class="hero-stat-num">4</span>
+                  <span class="hero-stat-num">3</span>
                   <span class="hero-stat-label">Post-Publish Tools</span>
                 </div>
                 <div class="hero-stat-divider"></div>
                 <div class="hero-stat-item">
-                  <span class="hero-stat-num">100%</span>
-                  <span class="hero-stat-label">Rise 360 Ready</span>
+                  <span class="hero-stat-num">Rise 360</span>
+                  <span class="hero-stat-label">Embed &amp; HTML export</span>
                 </div>
               </div>
             </div>
@@ -207,19 +215,19 @@ export class DashboardView {
                 </div>
                 <div class="draft-banner-text">
                   <div class="draft-banner-tags">
-                    <span class="draft-badge-pill">Unsaved Working Draft</span>
+                    <span class="draft-badge-pill">Recovered autosave</span>
                     <span class="draft-badge-type">${this.escapeHtml(activeDraft.type || 'Custom Block')}</span>
                   </div>
                   <h3 class="draft-banner-title">Resume editing “${this.escapeHtml(activeDraft.name || 'Untitled Component')}”</h3>
-                  <p class="draft-banner-sub">An autosaved working session is ready on this device. Jump right back in or create a new project below.</p>
+                  <p class="draft-banner-sub">Autosaved ${this.escapeHtml(draftWhen)} on this device. ${draftRelation} Resume it, or dismiss it to discard the autosave.</p>
                 </div>
               </div>
               <div class="draft-banner-actions">
-                <button type="button" class="btn btn-att-primary" id="btn-resume-draft">
+                <button type="button" class="btn btn-pmi-primary" id="btn-resume-draft">
                   <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
                   <span>Resume Draft</span>
                 </button>
-                <button type="button" class="btn btn-att-secondary" id="btn-dismiss-draft">Dismiss</button>
+                <button type="button" class="btn btn-pmi-secondary" id="btn-dismiss-draft">Dismiss</button>
               </div>
             </section>
           ` : ''}
@@ -252,7 +260,7 @@ export class DashboardView {
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
                 </div>
                 <h3 class="starter-card-title">Rise Post-Publish Toolkit</h3>
-                <p class="starter-card-desc">Inject Persistent Top Nav, Glossary Modal, Resource Center, and Help Dialog into published Rise ZIP exports.</p>
+                <p class="starter-card-desc">Add a persistent Course Tools launcher with a Glossary, a Resource Center and Help &amp; Support to a Rise Web or SCORM export you upload.</p>
                 <div class="starter-card-footer">
                   <span class="starter-card-cta">Open Package Tools →</span>
                 </div>
@@ -280,7 +288,7 @@ export class DashboardView {
                 <h2 class="dashboard-section-heading">Course Projects Workspace</h2>
                 <span class="dashboard-section-sub">Manage and edit your saved Articulate Rise courses</span>
               </div>
-              <button type="button" class="btn btn-att-primary" id="dash-create-btn">
+              <button type="button" class="btn btn-pmi-primary" id="dash-create-btn">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
                 <span>New Course Project</span>
               </button>
@@ -333,7 +341,7 @@ export class DashboardView {
                 </div>
                 <h3 class="empty-state-title">${this.state.searchQuery ? 'No matching projects found' : 'No course projects yet'}</h3>
                 <p class="empty-state-subtitle">${this.state.searchQuery ? 'Try modifying your search or clearing the active filter.' : 'Get started by creating a new course project or loading a starter template.'}</p>
-                <button id="dash-empty-create-btn" class="btn btn-att-primary">
+                <button id="dash-empty-create-btn" class="btn btn-pmi-primary">
                   <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
                   <span>Create Project</span>
                 </button>
@@ -488,31 +496,31 @@ export class DashboardView {
                 <label class="form-label" style="font-weight: 700; margin-bottom: 8px; display: block;">Select Starting Point</label>
                 <div class="starter-cards-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px;">
                   <!-- Card 1: 3-Module Starter -->
-                  <div class="starter-point-card ${selectedTemplate === 'standard' ? 'active' : ''}" data-starter-tpl="standard" tabindex="0" role="radio" aria-checked="${selectedTemplate === 'standard'}" style="border: 2px solid ${selectedTemplate === 'standard' ? 'var(--att-cobalt, #00388F)' : 'var(--att-border, #DCDFE3)'}; background: ${selectedTemplate === 'standard' ? '#F0F7FF' : 'var(--att-surface, #FFF)'}; border-radius: 10px; padding: 12px; cursor: pointer; display: flex; flex-direction: column; gap: 6px;">
+                  <div class="starter-point-card ${selectedTemplate === 'standard' ? 'active' : ''}" data-starter-tpl="standard" tabindex="0" role="radio" aria-checked="${selectedTemplate === 'standard'}" style="border: 2px solid ${selectedTemplate === 'standard' ? 'var(--pmi-cobalt, #00388F)' : 'var(--pmi-border, #DCDFE3)'}; background: ${selectedTemplate === 'standard' ? '#F0F7FF' : 'var(--pmi-surface, #FFF)'}; border-radius: 10px; padding: 12px; cursor: pointer; display: flex; flex-direction: column; gap: 6px;">
                     <div style="display: flex; justify-content: space-between; align-items: center;">
-                      <span style="font-weight: 700; font-size: 0.875rem; color: var(--att-cobalt, #00388F);">3-Module Sample Course</span>
-                      <span style="font-size: 0.75rem; color: ${selectedTemplate === 'standard' ? 'var(--att-cobalt, #00388F)' : '#999'};">★</span>
+                      <span style="font-weight: 700; font-size: 0.875rem; color: var(--pmi-cobalt, #00388F);">3-Module Sample Course</span>
+                      <span style="font-size: 0.75rem; color: ${selectedTemplate === 'standard' ? 'var(--pmi-cobalt, #00388F)' : '#999'};">★</span>
                     </div>
                     <p style="margin: 0; font-size: 0.75rem; color: #555; line-height: 1.3;">Fiber Deployment, 5G Architecture &amp; Compliance.</p>
-                    <span style="font-size: 0.6875rem; background: rgba(0, 56, 143, 0.08); color: var(--att-cobalt, #00388F); padding: 1px 6px; border-radius: 4px; align-self: flex-start; margin-top: auto;">Recommended</span>
+                    <span style="font-size: 0.6875rem; background: rgba(0, 56, 143, 0.08); color: var(--pmi-cobalt, #00388F); padding: 1px 6px; border-radius: 4px; align-self: flex-start; margin-top: auto;">Recommended</span>
                   </div>
 
                   <!-- Card 2: Blank Course -->
-                  <div class="starter-point-card ${selectedTemplate === 'blank' ? 'active' : ''}" data-starter-tpl="blank" tabindex="0" role="radio" aria-checked="${selectedTemplate === 'blank'}" style="border: 2px solid ${selectedTemplate === 'blank' ? 'var(--att-cobalt, #00388F)' : 'var(--att-border, #DCDFE3)'}; background: ${selectedTemplate === 'blank' ? '#F0F7FF' : 'var(--att-surface, #FFF)'}; border-radius: 10px; padding: 12px; cursor: pointer; display: flex; flex-direction: column; gap: 6px;">
+                  <div class="starter-point-card ${selectedTemplate === 'blank' ? 'active' : ''}" data-starter-tpl="blank" tabindex="0" role="radio" aria-checked="${selectedTemplate === 'blank'}" style="border: 2px solid ${selectedTemplate === 'blank' ? 'var(--pmi-cobalt, #00388F)' : 'var(--pmi-border, #DCDFE3)'}; background: ${selectedTemplate === 'blank' ? '#F0F7FF' : 'var(--pmi-surface, #FFF)'}; border-radius: 10px; padding: 12px; cursor: pointer; display: flex; flex-direction: column; gap: 6px;">
                     <span style="font-weight: 700; font-size: 0.875rem; color: #111;">Blank Course</span>
                     <p style="margin: 0; font-size: 0.75rem; color: #555; line-height: 1.3;">Empty workspace for custom outlines.</p>
                     <span style="font-size: 0.6875rem; background: #EFEFEF; color: #555; padding: 1px 6px; border-radius: 4px; align-self: flex-start; margin-top: auto;">Custom</span>
                   </div>
 
                   <!-- Card 3: Single Component -->
-                  <div class="starter-point-card ${selectedTemplate === 'single' ? 'active' : ''}" data-starter-tpl="single" tabindex="0" role="radio" aria-checked="${selectedTemplate === 'single'}" style="border: 2px solid ${selectedTemplate === 'single' ? 'var(--att-cobalt, #00388F)' : 'var(--att-border, #DCDFE3)'}; background: ${selectedTemplate === 'single' ? '#F0F7FF' : 'var(--att-surface, #FFF)'}; border-radius: 10px; padding: 12px; cursor: pointer; display: flex; flex-direction: column; gap: 6px;">
+                  <div class="starter-point-card ${selectedTemplate === 'single' ? 'active' : ''}" data-starter-tpl="single" tabindex="0" role="radio" aria-checked="${selectedTemplate === 'single'}" style="border: 2px solid ${selectedTemplate === 'single' ? 'var(--pmi-cobalt, #00388F)' : 'var(--pmi-border, #DCDFE3)'}; background: ${selectedTemplate === 'single' ? '#F0F7FF' : 'var(--pmi-surface, #FFF)'}; border-radius: 10px; padding: 12px; cursor: pointer; display: flex; flex-direction: column; gap: 6px;">
                     <span style="font-weight: 700; font-size: 0.875rem; color: #111;">Single Block</span>
                     <p style="margin: 0; font-size: 0.75rem; color: #555; line-height: 1.3;">Accordion starter block.</p>
                     <span style="font-size: 0.6875rem; background: #EFEFEF; color: #555; padding: 1px 6px; border-radius: 4px; align-self: flex-start; margin-top: auto;">Quick Edit</span>
                   </div>
 
                   <!-- Card 4: Import Existing Project -->
-                  <div class="starter-point-card ${selectedTemplate === 'import' ? 'active' : ''}" data-starter-tpl="import" tabindex="0" role="radio" aria-checked="${selectedTemplate === 'import'}" style="border: 2px solid ${selectedTemplate === 'import' ? 'var(--att-cobalt, #00388F)' : 'var(--att-border, #DCDFE3)'}; background: ${selectedTemplate === 'import' ? '#F0F7FF' : 'var(--att-surface, #FFF)'}; border-radius: 10px; padding: 12px; cursor: pointer; display: flex; flex-direction: column; gap: 6px;">
+                  <div class="starter-point-card ${selectedTemplate === 'import' ? 'active' : ''}" data-starter-tpl="import" tabindex="0" role="radio" aria-checked="${selectedTemplate === 'import'}" style="border: 2px solid ${selectedTemplate === 'import' ? 'var(--pmi-cobalt, #00388F)' : 'var(--pmi-border, #DCDFE3)'}; background: ${selectedTemplate === 'import' ? '#F0F7FF' : 'var(--pmi-surface, #FFF)'}; border-radius: 10px; padding: 12px; cursor: pointer; display: flex; flex-direction: column; gap: 6px;">
                     <span style="font-weight: 700; font-size: 0.875rem; color: #111;">Import Project</span>
                     <p style="margin: 0; font-size: 0.75rem; color: #555; line-height: 1.3;">Upload saved JSON package.</p>
                     <span style="font-size: 0.6875rem; background: #EFEFEF; color: #555; padding: 1px 6px; border-radius: 4px; align-self: flex-start; margin-top: auto;">File upload</span>
@@ -522,7 +530,7 @@ export class DashboardView {
               </div>
 
               ${selectedTemplate === 'import' ? `
-                <div class="form-group" style="background: var(--att-surface-sunken, #FAFAFA); padding: 16px; border-radius: 8px; border: 1.5px dashed var(--att-border, #CBD5E1); text-align: center;">
+                <div class="form-group" style="background: var(--pmi-surface-sunken, #FAFAFA); padding: 16px; border-radius: 8px; border: 1.5px dashed var(--pmi-border, #CBD5E1); text-align: center;">
                   <label for="np-import-file" style="display: block; font-weight: 600; font-size: 0.875rem; margin-bottom: 8px;">Select Course Project JSON File</label>
                   <input type="file" id="np-import-file" accept=".json" style="font-size: 0.8125rem;" required />
                 </div>

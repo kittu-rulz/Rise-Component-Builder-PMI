@@ -13,7 +13,7 @@ import {
 import { generateIframeContent } from '../js/preview.js';
 import { toRgba } from '../js/utilities.js';
 import * as accordion from '../components/accordion.js';
-import { ATT_ALECK_SANS_FONT_FAMILY } from '../js/custom-fonts.js';
+import { PMI_ALECK_SANS_FONT_FAMILY } from '../js/custom-fonts.js';
 
 function memoryStorage() {
   const values = new Map();
@@ -152,8 +152,8 @@ test('generated and exported HTML uses the selected component theme while builde
 
 test('a self-hosted custom font (ATT Aleck Sans) is embedded as @font-face and skips the Google Fonts request entirely', () => {
   const theme = structuredClone(BUILT_IN_THEMES.find(item => item.id === DEFAULT_THEME_ID));
-  theme.tokens.fontFamily = ATT_ALECK_SANS_FONT_FAMILY;
-  theme.tokens.headingFontFamily = ATT_ALECK_SANS_FONT_FAMILY;
+  theme.tokens.fontFamily = PMI_ALECK_SANS_FONT_FAMILY;
+  theme.tokens.headingFontFamily = PMI_ALECK_SANS_FONT_FAMILY;
   const state = { selectedComponent: { id: 'accordion' }, activeTheme: theme, componentOverrides: {}, config: baseConfig() };
   const html = generateIframeContent(state, { accordion }, toRgba);
   assert.match(html, /@font-face/);
@@ -163,12 +163,12 @@ test('a self-hosted custom font (ATT Aleck Sans) is embedded as @font-face and s
   assert.match(html, /data:font\/woff2;base64,/);
   assert.ok(!html.includes('data:font/ttf'), 'no TTF fallback should be embedded alongside WOFF2');
   assert.ok(!html.includes('<link href="https://fonts.googleapis.com'), 'no Google Fonts request should be made when every font role is self-hosted');
-  assert.match(html, new RegExp(`--font-family: '${ATT_ALECK_SANS_FONT_FAMILY}'`));
+  assert.match(html, new RegExp(`--font-family: '${PMI_ALECK_SANS_FONT_FAMILY}'`));
 });
 
 test('mixing a self-hosted font with a Google Fonts family still requests only the Google family', () => {
   const theme = structuredClone(BUILT_IN_THEMES.find(item => item.id === DEFAULT_THEME_ID));
-  theme.tokens.fontFamily = ATT_ALECK_SANS_FONT_FAMILY;
+  theme.tokens.fontFamily = PMI_ALECK_SANS_FONT_FAMILY;
   theme.tokens.headingFontFamily = 'Montserrat';
   const state = { selectedComponent: { id: 'accordion' }, activeTheme: theme, componentOverrides: {}, config: baseConfig() };
   const html = generateIframeContent(state, { accordion }, toRgba);

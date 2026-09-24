@@ -930,7 +930,7 @@ export function getItemMediaCSS() {
     .item-content-layout {
       display: flex;
       flex-direction: column;
-      gap: var(--att-space-4, 18px);
+      gap: var(--pmi-space-4, 18px);
       width: 100%;
     }
 
@@ -946,7 +946,7 @@ export function getItemMediaCSS() {
       display: grid;
       grid-template-columns: minmax(260px, 45%) minmax(0, 1fr);
       align-items: center;
-      gap: var(--att-space-5, 24px);
+      gap: var(--pmi-space-5, 24px);
       width: 100%;
     }
 
@@ -954,7 +954,7 @@ export function getItemMediaCSS() {
       display: grid;
       grid-template-columns: minmax(0, 1fr) minmax(260px, 45%);
       align-items: center;
-      gap: var(--att-space-5, 24px);
+      gap: var(--pmi-space-5, 24px);
       width: 100%;
     }
 
@@ -970,7 +970,7 @@ export function getItemMediaCSS() {
       margin: 0 auto;
       padding: 0;
       width: 100%;
-      border-radius: var(--att-radius-md, 8px);
+      border-radius: var(--pmi-radius-md, 8px);
       overflow: hidden;
       background-color: rgba(0, 0, 0, 0.03);
       position: relative;
@@ -1043,7 +1043,7 @@ export function getItemMediaCSS() {
 
     .item-media-video-shell {
       width: 100%;
-      border-radius: var(--att-radius-md, 8px);
+      border-radius: var(--pmi-radius-md, 8px);
       overflow: hidden;
       background-color: #000;
       display: flex;

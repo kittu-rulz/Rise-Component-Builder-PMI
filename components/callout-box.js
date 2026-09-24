@@ -1,6 +1,6 @@
 import { getEditorSchema } from '../js/editor-schemas.js';
 import { escapeAttribute, escapeHTML, sanitizeRichText } from '../js/utilities.js';
-import { getAttIconSvg } from '../js/att-icons.js';
+import { getPmiIconSvg } from '../js/pmi-icons.js';
 
 /**
  * Callout & Alert Matrix Component
@@ -53,14 +53,14 @@ export const defaultConfig = {
 export const editorSchema = getEditorSchema(id);
 
 const ICONS = {
-  info: getAttIconSvg('information-circle-filled', { width: 22, height: 22, ariaHidden: true }),
-  warning: getAttIconSvg('exclamation-triangle-filled', { width: 22, height: 22, ariaHidden: true }),
-  primary: getAttIconSvg('verified', { width: 22, height: 22, ariaHidden: true }),
-  tip: getAttIconSvg('check-circle-filled', { width: 22, height: 22, ariaHidden: true }),
-  security: getAttIconSvg('check-shield', { width: 22, height: 22, ariaHidden: true })
+  info: getPmiIconSvg('information-circle-filled', { width: 22, height: 22, ariaHidden: true }),
+  warning: getPmiIconSvg('exclamation-triangle-filled', { width: 22, height: 22, ariaHidden: true }),
+  primary: getPmiIconSvg('verified', { width: 22, height: 22, ariaHidden: true }),
+  tip: getPmiIconSvg('check-circle-filled', { width: 22, height: 22, ariaHidden: true }),
+  security: getPmiIconSvg('check-shield', { width: 22, height: 22, ariaHidden: true })
 };
 
-const checkIcon = getAttIconSvg('check', { width: 16, height: 16, ariaHidden: true });
+const checkIcon = getPmiIconSvg('check', { width: 16, height: 16, ariaHidden: true });
 
 export function generateHTML(config, instanceId) {
   const layout = ['stacked', 'grid-2', 'grid-3'].includes(config.layout) ? config.layout : 'grid-2';
@@ -117,30 +117,30 @@ export function generateCSS() {
     .callout-matrix-card {
       background-color: var(--bg-card);
       border: var(--border-style);
-      border-radius: var(--att-radius-lg, var(--border-radius, 20px));
+      border-radius: var(--pmi-radius-lg, var(--border-radius, 20px));
       box-shadow: var(--shadow-style);
-      padding: var(--att-space-5, 24px);
+      padding: var(--pmi-space-5, 24px);
       display: flex;
       flex-direction: column;
-      gap: var(--att-space-4, 16px);
+      gap: var(--pmi-space-4, 16px);
     }
     .callout-title {
-      font-size: var(--att-fs-h3, 1.25rem);
-      font-weight: var(--att-fw-bold, 700);
-      line-height: var(--att-lh-heading, 1.25);
+      font-size: var(--pmi-fs-h3, 1.25rem);
+      font-weight: var(--pmi-fw-bold, 700);
+      line-height: var(--pmi-lh-heading, 1.25);
       color: var(--text-main);
       text-wrap: pretty;
       margin: 0;
     }
     .callout-description {
-      font-size: var(--att-fs-body, 1rem);
-      line-height: var(--att-lh-body, 1.5);
+      font-size: var(--pmi-fs-body, 1rem);
+      line-height: var(--pmi-lh-body, 1.5);
       color: var(--text-main);
       margin: 0;
     }
     .callout-matrix-grid {
       display: grid;
-      gap: var(--att-space-4, 16px);
+      gap: var(--pmi-space-4, 16px);
       width: 100%;
     }
     .callout-matrix-grid.layout-stacked {
@@ -167,15 +167,15 @@ export function generateCSS() {
       background-color: var(--bg-card, #FFFFFF);
       border: 1px solid var(--border-color, #DCDFE3);
       border-left: 4px solid var(--border-color, #DCDFE3);
-      border-radius: var(--att-radius-md, 16px);
-      padding: var(--att-space-4, 16px);
+      border-radius: var(--pmi-radius-md, 16px);
+      padding: var(--pmi-space-4, 16px);
       display: flex;
       flex-direction: column;
-      gap: var(--att-space-3, 12px);
+      gap: var(--pmi-space-3, 12px);
       transition: all 180ms ease;
     }
     .callout-item-card.tone-info {
-      border-left-color: var(--att-blue, #009FDB);
+      border-left-color: var(--pmi-blue, #009FDB);
     }
     .callout-item-card.tone-primary {
       border-left-color: var(--primary, #00388F);
@@ -184,15 +184,15 @@ export function generateCSS() {
       border-left-color: var(--border-color, #DCDFE3);
     }
     .callout-item-card.tone-tip {
-      border-left-color: var(--att-green, #91DC00);
+      border-left-color: var(--pmi-green, #91DC00);
     }
     .callout-item-card.tone-security {
-      border-left-color: var(--att-blue, #009FDB);
+      border-left-color: var(--pmi-blue, #009FDB);
     }
     .callout-item-header {
       display: flex;
       align-items: flex-start;
-      gap: var(--att-space-3, 12px);
+      gap: var(--pmi-space-3, 12px);
     }
     .callout-item-icon {
       display: inline-flex;
@@ -200,13 +200,13 @@ export function generateCSS() {
       justify-content: center;
       width: 40px;
       height: 40px;
-      border-radius: var(--att-radius-sm, 12px);
+      border-radius: var(--pmi-radius-sm, 12px);
       background-color: var(--bg-body, #F3F4F5);
       flex-shrink: 0;
       color: var(--text-main);
     }
     .callout-item-icon.tone-info {
-      color: var(--att-blue, #009FDB);
+      color: var(--pmi-blue, #009FDB);
     }
     .callout-item-icon.tone-primary {
       color: var(--primary, #00388F);
@@ -215,23 +215,23 @@ export function generateCSS() {
       color: var(--text-muted, #4B5563);
     }
     .callout-item-icon.tone-tip {
-      color: var(--att-green, #91DC00);
+      color: var(--pmi-green, #91DC00);
     }
     .callout-item-icon.tone-security {
-      color: var(--att-blue, #009FDB);
+      color: var(--pmi-blue, #009FDB);
     }
     .callout-item-meta {
       display: flex;
       flex-direction: column;
-      gap: var(--att-space-1, 4px);
+      gap: var(--pmi-space-1, 4px);
     }
     .callout-item-badge {
       display: inline-block;
       align-self: flex-start;
-      padding: 2px var(--att-space-2, 8px);
+      padding: 2px var(--pmi-space-2, 8px);
       border-radius: 9999px;
-      font-size: var(--att-fs-xs, 0.8125rem);
-      font-weight: var(--att-fw-bold, 700);
+      font-size: var(--pmi-fs-xs, 0.8125rem);
+      font-weight: var(--pmi-fw-bold, 700);
       text-transform: uppercase;
       letter-spacing: 0.04em;
       background-color: var(--bg-body, #F3F4F5);
@@ -239,7 +239,7 @@ export function generateCSS() {
     }
     .callout-item-badge.tone-info {
       background-color: var(--bg-body, #F3F4F5);
-      color: var(--att-blue, #009FDB);
+      color: var(--pmi-blue, #009FDB);
     }
     .callout-item-badge.tone-primary {
       background-color: var(--primary, #00388F);
@@ -254,38 +254,38 @@ export function generateCSS() {
       color: var(--primary, #00388F);
     }
     .callout-item-badge.tone-security {
-      background-color: var(--att-blue, #009FDB);
+      background-color: var(--pmi-blue, #009FDB);
       color: #FFFFFF;
     }
     .callout-item-title {
-      font-size: var(--att-fs-h3, 1.125rem);
-      font-weight: var(--att-fw-bold, 700);
-      line-height: var(--att-lh-heading, 1.3);
+      font-size: var(--pmi-fs-h3, 1.125rem);
+      font-weight: var(--pmi-fw-bold, 700);
+      line-height: var(--pmi-lh-heading, 1.3);
       color: var(--text-main);
       margin: 0;
     }
     .callout-item-body {
-      font-size: var(--att-fs-body, 1rem);
-      line-height: var(--att-lh-body, 1.5);
+      font-size: var(--pmi-fs-body, 1rem);
+      line-height: var(--pmi-lh-body, 1.5);
       color: var(--text-main);
     }
     .callout-item-footer {
       margin-top: auto;
-      padding-top: var(--att-space-2, 8px);
+      padding-top: var(--pmi-space-2, 8px);
       display: flex;
     }
     .callout-ack-btn {
       display: inline-flex;
       align-items: center;
-      gap: var(--att-space-2, 8px);
-      padding: var(--att-space-2, 8px) var(--att-space-3, 12px);
-      border-radius: var(--att-radius-sm, 12px);
+      gap: var(--pmi-space-2, 8px);
+      padding: var(--pmi-space-2, 8px) var(--pmi-space-3, 12px);
+      border-radius: var(--pmi-radius-sm, 12px);
       border: 1px solid var(--border-color, #DCDFE3);
       background-color: var(--bg-card, #FFFFFF);
       color: var(--text-main);
-      font-family: var(--att-font-sans, sans-serif);
-      font-size: var(--att-fs-xs, 0.8125rem);
-      font-weight: var(--att-fw-bold, 700);
+      font-family: var(--pmi-font-sans, sans-serif);
+      font-size: var(--pmi-fs-xs, 0.8125rem);
+      font-weight: var(--pmi-fw-bold, 700);
       cursor: pointer;
       min-height: 44px;
       transition: all 180ms ease;

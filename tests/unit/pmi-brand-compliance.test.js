@@ -137,7 +137,7 @@ describe('AT&T brand: every AT&T-Blue text node is kept blue by growing to >=19p
     if (pxMatch) {
       expect(Number(pxMatch[1])).toBeGreaterThanOrEqual(19);
     } else {
-      expect(rule).toMatch(/font-size:\s*(?:var\(--att-fs-h[1-3],\s*)?([1-9]\d*(?:\.\d+)?(?:rem|em|px))/);
+      expect(rule).toMatch(/font-size:\s*(?:var\(--pmi-fs-h[1-3],\s*)?([1-9]\d*(?:\.\d+)?(?:rem|em|px))/);
     }
   }
 
@@ -318,7 +318,7 @@ describe('AT&T brand: components outside the original 16-slide audit, swept for 
     const css = scenario.generateCSS();
     const speakerRule = css.match(/\.speaker-name\s*{[^}]*}/)[0];
     expect(speakerRule).toMatch(/color:\s*var\(--accent\)/);
-    expect(speakerRule).toMatch(/font-size:\s*(?:var\(--att-fs-h[1-3],\s*)?([1-9]\d*(?:\.\d+)?(?:rem|em|px))/);
+    expect(speakerRule).toMatch(/font-size:\s*(?:var\(--pmi-fs-h[1-3],\s*)?([1-9]\d*(?:\.\d+)?(?:rem|em|px))/);
 
     expect(css).toMatch(/\.scenario-choice-btn\s*{[^}]*border:\s*1px solid var\(--primary\)/);
     expect(css).not.toMatch(/\.scenario-choice-btn:hover\s*{[^}]*background-color:\s*var\(--accent-tint\)/);
@@ -470,10 +470,10 @@ describe('Prompt 4: AT&T Typography Standards (Type Hierarchy, 16px Body Floor, 
     }
   });
 
-  test('learner-facing body text references --att-fs-body or 1rem with 1.5 line-height across component generators', () => {
+  test('learner-facing body text references --pmi-fs-body or 1rem with 1.5 line-height across component generators', () => {
     for (const { name, mod } of allComponents) {
       const css = mod.generateCSS();
-      expect(css, `${name} should use --att-fs-body or 1rem for body copy`).toMatch(/(--att-fs-body|1rem)/);
+      expect(css, `${name} should use --pmi-fs-body or 1rem for body copy`).toMatch(/(--pmi-fs-body|1rem)/);
     }
   });
 
@@ -541,16 +541,16 @@ describe('Prompt 5: Curvature and spacing compliance across all components', () 
     { name: 'interactiveVideo', mod: interactiveVideo }
   ];
 
-  test('media frames and video wrappers enforce --att-radius-lg with overflow: hidden', () => {
+  test('media frames and video wrappers enforce --pmi-radius-lg with overflow: hidden', () => {
     const mediaComponents = [videoFrame, interactiveVideo, imageGallery, hotspots];
     for (const comp of mediaComponents) {
       const css = comp.generateCSS();
       expect(css, 'Media container should enforce overflow: hidden').toMatch(/overflow:\s*hidden/);
-      expect(css, 'Media container should use --att-radius-lg').toMatch(/--att-radius-lg/);
+      expect(css, 'Media container should use --pmi-radius-lg').toMatch(/--pmi-radius-lg/);
     }
   });
 
-  test('content cards, panels, and accordion rows use --att-radius-lg or token fallbacks', () => {
+  test('content cards, panels, and accordion rows use --pmi-radius-lg or token fallbacks', () => {
     const cardComponents = [
       accordion, tabs, flipCards, verticalTimeline, horizontalTimeline,
       processFlow, profileCards, infoGrid, pricingComparison, menuList,
@@ -558,25 +558,25 @@ describe('Prompt 5: Curvature and spacing compliance across all components', () 
     ];
     for (const comp of cardComponents) {
       const css = comp.generateCSS();
-      expect(css, 'Card/panel components should declare --att-radius-lg').toMatch(/--att-radius-lg/);
+      expect(css, 'Card/panel components should declare --pmi-radius-lg').toMatch(/--pmi-radius-lg/);
     }
   });
 
-  test('badges and pill chips use --att-radius-pill or --att-radius-sm', () => {
+  test('badges and pill chips use --pmi-radius-pill or --pmi-radius-sm', () => {
     const pillComponents = [
       accordion, tabs, flipCards, verticalTimeline, processFlow,
       pricingComparison, sortingActivity, interactiveVideo
     ];
     for (const comp of pillComponents) {
       const css = comp.generateCSS();
-      expect(css, 'Pill/badge components should declare --att-radius-pill or --att-radius-sm').toMatch(/(--att-radius-pill|--att-radius-sm)/);
+      expect(css, 'Pill/badge components should declare --pmi-radius-pill or --pmi-radius-sm').toMatch(/(--pmi-radius-pill|--pmi-radius-sm)/);
     }
   });
 
-  test('spacing scale tokens (--att-space-*) are used across all component generators', () => {
+  test('spacing scale tokens (--pmi-space-*) are used across all component generators', () => {
     for (const { name, mod } of allComponents) {
       const css = mod.generateCSS();
-      expect(css, `${name} should use --att-space-* scale tokens`).toMatch(/--att-space-[1-8]/);
+      expect(css, `${name} should use --pmi-space-* scale tokens`).toMatch(/--pmi-space-[1-8]/);
     }
   });
 });

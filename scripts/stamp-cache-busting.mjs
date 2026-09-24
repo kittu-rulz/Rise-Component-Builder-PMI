@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 /**
  * Cache-busting stamper for the GitHub Pages deployment.
  *
@@ -55,7 +54,7 @@ const versionPath = join(root, 'js', 'version.js');
 // 20260913.1925 across nine days and two edits, meaning returning visitors were served
 // new HTML against stale cached CSS. If you add a <link> to index.html, add it here too.
 const ROOT_ASSETS = [
-  'design/att-tokens.css',
+  'design/pmi-tokens.css',
   'design/post-publish.css',
   'design/dashboard.css',
   'design/landing.css',

@@ -139,10 +139,10 @@ describe('Responsive Accordion reference integration', () => {
   test('accordion CSS defines AT&T cyan active indicators, 44px min touch targets, and focus-visible', () => {
     const html = compileComponent('accordion');
     expect(html).toContain('.accordion-item.active {');
-    expect(html).toContain('border-left: 4px solid var(--att-blue');
+    expect(html).toContain('border-left: 4px solid var(--pmi-blue');
     expect(html).toContain('min-height: 44px');
     expect(html).toContain('.accordion-trigger:focus-visible');
-    expect(html).toContain('outline: 3px solid var(--att-cobalt');
+    expect(html).toContain('outline: 3px solid var(--pmi-cobalt');
     expect(html).toContain('@media (prefers-reduced-motion: reduce)');
   });
 
@@ -158,8 +158,8 @@ describe('CSS scoping and token isolation', () => {
   test('token block is dual-scoped to :root and .rise-block-wrapper', () => {
     const html = compileComponent('accordion');
     expect(html).toContain(':root, .rise-block-wrapper {');
-    expect(html).toContain('--att-blue: #009FDB;');
-    expect(html).toContain('--att-cobalt: #00388F;');
+    expect(html).toContain('--pmi-blue: #009FDB;');
+    expect(html).toContain('--pmi-cobalt: #00388F;');
     expect(html).toContain('--primary:');
     expect(html).toContain('--accent:');
   });
@@ -168,7 +168,7 @@ describe('CSS scoping and token isolation', () => {
     const html = compileComponent('accordion');
     const fragment = generateHtmlFragment(html);
     expect(fragment).toContain(':root, .rise-block-wrapper {');
-    expect(fragment).toContain('--att-blue: #009FDB;');
+    expect(fragment).toContain('--pmi-blue: #009FDB;');
     expect(fragment).toContain('class="rise-block-wrapper');
   });
 

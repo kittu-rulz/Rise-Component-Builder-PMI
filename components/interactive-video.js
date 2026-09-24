@@ -1,7 +1,7 @@
 import { getEditorSchema } from '../js/editor-schemas.js';
 import { escapeAttribute, escapeHTML, sanitizeRichText, sanitizeURL, serializeForInlineScript } from '../js/utilities.js';
 import { combineValidationResults } from '../js/validation-utils.js';
-import { getAttIconSvg } from '../js/att-icons.js';
+import { getPmiIconSvg } from '../js/pmi-icons.js';
 
 /**
  * Interactive Video Component Configuration (Phase 1 — foundation)
@@ -82,8 +82,8 @@ export function formatTimestamp(seconds) {
 }
 
 const markerTypeIcons = {
-  information: getAttIconSvg('information-circle-filled', { width: 14, height: 14, ariaHidden: true }),
-  multipleChoice: getAttIconSvg('check-circle-filled', { width: 14, height: 14, ariaHidden: true })
+  information: getPmiIconSvg('information-circle-filled', { width: 14, height: 14, ariaHidden: true }),
+  multipleChoice: getPmiIconSvg('check-circle-filled', { width: 14, height: 14, ariaHidden: true })
 };
 
 function renderMarkerListItem(item, originalIndex) {
@@ -186,19 +186,19 @@ export function generateCSS() {
     .iv-block {
       display: flex;
       flex-direction: column;
-      gap: var(--att-space-4, 16px);
+      gap: var(--pmi-space-4, 16px);
     }
     .iv-title {
-      font-size: var(--att-fs-h2, 1.5rem);
-      font-weight: var(--att-fw-bold, 700);
-      line-height: var(--att-lh-heading, 1.25);
+      font-size: var(--pmi-fs-h2, 1.5rem);
+      font-weight: var(--pmi-fw-bold, 700);
+      line-height: var(--pmi-lh-heading, 1.25);
       color: var(--text-main);
       text-wrap: pretty;
       margin: 0;
     }
     .iv-introduction {
-      font-size: var(--att-fs-body, 1rem);
-      line-height: var(--att-lh-body, 1.5);
+      font-size: var(--pmi-fs-body, 1rem);
+      line-height: var(--pmi-lh-body, 1.5);
       color: var(--text-muted);
       max-width: 70ch;
     }
@@ -206,8 +206,8 @@ export function generateCSS() {
       position: relative;
       width: 100%;
       aspect-ratio: 16 / 9;
-      background-color: var(--att-black, #000000);
-      border-radius: var(--att-radius-lg, 20px);
+      background-color: var(--pmi-black, #000000);
+      border-radius: var(--pmi-radius-lg, 20px);
       overflow: hidden;
     }
     .iv-video {
@@ -226,23 +226,23 @@ export function generateCSS() {
          invented dark-gray hex, matching the hotspot tooltip's same pattern. */
       color: var(--bg-card);
       background-color: var(--text-main);
-      font-size: var(--att-fs-body-sm, 0.875rem);
-      line-height: var(--att-lh-body, 1.5);
+      font-size: var(--pmi-fs-body-sm, 0.875rem);
+      line-height: var(--pmi-lh-body, 1.5);
     }
     .iv-checkpoint-ribbon {
       display: flex;
       align-items: center;
-      gap: var(--att-space-3, 10px);
-      padding: var(--att-space-3, 12px) var(--att-space-4, 16px);
+      gap: var(--pmi-space-3, 10px);
+      padding: var(--pmi-space-3, 12px) var(--pmi-space-4, 16px);
       background-color: var(--bg-card);
       border: var(--border-style);
-      border-radius: var(--att-radius-md, 12px);
+      border-radius: var(--pmi-radius-md, 12px);
       box-shadow: var(--shadow-style);
       overflow-x: auto;
     }
     .iv-ribbon-label {
-      font-size: var(--att-fs-eyebrow, 0.75rem);
-      font-weight: var(--att-fw-bold, 700);
+      font-size: var(--pmi-fs-eyebrow, 0.75rem);
+      font-weight: var(--pmi-fw-bold, 700);
       text-transform: uppercase;
       letter-spacing: 0.5px;
       color: var(--text-muted);
@@ -251,7 +251,7 @@ export function generateCSS() {
     .iv-ribbon-chips {
       display: flex;
       align-items: center;
-      gap: var(--att-space-2, 8px);
+      gap: var(--pmi-space-2, 8px);
       flex-wrap: wrap;
     }
     .iv-checkpoint-chip {
@@ -259,13 +259,13 @@ export function generateCSS() {
       align-items: center;
       gap: 6px;
       padding: 6px 12px;
-      border-radius: var(--att-radius-pill, 999px);
+      border-radius: var(--pmi-radius-pill, 999px);
       border: 1px solid var(--border-color);
       background-color: var(--bg-body);
       color: var(--text-main);
-      font-family: var(--att-font-sans, sans-serif);
-      font-size: var(--att-fs-body-sm, 0.875rem);
-      font-weight: var(--att-fw-semibold, 600);
+      font-family: var(--pmi-font-sans, sans-serif);
+      font-size: var(--pmi-fs-body-sm, 0.875rem);
+      font-weight: var(--pmi-fw-semibold, 600);
       cursor: pointer;
       min-height: 36px;
       transition: all 180ms ease;
@@ -275,7 +275,7 @@ export function generateCSS() {
       background-color: var(--bg-card);
     }
     .iv-checkpoint-chip:focus-visible {
-      outline: 3px solid var(--att-cobalt, var(--primary));
+      outline: 3px solid var(--pmi-cobalt, var(--primary));
       outline-offset: 2px;
     }
     .iv-checkpoint-chip.iv-chip-active {
@@ -285,12 +285,12 @@ export function generateCSS() {
     }
     .iv-chip-time {
       font-variant-numeric: tabular-nums;
-      font-weight: var(--att-fw-bold, 700);
+      font-weight: var(--pmi-fw-bold, 700);
       color: var(--text-main);
     }
     .iv-chip-type {
-      font-size: var(--att-fs-eyebrow, 0.75rem);
-      font-weight: var(--att-fw-bold, 700);
+      font-size: var(--pmi-fs-eyebrow, 0.75rem);
+      font-weight: var(--pmi-fw-bold, 700);
       text-transform: uppercase;
       padding: 1px 6px;
       border-radius: 4px;
@@ -320,23 +320,23 @@ export function generateCSS() {
     .iv-interaction-panel {
       background-color: var(--bg-card);
       border: var(--border-style);
-      border-radius: var(--att-radius-lg, var(--border-radius, 20px));
+      border-radius: var(--pmi-radius-lg, var(--border-radius, 20px));
       box-shadow: var(--shadow-style);
-      padding: var(--att-space-5, 20px);
+      padding: var(--pmi-space-5, 20px);
       display: flex;
       flex-direction: column;
-      gap: var(--att-space-3, 12px);
+      gap: var(--pmi-space-3, 12px);
     }
     .iv-interaction-panel:focus-visible {
-      outline: 3px solid var(--att-cobalt, var(--primary));
+      outline: 3px solid var(--pmi-cobalt, var(--primary));
       outline-offset: 2px;
     }
     .iv-interaction-panel[hidden] {
       display: none;
     }
     .iv-panel-type-label {
-      font-size: var(--att-fs-eyebrow, 0.75rem);
-      font-weight: var(--att-fw-bold, 700);
+      font-size: var(--pmi-fs-eyebrow, 0.75rem);
+      font-weight: var(--pmi-fw-bold, 700);
       text-transform: uppercase;
       letter-spacing: 0.5px;
       /* --text-muted (matching .iv-marker-nav-title/.iv-marker-type-label below), not
@@ -347,16 +347,16 @@ export function generateCSS() {
       color: var(--text-muted);
     }
     .iv-panel-title {
-      font-size: var(--att-fs-h4, 1.125rem);
-      font-weight: var(--att-fw-bold, 700);
-      line-height: var(--att-lh-heading, 1.25);
+      font-size: var(--pmi-fs-h4, 1.125rem);
+      font-weight: var(--pmi-fw-bold, 700);
+      line-height: var(--pmi-lh-heading, 1.25);
       color: var(--text-main);
       text-wrap: pretty;
       margin: 0;
     }
     .iv-panel-body {
-      font-size: var(--att-fs-body, 1rem);
-      line-height: var(--att-lh-body, 1.5);
+      font-size: var(--pmi-fs-body, 1rem);
+      line-height: var(--pmi-lh-body, 1.5);
       color: var(--text-muted);
       max-width: 70ch;
     }
@@ -364,12 +364,12 @@ export function generateCSS() {
       align-self: flex-start;
       margin-top: 4px;
       padding: 10px 24px;
-      border-radius: var(--button-radius, var(--att-radius-pill, 999px));
+      border-radius: var(--button-radius, var(--pmi-radius-pill, 999px));
       border: none;
       background-color: var(--primary);
       color: var(--on-primary);
-      font-size: var(--att-fs-body, 1rem);
-      font-weight: var(--att-fw-bold, 700);
+      font-size: var(--pmi-fs-body, 1rem);
+      font-weight: var(--pmi-fw-bold, 700);
       cursor: pointer;
       min-height: 44px;
       display: inline-flex;
@@ -382,27 +382,27 @@ export function generateCSS() {
       background-color: var(--primary-hover);
     }
     .iv-panel-question {
-      font-size: var(--att-fs-body, 1rem);
-      line-height: var(--att-lh-body, 1.5);
+      font-size: var(--pmi-fs-body, 1rem);
+      line-height: var(--pmi-lh-body, 1.5);
       color: var(--text-main);
       max-width: 70ch;
     }
     .iv-mc-options {
       display: flex;
       flex-direction: column;
-      gap: var(--att-space-2, 8px);
+      gap: var(--pmi-space-2, 8px);
     }
     .iv-mc-option {
       background-color: var(--bg-body);
       border: var(--border-style);
-      border-radius: var(--att-radius-md, 12px);
+      border-radius: var(--pmi-radius-md, 12px);
       padding: 10px 16px;
       display: flex;
       align-items: center;
-      gap: var(--att-space-2, 10px);
+      gap: var(--pmi-space-2, 10px);
       cursor: pointer;
       transition: all 0.2s ease;
-      font-size: var(--att-fs-body, 1rem);
+      font-size: var(--pmi-fs-body, 1rem);
       min-height: 44px;
       box-sizing: border-box;
     }
@@ -448,8 +448,8 @@ export function generateCSS() {
       max-width: 70ch;
     }
     .iv-mc-correct-flag {
-      font-size: var(--att-fs-body-sm, 0.875rem);
-      font-weight: var(--att-fw-bold, 700);
+      font-size: var(--pmi-fs-body-sm, 0.875rem);
+      font-weight: var(--pmi-fw-bold, 700);
       color: var(--success);
       flex-shrink: 0;
     }
@@ -457,12 +457,12 @@ export function generateCSS() {
       align-self: flex-start;
       margin-top: 4px;
       padding: 10px 24px;
-      border-radius: var(--button-radius, var(--att-radius-pill, 999px));
+      border-radius: var(--button-radius, var(--pmi-radius-pill, 999px));
       border: none;
       background-color: var(--primary);
       color: var(--on-primary);
-      font-size: var(--att-fs-body, 1rem);
-      font-weight: var(--att-fw-bold, 700);
+      font-size: var(--pmi-fs-body, 1rem);
+      font-weight: var(--pmi-fw-bold, 700);
       cursor: pointer;
       min-height: 44px;
       display: inline-flex;
@@ -480,18 +480,18 @@ export function generateCSS() {
     }
     .iv-mc-hint {
       padding: 10px 14px;
-      border-radius: var(--att-radius-md, 12px);
+      border-radius: var(--pmi-radius-md, 12px);
       border: 1px dashed var(--border-color);
-      font-size: var(--att-fs-body-sm, 0.875rem);
-      line-height: var(--att-lh-body, 1.5);
+      font-size: var(--pmi-fs-body-sm, 0.875rem);
+      line-height: var(--pmi-lh-body, 1.5);
       color: var(--text-main);
       max-width: 70ch;
     }
     .iv-mc-feedback {
-      padding: var(--att-space-4, 16px);
-      border-radius: var(--att-radius-md, 12px);
-      font-size: var(--att-fs-body, 1rem);
-      line-height: var(--att-lh-body, 1.5);
+      padding: var(--pmi-space-4, 16px);
+      border-radius: var(--pmi-radius-md, 12px);
+      font-size: var(--pmi-fs-body, 1rem);
+      line-height: var(--pmi-lh-body, 1.5);
       max-width: 70ch;
     }
     .iv-mc-feedback.iv-correct {
@@ -507,13 +507,13 @@ export function generateCSS() {
     .iv-marker-nav {
       background-color: var(--bg-card);
       border: var(--border-style);
-      border-radius: var(--att-radius-lg, var(--border-radius, 20px));
+      border-radius: var(--pmi-radius-lg, var(--border-radius, 20px));
       box-shadow: var(--shadow-style);
-      padding: var(--att-space-4, 16px) var(--att-space-5, 20px);
+      padding: var(--pmi-space-4, 16px) var(--pmi-space-5, 20px);
     }
     .iv-marker-nav-title {
-      font-size: var(--att-fs-eyebrow, 0.75rem);
-      font-weight: var(--att-fw-bold, 700);
+      font-size: var(--pmi-fs-eyebrow, 0.75rem);
+      font-weight: var(--pmi-fw-bold, 700);
       text-transform: uppercase;
       letter-spacing: 0.5px;
       color: var(--text-muted);
@@ -526,9 +526,9 @@ export function generateCSS() {
       gap: 8px;
     }
     .iv-marker-item {
-      border-radius: var(--att-radius-md, 12px);
+      border-radius: var(--pmi-radius-md, 12px);
       background-color: var(--bg-body);
-      font-size: var(--att-fs-body-sm, 0.875rem);
+      font-size: var(--pmi-fs-body-sm, 0.875rem);
       transition: box-shadow 0.2s ease;
     }
     .iv-marker-item.iv-marker-item-active {
@@ -539,7 +539,7 @@ export function generateCSS() {
     .iv-marker-item-btn {
       display: flex;
       align-items: center;
-      gap: var(--att-space-2, 10px);
+      gap: var(--pmi-space-2, 10px);
       width: 100%;
       padding: 8px 10px;
       border: none;
@@ -548,7 +548,7 @@ export function generateCSS() {
       color: inherit;
       text-align: left;
       cursor: pointer;
-      border-radius: var(--att-radius-md, 12px);
+      border-radius: var(--pmi-radius-md, 12px);
       min-height: 44px;
       box-sizing: border-box;
     }
@@ -558,12 +558,12 @@ export function generateCSS() {
       background-color: var(--bg-body);
     }
     .iv-marker-state-badge {
-      font-size: var(--att-fs-eyebrow, 0.75rem);
-      font-weight: var(--att-fw-bold, 700);
+      font-size: var(--pmi-fs-eyebrow, 0.75rem);
+      font-weight: var(--pmi-fw-bold, 700);
       text-transform: uppercase;
       letter-spacing: 0.4px;
       padding: 2px 10px;
-      border-radius: var(--att-radius-pill, 999px);
+      border-radius: var(--pmi-radius-pill, 999px);
       flex-shrink: 0;
     }
     .iv-marker-state-badge.iv-state-visited {
@@ -585,20 +585,20 @@ export function generateCSS() {
       color: var(--danger);
     }
     .iv-progress-summary {
-      font-size: var(--att-fs-body-sm, 0.875rem);
-      font-weight: var(--att-fw-medium, 500);
+      font-size: var(--pmi-fs-body-sm, 0.875rem);
+      font-weight: var(--pmi-fw-medium, 500);
       color: var(--text-muted);
       margin-bottom: 10px;
     }
     .iv-restart-btn {
       align-self: flex-start;
       padding: 8px 20px;
-      border-radius: var(--button-radius, var(--att-radius-pill, 999px));
+      border-radius: var(--button-radius, var(--pmi-radius-pill, 999px));
       border: var(--border-style);
       background-color: transparent;
       color: var(--text-main);
-      font-size: var(--att-fs-body-sm, 0.875rem);
-      font-weight: var(--att-fw-medium, 500);
+      font-size: var(--pmi-fs-body-sm, 0.875rem);
+      font-weight: var(--pmi-fw-medium, 500);
       cursor: pointer;
       min-height: 44px;
       display: inline-flex;
@@ -615,16 +615,16 @@ export function generateCSS() {
       flex-shrink: 0;
     }
     .iv-marker-time {
-      font-weight: var(--att-fw-bold, 700);
+      font-weight: var(--pmi-fw-bold, 700);
       font-variant-numeric: tabular-nums;
       color: var(--text-main);
       flex-shrink: 0;
       min-width: 44px;
-      font-size: var(--att-fs-body-sm, 0.875rem);
+      font-size: var(--pmi-fs-body-sm, 0.875rem);
     }
     .iv-marker-type-label {
-      font-size: var(--att-fs-eyebrow, 0.75rem);
-      font-weight: var(--att-fw-bold, 700);
+      font-size: var(--pmi-fs-eyebrow, 0.75rem);
+      font-weight: var(--pmi-fw-bold, 700);
       text-transform: uppercase;
       letter-spacing: 0.4px;
       color: var(--text-muted);
@@ -636,15 +636,15 @@ export function generateCSS() {
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
-      font-size: var(--att-fs-body-sm, 0.875rem);
+      font-size: var(--pmi-fs-body-sm, 0.875rem);
     }
     .iv-marker-required-badge {
-      font-size: var(--att-fs-eyebrow, 0.75rem);
-      font-weight: var(--att-fw-bold, 700);
+      font-size: var(--pmi-fs-eyebrow, 0.75rem);
+      font-weight: var(--pmi-fw-bold, 700);
       text-transform: uppercase;
       letter-spacing: 0.4px;
       padding: 2px 10px;
-      border-radius: var(--att-radius-pill, 999px);
+      border-radius: var(--pmi-radius-pill, 999px);
       background-color: var(--border-color);
       color: var(--text-main);
       flex-shrink: 0;
@@ -652,14 +652,14 @@ export function generateCSS() {
     .iv-transcript {
       background-color: var(--bg-card);
       border: var(--border-style);
-      border-radius: var(--att-radius-lg, var(--border-radius, 20px));
+      border-radius: var(--pmi-radius-lg, var(--border-radius, 20px));
       box-shadow: var(--shadow-style);
-      padding: var(--att-space-4, 16px) var(--att-space-5, 20px);
+      padding: var(--pmi-space-4, 16px) var(--pmi-space-5, 20px);
     }
     .iv-transcript summary {
       cursor: pointer;
-      font-size: var(--att-fs-body-sm, 0.875rem);
-      font-weight: var(--att-fw-bold, 700);
+      font-size: var(--pmi-fs-body-sm, 0.875rem);
+      font-weight: var(--pmi-fw-bold, 700);
       color: var(--text-main);
       min-height: 44px;
       display: flex;
@@ -667,8 +667,8 @@ export function generateCSS() {
     }
     .iv-transcript-body {
       margin-top: 10px;
-      font-size: var(--att-fs-body, 1rem);
-      line-height: var(--att-lh-body, 1.5);
+      font-size: var(--pmi-fs-body, 1rem);
+      line-height: var(--pmi-lh-body, 1.5);
       color: var(--text-muted);
       max-width: 70ch;
     }

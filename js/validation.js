@@ -80,7 +80,7 @@ const RULE_TITLES = Object.freeze({
   'general-heading-level-outline': "Heading level may conflict with Rise's own outline",
   'general-non-descriptive-link-text': 'Non-descriptive link text',
   'general-external-url-destination': 'Links to an external destination',
-  'general-clipping-risk': 'May be clipped in the Iframe Snippet format',
+  'general-clipping-risk': 'May be clipped in a fixed-height Embed frame',
   'general-clipping-risk-unmeasured': 'Height could not be measured automatically',
   'general-mobile-overflow': 'May overflow on mobile width',
   'general-mobile-overflow-unmeasured': 'Mobile width could not be measured automatically',
@@ -593,20 +593,23 @@ async function checkBrokenMediaReferences(schema, config, mediaStore) {
 // (Requirement 5).
 // ---------------------------------------------------------------------------
 
-// Matches js/export.js#buildExportPayload's hardcoded Iframe Snippet height exactly — if
-// that ever changes, this must change with it (not independently re-guessed).
-const IFRAME_EXPORT_HEIGHT_PX = 500;
+// The Web Package ZIP is hosted by URL and placed in a Rise Embed block, which is a
+// fixed-height frame the author sizes. 500px is a typical frame height (and the height the
+// retired Iframe Snippet export used) — a rough bar, not a property of any current export.
+// "Copy for Rise" (the HTML fragment) has no frame and expands with its content, so this
+// rule never applies to it.
+const EMBED_FRAME_TYPICAL_HEIGHT_PX = 500;
 // Small buffer so a few px of sub-pixel/font-rendering rounding doesn't false-positive.
 const CLIPPING_RISK_MARGIN_PX = 20;
 
 function checkClippingRisk(measurement) {
   if (!measurement || measurement.desktopContentHeight == null) {
     return [issue('general-clipping-risk-unmeasured', SEVERITY.RECOMMENDATION, CATEGORY.GENERAL,
-      `This component's rendered height couldn't be automatically measured. Manually check, in Rise's own preview, that the Iframe Snippet format (a fixed ${IFRAME_EXPORT_HEIGHT_PX}px height) doesn't clip or force scrolling — required regardless of what Preflight reports.`)];
+      `This component's rendered height couldn't be automatically measured. If you use the Web Package ZIP in a Rise Embed block (a fixed-height frame), manually check in Rise's own preview that the block isn't clipped or forced to scroll. Applies to the Web Package ZIP only; "Copy for Rise" expands with its content.`)];
   }
-  if (measurement.desktopContentHeight <= IFRAME_EXPORT_HEIGHT_PX + CLIPPING_RISK_MARGIN_PX) return [];
+  if (measurement.desktopContentHeight <= EMBED_FRAME_TYPICAL_HEIGHT_PX + CLIPPING_RISK_MARGIN_PX) return [];
   return [issue('general-clipping-risk', SEVERITY.WARNING, CATEGORY.GENERAL,
-    `Heuristic: this component rendered about ${Math.round(measurement.desktopContentHeight)}px tall — taller than the Iframe Snippet export's fixed ${IFRAME_EXPORT_HEIGHT_PX}px height, so it may get clipped or force scrolling inside Rise's code block. Measured in this Builder's own preview, not inside Rise itself — confirm in Rise's own preview before publishing. "Copy for Rise" (the HTML fragment format) expands with its content instead of using a fixed height, and may be a better fit.`)];
+    `Heuristic: with every collapsed section opened, this component is about ${Math.round(measurement.desktopContentHeight)}px tall at desktop width — taller than a typical ${EMBED_FRAME_TYPICAL_HEIGHT_PX}px Embed frame. This matters only for the Web Package ZIP, which Rise shows in a fixed-height Embed block: set that block's height to at least ${Math.ceil(measurement.desktopContentHeight / 10) * 10}px or the content will be clipped or scroll inside the frame. "Copy for Rise" (the HTML fragment) expands with its content and is not affected. Measured in this Builder's own preview, not inside Rise itself — confirm in Rise's own preview before publishing.`)];
 }
 
 // Matches js/device-preview.js's 'mobile' DEVICE_MODES width (375px) so this rule and the
@@ -622,8 +625,11 @@ function checkMobileOverflow(measurement) {
       `This component's width at ${MOBILE_OVERFLOW_WIDTH_PX}px (mobile) couldn't be automatically measured. Manually check the Mobile preview width in this Builder, and Rise's own mobile preview, for horizontal scrolling or clipped content.`)];
   }
   if (measurement.mobileOverflowPx <= MOBILE_OVERFLOW_TOLERANCE_PX) return [];
+  const culprit = measurement.mobileOffender
+    ? ` The widest element is <${measurement.mobileOffender.tag}${measurement.mobileOffender.cls ? `.${measurement.mobileOffender.cls}` : ''}>, about ${measurement.mobileOffender.overflowPx}px past the edge.`
+    : '';
   return [issue('general-mobile-overflow', SEVERITY.WARNING, CATEGORY.GENERAL,
-    `Heuristic: this component overflows its container by about ${Math.round(measurement.mobileOverflowPx)}px at ${MOBILE_OVERFLOW_WIDTH_PX}px width (mobile), which can force horizontal scrolling on a phone. Measured in this Builder's own preview — confirm in Rise's own mobile preview before publishing.`)];
+    `Heuristic: this component overflows its container by about ${Math.round(measurement.mobileOverflowPx)}px at ${MOBILE_OVERFLOW_WIDTH_PX}px width (mobile), which can force horizontal scrolling on a phone. Every collapsed section was opened for this measurement.${culprit} Measured in this Builder's own preview — confirm in Rise's own mobile preview before publishing.`)];
 }
 
 // ---------------------------------------------------------------------------
@@ -1224,20 +1230,20 @@ function checkSortingActivityCategories(config) {
 // AT&T Brand Compliance Rules (Prompt 8)
 // ---------------------------------------------------------------------------
 
-// Official AT&T token hex palette (from design/att-tokens.css and themes.js)
-const ATT_BRAND_HEX_VALUES = new Set([
-  '#009FDB', // --att-blue (Primary AT&T Blue)
-  '#00388F', // --att-cobalt (CTA / Secondary Cobalt)
-  '#49EEDC', // --att-mint (Secondary Mint)
-  '#91DC00', // --att-lime (Secondary Lime accent)
-  '#F3F4F5', // --att-grey-1 (Sunken surface neutral)
-  '#DCDFE3', // --att-grey-2 (Border neutral)
-  '#BDC2C7', // --att-grey-3 (Border strong neutral)
-  '#000000', // --att-black (Text neutral)
-  '#FFFFFF', // --att-white (Surface neutral)
-  '#0079B1', // --att-blue-dark (Gradient stop)
-  '#00C9FF', // --att-blue-light (Gradient stop)
-  '#002A6B', // --att-cta-bg-hover (Cobalt hover state)
+// Official AT&T token hex palette (from design/pmi-tokens.css and themes.js)
+const PMI_BRAND_HEX_VALUES = new Set([
+  '#009FDB', // --pmi-blue (Primary AT&T Blue)
+  '#00388F', // --pmi-cobalt (CTA / Secondary Cobalt)
+  '#49EEDC', // --pmi-mint (Secondary Mint)
+  '#91DC00', // --pmi-lime (Secondary Lime accent)
+  '#F3F4F5', // --pmi-grey-1 (Sunken surface neutral)
+  '#DCDFE3', // --pmi-grey-2 (Border neutral)
+  '#BDC2C7', // --pmi-grey-3 (Border strong neutral)
+  '#000000', // --pmi-black (Text neutral)
+  '#FFFFFF', // --pmi-white (Surface neutral)
+  '#0079B1', // --pmi-blue-dark (Gradient stop)
+  '#00C9FF', // --pmi-blue-light (Gradient stop)
+  '#002A6B', // --pmi-cta-bg-hover (Cobalt hover state)
   '#4B5563'  // Muted text high-contrast neutral
 ]);
 
@@ -1271,7 +1277,7 @@ function checkBrandColorLiterals(componentOverrides = {}, config = {}) {
     const val = componentOverrides?.[key] ?? config?.[key];
     if (val && typeof val === 'string' && val.startsWith('#')) {
       const hex = normalizeBrandHex(val);
-      if (!ATT_BRAND_HEX_VALUES.has(hex)) {
+      if (!PMI_BRAND_HEX_VALUES.has(hex)) {
         issues.push(issue('brand-color-literal', SEVERITY.BLOCKING, CATEGORY.BRAND,
           `${label} ("${val}") is not an approved AT&T brand color token. Use AT&T Blue (#009FDB), Cobalt (#00388F), Neutrals, or standard design tokens.`,
           { fieldId: key }));
@@ -1288,7 +1294,7 @@ function checkBrandFontFamily(componentOverrides = {}, config = {}) {
   const fontVal = componentOverrides?.fontFamily ?? config?.fontFamily ?? config?.headingFontFamily;
   if (fontVal && typeof fontVal === 'string') {
     const lower = fontVal.toLowerCase();
-    const isApproved = lower.includes('att aleck') || lower.includes('var(--att-font') || lower.includes('var(--font-family');
+    const isApproved = lower.includes('att aleck') || lower.includes('var(--pmi-font') || lower.includes('var(--font-family');
     if (!isApproved) {
       issues.push(issue('brand-font-family', SEVERITY.BLOCKING, CATEGORY.BRAND,
         `Font family "${fontVal}" is not AT&T Aleck. All learner-facing components must use the AT&T Aleck font family.`,

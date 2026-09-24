@@ -3,7 +3,7 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { describe, expect, test } from 'vitest';
 
-import { ATT_TOKENS_CSS } from '../../js/att-tokens.js';
+import { PMI_TOKENS_CSS } from '../../js/pmi-tokens.js';
 import { compileExportFixture } from '../fixtures/export-fixture-definitions.mjs';
 
 const repoRoot = join(dirname(fileURLToPath(import.meta.url)), '..', '..');
@@ -20,13 +20,13 @@ function customProps(css) {
 }
 
 describe('AT&T token layer', () => {
-  test('js/att-tokens.js is a verbatim copy of design/att-tokens.css :root declarations', async () => {
-    const canonical = await readFile(join(repoRoot, 'design', 'att-tokens.css'), 'utf8');
+  test('js/pmi-tokens.js is a verbatim copy of design/pmi-tokens.css :root declarations', async () => {
+    const canonical = await readFile(join(repoRoot, 'design', 'pmi-tokens.css'), 'utf8');
     const rootBody = /:root\s*{([\s\S]*)}/.exec(canonical);
-    expect(rootBody, 'design/att-tokens.css must have a :root { ... } block').not.toBeNull();
+    expect(rootBody, 'design/pmi-tokens.css must have a :root { ... } block').not.toBeNull();
 
     const fromCss = customProps(rootBody[1]);
-    const fromJs = customProps(ATT_TOKENS_CSS);
+    const fromJs = customProps(PMI_TOKENS_CSS);
 
     expect(fromJs.size).toBeGreaterThan(40);
     // Same names, same values, in either direction.
@@ -34,15 +34,15 @@ describe('AT&T token layer', () => {
   });
 
   test('the canonical file defines the tokens the standards call out by name', async () => {
-    const css = await readFile(join(repoRoot, 'design', 'att-tokens.css'), 'utf8');
+    const css = await readFile(join(repoRoot, 'design', 'pmi-tokens.css'), 'utf8');
     const props = customProps(css);
     for (const [name, value] of [
-      ['--att-blue', '#009FDB'],
-      ['--att-cobalt', '#00388F'],
-      ['--att-lime', '#91DC00'],
-      ['--att-fs-body', '1rem'],
-      ['--att-radius-lg', '20px'],
-      ['--att-radius-xl', '32px']
+      ['--pmi-blue', '#009FDB'],
+      ['--pmi-cobalt', '#00388F'],
+      ['--pmi-lime', '#91DC00'],
+      ['--pmi-fs-body', '1rem'],
+      ['--pmi-radius-lg', '20px'],
+      ['--pmi-radius-xl', '32px']
     ]) {
       expect(props.get(name)).toBe(value);
     }
@@ -53,12 +53,12 @@ describe('every compiled export carries the token layer and its fonts inline', (
   const samples = ['accordion', 'multiple-choice', 'audio-player', 'video-frame'];
 
   for (const id of samples) {
-    test(`${id}: :root has the --att-* block`, () => {
+    test(`${id}: :root has the --pmi-* block`, () => {
       const html = compileExportFixture(id);
-      const attProps = customProps(html);
-      expect(attProps.get('--att-blue')).toBe('#009FDB');
-      expect(attProps.get('--att-cobalt')).toBe('#00388F');
-      expect(attProps.get('--att-radius-xl')).toBe('32px');
+      const pmiProps = customProps(html);
+      expect(pmiProps.get('--pmi-blue')).toBe('#009FDB');
+      expect(pmiProps.get('--pmi-cobalt')).toBe('#00388F');
+      expect(pmiProps.get('--pmi-radius-xl')).toBe('32px');
       // The theme layer is still present and still the active one.
       expect(html).toContain('--primary:');
       expect(html).toContain('--accent:');

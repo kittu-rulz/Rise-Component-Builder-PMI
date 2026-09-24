@@ -1,7 +1,7 @@
 import { getEditorSchema } from '../js/editor-schemas.js';
 import { escapeAttribute, escapeHTML } from '../js/utilities.js';
 import { validateHotspotCoordinates, combineValidationResults } from '../js/validation-utils.js';
-import { getAttIconSvg } from '../js/att-icons.js';
+import { getPmiIconSvg } from '../js/pmi-icons.js';
 
 /**
  * Hotspots Component Configuration
@@ -103,16 +103,16 @@ const MARKER_ICONS = {
 
 function getMarkerIconSvg(iconName) {
   const resolved = MARKER_ICONS[iconName] || iconName || 'information-circle-filled';
-  return getAttIconSvg(resolved, { width: 18, height: 18, ariaHidden: true });
+  return getPmiIconSvg(resolved, { width: 18, height: 18, ariaHidden: true });
 }
 
-const checkSmallIcon = getAttIconSvg('check', { width: 12, height: 12, ariaHidden: true });
+const checkSmallIcon = getPmiIconSvg('check', { width: 12, height: 12, ariaHidden: true });
 const zoomInIcon = '<svg viewBox="0 0 32 32" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M15 7h2v8h8v2h-8v8h-2v-8H7v-2h8z"/></svg>';
 const zoomOutIcon = '<svg viewBox="0 0 32 32" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M7 15h18v2H7z"/></svg>';
-const zoomResetIcon = getAttIconSvg('arrows-horizontal', { width: 16, height: 16, ariaHidden: true });
-const closeIcon = getAttIconSvg('close', { width: 18, height: 18, ariaHidden: true });
-const discoveryIcon = getAttIconSvg('hotspot', { width: 18, height: 18, ariaHidden: true });
-const audioNarrationIcon = getAttIconSvg('volume-3', { width: 16, height: 16, ariaHidden: true });
+const zoomResetIcon = getPmiIconSvg('arrows-horizontal', { width: 16, height: 16, ariaHidden: true });
+const closeIcon = getPmiIconSvg('close', { width: 18, height: 18, ariaHidden: true });
+const discoveryIcon = getPmiIconSvg('hotspot', { width: 18, height: 18, ariaHidden: true });
+const audioNarrationIcon = getPmiIconSvg('volume-3', { width: 16, height: 16, ariaHidden: true });
 
 function getMarkerLabel(item, idx) {
   const type = item.markerType || 'number';
@@ -271,34 +271,34 @@ export function generateCSS() {
     .hotspots-container {
       background-color: var(--bg-card);
       border: var(--border-style);
-      border-radius: var(--att-radius-lg, var(--border-radius, 20px));
+      border-radius: var(--pmi-radius-lg, var(--border-radius, 20px));
       box-shadow: var(--shadow-style);
-      padding: var(--att-space-5, 20px);
+      padding: var(--pmi-space-5, 20px);
       position: relative;
       display: flex;
       flex-direction: column;
-      gap: var(--att-space-4, 16px);
-      font-family: var(--att-font-family, var(--font-family, "ATT Aleck Sans", -apple-system, BlinkMacSystemFont, sans-serif));
+      gap: var(--pmi-space-4, 16px);
+      font-family: var(--pmi-font-family, var(--font-family, "ATT Aleck Sans", -apple-system, BlinkMacSystemFont, sans-serif));
     }
 
     .hotspot-header {
       display: flex;
       flex-direction: column;
-      gap: var(--att-space-2, 8px);
+      gap: var(--pmi-space-2, 8px);
     }
 
     .hotspot-title {
-      font-size: var(--att-fs-h3, 1.375rem);
-      font-weight: var(--att-fw-bold, 700);
+      font-size: var(--pmi-fs-h3, 1.375rem);
+      font-weight: var(--pmi-fw-bold, 700);
       color: var(--text-main);
       margin: 0;
-      line-height: var(--att-lh-heading, 1.25);
+      line-height: var(--pmi-lh-heading, 1.25);
     }
 
     .hotspot-instructions {
-      font-size: var(--att-fs-body, 1rem);
+      font-size: var(--pmi-fs-body, 1rem);
       color: var(--text-muted);
-      line-height: var(--att-lh-body, 1.5);
+      line-height: var(--pmi-lh-body, 1.5);
     }
 
     .hotspot-instructions p { margin: 0; }
@@ -309,20 +309,20 @@ export function generateCSS() {
       align-items: center;
       justify-content: space-between;
       flex-wrap: wrap;
-      gap: var(--att-space-3, 12px);
-      padding-bottom: var(--att-space-2, 8px);
+      gap: var(--pmi-space-3, 12px);
+      padding-bottom: var(--pmi-space-2, 8px);
       border-bottom: 1px solid var(--border-color);
     }
 
     .hotspot-progress-hud {
       display: inline-flex;
       align-items: center;
-      gap: var(--att-space-3, 12px);
+      gap: var(--pmi-space-3, 12px);
       background-color: var(--bg-body);
       border: 1px solid var(--border-color);
-      border-radius: var(--att-radius-full, 9999px);
+      border-radius: var(--pmi-radius-full, 9999px);
       padding: 6px 14px;
-      font-size: var(--att-fs-body-sm, 0.875rem);
+      font-size: var(--pmi-fs-body-sm, 0.875rem);
     }
 
     .hotspot-progress-icon {
@@ -345,14 +345,14 @@ export function generateCSS() {
       width: 64px;
       height: 6px;
       background-color: var(--border-color);
-      border-radius: var(--att-radius-full, 9999px);
+      border-radius: var(--pmi-radius-full, 9999px);
       overflow: hidden;
     }
 
     .hotspot-progress-fill {
       height: 100%;
       background-color: var(--primary);
-      border-radius: var(--att-radius-full, 9999px);
+      border-radius: var(--pmi-radius-full, 9999px);
       transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
@@ -362,7 +362,7 @@ export function generateCSS() {
       align-items: center;
       background-color: var(--bg-body);
       border: 1px solid var(--border-color);
-      border-radius: var(--att-radius-md, 8px);
+      border-radius: var(--pmi-radius-md, 8px);
       padding: 2px;
       gap: 2px;
     }
@@ -373,7 +373,7 @@ export function generateCSS() {
       color: var(--text-main);
       width: 28px;
       height: 28px;
-      border-radius: var(--att-radius-sm, 4px);
+      border-radius: var(--pmi-radius-sm, 4px);
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -393,13 +393,13 @@ export function generateCSS() {
     }
 
     .hotspot-zoom-btn:focus-visible {
-      outline: 3px solid var(--att-color-cobalt, #00388F);
+      outline: 3px solid var(--pmi-color-cobalt, #00388F);
       outline-offset: 1px;
     }
 
     .hotspot-zoom-level {
-      font-size: var(--att-fs-caption, 0.75rem);
-      font-weight: var(--att-fw-semibold, 600);
+      font-size: var(--pmi-fs-caption, 0.75rem);
+      font-weight: var(--pmi-fw-semibold, 600);
       color: var(--text-muted);
       min-width: 42px;
       text-align: center;
@@ -410,7 +410,7 @@ export function generateCSS() {
     .hotspot-stage-wrapper {
       position: relative;
       width: 100%;
-      border-radius: var(--att-radius-lg, 16px);
+      border-radius: var(--pmi-radius-lg, 16px);
       background: var(--bg-body);
       border: 1px solid var(--border-color);
     }
@@ -422,7 +422,7 @@ export function generateCSS() {
       outline: 3px solid transparent;
       user-select: none;
       touch-action: pan-x pan-y;
-      border-radius: var(--att-radius-lg, 16px);
+      border-radius: var(--pmi-radius-lg, 16px);
     }
 
     .hotspot-viewport.is-zoomed {
@@ -483,10 +483,10 @@ export function generateCSS() {
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: var(--att-fs-body-sm, 0.875rem);
-      font-weight: var(--att-fw-bold, 700);
+      font-size: var(--pmi-fs-body-sm, 0.875rem);
+      font-weight: var(--pmi-fw-bold, 700);
       cursor: pointer;
-      box-shadow: var(--att-shadow-1, 0 4px 6px rgba(0,0,0,0.15));
+      box-shadow: var(--pmi-shadow-1, 0 4px 6px rgba(0,0,0,0.15));
       z-index: 1;
       padding: 0;
       transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.2s;
@@ -529,7 +529,7 @@ export function generateCSS() {
     }
 
     .hotspot-pin:focus-visible {
-      outline: 3px solid var(--att-color-cobalt, #00388F);
+      outline: 3px solid var(--pmi-color-cobalt, #00388F);
       outline-offset: 3px;
     }
 
@@ -554,7 +554,7 @@ export function generateCSS() {
       right: -3px;
       width: 15px;
       height: 15px;
-      background-color: var(--att-green, #91DC00);
+      background-color: var(--pmi-green, #91DC00);
       color: #000000;
       border: 1.5px solid var(--bg-card);
       border-radius: 50%;
@@ -580,9 +580,9 @@ export function generateCSS() {
       max-width: min(320px, 80vw);
       background-color: var(--text-main);
       color: var(--bg-card);
-      padding: var(--att-space-4, 16px);
-      border-radius: var(--att-radius-md, 12px);
-      box-shadow: var(--att-shadow-2, 0 12px 24px rgba(0, 0, 0, 0.3));
+      padding: var(--pmi-space-4, 16px);
+      border-radius: var(--pmi-radius-md, 12px);
+      box-shadow: var(--pmi-shadow-2, 0 12px 24px rgba(0, 0, 0, 0.3));
       display: none;
       z-index: 50;
       text-align: left;
@@ -653,7 +653,7 @@ export function generateCSS() {
     .hotspot-pin.active + .hotspot-tooltip {
       display: flex;
       flex-direction: column;
-      gap: var(--att-space-2, 8px);
+      gap: var(--pmi-space-2, 8px);
       animation: hotspotTooltipEntrance 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
 
@@ -675,24 +675,24 @@ export function generateCSS() {
     }
 
     .hotspot-callout-tag {
-      font-size: var(--att-fs-caption, 0.75rem);
-      font-weight: var(--att-fw-semibold, 600);
+      font-size: var(--pmi-fs-caption, 0.75rem);
+      font-weight: var(--pmi-fw-semibold, 600);
       text-transform: uppercase;
       letter-spacing: 0.5px;
-      color: var(--att-blue-300, #00C9FF);
+      color: var(--pmi-blue-300, #00C9FF);
     }
 
     .hotspot-callout-title {
-      font-size: var(--att-fs-body, 1rem);
-      font-weight: var(--att-fw-bold, 700);
-      line-height: var(--att-lh-heading, 1.25);
+      font-size: var(--pmi-fs-body, 1rem);
+      font-weight: var(--pmi-fw-bold, 700);
+      line-height: var(--pmi-lh-heading, 1.25);
       color: var(--bg-card);
       margin: 0;
     }
 
     .hotspot-callout-content {
-      font-size: var(--att-fs-body-sm, 0.875rem);
-      line-height: var(--att-lh-body, 1.5);
+      font-size: var(--pmi-fs-body-sm, 0.875rem);
+      line-height: var(--pmi-lh-body, 1.5);
       color: var(--bg-card);
     }
 
@@ -700,8 +700,8 @@ export function generateCSS() {
 
     /* Audio Narration Widget */
     .hotspot-audio-narration {
-      margin-top: var(--att-space-2, 8px);
-      padding-top: var(--att-space-2, 8px);
+      margin-top: var(--pmi-space-2, 8px);
+      padding-top: var(--pmi-space-2, 8px);
       border-top: 1px solid rgba(255, 255, 255, 0.2);
       display: flex;
       flex-direction: column;
@@ -709,38 +709,38 @@ export function generateCSS() {
     }
 
     .hotspot-audio-label {
-      font-size: var(--att-fs-caption, 0.75rem);
-      font-weight: var(--att-fw-semibold, 600);
+      font-size: var(--pmi-fs-caption, 0.75rem);
+      font-weight: var(--pmi-fw-semibold, 600);
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      color: var(--att-blue-300, #00C9FF);
+      color: var(--pmi-blue-300, #00C9FF);
     }
 
     .hotspot-audio-elem {
       width: 100%;
       height: 32px;
-      border-radius: var(--att-radius-sm, 6px);
+      border-radius: var(--pmi-radius-sm, 6px);
       outline: 3px solid transparent;
     }
 
     .hotspot-audio-transcript {
-      font-size: var(--att-fs-caption, 0.75rem);
+      font-size: var(--pmi-fs-caption, 0.75rem);
       color: var(--bg-card);
       margin-top: 4px;
     }
 
     .hotspot-audio-transcript summary {
       cursor: pointer;
-      font-weight: var(--att-fw-semibold, 600);
-      color: var(--att-blue-300, #00C9FF);
+      font-weight: var(--pmi-fw-semibold, 600);
+      color: var(--pmi-blue-300, #00C9FF);
     }
 
     .hotspot-audio-transcript .transcript-body {
       margin-top: 4px;
       padding: 6px;
       background: rgba(0, 0, 0, 0.2);
-      border-radius: var(--att-radius-sm, 4px);
+      border-radius: var(--pmi-radius-sm, 4px);
       line-height: 1.4;
     }
 
@@ -760,7 +760,7 @@ export function generateCSS() {
       transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
       display: flex;
       flex-direction: column;
-      padding: var(--att-space-5, 20px);
+      padding: var(--pmi-space-5, 20px);
       overflow-y: auto;
     }
 
@@ -773,25 +773,25 @@ export function generateCSS() {
       flex-direction: column;
       gap: 4px;
       position: relative;
-      padding-bottom: var(--att-space-3, 12px);
+      padding-bottom: var(--pmi-space-3, 12px);
       border-bottom: 1px solid var(--border-color);
     }
 
     .hotspot-drawer-badge {
-      font-size: var(--att-fs-caption, 0.75rem);
-      font-weight: var(--att-fw-bold, 700);
+      font-size: var(--pmi-fs-caption, 0.75rem);
+      font-weight: var(--pmi-fw-bold, 700);
       color: var(--primary);
       text-transform: uppercase;
       letter-spacing: 0.5px;
     }
 
     .hotspot-drawer-title {
-      font-size: var(--att-fs-h4, 1.125rem);
-      font-weight: var(--att-fw-bold, 700);
+      font-size: var(--pmi-fs-h4, 1.125rem);
+      font-weight: var(--pmi-fw-bold, 700);
       color: var(--text-main);
       margin: 0;
       padding-right: 32px;
-      line-height: var(--att-lh-heading, 1.25);
+      line-height: var(--pmi-lh-heading, 1.25);
     }
 
     .hotspot-drawer-close {
@@ -803,7 +803,7 @@ export function generateCSS() {
       color: var(--text-muted);
       width: 32px;
       height: 32px;
-      border-radius: var(--att-radius-sm, 6px);
+      border-radius: var(--pmi-radius-sm, 6px);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -816,20 +816,20 @@ export function generateCSS() {
     }
 
     .hotspot-drawer-body {
-      padding-top: var(--att-space-4, 16px);
-      font-size: var(--att-fs-body, 1rem);
+      padding-top: var(--pmi-space-4, 16px);
+      font-size: var(--pmi-fs-body, 1rem);
       color: var(--text-main);
-      line-height: var(--att-lh-body, 1.5);
+      line-height: var(--pmi-lh-body, 1.5);
       display: flex;
       flex-direction: column;
-      gap: var(--att-space-3, 12px);
+      gap: var(--pmi-space-3, 12px);
     }
 
     .hotspot-drawer-body .hotspot-audio-narration {
       border-top-color: var(--border-color);
       background-color: var(--bg-body);
-      padding: var(--att-space-3, 12px);
-      border-radius: var(--att-radius-md, 8px);
+      padding: var(--pmi-space-3, 12px);
+      border-radius: var(--pmi-radius-md, 8px);
     }
 
     .hotspot-drawer-body .hotspot-audio-label {
@@ -864,7 +864,7 @@ export function generateCSS() {
       display: none;
       align-items: center;
       justify-content: center;
-      padding: var(--att-space-4, 16px);
+      padding: var(--pmi-space-4, 16px);
       opacity: 0;
       transition: opacity 0.2s ease;
     }
@@ -877,16 +877,16 @@ export function generateCSS() {
     .hotspot-modal {
       background-color: var(--bg-card);
       border: 1px solid var(--border-color);
-      border-radius: var(--att-radius-lg, 16px);
+      border-radius: var(--pmi-radius-lg, 16px);
       box-shadow: 0 16px 32px rgba(0,0,0,0.25);
       width: 480px;
       max-width: 100%;
       max-height: 90%;
       overflow-y: auto;
-      padding: var(--att-space-5, 20px);
+      padding: var(--pmi-space-5, 20px);
       display: flex;
       flex-direction: column;
-      gap: var(--att-space-3, 12px);
+      gap: var(--pmi-space-3, 12px);
       transform: scale(0.95);
       transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
     }
@@ -902,14 +902,14 @@ export function generateCSS() {
     }
 
     .hotspot-modal-badge {
-      font-size: var(--att-fs-caption, 0.75rem);
-      font-weight: var(--att-fw-bold, 700);
+      font-size: var(--pmi-fs-caption, 0.75rem);
+      font-weight: var(--pmi-fw-bold, 700);
       color: var(--primary);
       text-transform: uppercase;
       letter-spacing: 0.5px;
       background-color: var(--bg-body);
       padding: 4px 10px;
-      border-radius: var(--att-radius-full, 9999px);
+      border-radius: var(--pmi-radius-full, 9999px);
       border: 1px solid var(--border-color);
     }
 
@@ -919,7 +919,7 @@ export function generateCSS() {
       color: var(--text-muted);
       width: 32px;
       height: 32px;
-      border-radius: var(--att-radius-sm, 6px);
+      border-radius: var(--pmi-radius-sm, 6px);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -932,26 +932,26 @@ export function generateCSS() {
     }
 
     .hotspot-modal-title {
-      font-size: var(--att-fs-h3, 1.25rem);
-      font-weight: var(--att-fw-bold, 700);
+      font-size: var(--pmi-fs-h3, 1.25rem);
+      font-weight: var(--pmi-fw-bold, 700);
       color: var(--text-main);
       margin: 0;
     }
 
     .hotspot-modal-body {
-      font-size: var(--att-fs-body, 1rem);
+      font-size: var(--pmi-fs-body, 1rem);
       color: var(--text-main);
-      line-height: var(--att-lh-body, 1.5);
+      line-height: var(--pmi-lh-body, 1.5);
       display: flex;
       flex-direction: column;
-      gap: var(--att-space-3, 12px);
+      gap: var(--pmi-space-3, 12px);
     }
 
     .hotspot-modal-body .hotspot-audio-narration {
       border-top-color: var(--border-color);
       background-color: var(--bg-body);
-      padding: var(--att-space-3, 12px);
-      border-radius: var(--att-radius-md, 8px);
+      padding: var(--pmi-space-3, 12px);
+      border-radius: var(--pmi-radius-md, 8px);
     }
 
     .hotspot-modal-body .hotspot-audio-label { color: var(--primary); }
@@ -973,7 +973,7 @@ export function generateCSS() {
     }
 
     @media (max-width: 640px) {
-      .hotspots-container { padding: var(--att-space-3, 12px); }
+      .hotspots-container { padding: var(--pmi-space-3, 12px); }
       .hotspot-hud-bar { flex-direction: column; align-items: stretch; }
       .hotspot-zoom-toolbar { justify-content: center; }
       .hotspot-drawer { width: 100%; max-width: 100%; }

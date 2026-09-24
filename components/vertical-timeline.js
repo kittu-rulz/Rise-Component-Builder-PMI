@@ -1,6 +1,6 @@
 import { getEditorSchema } from '../js/editor-schemas.js';
 import { escapeAttribute, escapeHTML, sanitizeRichText } from '../js/utilities.js';
-import { getAttIconSvg } from '../js/att-icons.js';
+import { getPmiIconSvg } from '../js/pmi-icons.js';
 import { combineValidationResults } from '../js/validation-utils.js';
 
 /**
@@ -40,8 +40,8 @@ export const defaultConfig = {
 };
 export const editorSchema = getEditorSchema(id);
 
-const lockIconSvg = getAttIconSvg('padlock', { className: 'step-lock-icon', width: 11, height: 11, ariaHidden: true });
-const visitedCheckIconSvg = getAttIconSvg('check', { className: 'step-visited-icon', width: 11, height: 11, ariaHidden: true });
+const lockIconSvg = getPmiIconSvg('padlock', { className: 'step-lock-icon', width: 11, height: 11, ariaHidden: true });
+const visitedCheckIconSvg = getPmiIconSvg('check', { className: 'step-visited-icon', width: 11, height: 11, ariaHidden: true });
 
 function renderStep(item, index, instanceId, opts) {
   const { collapsible, locked, showCategoryBadge, showVisitedBadge } = opts;
@@ -143,25 +143,25 @@ export function generateCSS() {
     .timeline-toolbar {
       display: flex;
       flex-direction: column;
-      gap: var(--att-space-3, 12px);
-      margin-bottom: var(--att-space-4, 16px);
+      gap: var(--pmi-space-3, 12px);
+      margin-bottom: var(--pmi-space-4, 16px);
     }
     .timeline-filter-chips {
       display: flex;
       flex-wrap: wrap;
-      gap: var(--att-space-2, 8px);
+      gap: var(--pmi-space-2, 8px);
     }
     .timeline-toolbar-row {
       display: flex;
       align-items: center;
-      gap: var(--att-space-2, 8px);
+      gap: var(--pmi-space-2, 8px);
     }
     .timeline-filter-chip, .timeline-toolbar-btn {
       background-color: var(--bg-card);
       border: var(--border-style);
-      border-radius: var(--button-radius, var(--att-radius-pill, 999px));
+      border-radius: var(--button-radius, var(--pmi-radius-pill, 999px));
       padding: 8px 16px;
-      font-size: var(--att-fs-body-sm, 14px);
+      font-size: var(--pmi-fs-body-sm, 14px);
       font-weight: 600;
       color: var(--text-main);
       cursor: pointer;
@@ -176,7 +176,7 @@ export function generateCSS() {
     }
     .timeline-progress-text {
       margin-left: auto;
-      font-size: var(--att-fs-body-sm, 14px);
+      font-size: var(--pmi-fs-body-sm, 14px);
       font-weight: 600;
       color: var(--text-muted);
     }
@@ -185,7 +185,7 @@ export function generateCSS() {
       display: flex;
       flex-direction: column;
       position: relative;
-      padding-left: var(--att-space-6, 32px);
+      padding-left: var(--pmi-space-6, 32px);
     }
 
     .vertical-timeline-container::before {
@@ -216,7 +216,7 @@ export function generateCSS() {
 
     .timeline-step {
       position: relative;
-      margin-bottom: var(--att-space-5, 24px);
+      margin-bottom: var(--pmi-space-5, 24px);
       cursor: pointer;
     }
 
@@ -245,7 +245,7 @@ export function generateCSS() {
     }
 
     .step-num {
-      font-size: var(--att-fs-body-sm, 14px);
+      font-size: var(--pmi-fs-body-sm, 14px);
       font-weight: 700;
       color: var(--text-main);
     }
@@ -253,25 +253,25 @@ export function generateCSS() {
     .step-card {
       background-color: var(--bg-card);
       border: var(--border-style);
-      border-radius: var(--att-radius-lg, var(--border-radius, 20px));
+      border-radius: var(--pmi-radius-lg, var(--border-radius, 20px));
       box-shadow: var(--shadow-style);
-      padding: var(--att-space-4, 16px) var(--att-space-5, 24px);
+      padding: var(--pmi-space-4, 16px) var(--pmi-space-5, 24px);
     }
 
     .step-card h4 {
-      font-size: var(--att-fs-body-lg, 18px);
+      font-size: var(--pmi-fs-body-lg, 18px);
       font-weight: 600;
       margin-bottom: 4px;
       display: flex;
       align-items: center;
-      gap: var(--att-space-2, 8px);
+      gap: var(--pmi-space-2, 8px);
       text-wrap: pretty;
     }
 
     .step-card p {
-      font-size: var(--att-fs-body, 16px);
+      font-size: var(--pmi-fs-body, 16px);
       color: var(--text-muted);
-      line-height: var(--att-lh-body, 1.5);
+      line-height: var(--pmi-lh-body, 1.5);
       max-width: 70ch;
     }
     .timeline-step.active .step-marker {
@@ -285,12 +285,12 @@ export function generateCSS() {
     }
 
     .step-category-badge {
-      font-size: var(--att-fs-eyebrow, 12px);
+      font-size: var(--pmi-fs-eyebrow, 12px);
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.4px;
       padding: 2px 10px;
-      border-radius: var(--att-radius-pill, 999px);
+      border-radius: var(--pmi-radius-pill, 999px);
       background-color: var(--border-color);
       color: var(--text-main);
     }
@@ -301,12 +301,12 @@ export function generateCSS() {
       display: inline-flex;
       align-items: center;
       gap: 4px;
-      font-size: var(--att-fs-eyebrow, 12px);
+      font-size: var(--pmi-fs-eyebrow, 12px);
       font-weight: 600;
-      color: var(--att-cta-bg, #00388F);
-      background-color: var(--att-grey-1, #F3F4F5);
+      color: var(--pmi-cta-bg, #00388F);
+      background-color: var(--pmi-grey-1, #F3F4F5);
       padding: 2px 8px;
-      border-radius: var(--att-radius-pill, 999px);
+      border-radius: var(--pmi-radius-pill, 999px);
     }
 
     .step-lock-icon-slot {
@@ -317,13 +317,13 @@ export function generateCSS() {
 
     .step-lock-note {
       margin-top: 6px;
-      font-size: var(--att-fs-body-sm, 14px);
+      font-size: var(--pmi-fs-body-sm, 14px);
       font-style: italic;
       color: var(--text-muted);
     }
 
     .timeline-step:focus-visible {
-      outline: 3px solid var(--att-cobalt, var(--primary));
+      outline: 3px solid var(--pmi-cobalt, var(--primary));
       outline-offset: 2px;
     }
 
@@ -346,7 +346,7 @@ export function generateCSS() {
     }
 
     .step-toggle-btn:focus-visible {
-      outline: 3px solid var(--att-cobalt, var(--primary)) !important;
+      outline: 3px solid var(--pmi-cobalt, var(--primary)) !important;
       outline-offset: 2px !important;
     }
 
@@ -364,22 +364,22 @@ export function generateCSS() {
     }
 
     .step-body p {
-      font-size: var(--att-fs-body, 16px);
+      font-size: var(--pmi-fs-body, 16px);
       color: var(--text-muted);
-      line-height: var(--att-lh-body, 1.5);
+      line-height: var(--pmi-lh-body, 1.5);
       max-width: 70ch;
     }
 
     .timeline-compare-layout {
       display: grid;
       grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-      gap: var(--att-space-5, 24px);
+      gap: var(--pmi-space-5, 24px);
     }
     .timeline-compare-column {
       background-color: var(--bg-card);
       border: var(--border-style);
-      border-radius: var(--att-radius-lg, 20px);
-      padding: var(--att-space-4, 16px);
+      border-radius: var(--pmi-radius-lg, 20px);
+      padding: var(--pmi-space-4, 16px);
     }
     .timeline-compare-column-title {
       font-size: 13px;

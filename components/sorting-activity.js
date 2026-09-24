@@ -1,7 +1,7 @@
 import { getEditorSchema } from '../js/editor-schemas.js';
 import { escapeAttribute, escapeHTML, serializeForInlineScript } from '../js/utilities.js';
 import { combineValidationResults } from '../js/validation-utils.js';
-import { getAttIconSvg } from '../js/att-icons.js';
+import { getPmiIconSvg } from '../js/pmi-icons.js';
 
 /**
  * Sorting Activity Component Configuration
@@ -30,9 +30,9 @@ export const defaultConfig = {
 };
 export const editorSchema = getEditorSchema(id);
 
-const arrowsIcon = getAttIconSvg('arrows-vertical-1', { width: 14, height: 14, ariaHidden: true });
-const checkIcon = getAttIconSvg('check-circle-filled', { width: 14, height: 14, ariaHidden: true });
-const crossIcon = getAttIconSvg('close-circle-filled', { width: 14, height: 14, ariaHidden: true });
+const arrowsIcon = getPmiIconSvg('arrows-vertical-1', { width: 14, height: 14, ariaHidden: true });
+const checkIcon = getPmiIconSvg('check-circle-filled', { width: 14, height: 14, ariaHidden: true });
+const crossIcon = getPmiIconSvg('close-circle-filled', { width: 14, height: 14, ariaHidden: true });
 
 export function generateHTML(config, instanceId) {
   const categories = [...new Set(config.items.map(it => it.category || 'Category'))];
@@ -90,7 +90,7 @@ export function generateCSS() {
     .sorting-activity-container {
       display: flex;
       flex-direction: column;
-      gap: var(--att-space-4, 16px);
+      gap: var(--pmi-space-4, 16px);
     }
     .sorting-hud-bar {
       display: flex;
@@ -99,16 +99,16 @@ export function generateCSS() {
       padding: 0 4px;
     }
     .sorting-mistakes-counter {
-      font-size: var(--att-fs-body-sm, 14px);
+      font-size: var(--pmi-fs-body-sm, 14px);
       font-weight: 700;
       color: var(--text-muted);
     }
     .sorting-reset-btn {
       background-color: var(--bg-card);
       border: 1px solid var(--border-color);
-      border-radius: var(--att-radius-pill, 999px);
+      border-radius: var(--pmi-radius-pill, 999px);
       padding: 6px 16px;
-      font-size: var(--att-fs-body-sm, 13px);
+      font-size: var(--pmi-fs-body-sm, 13px);
       font-weight: 600;
       color: var(--text-main);
       cursor: pointer;
@@ -125,22 +125,22 @@ export function generateCSS() {
     .sorting-card-pool {
       background-color: var(--bg-card);
       border: var(--border-style);
-      border-radius: var(--att-radius-lg, var(--border-radius, 20px));
+      border-radius: var(--pmi-radius-lg, var(--border-radius, 20px));
       box-shadow: var(--shadow-style);
-      padding: var(--att-space-5, 20px);
+      padding: var(--pmi-space-5, 20px);
       display: flex;
       flex-direction: column;
-      gap: var(--att-space-3, 12px);
+      gap: var(--pmi-space-3, 12px);
     }
     .sorting-draggable {
       background-color: var(--bg-body);
       border: 1px solid var(--border-color);
-      border-radius: var(--att-radius-md, var(--border-radius, 12px));
+      border-radius: var(--pmi-radius-md, var(--border-radius, 12px));
       padding: 14px 16px;
       display: flex;
       flex-direction: column;
       gap: 8px;
-      font-size: var(--att-fs-body, 1rem);
+      font-size: var(--pmi-fs-body, 1rem);
       transition: all 0.2s;
     }
     .drag-handle-row {
@@ -157,17 +157,17 @@ export function generateCSS() {
       flex: 1;
     }
     .drag-text {
-      font-weight: var(--att-fw-medium, 500);
+      font-weight: var(--pmi-fw-medium, 500);
       color: var(--text-main);
     }
     .drag-sub {
-      font-size: var(--att-fs-body-sm, 13px);
+      font-size: var(--pmi-fs-body-sm, 13px);
       color: var(--text-muted);
       margin-top: 2px;
     }
     .sorting-targets-row {
       display: flex;
-      gap: var(--att-space-2, 8px);
+      gap: var(--pmi-space-2, 8px);
       flex-wrap: wrap;
       margin-top: 4px;
     }
@@ -176,9 +176,9 @@ export function generateCSS() {
       border: 1px solid var(--primary);
       color: var(--primary);
       padding: 6px 14px;
-      font-size: var(--att-fs-body-sm, 0.875rem);
-      font-weight: var(--att-fw-medium, 500);
-      border-radius: var(--button-radius, var(--att-radius-pill, 999px));
+      font-size: var(--pmi-fs-body-sm, 0.875rem);
+      font-weight: var(--pmi-fw-medium, 500);
+      border-radius: var(--button-radius, var(--pmi-radius-pill, 999px));
       cursor: pointer;
       min-height: 44px;
       display: inline-flex;
@@ -195,7 +195,7 @@ export function generateCSS() {
       transform: scale(0.98);
     }
     .target-btn:focus-visible {
-      outline: 3px solid var(--att-cobalt, var(--primary));
+      outline: 3px solid var(--pmi-cobalt, var(--primary));
       outline-offset: 2px;
     }
     .target-btn.active {
@@ -204,16 +204,16 @@ export function generateCSS() {
       color: var(--on-primary);
     }
     .sort-status-indicator {
-      font-size: var(--att-fs-body-sm, 0.875rem);
-      font-weight: var(--att-fw-bold, 700);
+      font-size: var(--pmi-fs-body-sm, 0.875rem);
+      font-weight: var(--pmi-fw-bold, 700);
     }
     .sort-explanation-card {
       background-color: var(--bg-card);
       border: 1px solid var(--border-color);
       border-left: 3px solid var(--primary);
-      border-radius: var(--att-radius-sm, 6px);
+      border-radius: var(--pmi-radius-sm, 6px);
       padding: 8px 12px;
-      font-size: var(--att-fs-body-sm, 13px);
+      font-size: var(--pmi-fs-body-sm, 13px);
       line-height: 1.4;
       color: var(--text-main);
       animation: fadeIn 0.2s ease;
@@ -221,18 +221,18 @@ export function generateCSS() {
     .sorting-categories-columns {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: var(--att-space-4, 16px);
+      gap: var(--pmi-space-4, 16px);
     }
     .sorting-column {
       background-color: var(--bg-card);
       border: var(--border-style);
-      border-radius: var(--att-radius-lg, var(--border-radius, 20px));
+      border-radius: var(--pmi-radius-lg, var(--border-radius, 20px));
       box-shadow: var(--shadow-style);
-      padding: var(--att-space-4, 16px);
+      padding: var(--pmi-space-4, 16px);
     }
     .column-header {
-      font-size: var(--att-fs-h3, 1.125rem);
-      font-weight: var(--att-fw-bold, 700);
+      font-size: var(--pmi-fs-h3, 1.125rem);
+      font-weight: var(--pmi-fw-bold, 700);
       text-transform: uppercase;
       letter-spacing: 0.5px;
       color: var(--accent);
@@ -244,27 +244,27 @@ export function generateCSS() {
       min-height: 80px;
       display: flex;
       flex-direction: column;
-      gap: var(--att-space-2, 8px);
+      gap: var(--pmi-space-2, 8px);
     }
     .sorted-item-badge {
       background-color: var(--bg-body);
       border: 1px solid var(--border-color);
-      border-radius: var(--att-radius-pill, 999px);
+      border-radius: var(--pmi-radius-pill, 999px);
       padding: 6px 14px;
-      font-size: var(--att-fs-body-sm, 0.875rem);
-      font-weight: var(--att-fw-medium, 500);
+      font-size: var(--pmi-fs-body-sm, 0.875rem);
+      font-weight: var(--pmi-fw-medium, 500);
       animation: fadeIn 0.2s ease;
     }
     .quiz-submit-btn {
       align-self: flex-start;
       margin-top: 10px;
       padding: 10px 24px;
-      border-radius: var(--button-radius, var(--att-radius-pill, 999px));
+      border-radius: var(--button-radius, var(--pmi-radius-pill, 999px));
       border: none;
       background-color: var(--primary);
       color: var(--on-primary);
-      font-size: var(--att-fs-body, 1rem);
-      font-weight: var(--att-fw-bold, 700);
+      font-size: var(--pmi-fs-body, 1rem);
+      font-weight: var(--pmi-fw-bold, 700);
       cursor: pointer;
       min-height: 44px;
       display: inline-flex;
@@ -280,15 +280,15 @@ export function generateCSS() {
       transform: scale(0.98);
     }
     .quiz-submit-btn:focus-visible {
-      outline: 3px solid var(--att-cobalt, var(--primary));
+      outline: 3px solid var(--pmi-cobalt, var(--primary));
       outline-offset: 2px;
     }
     .quiz-feedback {
-      margin-top: var(--att-space-4, 16px);
-      padding: var(--att-space-4, 16px);
-      border-radius: var(--att-radius-lg, var(--border-radius, 20px));
-      font-size: var(--att-fs-body, 1rem);
-      line-height: var(--att-lh-body, 1.5);
+      margin-top: var(--pmi-space-4, 16px);
+      padding: var(--pmi-space-4, 16px);
+      border-radius: var(--pmi-radius-lg, var(--border-radius, 20px));
+      font-size: var(--pmi-fs-body, 1rem);
+      line-height: var(--pmi-lh-body, 1.5);
       max-width: 70ch;
       animation: fadeIn 0.3s ease;
     }
@@ -321,7 +321,7 @@ export function generateJS(config, instanceId) {
       el.replaceChildren();
       el.insertAdjacentHTML('beforeend', iconSvg + ' ');
       el.appendChild(document.createTextNode(label));
-      el.style.color = 'var(--att-cta-bg, #00388F)';
+      el.style.color = 'var(--pmi-cta-bg, #00388F)';
     }
 
     function updateMistakeHUD() {

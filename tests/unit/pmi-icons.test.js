@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'vitest';
-import { ATT_FUNCTIONAL_ICONS, getAttIconSvg, getAttIconData } from '../../js/att-icons.js';
+import { PMI_FUNCTIONAL_ICONS, getPmiIconSvg, getPmiIconData } from '../../js/pmi-icons.js';
 import * as accordion from '../../components/accordion.js';
 import * as tabs from '../../components/tabs.js';
 import * as flipCards from '../../components/flip-cards.js';
@@ -15,8 +15,8 @@ import * as pricingComparison from '../../components/pricing-comparison.js';
 import * as profileCards from '../../components/profile-cards.js';
 
 describe('AT&T Functional Icons Utility (Prompt 6)', () => {
-  test('ATT_FUNCTIONAL_ICONS contains 400+ authoritative icons from January 2026 design system', () => {
-    const iconKeys = Object.keys(ATT_FUNCTIONAL_ICONS);
+  test('PMI_FUNCTIONAL_ICONS contains 400+ authoritative icons from January 2026 design system', () => {
+    const iconKeys = Object.keys(PMI_FUNCTIONAL_ICONS);
     expect(iconKeys.length).toBeGreaterThan(400);
     expect(iconKeys).toContain('padlock');
     expect(iconKeys).toContain('chevron-down');
@@ -27,21 +27,21 @@ describe('AT&T Functional Icons Utility (Prompt 6)', () => {
   });
 
   test('no icons contain PowerPoint export artifacts (Pixel_Grid, Clear_Space, Grid_Target)', () => {
-    for (const [name, icon] of Object.entries(ATT_FUNCTIONAL_ICONS)) {
+    for (const [name, icon] of Object.entries(PMI_FUNCTIONAL_ICONS)) {
       expect(icon.body, `Icon "${name}" has Pixel_Grid`).not.toContain('Pixel_Grid');
       expect(icon.body, `Icon "${name}" has Clear_Space`).not.toContain('Clear_Space');
       expect(icon.body, `Icon "${name}" has Grid_Target`).not.toContain('Grid_Target');
     }
   });
 
-  test('getAttIconSvg renders clean SVG with currentColor and aria-hidden="true" by default', () => {
-    const svg = getAttIconSvg('chevron-down');
+  test('getPmiIconSvg renders clean SVG with currentColor and aria-hidden="true" by default', () => {
+    const svg = getPmiIconSvg('chevron-down');
     expect(svg).toContain('<svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">');
     expect(svg).toContain('</svg>');
   });
 
-  test('getAttIconSvg supports className, width, height, style', () => {
-    const svg = getAttIconSvg('padlock', {
+  test('getPmiIconSvg supports className, width, height, style', () => {
+    const svg = getPmiIconSvg('padlock', {
       className: 'my-icon',
       width: 24,
       height: 24,
@@ -53,20 +53,20 @@ describe('AT&T Functional Icons Utility (Prompt 6)', () => {
     expect(svg).toContain('style="margin-right: 8px;"');
   });
 
-  test('getAttIconSvg handles accessible title correctly (role="img" and <title>)', () => {
-    const svg = getAttIconSvg('play', { title: 'Play Video' });
+  test('getPmiIconSvg handles accessible title correctly (role="img" and <title>)', () => {
+    const svg = getPmiIconSvg('play', { title: 'Play Video' });
     expect(svg).toContain('role="img"');
     expect(svg).toContain('<title>Play Video</title>');
     expect(svg).not.toContain('aria-hidden="true"');
   });
 
-  test('getAttIconSvg returns empty string for non-existent icons', () => {
-    const svg = getAttIconSvg('non-existent-icon-12345');
+  test('getPmiIconSvg returns empty string for non-existent icons', () => {
+    const svg = getPmiIconSvg('non-existent-icon-12345');
     expect(svg).toBe('');
   });
 
-  test('getAttIconData returns raw icon object', () => {
-    const data = getAttIconData('check');
+  test('getPmiIconData returns raw icon object', () => {
+    const data = getPmiIconData('check');
     expect(data).not.toBeNull();
     expect(data.cat).toBe('communications-and-alerts');
     expect(data.viewBox).toBe('0 0 32 32');

@@ -1,6 +1,6 @@
 import { getEditorSchema } from '../js/editor-schemas.js';
 import { escapeAttribute, escapeHTML, sanitizeRichText, sanitizeURL } from '../js/utilities.js';
-import { getAttIconSvg } from '../js/att-icons.js';
+import { getPmiIconSvg } from '../js/pmi-icons.js';
 
 export const id = 'flip-cards';
 export const name = '3D Flip Cards';
@@ -26,8 +26,8 @@ export const defaultConfig = {
 };
 export const editorSchema = getEditorSchema(id);
 
-const defaultFrontIcon = getAttIconSvg('question-circle-filled', { width: 20, height: 20, ariaHidden: true });
-const knowIcon = getAttIconSvg('check', { className: 'flip-know-icon', width: 14, height: 14, ariaHidden: true });
+const defaultFrontIcon = getPmiIconSvg('question-circle-filled', { width: 20, height: 20, ariaHidden: true });
+const knowIcon = getPmiIconSvg('check', { className: 'flip-know-icon', width: 14, height: 14, ariaHidden: true });
 
 function renderCardArtwork(item, fallback = '') {
   const source = sanitizeURL(item?.iconImage, { allowDataImage: true, allowBlob: true, allowRelative: true });
@@ -108,13 +108,13 @@ export function generateCSS() {
     .flip-cards-block {
       display: flex;
       flex-direction: column;
-      gap: var(--att-space-4, 16px);
+      gap: var(--pmi-space-4, 16px);
     }
 
     .flip-cards-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: var(--att-space-5, 20px);
+      gap: var(--pmi-space-5, 20px);
     }
 
     .flip-card {
@@ -130,7 +130,7 @@ export function generateCSS() {
 
     .flip-card:focus-visible .flip-card-front,
     .flip-card:focus-visible .flip-card-back {
-      outline: 3px solid var(--att-cobalt, var(--primary));
+      outline: 3px solid var(--pmi-cobalt, var(--primary));
       outline-offset: 2px;
     }
 
@@ -161,15 +161,15 @@ export function generateCSS() {
       height: 100%;
       -webkit-backface-visibility: hidden;
       backface-visibility: hidden;
-      border-radius: var(--att-radius-lg, var(--border-radius, 20px));
+      border-radius: var(--pmi-radius-lg, var(--border-radius, 20px));
       border: var(--border-style);
       box-shadow: var(--shadow-style);
-      padding: var(--att-space-5, 24px);
+      padding: var(--pmi-space-5, 24px);
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      gap: var(--att-space-2, 8px);
+      gap: var(--pmi-space-2, 8px);
     }
 
     /* backface-visibility:hidden only hides a rotated-away face visually — it does not
@@ -195,19 +195,19 @@ export function generateCSS() {
     .card-icon-badge .custom-item-icon {
       width: 32px;
       height: 32px;
-      border-radius: var(--att-radius-sm, 8px);
+      border-radius: var(--pmi-radius-sm, 8px);
     }
 
     .flip-card-front h3, .flip-card-back h3 {
-      font-size: var(--att-fs-body-lg, 18px);
+      font-size: var(--pmi-fs-body-lg, 18px);
       font-weight: 600;
       text-wrap: pretty;
     }
 
     .flip-card-front p, .flip-card-back p {
-      font-size: var(--att-fs-body, 16px);
+      font-size: var(--pmi-fs-body, 16px);
       color: var(--text-muted);
-      line-height: var(--att-lh-body, 1.5);
+      line-height: var(--pmi-lh-body, 1.5);
       max-width: 70ch;
     }
 
@@ -229,29 +229,29 @@ export function generateCSS() {
       position: absolute;
       top: 10px;
       right: 10px;
-      font-size: var(--att-fs-eyebrow, 12px);
+      font-size: var(--pmi-fs-eyebrow, 12px);
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.4px;
       padding: 2px 10px;
-      border-radius: var(--att-radius-pill, 999px);
+      border-radius: var(--pmi-radius-pill, 999px);
       background-color: var(--border-color);
       color: var(--text-main);
     }
 
     .flip-status-badge.flip-status-know {
-      background-color: var(--att-grey-2, var(--border-color));
+      background-color: var(--pmi-grey-2, var(--border-color));
       color: var(--text-main);
     }
 
     .flip-status-badge.flip-status-review {
-      background-color: var(--att-grey-2, var(--border-color));
+      background-color: var(--pmi-grey-2, var(--border-color));
       color: var(--text-main);
     }
 
     .flip-classify-row {
       display: flex;
-      gap: var(--att-space-2, 8px);
+      gap: var(--pmi-space-2, 8px);
       margin-top: 6px;
     }
 
@@ -262,9 +262,9 @@ export function generateCSS() {
       background-color: var(--bg-card);
       color: var(--text-main);
       border: 1px solid var(--bg-card);
-      border-radius: var(--button-radius, var(--att-radius-md, 12px));
+      border-radius: var(--button-radius, var(--pmi-radius-md, 12px));
       padding: 8px 14px;
-      font-size: var(--att-fs-body-sm, 14px);
+      font-size: var(--pmi-fs-body-sm, 14px);
       font-weight: 600;
       cursor: pointer;
       min-height: 44px;
@@ -284,21 +284,21 @@ export function generateCSS() {
     .flip-study-toolbar {
       display: flex;
       flex-direction: column;
-      gap: var(--att-space-3, 12px);
+      gap: var(--pmi-space-3, 12px);
     }
 
     .flip-category-filters, .flip-study-controls {
       display: flex;
       flex-wrap: wrap;
-      gap: var(--att-space-2, 8px);
+      gap: var(--pmi-space-2, 8px);
     }
 
     .flip-filter-chip, .flip-review-filter-btn, .flip-reset-btn, .flip-summary-reset-btn {
       background-color: var(--bg-card);
       border: var(--border-style);
-      border-radius: var(--button-radius, var(--att-radius-pill, 999px));
+      border-radius: var(--button-radius, var(--pmi-radius-pill, 999px));
       padding: 8px 16px;
-      font-size: var(--att-fs-body-sm, 14px);
+      font-size: var(--pmi-fs-body-sm, 14px);
       font-weight: 600;
       color: var(--text-main);
       cursor: pointer;
@@ -319,12 +319,12 @@ export function generateCSS() {
     }
 
     .flip-classify-btn:focus-visible, .flip-filter-chip:focus-visible, .flip-review-filter-btn:focus-visible, .flip-reset-btn:focus-visible, .flip-summary-reset-btn:focus-visible {
-      outline: 3px solid var(--att-cobalt, var(--primary));
+      outline: 3px solid var(--pmi-cobalt, var(--primary));
       outline-offset: 2px;
     }
 
     .flip-study-counts {
-      font-size: var(--att-fs-body-sm, 14px);
+      font-size: var(--pmi-fs-body-sm, 14px);
       font-weight: 600;
       color: var(--text-muted);
     }
@@ -332,15 +332,15 @@ export function generateCSS() {
     .flip-summary-panel {
       background-color: var(--bg-card);
       border: var(--border-style);
-      border-radius: var(--att-radius-lg, var(--border-radius, 20px));
+      border-radius: var(--pmi-radius-lg, var(--border-radius, 20px));
       box-shadow: var(--shadow-style);
-      padding: var(--att-space-4, 16px) var(--att-space-5, 24px);
+      padding: var(--pmi-space-4, 16px) var(--pmi-space-5, 24px);
       display: flex;
       flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
-      gap: var(--att-space-3, 12px);
-      font-size: var(--att-fs-body, 16px);
+      gap: var(--pmi-space-3, 12px);
+      font-size: var(--pmi-fs-body, 16px);
     }
 
     .flip-card[hidden] {

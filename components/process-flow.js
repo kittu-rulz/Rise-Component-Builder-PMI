@@ -131,12 +131,12 @@ export function generateCSS() {
     .process-steps-container {
       background-color: var(--bg-card);
       border: var(--border-style);
-      border-radius: var(--att-radius-lg, var(--border-radius, 20px));
+      border-radius: var(--pmi-radius-lg, var(--border-radius, 20px));
       box-shadow: var(--shadow-style);
-      padding: var(--att-space-5, 24px);
+      padding: var(--pmi-space-5, 24px);
       display: flex;
       flex-direction: column;
-      gap: var(--att-space-4, 16px);
+      gap: var(--pmi-space-4, 16px);
     }
     .process-progress-header {
       display: flex;
@@ -144,18 +144,18 @@ export function generateCSS() {
       align-items: center;
     }
     .step-badge {
-      font-size: var(--att-fs-body-sm, 0.875rem);
-      font-weight: var(--att-fw-bold, 700);
+      font-size: var(--pmi-fs-body-sm, 0.875rem);
+      font-weight: var(--pmi-fw-bold, 700);
       color: var(--text-main);
       text-transform: uppercase;
       letter-spacing: 0.5px;
       background-color: var(--border-color);
       padding: 4px 12px;
-      border-radius: var(--att-radius-pill, 999px);
+      border-radius: var(--pmi-radius-pill, 999px);
     }
     .process-dots {
       display: flex;
-      gap: var(--att-space-2, 6px);
+      gap: var(--pmi-space-2, 6px);
       align-items: center;
     }
     .p-dot {
@@ -168,8 +168,8 @@ export function generateCSS() {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      font-size: var(--att-fs-eyebrow, 0.75rem);
-      font-weight: var(--att-fw-bold, 700);
+      font-size: var(--pmi-fs-eyebrow, 0.75rem);
+      font-weight: var(--pmi-fw-bold, 700);
       transition: all 0.2s;
       cursor: pointer;
       padding: 0;
@@ -185,7 +185,7 @@ export function generateCSS() {
       transform: scale(1.1);
     }
     .p-dot.completed {
-      background-color: var(--att-cta-bg, #00388F);
+      background-color: var(--pmi-cta-bg, #00388F);
       color: #FFF;
     }
     .p-dot:disabled {
@@ -193,7 +193,7 @@ export function generateCSS() {
       cursor: default;
     }
     .p-dot:focus-visible {
-      outline: 3px solid var(--att-cobalt, var(--primary));
+      outline: 3px solid var(--pmi-cobalt, var(--primary));
       outline-offset: 2px;
     }
     .p-dot-check {
@@ -210,7 +210,7 @@ export function generateCSS() {
     .process-breadcrumbs {
       display: flex;
       flex-wrap: nowrap;
-      gap: var(--att-space-2, 8px);
+      gap: var(--pmi-space-2, 8px);
       padding: 2px 2px 4px;
       overflow-x: auto;
       scroll-behavior: smooth;
@@ -225,9 +225,9 @@ export function generateCSS() {
     .process-breadcrumb-item {
       background: none;
       border: 1px solid transparent;
-      border-radius: var(--att-radius-pill, 999px);
+      border-radius: var(--pmi-radius-pill, 999px);
       padding: 4px 10px;
-      font-size: var(--att-fs-eyebrow, 12px);
+      font-size: var(--pmi-fs-eyebrow, 12px);
       color: var(--text-muted);
       cursor: pointer;
       display: inline-flex;
@@ -256,7 +256,7 @@ export function generateCSS() {
       height: 28px;
       min-height: 28px;
       padding: 0;
-      border-radius: var(--att-radius-pill, 999px);
+      border-radius: var(--pmi-radius-pill, 999px);
       background: var(--bg-card);
       border: 1px solid var(--border-color);
       color: var(--primary);
@@ -293,23 +293,23 @@ export function generateCSS() {
       display: block;
     }
     .process-slide h3 {
-      font-size: var(--att-fs-h4, 1.125rem);
-      font-weight: var(--att-fw-bold, 700);
-      line-height: var(--att-lh-heading, 1.25);
+      font-size: var(--pmi-fs-h4, 1.125rem);
+      font-weight: var(--pmi-fw-bold, 700);
+      line-height: var(--pmi-lh-heading, 1.25);
       margin-bottom: 8px;
       color: var(--text-main);
       text-wrap: pretty;
     }
     .process-slide-body p, .process-slide p {
-      font-size: var(--att-fs-body, 1rem);
-      line-height: var(--att-lh-body, 1.5);
+      font-size: var(--pmi-fs-body, 1rem);
+      line-height: var(--pmi-lh-body, 1.5);
       color: var(--text-muted);
       max-width: 70ch;
       margin: 0;
     }
     .process-step-duration {
-      font-size: var(--att-fs-h3, 1.25rem);
-      font-weight: var(--att-fw-bold, 700);
+      font-size: var(--pmi-fs-h3, 1.25rem);
+      font-weight: var(--pmi-fw-bold, 700);
       color: var(--accent);
       margin-bottom: 8px;
     }
@@ -318,7 +318,7 @@ export function generateCSS() {
       padding: 12px;
       background-color: var(--bg-body);
       border: 1px dashed var(--border-color);
-      border-radius: var(--att-radius-md, 8px);
+      border-radius: var(--pmi-radius-md, 8px);
     }
     .process-branch-title {
       font-size: 13px;
@@ -335,7 +335,7 @@ export function generateCSS() {
       background-color: var(--bg-card);
       border: 1px solid var(--primary);
       color: var(--primary);
-      border-radius: var(--att-radius-pill, 999px);
+      border-radius: var(--pmi-radius-pill, 999px);
       padding: 6px 14px;
       font-size: 13px;
       font-weight: 600;
@@ -359,12 +359,12 @@ export function generateCSS() {
       padding: 10px;
       background-color: var(--bg-body);
       border: 1px solid var(--border-color);
-      border-radius: var(--att-radius-md, 8px);
+      border-radius: var(--pmi-radius-md, 8px);
     }
     .summary-check-icon {
       width: 22px;
       height: 22px;
-      background-color: var(--att-cta-bg, #00388F);
+      background-color: var(--pmi-cta-bg, #00388F);
       color: #FFF;
       border-radius: 50%;
       display: flex;
@@ -387,14 +387,14 @@ export function generateCSS() {
     .process-controls-row {
       display: flex;
       justify-content: space-between;
-      gap: var(--att-space-3, 12px);
+      gap: var(--pmi-space-3, 12px);
     }
     .process-controls-row .btn {
       padding: 10px 24px;
-      border-radius: var(--button-radius, var(--att-radius-pill, 999px));
+      border-radius: var(--button-radius, var(--pmi-radius-pill, 999px));
       border: none;
-      font-size: var(--att-fs-body, 1rem);
-      font-weight: var(--att-fw-bold, 700);
+      font-size: var(--pmi-fs-body, 1rem);
+      font-weight: var(--pmi-fw-bold, 700);
       cursor: pointer;
       min-height: 44px;
       display: inline-flex;
@@ -405,7 +405,7 @@ export function generateCSS() {
     }
     .process-controls-row .btn-small {
       padding: 10px 20px;
-      font-size: var(--att-fs-body, 1rem);
+      font-size: var(--pmi-fs-body, 1rem);
     }
     .process-controls-row .btn-primary {
       background-color: var(--primary);
@@ -424,9 +424,9 @@ export function generateCSS() {
       color: var(--primary);
     }
     .process-controls-row .btn:disabled {
-      background-color: var(--att-grey-2, #DCDFE3);
-      color: var(--att-grey-3, #BDC2C7);
-      border-color: var(--att-grey-2, #DCDFE3);
+      background-color: var(--pmi-grey-2, #DCDFE3);
+      color: var(--pmi-grey-3, #BDC2C7);
+      border-color: var(--pmi-grey-2, #DCDFE3);
       cursor: not-allowed;
       opacity: 0.6;
     }
@@ -434,7 +434,7 @@ export function generateCSS() {
       transform: scale(0.98);
     }
     .process-controls-row .btn:focus-visible {
-      outline: 3px solid var(--att-cobalt, var(--primary));
+      outline: 3px solid var(--pmi-cobalt, var(--primary));
       outline-offset: 2px;
     }`;
 }

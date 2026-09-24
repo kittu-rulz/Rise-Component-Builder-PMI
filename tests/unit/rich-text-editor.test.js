@@ -1,7 +1,7 @@
 // @vitest-environment jsdom
 import { describe, expect, test, vi, beforeEach } from 'vitest';
 import {
-  ATT_BRAND_COLORS,
+  PMI_BRAND_COLORS,
   FONT_SIZES,
   HIGHLIGHT_COLORS,
   createRichTextEditor
@@ -198,8 +198,8 @@ describe('createRichTextEditor UI component', () => {
   });
 
   test('contains AT&T brand color palette and font sizes', () => {
-    expect(ATT_BRAND_COLORS.length).toBeGreaterThanOrEqual(8);
-    expect(ATT_BRAND_COLORS.some(c => c.hex === '#0057B8')).toBe(true);
+    expect(PMI_BRAND_COLORS.length).toBeGreaterThanOrEqual(8);
+    expect(PMI_BRAND_COLORS.some(c => c.hex === '#0057B8')).toBe(true);
     expect(FONT_SIZES.length).toBeGreaterThanOrEqual(4);
     expect(HIGHLIGHT_COLORS.length).toBeGreaterThanOrEqual(3);
   });

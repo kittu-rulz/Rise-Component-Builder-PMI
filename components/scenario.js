@@ -1,7 +1,7 @@
 import { getEditorSchema } from '../js/editor-schemas.js';
 import { escapeAttribute, escapeHTML, sanitizeRichText } from '../js/utilities.js';
 import { validateScenarioBranching, combineValidationResults } from '../js/validation-utils.js';
-import { getAttIconSvg } from '../js/att-icons.js';
+import { getPmiIconSvg } from '../js/pmi-icons.js';
 
 /**
  * Scenario Component Configuration
@@ -55,7 +55,7 @@ export function generateHTML(config, instanceId) {
 
       <div class="scenario-avatar-row">
         <div class="char-avatar-img" id="${instanceId}-avatar-icon">
-          ${getAttIconSvg('person', { width: 24, height: 24, ariaHidden: true })}
+          ${getPmiIconSvg('person', { width: 24, height: 24, ariaHidden: true })}
         </div>
         <div class="scenario-bubble">
           <div class="scenario-speaker-row">
@@ -97,17 +97,17 @@ export function generateCSS() {
     .scenario-container {
       background-color: var(--bg-card);
       border: var(--border-style);
-      border-radius: var(--att-radius-lg, var(--border-radius, 20px));
+      border-radius: var(--pmi-radius-lg, var(--border-radius, 20px));
       box-shadow: var(--shadow-style);
-      padding: var(--att-space-5, 24px);
+      padding: var(--pmi-space-5, 24px);
       display: flex;
       flex-direction: column;
-      gap: var(--att-space-4, 16px);
+      gap: var(--pmi-space-4, 16px);
     }
     .scenario-meter-card {
       background-color: var(--bg-body);
       border: 1px solid var(--border-color);
-      border-radius: var(--att-radius-md, 10px);
+      border-radius: var(--pmi-radius-md, 10px);
       padding: 10px 14px;
     }
     .scenario-meter-header {
@@ -117,7 +117,7 @@ export function generateCSS() {
       margin-bottom: 6px;
     }
     .scenario-meter-label {
-      font-size: var(--att-fs-eyebrow, 12px);
+      font-size: var(--pmi-fs-eyebrow, 12px);
       font-weight: 700;
       color: var(--text-muted);
       text-transform: uppercase;
@@ -131,7 +131,7 @@ export function generateCSS() {
     .scenario-meter-bar-track {
       height: 8px;
       background-color: var(--border-color);
-      border-radius: var(--att-radius-pill, 999px);
+      border-radius: var(--pmi-radius-pill, 999px);
       overflow: hidden;
     }
     .scenario-meter-bar-fill {
@@ -141,7 +141,7 @@ export function generateCSS() {
     }
     .scenario-avatar-row {
       display: flex;
-      gap: var(--att-space-4, 16px);
+      gap: var(--pmi-space-4, 16px);
       align-items: flex-start;
     }
     .char-avatar-img {
@@ -162,8 +162,8 @@ export function generateCSS() {
       flex: 1;
       background-color: var(--bg-body);
       border: 1px solid var(--border-color);
-      border-radius: var(--att-radius-md, var(--border-radius, 12px));
-      padding: var(--att-space-4, 16px) var(--att-space-5, 20px);
+      border-radius: var(--pmi-radius-md, var(--border-radius, 12px));
+      padding: var(--pmi-space-4, 16px) var(--pmi-space-5, 20px);
       position: relative;
     }
     .scenario-bubble::before {
@@ -192,33 +192,33 @@ export function generateCSS() {
       margin-bottom: 4px;
     }
     .speaker-name {
-      font-size: var(--att-fs-h3, 1.25rem);
-      font-weight: var(--att-fw-bold, 700);
+      font-size: var(--pmi-fs-h3, 1.25rem);
+      font-weight: var(--pmi-fw-bold, 700);
       color: var(--accent);
       letter-spacing: 0.5px;
       text-wrap: pretty;
     }
     .scenario-emotion-badge {
-      font-size: var(--att-fs-eyebrow, 11px);
+      font-size: var(--pmi-fs-eyebrow, 11px);
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.4px;
       padding: 2px 8px;
-      border-radius: var(--att-radius-pill, 999px);
+      border-radius: var(--pmi-radius-pill, 999px);
       background-color: var(--border-color);
       color: var(--text-main);
     }
     .speech-text {
-      font-size: var(--att-fs-body, 1rem);
-      line-height: var(--att-lh-body, 1.5);
+      font-size: var(--pmi-fs-body, 1rem);
+      line-height: var(--pmi-lh-body, 1.5);
       color: var(--text-main);
       max-width: 70ch;
     }
     .scenario-choices-list {
       display: flex;
       flex-direction: column;
-      gap: var(--att-space-3, 10px);
-      margin-top: var(--att-space-2, 6px);
+      gap: var(--pmi-space-3, 10px);
+      margin-top: var(--pmi-space-2, 6px);
     }
     .scenario-choice-btn {
       width: 100%;
@@ -226,11 +226,11 @@ export function generateCSS() {
       border: 1px solid var(--primary);
       color: var(--primary);
       padding: 12px 16px;
-      border-radius: var(--button-radius, var(--att-radius-md, 12px));
+      border-radius: var(--button-radius, var(--pmi-radius-md, 12px));
       text-align: left;
-      font-size: var(--att-fs-body, 1rem);
-      font-weight: var(--att-fw-medium, 500);
-      line-height: var(--att-lh-body, 1.5);
+      font-size: var(--pmi-fs-body, 1rem);
+      font-weight: var(--pmi-fw-medium, 500);
+      line-height: var(--pmi-lh-body, 1.5);
       cursor: pointer;
       min-height: 44px;
       display: flex;
@@ -248,7 +248,7 @@ export function generateCSS() {
       transform: scale(0.98);
     }
     .scenario-choice-btn:focus-visible {
-      outline: 3px solid var(--att-cobalt, var(--primary));
+      outline: 3px solid var(--pmi-cobalt, var(--primary));
       outline-offset: 2px;
     }
     .choice-points-badge {
@@ -268,15 +268,15 @@ export function generateCSS() {
        carries the meaning (never colour alone). */
     .choice-points-badge.neg {
       background-color: rgba(0, 56, 143, 0.10);
-      color: var(--att-cta-bg, #00388F);
+      color: var(--pmi-cta-bg, #00388F);
     }
     .scenario-feedback-balloon {
-      background-color: var(--att-grey-1, #F3F4F5);
+      background-color: var(--pmi-grey-1, #F3F4F5);
       border: 1px solid var(--border-color);
-      border-radius: var(--att-radius-md, var(--border-radius, 12px));
-      padding: var(--att-space-4, 16px);
-      font-size: var(--att-fs-body, 1rem);
-      line-height: var(--att-lh-body, 1.5);
+      border-radius: var(--pmi-radius-md, var(--border-radius, 12px));
+      padding: var(--pmi-space-4, 16px);
+      font-size: var(--pmi-fs-body, 1rem);
+      line-height: var(--pmi-lh-body, 1.5);
       color: var(--text-main);
       max-width: 70ch;
       animation: fadeIn 0.3s ease;
@@ -284,7 +284,7 @@ export function generateCSS() {
     .scenario-history-box {
       background-color: var(--bg-body);
       border: 1px solid var(--border-color);
-      border-radius: var(--att-radius-md, 8px);
+      border-radius: var(--pmi-radius-md, 8px);
       padding: 12px;
     }
     .scenario-history-title {
@@ -316,7 +316,7 @@ export function generateCSS() {
     .scenario-history-toggle-btn, .scenario-reset-btn {
       background: none;
       border: 1px solid var(--border-color);
-      border-radius: var(--att-radius-pill, 999px);
+      border-radius: var(--pmi-radius-pill, 999px);
       padding: 6px 14px;
       font-size: 13px;
       font-weight: 600;

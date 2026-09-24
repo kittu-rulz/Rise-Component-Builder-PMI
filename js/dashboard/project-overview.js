@@ -14,13 +14,14 @@ import {
   COMPONENT_REGISTRY, CATEGORIES, getDefaultConfig, getComponentById,
   searchComponents, COMPONENT_MODULES, normalizeComponentType
 } from '../component-registry.js';
-import { showPromptDialog, showConfirmDialog, isolateModal } from './att-modal.js';
+import { showPromptDialog, showConfirmDialog, isolateModal } from './pmi-modal.js';
 import { getComponentThumbnailSvg } from './component-thumbnails.js';
 import { auditCourseProject } from './project-qa.js';
 import { generateIframeContent } from '../preview.js';
 import { toRgba as colorToRgba, escapeHTML } from '../utilities.js';
 import { showToast } from '../toast.js';
 import { getBuiltInTheme, DEFAULT_THEME_ID } from '../themes.js';
+import { defaultBlockHeader } from '../state.js';
 
 export class ProjectOverviewView {
   constructor({
@@ -554,9 +555,9 @@ export class ProjectOverviewView {
           </div>
         </div>
 
-        <div class="canvas-viewport-container" style="display: flex; justify-content: center; width: 100%; overflow-x: auto; background: var(--att-surface-sunken, #F8FAFC); border-radius: 12px; padding: 16px;">
-          <div class="canvas-device-wrapper" style="${deviceWidthStyle} transition: width 0.2s ease; background: #FFFFFF; border: 1px solid var(--att-border, #E2E8F0); border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.04); overflow: hidden;">
-            <div class="canvas-component-topbar" style="padding: 8px 14px; background: var(--att-surface-sunken, #FAFAFA); border-bottom: 1px solid var(--att-border, #EAEAEA); display: flex; justify-content: space-between; align-items: center;">
+        <div class="canvas-viewport-container" style="display: flex; justify-content: center; width: 100%; overflow-x: auto; background: var(--pmi-surface-sunken, #F8FAFC); border-radius: 12px; padding: 16px;">
+          <div class="canvas-device-wrapper" style="${deviceWidthStyle} transition: width 0.2s ease; background: #FFFFFF; border: 1px solid var(--pmi-border, #E2E8F0); border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.04); overflow: hidden;">
+            <div class="canvas-component-topbar" style="padding: 8px 14px; background: var(--pmi-surface-sunken, #FAFAFA); border-bottom: 1px solid var(--pmi-border, #EAEAEA); display: flex; justify-content: space-between; align-items: center;">
               <span style="font-size: 0.75rem; font-weight: 700; color: #555;">Live Preview</span>
               <button class="btn btn-primary btn-sm" data-action="open-focus-editor" data-comp-id="${selectedComp.id}" style="padding: 3px 10px; font-size: 0.75rem; display: inline-flex; align-items: center; gap: 4px;">
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg>
@@ -601,10 +602,10 @@ export class ProjectOverviewView {
                 if (!c) return '';
                 const reg = getComponentById(COMPONENT_REGISTRY, c.type);
                 return `
-                  <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; background: #FFF; border: 1px solid var(--att-border, #E2E8F0); border-radius: 8px;">
+                  <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; background: #FFF; border: 1px solid var(--pmi-border, #E2E8F0); border-radius: 8px;">
                     <div>
                       <span style="font-weight: 700; font-size: 0.875rem; color: #111;">${escapeHTML(c.name)}</span>
-                      <span style="margin-left: 8px; font-size: 0.6875rem; background: rgba(0, 56, 143, 0.08); color: var(--att-cobalt, #00388F); padding: 1px 6px; border-radius: 4px;">${escapeHTML(reg?.name || c.type)}</span>
+                      <span style="margin-left: 8px; font-size: 0.6875rem; background: rgba(0, 56, 143, 0.08); color: var(--pmi-cobalt, #00388F); padding: 1px 6px; border-radius: 4px;">${escapeHTML(reg?.name || c.type)}</span>
                     </div>
                     <button class="btn btn-secondary btn-sm" data-action="select-comp-preview" data-comp-id="${c.id}" style="padding: 4px 10px; font-size: 0.75rem;">
                       Preview Block
@@ -613,7 +614,7 @@ export class ProjectOverviewView {
                 `;
               }).join('')}
               ${compIds.length === 0 ? `
-                <div style="padding: 24px; text-align: center; background: #FFF; border: 1px dashed var(--att-border, #CBD5E1); border-radius: 8px;">
+                <div style="padding: 24px; text-align: center; background: #FFF; border: 1px dashed var(--pmi-border, #CBD5E1); border-radius: 8px;">
                   <p style="font-size: 0.8125rem; color: #64748B; margin: 0 0 8px 0;">No components added to this section yet.</p>
                   <button class="btn btn-primary btn-sm" data-action="add-comp-to-sec" data-sec-id="${selectedId}">+ Add Component</button>
                 </div>
@@ -635,7 +636,7 @@ export class ProjectOverviewView {
 
       <div class="canvas-viewport-frame" style="min-height: 420px; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 32px; text-align: center;">
         <div style="max-width: 500px; display: flex; flex-direction: column; align-items: center; gap: 14px;">
-          <div style="width: 64px; height: 64px; border-radius: 16px; background: rgba(0, 56, 143, 0.08); color: var(--att-cobalt, #00388F); display: flex; align-items: center; justify-content: center;">
+          <div style="width: 64px; height: 64px; border-radius: 16px; background: rgba(0, 56, 143, 0.08); color: var(--pmi-cobalt, #00388F); display: flex; align-items: center; justify-content: center;">
             <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
           </div>
           <h2 style="font-size: 1.125rem; font-weight: 700; margin: 0; color: var(--text-main, #111);">Course Authoring &amp; Flow Canvas</h2>
@@ -660,7 +661,7 @@ export class ProjectOverviewView {
       return `
         <div class="inspector-header">
           <h3 class="inspector-title">Component Inspector</h3>
-          <span class="project-client-badge" style="background: rgba(0, 56, 143, 0.08); color: var(--att-cobalt, #00388F);">${escapeHTML(typeLabel)}</span>
+          <span class="project-client-badge" style="background: rgba(0, 56, 143, 0.08); color: var(--pmi-cobalt, #00388F);">${escapeHTML(typeLabel)}</span>
         </div>
 
         <div class="inspector-body">
@@ -753,7 +754,7 @@ export class ProjectOverviewView {
     return `
       <div class="inspector-header">
         <h3 class="inspector-title">Course Inspector</h3>
-        <span class="project-client-badge" style="background: rgba(0, 56, 143, 0.08); color: var(--att-cobalt, #00388F);">Accessibility Checks Included</span>
+        <span class="project-client-badge" style="background: rgba(0, 56, 143, 0.08); color: var(--pmi-cobalt, #00388F);">Accessibility Checks Included</span>
       </div>
 
       <div class="inspector-body">
@@ -764,7 +765,7 @@ export class ProjectOverviewView {
 
         <div class="inspector-prop-group">
           <span class="inspector-label">Course Target</span>
-          <span style="color: var(--att-cobalt, #00388F); font-weight: 600; font-size: 0.8125rem;">Designed for Articulate Rise 360</span>
+          <span style="color: var(--pmi-cobalt, #00388F); font-weight: 600; font-size: 0.8125rem;">Designed for Articulate Rise 360</span>
         </div>
 
         <div class="inspector-prop-group">
@@ -772,7 +773,7 @@ export class ProjectOverviewView {
           <span style="font-size: 0.8125rem; color: #555;">${totalComponents} interactive ${totalComponents === 1 ? 'component' : 'components'} across ${Object.keys(project.sections || {}).length} sections</span>
         </div>
 
-        <div class="inspector-prop-group" style="border-top: 1px solid var(--att-border, #EFEFEF); padding-top: 10px;">
+        <div class="inspector-prop-group" style="border-top: 1px solid var(--pmi-border, #EFEFEF); padding-top: 10px;">
           <span class="inspector-label">Pre-Export QA Health</span>
           ${hasContent ? `
             <div style="display: flex; flex-direction: column; gap: 6px;">
@@ -815,12 +816,15 @@ export class ProjectOverviewView {
   addComponentToProject(type, targetSecId = null) {
     const regEntry = getComponentById(COMPONENT_REGISTRY, type);
     const defaultCfg = regEntry ? getDefaultConfig(regEntry) : {};
+    const label = regEntry?.name || 'New Component';
 
     const newComp = createComponentInstance({
-      name: regEntry?.name || 'New Component',
+      name: label,
       type,
       status: 'draft',
-      config: defaultCfg
+      // Registry defaults carry no header text; without this the editor filled the gap with
+      // the Accordion demo ("INTERACTIVE ACCORDION") for every component type.
+      config: { ...defaultBlockHeader(label), ...defaultCfg }
     });
 
     const project = this.getProject();
@@ -1285,7 +1289,7 @@ export class ProjectOverviewView {
             </button>
           </div>
           <div class="modal-body" style="display: flex; flex-direction: column; gap: 16px;">
-            <div style="background: var(--att-surface-sunken, #F4F6F9); padding: 14px; border-radius: 10px; display: flex; justify-content: center; align-items: center; border: 1px solid var(--att-border, #EAEAEA);">
+            <div style="background: var(--pmi-surface-sunken, #F4F6F9); padding: 14px; border-radius: 10px; display: flex; justify-content: center; align-items: center; border: 1px solid var(--pmi-border, #EAEAEA);">
               ${comp.thumbnail || getComponentThumbnailSvg(comp.id, { width: 220, height: 110 })}
             </div>
 
@@ -1308,7 +1312,7 @@ export class ProjectOverviewView {
               </div>
             ` : ''}
 
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; font-size: 0.8125rem; background: var(--att-surface-sunken, #FAFAFA); padding: 12px; border-radius: 8px;">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; font-size: 0.8125rem; background: var(--pmi-surface-sunken, #FAFAFA); padding: 12px; border-radius: 8px;">
               <div>
                 <strong>Rise Compatibility:</strong>
                 <p style="margin: 2px 0 0 0; color: #555;">${escapeHTML(comp.riseEquivalent || 'Designed for seamless Rise integration')}</p>

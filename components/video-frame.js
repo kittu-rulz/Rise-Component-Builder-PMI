@@ -1,7 +1,7 @@
 import { getEditorSchema } from '../js/editor-schemas.js';
 import { isEmpty } from '../js/field-validation.js';
 import { escapeAttribute, escapeHTML, normalizeDelimitedLines } from '../js/utilities.js';
-import { getAttIconSvg } from '../js/att-icons.js';
+import { getPmiIconSvg } from '../js/pmi-icons.js';
 
 export const id = 'video-frame';
 export const name = 'Custom Video Embed';
@@ -31,14 +31,14 @@ const VID_COMPLETION_TAIL_SECONDS = 3;
 const VID_RESUME_MIN_SECONDS = 10;
 
 // Replay/Forward, volume/mute, and transcript glyphs from AT&T Icon Library
-const skipBackIcon = getAttIconSvg('step-back-15', { width: 16, height: 16, ariaHidden: true });
-const skipForwardIcon = getAttIconSvg('step-forward-15', { width: 16, height: 16, ariaHidden: true });
-const volumeOnIcon = getAttIconSvg('volume-3', { className: 'video-volume-on-svg', width: 14, height: 14, ariaHidden: true });
-const volumeOffIcon = getAttIconSvg('volume-off', { className: 'video-volume-off-svg', width: 14, height: 14, ariaHidden: true, style: 'display:none;' });
-const transcriptIcon = getAttIconSvg('text', { width: 14, height: 14, ariaHidden: true });
-const chevronIcon = getAttIconSvg('chevron-down', { className: 'video-chapter-chevron', width: 16, height: 16, ariaHidden: true });
-const chaptersIcon = getAttIconSvg('list', { width: 14, height: 14, ariaHidden: true });
-const takeawaysIcon = getAttIconSvg('star-filled', { width: 14, height: 14, ariaHidden: true });
+const skipBackIcon = getPmiIconSvg('step-back-15', { width: 16, height: 16, ariaHidden: true });
+const skipForwardIcon = getPmiIconSvg('step-forward-15', { width: 16, height: 16, ariaHidden: true });
+const volumeOnIcon = getPmiIconSvg('volume-3', { className: 'video-volume-on-svg', width: 14, height: 14, ariaHidden: true });
+const volumeOffIcon = getPmiIconSvg('volume-off', { className: 'video-volume-off-svg', width: 14, height: 14, ariaHidden: true, style: 'display:none;' });
+const transcriptIcon = getPmiIconSvg('text', { width: 14, height: 14, ariaHidden: true });
+const chevronIcon = getPmiIconSvg('chevron-down', { className: 'video-chapter-chevron', width: 16, height: 16, ariaHidden: true });
+const chaptersIcon = getPmiIconSvg('list', { width: 14, height: 14, ariaHidden: true });
+const takeawaysIcon = getPmiIconSvg('star-filled', { width: 14, height: 14, ariaHidden: true });
 
 // "3:24" / "03:24" / "1:03:24" -> seconds. Returns null (never throws) for anything else —
 // duplicated from components/audio-player.js's own identical parser rather than imported,
@@ -211,7 +211,7 @@ export function generateHTML(config, instanceId) {
           ${captionsUrl ? `<track kind="captions" src="${escapeAttribute(captionsUrl)}" srclang="en" label="English" default>` : ''}
         </video>
         <button type="button" class="video-overlay-play" aria-label="Play video">
-          ${getAttIconSvg('play', { width: 32, height: 32, ariaHidden: true })}
+          ${getPmiIconSvg('play', { width: 32, height: 32, ariaHidden: true })}
         </button>
       </div>
       ${describePoster ? `<span id="${instanceId}-poster-desc" class="sr-only">${escapeHTML(posterAltText)}</span>` : ''}
@@ -223,8 +223,8 @@ export function generateHTML(config, instanceId) {
       <div class="video-control-strip">
         <button type="button" class="video-skip-btn video-skip-back-btn" id="${instanceId}-skip-back" aria-label="Replay ${VID_SKIP_SECONDS} seconds" disabled>${skipBackIcon}</button>
         <button type="button" class="video-mini-play" id="${instanceId}-mini-play" aria-label="Play video" aria-pressed="false">
-          ${getAttIconSvg('play', { className: 'video-play-svg', width: 14, height: 14, ariaHidden: true })}
-          ${getAttIconSvg('pause', { className: 'video-pause-svg', width: 14, height: 14, ariaHidden: true, style: 'display:none;' })}
+          ${getPmiIconSvg('play', { className: 'video-play-svg', width: 14, height: 14, ariaHidden: true })}
+          ${getPmiIconSvg('pause', { className: 'video-pause-svg', width: 14, height: 14, ariaHidden: true, style: 'display:none;' })}
         </button>
         <button type="button" class="video-skip-btn video-skip-forward-btn" id="${instanceId}-skip-forward" aria-label="Forward ${VID_SKIP_SECONDS} seconds" disabled>${skipForwardIcon}</button>
         <div class="video-scrub-wrap">
@@ -257,19 +257,19 @@ export function generateCSS() {
     .video-player-block {
       background-color: var(--bg-card);
       border: var(--border-style);
-      border-radius: var(--att-radius-lg, var(--border-radius, 20px));
+      border-radius: var(--pmi-radius-lg, var(--border-radius, 20px));
       box-shadow: var(--shadow-style);
-      padding: var(--att-space-4, 16px);
+      padding: var(--pmi-space-4, 16px);
       display: flex;
       flex-direction: column;
-      gap: var(--att-space-3, 12px);
+      gap: var(--pmi-space-3, 12px);
     }
     .video-wrapper {
       position: relative;
       width: 100%;
-      border-radius: var(--att-radius-lg, 20px);
+      border-radius: var(--pmi-radius-lg, 20px);
       overflow: hidden;
-      background-color: var(--att-black, #000000);
+      background-color: var(--pmi-black, #000000);
     }
     .video-wrapper video {
       display: block;
@@ -299,20 +299,20 @@ export function generateCSS() {
       background-color: var(--primary-hover);
     }
     .video-current-chapter {
-      font-size: var(--att-fs-body-sm, 0.875rem);
-      font-weight: var(--att-fw-medium, 500);
+      font-size: var(--pmi-fs-body-sm, 0.875rem);
+      font-weight: var(--pmi-fw-medium, 500);
       color: var(--text-muted);
     }
     .video-status-region { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
     .video-resume-prompt {
       display: flex;
       align-items: center;
-      gap: var(--att-space-2, 8px);
+      gap: var(--pmi-space-2, 8px);
       flex-wrap: wrap;
       background-color: var(--bg-body);
-      border-radius: var(--att-radius-md, 12px);
+      border-radius: var(--pmi-radius-md, 12px);
       padding: 8px 10px;
-      font-size: var(--att-fs-body-sm, 0.875rem);
+      font-size: var(--pmi-fs-body-sm, 0.875rem);
     }
     .video-resume-text { color: var(--text-main); margin-right: auto; }
     .video-resume-btn,
@@ -321,9 +321,9 @@ export function generateCSS() {
       border: 1px solid var(--primary);
       color: var(--primary);
       padding: 6px 12px;
-      font-size: var(--att-fs-body-sm, 0.875rem);
-      font-weight: var(--att-fw-medium, 500);
-      border-radius: var(--button-radius, var(--att-radius-pill, 999px));
+      font-size: var(--pmi-fs-body-sm, 0.875rem);
+      font-weight: var(--pmi-fw-medium, 500);
+      border-radius: var(--button-radius, var(--pmi-radius-pill, 999px));
       cursor: pointer;
       min-height: 44px;
       display: inline-flex;
@@ -337,7 +337,7 @@ export function generateCSS() {
     .video-control-strip {
       display: flex;
       align-items: center;
-      gap: var(--att-space-3, 10px);
+      gap: var(--pmi-space-3, 10px);
       padding: 4px;
       flex-wrap: wrap;
       row-gap: 8px;
@@ -364,7 +364,7 @@ export function generateCSS() {
       transform: translate(-50%, -50%) scale(0.98);
     }
     .video-overlay-play:focus-visible, .video-skip-btn:focus-visible, .video-mini-play:focus-visible, .video-control-btn:focus-visible, .video-rate-btn:focus-visible, .video-resume-btn:focus-visible, .video-restart-choice-btn:focus-visible {
-      outline: 3px solid var(--att-cobalt, var(--primary));
+      outline: 3px solid var(--pmi-cobalt, var(--primary));
       outline-offset: 2px;
     }
     .video-skip-btn:active, .video-mini-play:active, .video-control-btn:active, .video-rate-btn:active, .video-resume-btn:active, .video-restart-choice-btn:active {
@@ -401,14 +401,14 @@ export function generateCSS() {
     .video-timeline-scrub {
       height: 6px;
       background-color: var(--bg-body);
-      border-radius: var(--att-radius-pill, 999px);
+      border-radius: var(--pmi-radius-pill, 999px);
       position: relative;
       cursor: pointer;
     }
     .video-fill {
       height: 100%;
       background-color: var(--accent);
-      border-radius: var(--att-radius-pill, 999px);
+      border-radius: var(--pmi-radius-pill, 999px);
     }
     .video-chapter-markers {
       position: absolute;
@@ -444,7 +444,7 @@ export function generateCSS() {
     }
     .video-chapter-marker:hover::before { background-color: var(--primary); }
     .video-timer {
-      font-size: var(--att-fs-body-sm, 0.875rem);
+      font-size: var(--pmi-fs-body-sm, 0.875rem);
       color: var(--text-muted);
       white-space: nowrap;
     }
@@ -453,9 +453,9 @@ export function generateCSS() {
       border: 1px solid var(--primary);
       color: var(--primary);
       padding: 4px 10px;
-      font-size: var(--att-fs-body-sm, 0.875rem);
-      font-weight: var(--att-fw-medium, 500);
-      border-radius: var(--button-radius, var(--att-radius-pill, 999px));
+      font-size: var(--pmi-fs-body-sm, 0.875rem);
+      font-weight: var(--pmi-fw-medium, 500);
+      border-radius: var(--button-radius, var(--pmi-radius-pill, 999px));
       cursor: pointer;
       transition: all 0.2s;
       flex-shrink: 0;
@@ -483,8 +483,8 @@ export function generateCSS() {
     }
     .video-mute-btn:hover { border-color: var(--primary-hover); color: var(--primary-hover); }
     .video-section-heading {
-      font-size: var(--att-fs-eyebrow, 0.75rem);
-      font-weight: var(--att-fw-bold, 700);
+      font-size: var(--pmi-fs-eyebrow, 0.75rem);
+      font-weight: var(--pmi-fw-bold, 700);
       text-transform: uppercase;
       letter-spacing: 0.5px;
       color: var(--text-muted);
@@ -523,10 +523,10 @@ export function generateCSS() {
       text-align: left;
       background: none;
       border: none;
-      border-radius: var(--att-radius-sm, 8px);
+      border-radius: var(--pmi-radius-sm, 8px);
       padding: 8px 10px;
       cursor: pointer;
-      font-size: var(--att-fs-body-sm, 0.875rem);
+      font-size: var(--pmi-fs-body-sm, 0.875rem);
       color: var(--text-main);
       min-height: 44px;
       box-sizing: border-box;
@@ -534,14 +534,14 @@ export function generateCSS() {
     .video-chapter-item:hover { background-color: var(--bg-body); }
     .video-chapter-item.video-chapter-active {
       background-color: var(--bg-body);
-      font-weight: var(--att-fw-bold, 700);
+      font-weight: var(--pmi-fw-bold, 700);
       /* Not color alone: the active row also gets aria-current="true" (generateJS) and a
          leading marker character, not just a background tint. */
     }
     .video-chapter-item.video-chapter-active .video-chapter-title::before { content: '▸ '; color: var(--primary); }
     .video-chapter-time { color: var(--text-muted); font-variant-numeric: tabular-nums; flex-shrink: 0; }
-    .video-chapter-desc { display: block; width: 100%; font-size: var(--att-fs-body-sm, 0.875rem); color: var(--text-muted); margin-top: 2px; }
-    .video-progress-status { font-size: var(--att-fs-body-sm, 0.875rem); color: var(--text-muted); }
+    .video-chapter-desc { display: block; width: 100%; font-size: var(--pmi-fs-body-sm, 0.875rem); color: var(--text-muted); margin-top: 2px; }
+    .video-progress-status { font-size: var(--pmi-fs-body-sm, 0.875rem); color: var(--text-muted); }
     .video-transcript-section { border-top: var(--border-style); padding-top: 10px; }
     .video-transcript-toggle {
       display: flex;
@@ -550,8 +550,8 @@ export function generateCSS() {
       background: none;
       border: none;
       color: var(--primary);
-      font-size: var(--att-fs-body-sm, 0.875rem);
-      font-weight: var(--att-fw-bold, 700);
+      font-size: var(--pmi-fs-body-sm, 0.875rem);
+      font-weight: var(--pmi-fw-bold, 700);
       cursor: pointer;
       padding: 4px 0;
       min-height: 44px;
@@ -562,7 +562,7 @@ export function generateCSS() {
       max-height: 260px;
       overflow-y: auto;
       border: var(--border-style);
-      border-radius: var(--att-radius-md, 12px);
+      border-radius: var(--pmi-radius-md, 12px);
       padding: 10px;
     }
     .video-transcript-search-row { margin-bottom: 8px; }
@@ -570,14 +570,14 @@ export function generateCSS() {
       width: 100%;
       box-sizing: border-box;
       padding: 8px 12px;
-      font-size: var(--att-fs-body-sm, 0.875rem);
+      font-size: var(--pmi-fs-body-sm, 0.875rem);
       border: var(--border-style);
-      border-radius: var(--att-radius-sm, 8px);
+      border-radius: var(--pmi-radius-sm, 8px);
       background-color: var(--bg-card);
       color: var(--text-main);
       min-height: 44px;
     }
-    .video-transcript-search-status { font-size: var(--att-fs-body-sm, 0.875rem); color: var(--text-muted); margin: 0 0 6px; }
+    .video-transcript-search-status { font-size: var(--pmi-fs-body-sm, 0.875rem); color: var(--text-muted); margin: 0 0 6px; }
     .video-transcript-segments { display: flex; flex-direction: column; gap: 2px; }
     .video-transcript-segment {
       display: flex;
@@ -588,12 +588,12 @@ export function generateCSS() {
       text-align: left;
       background: none;
       border: none;
-      border-radius: var(--att-radius-sm, 8px);
+      border-radius: var(--pmi-radius-sm, 8px);
       padding: 8px 10px;
       cursor: pointer;
-      font-size: var(--att-fs-body, 1rem);
+      font-size: var(--pmi-fs-body, 1rem);
       color: var(--text-main);
-      line-height: var(--att-lh-body, 1.5);
+      line-height: var(--pmi-lh-body, 1.5);
       min-height: 44px;
       box-sizing: border-box;
     }
@@ -601,37 +601,37 @@ export function generateCSS() {
     .video-transcript-segment.video-segment-active {
       background-color: var(--bg-body);
       border-left: 3px solid var(--primary);
-      font-weight: var(--att-fw-bold, 700);
+      font-weight: var(--pmi-fw-bold, 700);
     }
-    .video-segment-time { color: var(--text-muted); font-variant-numeric: tabular-nums; flex-shrink: 0; font-weight: 400; font-size: var(--att-fs-body-sm, 0.875rem); }
-    .video-segment-speaker { font-weight: var(--att-fw-bold, 700); flex-shrink: 0; }
+    .video-segment-time { color: var(--text-muted); font-variant-numeric: tabular-nums; flex-shrink: 0; font-weight: 400; font-size: var(--pmi-fs-body-sm, 0.875rem); }
+    .video-segment-speaker { font-weight: var(--pmi-fw-bold, 700); flex-shrink: 0; }
     .video-segment-text { max-width: 70ch; }
     .video-search-highlight { background-color: var(--warning); color: var(--text-main); border-radius: 2px; padding: 0 1px; }
-    .video-transcript-plain { font-size: var(--att-fs-body, 1rem); line-height: var(--att-lh-body, 1.5); max-width: 70ch; }
-    .video-transcript-no-results { font-size: var(--att-fs-body-sm, 0.875rem); color: var(--text-muted); font-style: italic; }
+    .video-transcript-plain { font-size: var(--pmi-fs-body, 1rem); line-height: var(--pmi-lh-body, 1.5); max-width: 70ch; }
+    .video-transcript-no-results { font-size: var(--pmi-fs-body-sm, 0.875rem); color: var(--text-muted); font-style: italic; }
     .video-takeaways-panel {
       background-color: var(--bg-body);
-      border-radius: var(--att-radius-md, 12px);
+      border-radius: var(--pmi-radius-md, 12px);
       padding: 16px;
     }
     .video-takeaways-heading {
       display: flex;
       align-items: center;
       gap: 6px;
-      font-size: var(--att-fs-h4, 1.125rem);
-      font-weight: var(--att-fw-bold, 700);
-      line-height: var(--att-lh-heading, 1.25);
+      font-size: var(--pmi-fs-h4, 1.125rem);
+      font-weight: var(--pmi-fw-bold, 700);
+      line-height: var(--pmi-lh-heading, 1.25);
       color: var(--text-main);
       margin-bottom: 8px;
     }
     .video-takeaways-list {
       padding-left: 20px;
-      font-size: var(--att-fs-body, 1rem);
-      line-height: var(--att-lh-body, 1.5);
+      font-size: var(--pmi-fs-body, 1rem);
+      line-height: var(--pmi-lh-body, 1.5);
       max-width: 70ch;
       color: var(--text-main);
     }
-    .video-takeaways-locked-msg { font-size: var(--att-fs-body-sm, 0.875rem); color: var(--text-muted); font-style: italic; }
+    .video-takeaways-locked-msg { font-size: var(--pmi-fs-body-sm, 0.875rem); color: var(--text-muted); font-style: italic; }
     @media (max-width: 420px) {
       .video-control-strip { row-gap: 10px; }
       .video-scrub-wrap { flex-basis: 100%; order: 1; }

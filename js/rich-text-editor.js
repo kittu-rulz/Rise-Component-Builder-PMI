@@ -1,7 +1,7 @@
 // @ts-nocheck
 import { sanitizeRichText } from './utilities.js';
 
-export const ATT_BRAND_COLORS = [
+export const PMI_BRAND_COLORS = [
   { name: 'AT&T Blue', hex: '#0057B8' },
   { name: 'AT&T Navy', hex: '#00388F' },
   { name: 'AT&T Cyan', hex: '#009FDB' },
@@ -822,7 +822,7 @@ export function createRichTextEditor({
 
         const grid = document.createElement('div');
         grid.className = 'rt-color-grid';
-        ATT_BRAND_COLORS.forEach(c => {
+        PMI_BRAND_COLORS.forEach(c => {
           const swatch = document.createElement('button');
           swatch.type = 'button';
           swatch.className = 'rt-color-swatch';

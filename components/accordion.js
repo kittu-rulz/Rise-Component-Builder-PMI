@@ -1,7 +1,7 @@
 import { getEditorSchema } from '../js/editor-schemas.js';
 import { sanitizeRichText } from '../js/utilities.js';
 import { validateNonEmptyArray, combineValidationResults } from '../js/validation-utils.js';
-import { getAttIconSvg } from '../js/att-icons.js';
+import { getPmiIconSvg } from '../js/pmi-icons.js';
 import { wrapItemMediaContent, getItemMediaCSS, validateItemMedia } from '../js/item-media.js';
 
 /**
@@ -46,15 +46,15 @@ export const defaultConfig = {
 
 export const editorSchema = getEditorSchema(id);
 
-const lockIconSvg = getAttIconSvg('padlock', { className: 'accordion-lock-icon', width: 13, height: 13, ariaHidden: true });
-const visitedCheckIconSvg = getAttIconSvg('check', { className: 'accordion-visited-icon', width: 12, height: 12, ariaHidden: true });
+const lockIconSvg = getPmiIconSvg('padlock', { className: 'accordion-lock-icon', width: 13, height: 13, ariaHidden: true });
+const visitedCheckIconSvg = getPmiIconSvg('check', { className: 'accordion-visited-icon', width: 12, height: 12, ariaHidden: true });
 
 export function generateHTML(config, instanceId) {
   const icon = config.iconStyle === 'chevron'
-    ? getAttIconSvg('chevron-down', { className: 'acc-arrow', width: 18, height: 18, ariaHidden: true })
+    ? getPmiIconSvg('chevron-down', { className: 'acc-arrow', width: 18, height: 18, ariaHidden: true })
     : config.iconStyle === 'plus-minus'
       ? '<div class="acc-plus-minus"></div>'
-      : getAttIconSvg('arrow-down', { className: 'acc-arrow', width: 18, height: 18, ariaHidden: true });
+      : getPmiIconSvg('arrow-down', { className: 'acc-arrow', width: 18, height: 18, ariaHidden: true });
 
   const sequential = config.accordionSequential === true;
   const showProgress = config.accordionShowProgress === true;
@@ -110,13 +110,13 @@ export function generateCSS() {
     .accordion-group {
       display: flex;
       flex-direction: column;
-      gap: var(--att-space-3, 12px);
+      gap: var(--pmi-space-3, 12px);
     }
 
     .accordion-item {
       background-color: var(--bg-card);
       border: var(--border-style);
-      border-radius: var(--att-radius-lg, var(--border-radius, 20px));
+      border-radius: var(--pmi-radius-lg, var(--border-radius, 20px));
       box-shadow: var(--shadow-style);
       overflow: hidden;
       transition: border-color 0.2s ease, box-shadow 0.2s ease, border-left 0.2s ease;
@@ -131,12 +131,12 @@ export function generateCSS() {
       min-height: 44px;
       background: transparent;
       border: none;
-      padding: var(--att-space-4, 16px) var(--att-space-5, 24px);
+      padding: var(--pmi-space-4, 16px) var(--pmi-space-5, 24px);
       display: flex;
       justify-content: space-between;
       align-items: center;
       font-family: var(--font-family);
-      font-size: var(--att-fs-body, 16px);
+      font-size: var(--pmi-fs-body, 16px);
       font-weight: 600;
       text-align: left;
       cursor: pointer;
@@ -148,7 +148,7 @@ export function generateCSS() {
     }
 
     .accordion-trigger:focus-visible {
-      outline: 3px solid var(--att-cobalt, var(--primary)) !important;
+      outline: 3px solid var(--pmi-cobalt, var(--primary)) !important;
       outline-offset: 2px !important;
       box-shadow: none;
     }
@@ -172,19 +172,19 @@ export function generateCSS() {
 
     .accordion-lock-note {
       margin: -8px 20px 12px;
-      font-size: var(--att-fs-body-sm, 14px);
+      font-size: var(--pmi-fs-body-sm, 14px);
       font-style: italic;
       color: var(--text-muted);
     }
 
     .accordion-visited-badge {
-      font-size: var(--att-fs-eyebrow, 12px);
+      font-size: var(--pmi-fs-eyebrow, 12px);
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.4px;
       padding: 2px 10px;
-      border-radius: var(--att-radius-pill, 999px);
-      background-color: var(--att-grey-2, var(--border-color));
+      border-radius: var(--pmi-radius-pill, 999px);
+      background-color: var(--pmi-grey-2, var(--border-color));
       color: var(--text-main);
     }
 
@@ -195,13 +195,13 @@ export function generateCSS() {
     }
 
     .accordion-item.active {
-      border-color: var(--att-blue, var(--primary));
-      border-left: 4px solid var(--att-blue, var(--primary));
+      border-color: var(--pmi-blue, var(--primary));
+      border-left: 4px solid var(--pmi-blue, var(--primary));
     }
 
     .accordion-item.active .acc-arrow {
       transform: rotate(180deg);
-      color: var(--att-blue, var(--primary));
+      color: var(--pmi-blue, var(--primary));
     }
 
     .acc-plus-minus {
@@ -235,7 +235,7 @@ export function generateCSS() {
 
     .accordion-item.active .acc-plus-minus::before,
     .accordion-item.active .acc-plus-minus::after {
-      background-color: var(--att-blue, var(--primary));
+      background-color: var(--pmi-blue, var(--primary));
     }
 
     .accordion-item.active .acc-plus-minus::after {
@@ -250,9 +250,9 @@ export function generateCSS() {
     }
 
     .accordion-body {
-      padding: 0 var(--att-space-5, 24px) var(--att-space-5, 24px) var(--att-space-5, 24px);
-      font-size: var(--att-fs-body, 16px);
-      line-height: var(--att-lh-body, 1.5);
+      padding: 0 var(--pmi-space-5, 24px) var(--pmi-space-5, 24px) var(--pmi-space-5, 24px);
+      font-size: var(--pmi-fs-body, 16px);
+      line-height: var(--pmi-lh-body, 1.5);
       color: var(--text-main);
       width: 100%;
       box-sizing: border-box;
@@ -280,15 +280,15 @@ export function generateCSS() {
       flex: 1;
       background-color: var(--bg-card);
       border: var(--border-style);
-      border-radius: var(--att-radius-md, var(--button-radius, 12px));
+      border-radius: var(--pmi-radius-md, var(--button-radius, 12px));
       padding: 8px 14px;
-      font-size: var(--att-fs-body-sm, 14px);
+      font-size: var(--pmi-fs-body-sm, 14px);
       color: var(--text-main);
       min-height: 44px;
     }
 
     .accordion-search-input:focus-visible {
-      outline: 3px solid var(--att-cobalt, var(--primary)) !important;
+      outline: 3px solid var(--pmi-cobalt, var(--primary)) !important;
       outline-offset: 2px !important;
     }
 
@@ -302,9 +302,9 @@ export function generateCSS() {
     .accordion-toolbar-btn, .accordion-search-clear {
       background-color: var(--bg-card);
       border: var(--border-style);
-      border-radius: var(--att-radius-md, var(--button-radius, 12px));
+      border-radius: var(--pmi-radius-md, var(--button-radius, 12px));
       padding: 8px 16px;
-      font-size: var(--att-fs-body-sm, 14px);
+      font-size: var(--pmi-fs-body-sm, 14px);
       font-weight: 600;
       color: var(--text-main);
       cursor: pointer;
@@ -315,12 +315,12 @@ export function generateCSS() {
     }
 
     .accordion-toolbar-btn:focus-visible, .accordion-search-clear:focus-visible {
-      outline: 3px solid var(--att-cobalt, var(--primary)) !important;
+      outline: 3px solid var(--pmi-cobalt, var(--primary)) !important;
       outline-offset: 2px !important;
     }
 
     .accordion-progress, .accordion-search-status {
-      font-size: var(--att-fs-body-sm, 14px);
+      font-size: var(--pmi-fs-body-sm, 14px);
       color: var(--text-muted);
     }
 

@@ -1,6 +1,6 @@
 import { getEditorSchema } from '../js/editor-schemas.js';
 import { escapeAttribute, escapeHTML, sanitizeRichText } from '../js/utilities.js';
-import { getAttIconSvg } from '../js/att-icons.js';
+import { getPmiIconSvg } from '../js/pmi-icons.js';
 
 export const id = 'profile-cards';
 export const name = 'Modern Profile Grid';
@@ -38,14 +38,14 @@ export function generateHTML(config, instanceId) {
         const quoteHtml = (item.quote || '').trim() ? `<blockquote class="profile-pull-quote">&ldquo;${escapeHTML(item.quote)}&rdquo;</blockquote>` : '';
         const contactHtml = (item.contactUrl || '').trim() ? `
           <a href="${escapeAttribute(item.contactUrl)}" target="_blank" rel="noopener noreferrer" class="profile-contact-link" onclick="event.stopPropagation();">
-            ${getAttIconSvg('open-new', { width: 14, height: 14, ariaHidden: true })} ${escapeHTML(item.contactLabel || 'Connect')}
+            ${getPmiIconSvg('open-new', { width: 14, height: 14, ariaHidden: true })} ${escapeHTML(item.contactLabel || 'Connect')}
           </a>
         ` : '';
 
         return `
         <div class="profile-card-item" id="${instanceId}-card-${idx}" data-idx="${idx}" tabindex="0" role="${enableModal ? 'button' : 'article'}" aria-haspopup="${enableModal ? 'dialog' : 'false'}" aria-label="Profile of ${escapeAttribute(item.title || 'Expert')}">
           <div class="profile-avatar-circle ${item.imageCrop === 'square' ? 'square' : ''}">
-            ${item.image ? `<img src="${escapeAttribute(item.image)}" alt="${item.decorative ? '' : escapeAttribute(item.altText || '')}" ${item.decorative ? 'aria-hidden="true"' : ''}>` : getAttIconSvg('person', { width: 24, height: 24, ariaHidden: true })}
+            ${item.image ? `<img src="${escapeAttribute(item.image)}" alt="${item.decorative ? '' : escapeAttribute(item.altText || '')}" ${item.decorative ? 'aria-hidden="true"' : ''}>` : getPmiIconSvg('person', { width: 24, height: 24, ariaHidden: true })}
           </div>
           <div class="profile-card-content">
             <div class="profile-header-meta">
@@ -82,35 +82,35 @@ export function generateCSS() {
     .profiles-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: var(--att-space-5, 20px);
+      gap: var(--pmi-space-5, 20px);
       position: relative;
     }
     .profile-card-item {
       background-color: var(--bg-card);
       border: var(--border-style);
-      border-radius: var(--att-radius-lg, var(--border-radius, 20px));
+      border-radius: var(--pmi-radius-lg, var(--border-radius, 20px));
       box-shadow: var(--shadow-style);
-      padding: var(--att-space-5, 20px);
+      padding: var(--pmi-space-5, 20px);
       display: flex;
-      gap: var(--att-space-4, 16px);
+      gap: var(--pmi-space-4, 16px);
       align-items: flex-start;
       transition: all 0.2s ease;
       cursor: pointer;
     }
     .profile-card-item:hover {
       border-color: var(--primary);
-      box-shadow: var(--att-shadow-2, 0 4px 6px -1px rgba(0, 0, 0, 0.1));
+      box-shadow: var(--pmi-shadow-2, 0 4px 6px -1px rgba(0, 0, 0, 0.1));
     }
     .profile-card-item:active {
       transform: scale(0.98);
     }
     .profile-card-item:focus-visible {
-      outline: 3px solid var(--att-cobalt, var(--primary));
+      outline: 3px solid var(--pmi-cobalt, var(--primary));
       outline-offset: 2px;
     }
     .profile-card-item.active {
       border-color: var(--primary);
-      box-shadow: var(--att-shadow-2, 0 4px 6px -1px rgba(0, 0, 0, 0.1));
+      box-shadow: var(--pmi-shadow-2, 0 4px 6px -1px rgba(0, 0, 0, 0.1));
     }
     .profile-avatar-circle {
       width: 56px;
@@ -125,7 +125,7 @@ export function generateCSS() {
       border: 1px solid var(--border-color);
       overflow: hidden;
     }
-    .profile-avatar-circle.square { border-radius: var(--att-radius-sm, 8px); }
+    .profile-avatar-circle.square { border-radius: var(--pmi-radius-sm, 8px); }
     .profile-avatar-circle img {
       width: 100%;
       height: 100%;
@@ -138,28 +138,28 @@ export function generateCSS() {
       gap: 6px;
     }
     .profile-header-meta h4 {
-      font-size: var(--att-fs-h4, 1.125rem);
-      font-weight: var(--att-fw-bold, 700);
-      line-height: var(--att-lh-heading, 1.25);
+      font-size: var(--pmi-fs-h4, 1.125rem);
+      font-weight: var(--pmi-fw-bold, 700);
+      line-height: var(--pmi-lh-heading, 1.25);
       margin: 0 0 4px 0;
       color: var(--text-main);
       text-wrap: pretty;
     }
     .profile-role-badge {
       display: inline-block;
-      font-size: var(--att-fs-eyebrow, 11px);
+      font-size: var(--pmi-fs-eyebrow, 11px);
       font-weight: 700;
       color: var(--primary);
       background-color: rgba(0, 87, 184, 0.08);
       padding: 2px 8px;
-      border-radius: var(--att-radius-pill, 999px);
+      border-radius: var(--pmi-radius-pill, 999px);
       text-transform: uppercase;
       letter-spacing: 0.4px;
     }
     .profile-card-content p {
-      font-size: var(--att-fs-body-sm, 0.875rem);
+      font-size: var(--pmi-fs-body-sm, 0.875rem);
       color: var(--text-muted);
-      line-height: var(--att-lh-body, 1.5);
+      line-height: var(--pmi-lh-body, 1.5);
       max-width: 70ch;
       margin: 0;
     }
@@ -167,7 +167,7 @@ export function generateCSS() {
       margin: 6px 0 0 0;
       padding-left: 10px;
       border-left: 2px solid var(--accent);
-      font-size: var(--att-fs-body-sm, 13px);
+      font-size: var(--pmi-fs-body-sm, 13px);
       font-style: italic;
       color: var(--text-main);
     }
@@ -222,7 +222,7 @@ export function generateCSS() {
     .profile-modal-drawer {
       position: relative;
       background: var(--bg-card);
-      border-radius: var(--att-radius-lg, 16px);
+      border-radius: var(--pmi-radius-lg, 16px);
       box-shadow: 0 12px 36px rgba(0,0,0,0.25);
       max-width: 540px;
       width: 100%;
@@ -255,7 +255,7 @@ export function generateJS(config, instanceId) {
   const enableModal = config.profileEnableModal !== false;
 
   return `
-    var profilePersonIcon = ${JSON.stringify(getAttIconSvg('person', { width: 34, height: 34, ariaHidden: true }))};
+    var profilePersonIcon = ${JSON.stringify(getPmiIconSvg('person', { width: 34, height: 34, ariaHidden: true }))};
     var profileItems = ${itemsJson};
 
     function initComponent() {

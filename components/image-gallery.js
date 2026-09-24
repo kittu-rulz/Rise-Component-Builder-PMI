@@ -1,6 +1,6 @@
 import { getEditorSchema } from '../js/editor-schemas.js';
 import { escapeAttribute, escapeHTML, sanitizeURL } from '../js/utilities.js';
-import { getAttIconSvg } from '../js/att-icons.js';
+import { getPmiIconSvg } from '../js/pmi-icons.js';
 
 export const id = 'image-gallery';
 export const name = 'Grid Photo Gallery';
@@ -53,7 +53,7 @@ export function generateHTML(config, instanceId) {
             <button type="button" class="lightbox-zoom-btn" id="${instanceId}-zoom-out" aria-label="Zoom out">&minus;</button>
             <button type="button" class="lightbox-zoom-btn" id="${instanceId}-zoom-reset" aria-label="Reset zoom">Reset</button>
           </div>
-          <button type="button" class="lightbox-close" aria-label="Close image dialog">${getAttIconSvg('close', { className: 'lightbox-close-icon', width: 20, height: 20, ariaHidden: true })}</button>
+          <button type="button" class="lightbox-close" aria-label="Close image dialog">${getPmiIconSvg('close', { className: 'lightbox-close-icon', width: 20, height: 20, ariaHidden: true })}</button>
         </div>
         <div class="lightbox-img-stage" id="${instanceId}-lightbox-stage">
           <img class="lightbox-img" id="${instanceId}-lightbox-expanded-img" src="" alt="Lightbox image">
@@ -69,19 +69,19 @@ export function generateCSS() {
     .gallery-wrapper {
       display: flex;
       flex-direction: column;
-      gap: var(--att-space-4, 16px);
+      gap: var(--pmi-space-4, 16px);
     }
     .gallery-filter-chips {
       display: flex;
       flex-wrap: wrap;
-      gap: var(--att-space-2, 8px);
+      gap: var(--pmi-space-2, 8px);
     }
     .gallery-filter-chip {
       background-color: var(--bg-card);
       border: var(--border-style);
-      border-radius: var(--att-radius-pill, 999px);
+      border-radius: var(--pmi-radius-pill, 999px);
       padding: 6px 14px;
-      font-size: var(--att-fs-body-sm, 14px);
+      font-size: var(--pmi-fs-body-sm, 14px);
       font-weight: 600;
       color: var(--text-main);
       cursor: pointer;
@@ -95,11 +95,11 @@ export function generateCSS() {
     .gallery-grid.layout-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-      gap: var(--att-space-4, 16px);
+      gap: var(--pmi-space-4, 16px);
     }
     .gallery-grid.layout-masonry {
       column-count: 3;
-      column-gap: var(--att-space-4, 16px);
+      column-gap: var(--pmi-space-4, 16px);
     }
     @media (max-width: 600px) {
       .gallery-grid.layout-masonry {
@@ -108,7 +108,7 @@ export function generateCSS() {
     }
     .gallery-item-card {
       position: relative;
-      border-radius: var(--att-radius-lg, var(--border-radius, 20px));
+      border-radius: var(--pmi-radius-lg, var(--border-radius, 20px));
       border: var(--border-style);
       box-shadow: var(--shadow-style);
       overflow: hidden;
@@ -120,12 +120,12 @@ export function generateCSS() {
       color: inherit;
       min-height: 44px;
       min-width: 44px;
-      transition: transform var(--att-dur-base, 0.2s) ease;
+      transition: transform var(--pmi-dur-base, 0.2s) ease;
     }
     .layout-masonry .gallery-item-card {
       display: inline-block;
       width: 100%;
-      margin-bottom: var(--att-space-4, 16px);
+      margin-bottom: var(--pmi-space-4, 16px);
       aspect-ratio: auto;
     }
     .gallery-item-card[hidden] {
@@ -135,7 +135,7 @@ export function generateCSS() {
       transform: scale(0.98);
     }
     .gallery-item-card:focus-visible {
-      outline: 3px solid var(--att-cobalt, var(--primary));
+      outline: 3px solid var(--pmi-cobalt, var(--primary));
       outline-offset: 2px;
     }
     .gallery-item-card img {
@@ -152,9 +152,9 @@ export function generateCSS() {
       background-color: var(--text-main);
       padding: 10px 12px;
       color: var(--bg-card);
-      font-size: var(--att-fs-body-sm, 0.875rem);
-      font-weight: var(--att-fw-medium, 500);
-      line-height: var(--att-lh-body, 1.5);
+      font-size: var(--pmi-fs-body-sm, 0.875rem);
+      font-weight: var(--pmi-fw-medium, 500);
+      line-height: var(--pmi-lh-body, 1.5);
       display: flex;
       flex-direction: column;
       gap: 2px;
@@ -172,7 +172,7 @@ export function generateCSS() {
       left: 0;
       right: 0;
       bottom: 0;
-      background-color: var(--att-scrim, rgba(0, 0, 0, 0.85));
+      background-color: var(--pmi-scrim, rgba(0, 0, 0, 0.85));
       z-index: 200;
       display: flex;
       flex-direction: column;
@@ -196,7 +196,7 @@ export function generateCSS() {
       gap: 8px;
       background: rgba(0,0,0,0.6);
       padding: 4px 10px;
-      border-radius: var(--att-radius-pill, 999px);
+      border-radius: var(--pmi-radius-pill, 999px);
     }
     .lightbox-zoom-btn {
       background: none;
@@ -225,15 +225,15 @@ export function generateCSS() {
     .lightbox-img {
       max-width: 100%;
       max-height: 75vh;
-      border-radius: var(--att-radius-lg, var(--border-radius, 20px));
-      box-shadow: var(--att-shadow-2, 0 10px 15px -3px rgba(0,0,0,0.1));
+      border-radius: var(--pmi-radius-lg, var(--border-radius, 20px));
+      box-shadow: var(--pmi-shadow-2, 0 10px 15px -3px rgba(0,0,0,0.1));
       transition: transform 0.2s ease;
       cursor: grab;
     }
     .lightbox-caption {
       color: var(--bg-card);
-      font-size: var(--att-fs-body, 1rem);
-      line-height: var(--att-lh-body, 1.5);
+      font-size: var(--pmi-fs-body, 1rem);
+      line-height: var(--pmi-lh-body, 1.5);
       margin-top: 16px;
       text-align: center;
       max-width: 70ch;
@@ -249,13 +249,13 @@ export function generateCSS() {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      transition: transform var(--att-dur-base, 0.2s) ease;
+      transition: transform var(--pmi-dur-base, 0.2s) ease;
     }
     .lightbox-close:active {
       transform: scale(0.98);
     }
     .lightbox-close:focus-visible {
-      outline: 3px solid var(--att-cobalt, var(--primary));
+      outline: 3px solid var(--pmi-cobalt, var(--primary));
       outline-offset: 2px;
     }`;
 }

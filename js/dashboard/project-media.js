@@ -7,7 +7,7 @@ import { listMedia, saveMediaRecord, deleteMediaRecord, ensureMediaObjectURL } f
 import { prepareMediaFile, createMediaReference } from '../media.js';
 import { getProject } from '../storage.js';
 import { getMediaAssetUsage, replaceMediaAssetReferences } from '../media-usage.js';
-import { showConfirmDialog, isolateModal } from './att-modal.js';
+import { showConfirmDialog, isolateModal } from './pmi-modal.js';
 import { showMediaPickerModal } from './media-picker-modal.js';
 import { showToast } from '../toast.js';
 
@@ -94,7 +94,7 @@ export class ProjectMediaView {
 
           <div class="workspace-header-actions">
             <input type="file" id="media-upload-input" multiple accept="image/*,video/*,audio/*" style="display:none;" />
-            <button id="media-upload-btn" class="btn-att-primary">
+            <button id="media-upload-btn" class="btn-pmi-primary">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
                 <polyline points="17 8 12 3 7 8"></polyline>
@@ -111,7 +111,7 @@ export class ProjectMediaView {
             <div class="workspace-banner-info">
               <h1 class="workspace-title">Course Media Library</h1>
               <p class="workspace-desc">
-                High-performance offline assets stored locally in your browser on this device (IndexedDB). Stored assets can be referenced across any course component.
+                Assets are stored in this browser on this device (IndexedDB). The library is <strong>shared by every project in this browser</strong>, not kept per course. <strong>Export JSON</strong> saves media references only, not the files; use <strong>Export Package</strong> (in the Open Project menu) or a course ZIP to carry the files themselves.
               </p>
               <div style="margin-top: 8px; font-size: 0.8125rem; color: #555555; display: flex; gap: 16px;">
                 <span>Total Assets: <strong>${this.state.mediaList.length}</strong></span>
@@ -143,9 +143,14 @@ export class ProjectMediaView {
             </div>
           ` : `
             <div class="dashboard-empty-state">
-              <h3 class="empty-state-title">No matching media assets found</h3>
-              <p class="empty-state-subtitle">Upload graphics, audio files, or videos to share across this course project.</p>
-              <button id="media-empty-upload-btn" class="btn-att-primary" style="margin-top: 12px;">Upload Media File</button>
+              ${this.state.mediaList.length === 0 ? `
+                <h3 class="empty-state-title">No media uploaded yet.</h3>
+                <p class="empty-state-subtitle">Upload graphics, audio or video to use them in any course component.</p>
+              ` : `
+                <h3 class="empty-state-title">No matching assets</h3>
+                <p class="empty-state-subtitle">${this.state.searchQuery.trim() ? `Nothing in the library matches “${this.escapeHtml(this.state.searchQuery.trim())}”.` : 'No assets match this filter.'} The library has ${this.state.mediaList.length} asset${this.state.mediaList.length === 1 ? '' : 's'}; clear the search or choose “All Assets”.</p>
+              `}
+              <button id="media-empty-upload-btn" class="btn-pmi-primary" style="margin-top: 12px;">Upload Media File</button>
             </div>
           `}
         </main>

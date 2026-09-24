@@ -2,7 +2,7 @@
 // export mode identically (single-file HTML, iframe snippet, HTML fragment, Rise Project
 // ZIP) with no external dependency and no separate asset-packaging step, matching the
 // existing single-compiler guarantee (docs/EXPORT-CONTRACT.md). Licensed for this engagement
-// under a confirmed digital-use grant — see /ATT Design System/All_ATTAleck_Fonts/ATT_Aleck_EULA.pdf
+// under a confirmed digital-use grant — see /ATT Design System/All_ATTAleck_Fonts/PMI_Aleck_EULA.pdf
 // for the base print-collateral EULA and confirm the broader digital scope with whoever
 // manages the AT&T brand license before reusing these files in another project.
 //
@@ -32,9 +32,9 @@
 // use. Anyone reusing this repo for a different engagement must independently reconfirm that
 // permission — it is not re-derivable from the EULA text alone.
 
-export const ATT_ALECK_SANS_FONT_FAMILY = 'ATT Aleck Sans';
+export const PMI_ALECK_SANS_FONT_FAMILY = 'ATT Aleck Sans';
 
-export const ATT_ALECK_SANS_FONT_FACE_CSS = `@font-face {
+export const PMI_ALECK_SANS_FONT_FACE_CSS = `@font-face {
   font-family: 'ATT Aleck Sans';
   font-weight: 400;
   font-style: normal;
@@ -78,5 +78,5 @@ export const ATT_ALECK_SANS_FONT_FACE_CSS = `@font-face {
 // registered here so js/preview.js and js/export-shell.js can tell a custom/self-hosted
 // family apart from one served by Google Fonts without a component-by-component special case.
 export const CUSTOM_FONT_FACES_BY_FAMILY = Object.freeze({
-  [ATT_ALECK_SANS_FONT_FAMILY]: ATT_ALECK_SANS_FONT_FACE_CSS
+  [PMI_ALECK_SANS_FONT_FAMILY]: PMI_ALECK_SANS_FONT_FACE_CSS
 });

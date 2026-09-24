@@ -228,17 +228,17 @@ describe('Project Dashboard & Workspace Controller Tests', () => {
       onViewQa: (id) => { viewedQaId = id; }
     });
 
-    const overlay = document.getElementById('att-export-review-modal-overlay');
+    const overlay = document.getElementById('pmi-export-review-modal-overlay');
     expect(overlay).not.toBeNull();
     expect(overlay.innerHTML).toContain('Pre-Export Package Review');
     expect(overlay.innerHTML).toContain('Export Blocked');
 
-    const proceedBtn = overlay.querySelector('#att-export-review-proceed-btn');
+    const proceedBtn = overlay.querySelector('#pmi-export-review-proceed-btn');
     expect(proceedBtn.disabled).toBe(true);
 
-    const qaBtn = overlay.querySelector('#att-export-review-qa-btn');
+    const qaBtn = overlay.querySelector('#pmi-export-review-qa-btn');
     qaBtn.click();
     expect(viewedQaId).toBe(project.id);
-    expect(document.getElementById('att-export-review-modal-overlay')).toBeNull();
+    expect(document.getElementById('pmi-export-review-modal-overlay')).toBeNull();
   });
 });

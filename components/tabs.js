@@ -1,6 +1,6 @@
 import { getEditorSchema } from '../js/editor-schemas.js';
 import { escapeAttribute, sanitizeRichText, sanitizeURL, serializeForInlineScript } from '../js/utilities.js';
-import { getAttIconSvg } from '../js/att-icons.js';
+import { getPmiIconSvg } from '../js/pmi-icons.js';
 
 /**
  * Horizontal Tabs Component Configuration
@@ -39,8 +39,8 @@ export const defaultConfig = {
 };
 export const editorSchema = getEditorSchema(id);
 
-const lockIconSvg = getAttIconSvg('padlock', { className: 'tab-lock-icon', width: 12, height: 12, ariaHidden: true });
-const visitedCheckIconSvg = getAttIconSvg('check', { className: 'tab-visited-icon', width: 12, height: 12, ariaHidden: true });
+const lockIconSvg = getPmiIconSvg('padlock', { className: 'tab-lock-icon', width: 12, height: 12, ariaHidden: true });
+const visitedCheckIconSvg = getPmiIconSvg('check', { className: 'tab-visited-icon', width: 12, height: 12, ariaHidden: true });
 
 function renderTabIcon(item) {
   const source = sanitizeURL(item?.iconImage, { allowDataImage: true, allowBlob: true, allowRelative: true });
@@ -62,8 +62,8 @@ export function generateHTML(config, instanceId) {
   const autoAdvanceDelay = Number.isFinite(Number(config.tabsAutoAdvanceDelay)) && Number(config.tabsAutoAdvanceDelay) > 0 ? Number(config.tabsAutoAdvanceDelay) : 5;
   const total = config.items.length;
 
-  const playIcon = getAttIconSvg('play', { width: 14, height: 14, ariaHidden: true, className: 'tabs-play-icon' });
-  const pauseIcon = getAttIconSvg('pause', { width: 14, height: 14, ariaHidden: true, className: 'tabs-pause-icon', style: 'display:none;' });
+  const playIcon = getPmiIconSvg('play', { width: 14, height: 14, ariaHidden: true, className: 'tabs-play-icon' });
+  const pauseIcon = getPmiIconSvg('pause', { width: 14, height: 14, ariaHidden: true, className: 'tabs-pause-icon', style: 'display:none;' });
 
   const toolbar = (showProgress || allowReset || compareMode || autoAdvance) ? `
     <div class="tabs-toolbar">
@@ -121,7 +121,7 @@ export function generateCSS() {
     .tabs-container {
       background-color: var(--bg-card);
       border: var(--border-style);
-      border-radius: var(--att-radius-lg, var(--border-radius, 20px));
+      border-radius: var(--pmi-radius-lg, var(--border-radius, 20px));
       box-shadow: var(--shadow-style);
       overflow: hidden;
     }
@@ -129,15 +129,15 @@ export function generateCSS() {
       display: flex;
       align-items: center;
       flex-wrap: wrap;
-      gap: var(--att-space-2, 8px);
+      gap: var(--pmi-space-2, 8px);
       padding: 12px 16px 0;
     }
     .tabs-toolbar-btn {
       background-color: var(--bg-card);
       border: var(--border-style);
-      border-radius: var(--att-radius-md, var(--button-radius, 12px));
+      border-radius: var(--pmi-radius-md, var(--button-radius, 12px));
       padding: 6px 14px;
-      font-size: var(--att-fs-body-sm, 14px);
+      font-size: var(--pmi-fs-body-sm, 14px);
       font-weight: 600;
       color: var(--text-main);
       cursor: pointer;
@@ -154,7 +154,7 @@ export function generateCSS() {
     }
     .tabs-progress-text {
       margin-left: auto;
-      font-size: var(--att-fs-body-sm, 14px);
+      font-size: var(--pmi-fs-body-sm, 14px);
       font-weight: 600;
       color: var(--text-muted);
     }
@@ -168,7 +168,7 @@ export function generateCSS() {
     }
     .tabs-header {
       display: flex;
-      gap: var(--att-space-2, 8px);
+      gap: var(--pmi-space-2, 8px);
       flex-wrap: nowrap;
       padding: 2px 2px 6px;
       overflow-x: auto;
@@ -187,7 +187,7 @@ export function generateCSS() {
       height: 36px;
       min-height: 36px;
       padding: 0;
-      border-radius: var(--att-radius-pill, 999px);
+      border-radius: var(--pmi-radius-pill, 999px);
       background: var(--bg-card);
       border: 1px solid var(--border-color);
       color: var(--primary);
@@ -209,7 +209,7 @@ export function generateCSS() {
       transform: scale(0.95);
     }
     .tabs-nav-arrow:focus-visible {
-      outline: 3px solid var(--att-cobalt, var(--primary));
+      outline: 3px solid var(--pmi-cobalt, var(--primary));
       outline-offset: 2px;
     }
     .tabs-nav-arrow:disabled,
@@ -232,9 +232,9 @@ export function generateCSS() {
       gap: 6px;
       background: var(--bg-card);
       border: 1px solid var(--primary);
-      border-radius: var(--button-radius, var(--att-radius-pill, 999px));
+      border-radius: var(--button-radius, var(--pmi-radius-pill, 999px));
       padding: 10px 18px;
-      font-size: var(--att-fs-body, 16px);
+      font-size: var(--pmi-fs-body, 16px);
       font-weight: 600;
       color: var(--primary);
       cursor: pointer;
@@ -258,14 +258,14 @@ export function generateCSS() {
       transform: scale(0.98);
     }
     .tab-btn:focus-visible {
-      outline: 3px solid var(--att-cobalt, var(--primary));
+      outline: 3px solid var(--pmi-cobalt, var(--primary));
       outline-offset: 2px;
     }
     .tab-btn[aria-disabled="true"] {
       cursor: not-allowed;
-      background: var(--att-grey-2, #DCDFE3);
-      border-color: var(--att-grey-2, #DCDFE3);
-      color: var(--att-grey-3, #BDC2C7);
+      background: var(--pmi-grey-2, #DCDFE3);
+      border-color: var(--pmi-grey-2, #DCDFE3);
+      color: var(--pmi-grey-3, #BDC2C7);
       opacity: 0.7;
     }
     .tab-label-text {
@@ -277,7 +277,7 @@ export function generateCSS() {
       width: 18px;
       height: 18px;
       flex-shrink: 0;
-      border-radius: var(--att-radius-sm, 6px);
+      border-radius: var(--pmi-radius-sm, 6px);
     }
     .tab-lock-icon-slot {
       display: inline-flex;
@@ -285,12 +285,12 @@ export function generateCSS() {
       flex-shrink: 0;
     }
     .tab-visited-badge {
-      font-size: var(--att-fs-eyebrow, 12px);
+      font-size: var(--pmi-fs-eyebrow, 12px);
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.4px;
       padding: 2px 8px;
-      border-radius: var(--att-radius-pill, 999px);
+      border-radius: var(--pmi-radius-pill, 999px);
       background-color: var(--border-color);
       color: var(--text-main);
     }
@@ -301,8 +301,8 @@ export function generateCSS() {
     }
     .tab-panel {
       display: none;
-      font-size: var(--att-fs-body, 16px);
-      line-height: var(--att-lh-body, 1.5);
+      font-size: var(--pmi-fs-body, 16px);
+      line-height: var(--pmi-lh-body, 1.5);
       color: var(--text-main);
       max-width: 70ch;
       animation: fadeIn 0.3s ease;
@@ -385,7 +385,7 @@ export function generateCSS() {
       gap: 12px;
     }
     .tabs-compare-hint {
-      font-size: var(--att-fs-body-sm, 14px);
+      font-size: var(--pmi-fs-body-sm, 14px);
       color: var(--text-muted);
     }
     .tabs-compare-checklist {
@@ -397,7 +397,7 @@ export function generateCSS() {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      font-size: var(--att-fs-body-sm, 14px);
+      font-size: var(--pmi-fs-body-sm, 14px);
       font-weight: 600;
       cursor: pointer;
     }
@@ -409,14 +409,14 @@ export function generateCSS() {
     .tabs-compare-column {
       background-color: var(--bg-body);
       border: 1px solid var(--border-color);
-      border-radius: var(--att-radius-md, 12px);
+      border-radius: var(--pmi-radius-md, 12px);
       padding: 14px 16px;
-      font-size: var(--att-fs-body, 16px);
-      line-height: var(--att-lh-body, 1.5);
+      font-size: var(--pmi-fs-body, 16px);
+      line-height: var(--pmi-lh-body, 1.5);
       color: var(--text-main);
     }
     .tabs-compare-column h4 {
-      font-size: var(--att-fs-body-lg, 18px);
+      font-size: var(--pmi-fs-body-lg, 18px);
       font-weight: 700;
       color: var(--text-main);
       margin-bottom: 6px;

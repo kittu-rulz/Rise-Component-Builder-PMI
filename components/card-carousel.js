@@ -1,6 +1,6 @@
 import { getEditorSchema } from '../js/editor-schemas.js';
 import { escapeAttribute, escapeHTML, sanitizeRichText } from '../js/utilities.js';
-import { getAttIconSvg } from '../js/att-icons.js';
+import { getPmiIconSvg } from '../js/pmi-icons.js';
 
 /**
  * Card Stack / Carousel Component
@@ -57,9 +57,9 @@ export const defaultConfig = {
 
 export const editorSchema = getEditorSchema(id);
 
-const chevronLeftIcon = getAttIconSvg('chevron-left', { width: 20, height: 20, ariaHidden: true });
-const chevronRightIcon = getAttIconSvg('chevron-right', { width: 20, height: 20, ariaHidden: true });
-const cardsIcon = getAttIconSvg('multi-screen', { width: 22, height: 22, ariaHidden: true });
+const chevronLeftIcon = getPmiIconSvg('chevron-left', { width: 20, height: 20, ariaHidden: true });
+const chevronRightIcon = getPmiIconSvg('chevron-right', { width: 20, height: 20, ariaHidden: true });
+const cardsIcon = getPmiIconSvg('multi-screen', { width: 22, height: 22, ariaHidden: true });
 
 export function generateHTML(config, instanceId) {
   const items = Array.isArray(config.items) && config.items.length ? config.items : defaultConfig.items;
@@ -160,17 +160,17 @@ export function generateCSS() {
     .carousel-card-block {
       background-color: var(--bg-card);
       border: var(--border-style);
-      border-radius: var(--att-radius-lg, var(--border-radius, 20px));
+      border-radius: var(--pmi-radius-lg, var(--border-radius, 20px));
       box-shadow: var(--shadow-style);
-      padding: var(--att-space-5, 24px);
+      padding: var(--pmi-space-5, 24px);
       display: flex;
       flex-direction: column;
-      gap: var(--att-space-4, 16px);
+      gap: var(--pmi-space-4, 16px);
     }
     .carousel-header {
       display: flex;
       align-items: center;
-      gap: var(--att-space-3, 12px);
+      gap: var(--pmi-space-3, 12px);
     }
     .carousel-header-icon {
       display: inline-flex;
@@ -180,30 +180,30 @@ export function generateCSS() {
       flex-shrink: 0;
     }
     .carousel-title {
-      font-size: var(--att-fs-h3, 1.25rem);
-      font-weight: var(--att-fw-bold, 700);
-      line-height: var(--att-lh-heading, 1.25);
+      font-size: var(--pmi-fs-h3, 1.25rem);
+      font-weight: var(--pmi-fw-bold, 700);
+      line-height: var(--pmi-lh-heading, 1.25);
       color: var(--text-main);
       text-wrap: pretty;
       margin: 0;
     }
     .carousel-description {
-      font-size: var(--att-fs-body, 1rem);
-      line-height: var(--att-lh-body, 1.5);
+      font-size: var(--pmi-fs-body, 1rem);
+      line-height: var(--pmi-lh-body, 1.5);
       color: var(--text-main);
       margin: 0;
     }
     .carousel-stage-container {
       display: flex;
       flex-direction: column;
-      gap: var(--att-space-4, 16px);
+      gap: var(--pmi-space-4, 16px);
       width: 100%;
     }
     .carousel-track-wrapper {
       overflow: hidden;
-      border-radius: var(--att-radius-md, 16px);
+      border-radius: var(--pmi-radius-md, 16px);
       background-color: var(--bg-body, #F3F4F5);
-      padding: var(--att-space-3, 12px);
+      padding: var(--pmi-space-3, 12px);
       touch-action: pan-y;
       cursor: grab;
       user-select: none;
@@ -226,7 +226,7 @@ export function generateCSS() {
       flex: 0 0 calc(100% / var(--cards-per-view, 1));
       min-width: calc(100% / var(--cards-per-view, 1));
       box-sizing: border-box;
-      padding: var(--att-space-2, 8px);
+      padding: var(--pmi-space-2, 8px);
     }
     @media (max-width: 768px) {
       .carousel-slide-item {
@@ -237,11 +237,11 @@ export function generateCSS() {
     .carousel-card-inner {
       background-color: var(--bg-card, #FFFFFF);
       border: 1px solid var(--border-color, #DCDFE3);
-      border-radius: var(--att-radius-md, 16px);
-      padding: var(--att-space-5, 24px);
+      border-radius: var(--pmi-radius-md, 16px);
+      padding: var(--pmi-space-5, 24px);
       display: flex;
       flex-direction: column;
-      gap: var(--att-space-3, 12px);
+      gap: var(--pmi-space-3, 12px);
       min-height: 220px;
       height: 100%;
       box-sizing: border-box;
@@ -252,12 +252,12 @@ export function generateCSS() {
     }
     .carousel-category-badge {
       display: inline-block;
-      padding: 3px var(--att-space-3, 12px);
+      padding: 3px var(--pmi-space-3, 12px);
       border-radius: 9999px;
       background-color: var(--bg-body, #F3F4F5);
       color: var(--primary, #00388F);
-      font-size: var(--att-fs-xs, 0.8125rem);
-      font-weight: var(--att-fw-bold, 700);
+      font-size: var(--pmi-fs-xs, 0.8125rem);
+      font-weight: var(--pmi-fw-bold, 700);
       text-transform: uppercase;
       letter-spacing: 0.04em;
     }
@@ -265,7 +265,7 @@ export function generateCSS() {
       width: 100%;
       max-height: 220px;
       overflow: hidden;
-      border-radius: var(--att-radius-sm, 12px);
+      border-radius: var(--pmi-radius-sm, 12px);
     }
     .carousel-card-image {
       width: 100%;
@@ -274,38 +274,38 @@ export function generateCSS() {
       display: block;
     }
     .carousel-card-title {
-      font-size: var(--att-fs-h3, 1.25rem);
-      font-weight: var(--att-fw-bold, 700);
-      line-height: var(--att-lh-heading, 1.3);
+      font-size: var(--pmi-fs-h3, 1.25rem);
+      font-weight: var(--pmi-fw-bold, 700);
+      line-height: var(--pmi-lh-heading, 1.3);
       color: var(--primary, #00388F);
       margin: 0;
     }
     .carousel-card-body {
-      font-size: var(--att-fs-body, 1rem);
-      line-height: var(--att-lh-body, 1.5);
+      font-size: var(--pmi-fs-body, 1rem);
+      line-height: var(--pmi-lh-body, 1.5);
       color: var(--text-main);
     }
     .carousel-card-actions {
       margin-top: auto;
-      padding-top: var(--att-space-2, 8px);
+      padding-top: var(--pmi-space-2, 8px);
       display: flex;
     }
     .carousel-card-btn {
       display: inline-flex;
       align-items: center;
-      padding: var(--att-space-2, 8px) var(--att-space-4, 16px);
-      border-radius: var(--att-radius-sm, 12px);
+      padding: var(--pmi-space-2, 8px) var(--pmi-space-4, 16px);
+      border-radius: var(--pmi-radius-sm, 12px);
       background-color: var(--primary, #00388F);
       color: #FFFFFF;
       text-decoration: none;
-      font-family: var(--att-font-sans, sans-serif);
-      font-size: var(--att-fs-body, 1rem);
-      font-weight: var(--att-fw-bold, 700);
+      font-family: var(--pmi-font-sans, sans-serif);
+      font-size: var(--pmi-fs-body, 1rem);
+      font-weight: var(--pmi-fw-bold, 700);
       min-height: 44px;
       transition: background-color 180ms ease;
     }
     .carousel-card-btn:hover {
-      background-color: var(--att-blue, #009FDB);
+      background-color: var(--pmi-blue, #009FDB);
     }
     .carousel-card-btn:focus-visible {
       outline: 3px solid var(--primary, #00388F);
@@ -315,7 +315,7 @@ export function generateCSS() {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: var(--att-space-4, 16px);
+      gap: var(--pmi-space-4, 16px);
       width: 100%;
     }
     .carousel-nav-btn {
@@ -349,9 +349,9 @@ export function generateCSS() {
       color: var(--text-muted, #4B5563);
     }
     .carousel-counter {
-      font-family: var(--att-font-sans, sans-serif);
-      font-size: var(--att-fs-body, 1rem);
-      font-weight: var(--att-fw-bold, 700);
+      font-family: var(--pmi-font-sans, sans-serif);
+      font-size: var(--pmi-fs-body, 1rem);
+      font-weight: var(--pmi-fw-bold, 700);
       color: var(--text-main);
       font-variant-numeric: tabular-nums;
       min-width: 60px;
@@ -361,7 +361,7 @@ export function generateCSS() {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: var(--att-space-2, 8px);
+      gap: var(--pmi-space-2, 8px);
       width: 100%;
     }
     .carousel-dot-btn {
@@ -375,7 +375,7 @@ export function generateCSS() {
       transition: all 200ms ease;
     }
     .carousel-dot-btn:hover {
-      background-color: var(--att-blue, #009FDB);
+      background-color: var(--pmi-blue, #009FDB);
     }
     .carousel-dot-btn:focus-visible {
       outline: 3px solid var(--primary, #00388F);

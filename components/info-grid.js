@@ -79,27 +79,27 @@ export function generateCSS() {
     .info-grid-container {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: var(--att-space-5, 20px);
+      gap: var(--pmi-space-5, 20px);
     }
     .info-grid-item {
       background-color: var(--bg-card);
       border: var(--border-style);
-      border-radius: var(--att-radius-lg, var(--border-radius, 20px));
+      border-radius: var(--pmi-radius-lg, var(--border-radius, 20px));
       box-shadow: var(--shadow-style);
-      padding: var(--att-space-5, 20px);
+      padding: var(--pmi-space-5, 20px);
       transition: all 0.2s;
       display: flex;
       flex-direction: column;
     }
     .info-grid-item:hover {
       border-color: var(--primary);
-      box-shadow: var(--att-shadow-2, 0 4px 6px -1px rgba(0, 0, 0, 0.1));
+      box-shadow: var(--pmi-shadow-2, 0 4px 6px -1px rgba(0, 0, 0, 0.1));
     }
     .info-grid-item:active {
       transform: scale(0.98);
     }
     .info-grid-item:focus-visible {
-      outline: 3px solid var(--att-cobalt, var(--primary));
+      outline: 3px solid var(--pmi-cobalt, var(--primary));
       outline-offset: 2px;
     }
     .info-grid-item.active {
@@ -110,7 +110,7 @@ export function generateCSS() {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: var(--att-space-3, 10px);
+      margin-bottom: var(--pmi-space-3, 10px);
     }
     .info-grid-icon {
       color: var(--accent);
@@ -121,20 +121,20 @@ export function generateCSS() {
     .info-grid-icon .custom-item-icon {
       width: 42px;
       height: 42px;
-      border-radius: var(--att-radius-sm, 8px);
+      border-radius: var(--pmi-radius-sm, 8px);
     }
     .info-grid-badge {
-      font-size: var(--att-fs-eyebrow, 11px);
+      font-size: var(--pmi-fs-eyebrow, 11px);
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.4px;
       padding: 2px 8px;
-      border-radius: var(--att-radius-pill, 999px);
+      border-radius: var(--pmi-radius-pill, 999px);
       background-color: var(--border-color);
       color: var(--text-main);
     }
     .info-grid-subtitle {
-      font-size: var(--att-fs-eyebrow, 12px);
+      font-size: var(--pmi-fs-eyebrow, 12px);
       font-weight: 700;
       color: var(--accent);
       text-transform: uppercase;
@@ -142,9 +142,9 @@ export function generateCSS() {
       margin-bottom: 2px;
     }
     .info-grid-item h4 {
-      font-size: var(--att-fs-h4, 1.125rem);
-      font-weight: var(--att-fw-bold, 700);
-      line-height: var(--att-lh-heading, 1.25);
+      font-size: var(--pmi-fs-h4, 1.125rem);
+      font-weight: var(--pmi-fw-bold, 700);
+      line-height: var(--pmi-lh-heading, 1.25);
       margin-bottom: 6px;
       color: var(--text-main);
       text-wrap: pretty;
@@ -153,26 +153,26 @@ export function generateCSS() {
       margin: 6px 0 10px 0;
       padding: 6px 10px;
       background-color: var(--bg-body);
-      border-radius: var(--att-radius-md, 6px);
+      border-radius: var(--pmi-radius-md, 6px);
       display: inline-flex;
       flex-direction: column;
       align-self: flex-start;
     }
     .info-grid-metric-val {
-      font-size: var(--att-fs-h3, 1.25rem);
+      font-size: var(--pmi-fs-h3, 1.25rem);
       font-weight: 800;
       color: var(--primary);
       line-height: 1.1;
     }
     .info-grid-metric-lbl {
-      font-size: var(--att-fs-eyebrow, 11px);
+      font-size: var(--pmi-fs-eyebrow, 11px);
       color: var(--text-muted);
       font-weight: 600;
     }
     .info-grid-item p {
-      font-size: var(--att-fs-body, 1rem);
+      font-size: var(--pmi-fs-body, 1rem);
       color: var(--text-muted);
-      line-height: var(--att-lh-body, 1.5);
+      line-height: var(--pmi-lh-body, 1.5);
       max-width: 70ch;
       margin: 0;
     }`;

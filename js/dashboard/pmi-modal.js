@@ -1,5 +1,5 @@
 /**
- * @file att-modal.js
+ * @file pmi-modal.js
  * Accessible, AT&T Brand styled Promise-based modal dialogs and modal isolation utilities.
  * Handles role="dialog", aria-modal="true", background inert isolation, Tab focus trapping,
  * Escape key dismissal, and trigger focus restoration.
@@ -319,33 +319,33 @@ export function showPromptDialog({
   triggerElement = (typeof document !== 'undefined' ? document.activeElement : null)
 }) {
   return new Promise((resolve) => {
-    const existing = document.getElementById('att-dynamic-modal-overlay');
+    const existing = document.getElementById('pmi-dynamic-modal-overlay');
     if (existing) existing.remove();
 
     const overlay = document.createElement('div');
-    overlay.id = 'att-dynamic-modal-overlay';
+    overlay.id = 'pmi-dynamic-modal-overlay';
     overlay.className = 'modal-overlay is-active';
     overlay.setAttribute('role', 'dialog');
     overlay.setAttribute('aria-modal', 'true');
-    overlay.setAttribute('aria-labelledby', 'att-modal-prompt-title');
+    overlay.setAttribute('aria-labelledby', 'pmi-modal-prompt-title');
 
     overlay.innerHTML = `
       <div class="modal-card" style="max-width: 480px;">
         <div class="modal-header">
-          <h2 id="att-modal-prompt-title" class="modal-title">${escapeHtml(title)}</h2>
-          <button id="att-modal-close-btn" class="project-menu-btn" aria-label="Close dialog" type="button">
+          <h2 id="pmi-modal-prompt-title" class="modal-title">${escapeHtml(title)}</h2>
+          <button id="pmi-modal-close-btn" class="project-menu-btn" aria-label="Close dialog" type="button">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <line x1="18" y1="6" x2="6" y2="18"></line>
               <line x1="6" y1="6" x2="18" y2="18"></line>
             </svg>
           </button>
         </div>
-        <form id="att-modal-prompt-form">
+        <form id="pmi-modal-prompt-form">
           <div class="modal-body">
             <div class="form-group">
-              ${label ? `<label for="att-modal-prompt-input" class="form-label">${escapeHtml(label)}</label>` : ''}
+              ${label ? `<label for="pmi-modal-prompt-input" class="form-label">${escapeHtml(label)}</label>` : ''}
               <input
-                id="att-modal-prompt-input"
+                id="pmi-modal-prompt-input"
                 class="form-input"
                 type="text"
                 value="${escapeHtml(defaultValue)}"
@@ -356,8 +356,8 @@ export function showPromptDialog({
             </div>
           </div>
           <div class="modal-footer">
-            <button id="att-modal-cancel-btn" class="btn-att-secondary" type="button">${escapeHtml(cancelText)}</button>
-            <button id="att-modal-submit-btn" class="btn-att-primary" type="submit">${escapeHtml(confirmText)}</button>
+            <button id="pmi-modal-cancel-btn" class="btn-pmi-secondary" type="button">${escapeHtml(cancelText)}</button>
+            <button id="pmi-modal-submit-btn" class="btn-pmi-primary" type="submit">${escapeHtml(confirmText)}</button>
           </div>
         </form>
       </div>
@@ -380,10 +380,10 @@ export function showPromptDialog({
       }
     });
 
-    const input = /** @type {HTMLInputElement|null} */ (overlay.querySelector('#att-modal-prompt-input'));
-    const form = overlay.querySelector('#att-modal-prompt-form');
-    const closeBtn = overlay.querySelector('#att-modal-close-btn');
-    const cancelBtn = overlay.querySelector('#att-modal-cancel-btn');
+    const input = /** @type {HTMLInputElement|null} */ (overlay.querySelector('#pmi-modal-prompt-input'));
+    const form = overlay.querySelector('#pmi-modal-prompt-form');
+    const closeBtn = overlay.querySelector('#pmi-modal-close-btn');
+    const cancelBtn = overlay.querySelector('#pmi-modal-cancel-btn');
 
     overlay.addEventListener('click', (e) => {
       if (e.target === overlay) {
@@ -439,21 +439,21 @@ export function showConfirmDialog({
   triggerElement = (typeof document !== 'undefined' ? document.activeElement : null)
 }) {
   return new Promise((resolve) => {
-    const existing = document.getElementById('att-dynamic-modal-overlay');
+    const existing = document.getElementById('pmi-dynamic-modal-overlay');
     if (existing) existing.remove();
 
     const overlay = document.createElement('div');
-    overlay.id = 'att-dynamic-modal-overlay';
+    overlay.id = 'pmi-dynamic-modal-overlay';
     overlay.className = 'modal-overlay is-active';
     overlay.setAttribute('role', 'dialog');
     overlay.setAttribute('aria-modal', 'true');
-    overlay.setAttribute('aria-labelledby', 'att-modal-confirm-title');
+    overlay.setAttribute('aria-labelledby', 'pmi-modal-confirm-title');
 
     overlay.innerHTML = `
       <div class="modal-card" style="max-width: 440px;">
         <div class="modal-header">
-          <h2 id="att-modal-confirm-title" class="modal-title">${escapeHtml(title)}</h2>
-          <button id="att-modal-close-btn" class="project-menu-btn" aria-label="Close dialog" type="button">
+          <h2 id="pmi-modal-confirm-title" class="modal-title">${escapeHtml(title)}</h2>
+          <button id="pmi-modal-close-btn" class="project-menu-btn" aria-label="Close dialog" type="button">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <line x1="18" y1="6" x2="6" y2="18"></line>
               <line x1="6" y1="6" x2="18" y2="18"></line>
@@ -461,13 +461,13 @@ export function showConfirmDialog({
           </button>
         </div>
         <div class="modal-body">
-          <p style="margin: 0; font-size: var(--att-fs-body, 1rem); color: var(--att-text, #000000); line-height: 1.5;">
+          <p style="margin: 0; font-size: var(--pmi-fs-body, 1rem); color: var(--pmi-text, #000000); line-height: 1.5;">
             ${escapeHtml(message)}
           </p>
         </div>
         <div class="modal-footer">
-          <button id="att-modal-cancel-btn" class="btn-att-secondary" type="button">${escapeHtml(cancelText)}</button>
-          <button id="att-modal-confirm-btn" class="${isDanger ? 'btn-att-danger' : 'btn-att-primary'}" type="button">${escapeHtml(confirmText)}</button>
+          <button id="pmi-modal-cancel-btn" class="btn-pmi-secondary" type="button">${escapeHtml(cancelText)}</button>
+          <button id="pmi-modal-confirm-btn" class="${isDanger ? 'btn-pmi-danger' : 'btn-pmi-primary'}" type="button">${escapeHtml(confirmText)}</button>
         </div>
       </div>
     `;
@@ -489,9 +489,9 @@ export function showConfirmDialog({
       }
     });
 
-    const closeBtn = overlay.querySelector('#att-modal-close-btn');
-    const cancelBtn = overlay.querySelector('#att-modal-cancel-btn');
-    const confirmBtn = /** @type {HTMLButtonElement|null} */ (overlay.querySelector('#att-modal-confirm-btn'));
+    const closeBtn = overlay.querySelector('#pmi-modal-close-btn');
+    const cancelBtn = overlay.querySelector('#pmi-modal-cancel-btn');
+    const confirmBtn = /** @type {HTMLButtonElement|null} */ (overlay.querySelector('#pmi-modal-confirm-btn'));
 
     overlay.addEventListener('click', (e) => {
       if (e.target === overlay) {

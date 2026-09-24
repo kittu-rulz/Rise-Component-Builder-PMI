@@ -1,6 +1,6 @@
 import { CATEGORIES, CLASSIFICATIONS, TIERS, COMPONENT_REGISTRY } from './component-registry.js';
 import { escapeHTML } from './utilities.js';
-import { isolateModal } from './dashboard/att-modal.js';
+import { isolateModal } from './dashboard/pmi-modal.js';
 
 const categoryNameById = new Map(CATEGORIES.map(category => [category.id, category.name]));
 const classificationNameById = new Map(CLASSIFICATIONS.map(classification => [classification.id, classification.name]));

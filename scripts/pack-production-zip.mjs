@@ -72,7 +72,7 @@ async function main() {
 
   // Verify design stylesheets
   const requiredDesignFiles = [
-    'design/att-tokens.css',
+    'design/pmi-tokens.css',
     'design/landing.css',
     'design/dashboard.css',
     'design/post-publish.css',

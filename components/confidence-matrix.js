@@ -1,6 +1,6 @@
 import { getEditorSchema } from '../js/editor-schemas.js';
 import { escapeHTML, sanitizeRichText } from '../js/utilities.js';
-import { getAttIconSvg } from '../js/att-icons.js';
+import { getPmiIconSvg } from '../js/pmi-icons.js';
 
 /**
  * Confidence & Skills Self-Assessment Component
@@ -48,10 +48,10 @@ export const defaultConfig = {
 
 export const editorSchema = getEditorSchema(id);
 
-const assessmentIcon = getAttIconSvg('check-shield', { width: 22, height: 22, ariaHidden: true });
-const checkIcon = getAttIconSvg('check', { width: 14, height: 14, ariaHidden: true });
-const strengthIcon = getAttIconSvg('check-circle-filled', { width: 18, height: 18, ariaHidden: true });
-const growthIcon = getAttIconSvg('information-circle-filled', { width: 18, height: 18, ariaHidden: true });
+const assessmentIcon = getPmiIconSvg('check-shield', { width: 22, height: 22, ariaHidden: true });
+const checkIcon = getPmiIconSvg('check', { width: 14, height: 14, ariaHidden: true });
+const strengthIcon = getPmiIconSvg('check-circle-filled', { width: 18, height: 18, ariaHidden: true });
+const growthIcon = getPmiIconSvg('information-circle-filled', { width: 18, height: 18, ariaHidden: true });
 
 const RATING_LEVELS = [
   { value: 1, label: 'Novice', desc: 'Need Guidance' },
@@ -169,21 +169,21 @@ export function generateCSS() {
     .confidence-matrix-card {
       background-color: var(--bg-card, #FFFFFF);
       border: 1px solid var(--border-color, #DCDFE3);
-      border-radius: var(--att-radius-lg, 24px);
-      padding: var(--att-space-6, 32px);
+      border-radius: var(--pmi-radius-lg, 24px);
+      padding: var(--pmi-space-6, 32px);
       box-shadow: var(--shadow-style);
-      font-family: var(--att-font-sans, sans-serif);
+      font-family: var(--pmi-font-sans, sans-serif);
       color: var(--text-color, #000000);
       box-sizing: border-box;
       width: 100%;
       display: flex;
       flex-direction: column;
-      gap: var(--att-space-5, 24px);
+      gap: var(--pmi-space-5, 24px);
     }
     .confidence-header {
       display: flex;
       align-items: center;
-      gap: var(--att-space-3, 12px);
+      gap: var(--pmi-space-3, 12px);
     }
     .confidence-header-icon {
       display: flex;
@@ -191,32 +191,32 @@ export function generateCSS() {
       justify-content: center;
       width: 44px;
       height: 44px;
-      border-radius: var(--att-radius-sm, 12px);
+      border-radius: var(--pmi-radius-sm, 12px);
       background-color: var(--bg-body, #F3F4F5);
       color: var(--primary, #00388F);
       flex-shrink: 0;
     }
     .confidence-title {
-      font-size: var(--att-fs-h2, 1.5rem);
-      font-weight: var(--att-fw-bold, 700);
-      line-height: var(--att-lh-heading, 1.25);
+      font-size: var(--pmi-fs-h2, 1.5rem);
+      font-weight: var(--pmi-fw-bold, 700);
+      line-height: var(--pmi-lh-heading, 1.25);
       color: var(--text-color, #000000);
       margin: 0;
     }
     .confidence-instructions {
-      font-size: var(--att-fs-body, 1rem);
-      line-height: var(--att-lh-body, 1.5);
+      font-size: var(--pmi-fs-body, 1rem);
+      line-height: var(--pmi-lh-body, 1.5);
       color: var(--text-secondary, #4B5563);
       margin: 0;
     }
     .confidence-summary-bar {
       display: flex;
       flex-direction: column;
-      gap: var(--att-space-2, 8px);
+      gap: var(--pmi-space-2, 8px);
       background-color: var(--bg-body, #F3F4F5);
       border: 1px solid var(--border-color, #DCDFE3);
-      border-radius: var(--att-radius-md, 16px);
-      padding: var(--att-space-4, 16px);
+      border-radius: var(--pmi-radius-md, 16px);
+      padding: var(--pmi-space-4, 16px);
     }
     .confidence-summary-track {
       width: 100%;
@@ -228,7 +228,7 @@ export function generateCSS() {
     }
     .confidence-progress-fill {
       height: 100%;
-      background: linear-gradient(90deg, var(--att-blue, #009FDB), var(--primary, #00388F));
+      background: linear-gradient(90deg, var(--pmi-blue, #009FDB), var(--primary, #00388F));
       border-radius: 9999px;
       transition: width 350ms cubic-bezier(0.4, 0, 0.2, 1);
     }
@@ -241,23 +241,23 @@ export function generateCSS() {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-size: var(--att-fs-sm, 0.875rem);
-      font-weight: var(--att-fw-semibold, 600);
+      font-size: var(--pmi-fs-sm, 0.875rem);
+      font-weight: var(--pmi-fw-semibold, 600);
       color: var(--text-color, #000000);
     }
     .confidence-matrix-rows {
       display: flex;
       flex-direction: column;
-      gap: var(--att-space-4, 16px);
+      gap: var(--pmi-space-4, 16px);
     }
     .confidence-item-row {
       background-color: var(--bg-card, #FFFFFF);
       border: 1px solid var(--border-color, #DCDFE3);
-      border-radius: var(--att-radius-md, 16px);
-      padding: var(--att-space-5, 24px);
+      border-radius: var(--pmi-radius-md, 16px);
+      padding: var(--pmi-space-5, 24px);
       display: flex;
       flex-direction: column;
-      gap: var(--att-space-4, 16px);
+      gap: var(--pmi-space-4, 16px);
       transition: border-color 200ms ease, box-shadow 200ms ease;
     }
     .confidence-item-row.is-rated {
@@ -267,41 +267,41 @@ export function generateCSS() {
     .confidence-item-meta {
       display: flex;
       align-items: center;
-      gap: var(--att-space-3, 12px);
-      margin-bottom: var(--att-space-1, 4px);
+      gap: var(--pmi-space-3, 12px);
+      margin-bottom: var(--pmi-space-1, 4px);
     }
     .confidence-category-badge {
       display: inline-block;
-      padding: 3px var(--att-space-3, 12px);
+      padding: 3px var(--pmi-space-3, 12px);
       border-radius: 9999px;
       background-color: var(--bg-body, #F3F4F5);
       color: var(--primary, #00388F);
-      font-size: var(--att-fs-xs, 0.8125rem);
-      font-weight: var(--att-fw-bold, 700);
+      font-size: var(--pmi-fs-xs, 0.8125rem);
+      font-weight: var(--pmi-fw-bold, 700);
       text-transform: uppercase;
       letter-spacing: 0.04em;
     }
     .confidence-item-num {
-      font-size: var(--att-fs-xs, 0.8125rem);
+      font-size: var(--pmi-fs-xs, 0.8125rem);
       color: var(--text-secondary, #4B5563);
-      font-weight: var(--att-fw-medium, 500);
+      font-weight: var(--pmi-fw-medium, 500);
     }
     .confidence-item-title {
-      font-size: var(--att-fs-h4, 1.125rem);
-      font-weight: var(--att-fw-bold, 700);
+      font-size: var(--pmi-fs-h4, 1.125rem);
+      font-weight: var(--pmi-fw-bold, 700);
       color: var(--text-color, #000000);
-      margin: 0 0 var(--att-space-2, 8px) 0;
+      margin: 0 0 var(--pmi-space-2, 8px) 0;
     }
     .confidence-item-desc {
-      font-size: var(--att-fs-body, 1rem);
-      line-height: var(--att-lh-body, 1.5);
+      font-size: var(--pmi-fs-body, 1rem);
+      line-height: var(--pmi-lh-body, 1.5);
       color: var(--text-secondary, #4B5563);
       margin: 0;
     }
     .confidence-rating-group {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: var(--att-space-3, 12px);
+      gap: var(--pmi-space-3, 12px);
       width: 100%;
     }
     @media (max-width: 640px) {
@@ -315,13 +315,13 @@ export function generateCSS() {
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: var(--att-space-3, 12px) var(--att-space-2, 8px);
+      padding: var(--pmi-space-3, 12px) var(--pmi-space-2, 8px);
       min-height: 72px;
       border: 1px solid var(--border-color, #DCDFE3);
-      border-radius: var(--att-radius-md, 16px);
+      border-radius: var(--pmi-radius-md, 16px);
       background-color: var(--bg-body, #F3F4F5);
       color: var(--text-color, #000000);
-      font-family: var(--att-font-sans, sans-serif);
+      font-family: var(--pmi-font-sans, sans-serif);
       cursor: pointer;
       position: relative;
       transition: all 180ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -348,13 +348,13 @@ export function generateCSS() {
       transform: scale(1);
     }
     .confidence-rating-val {
-      font-size: var(--att-fs-sm, 0.875rem);
-      font-weight: var(--att-fw-bold, 700);
+      font-size: var(--pmi-fs-sm, 0.875rem);
+      font-weight: var(--pmi-fw-bold, 700);
       margin-bottom: 2px;
     }
     .confidence-rating-label {
-      font-size: var(--att-fs-xs, 0.8125rem);
-      font-weight: var(--att-fw-bold, 700);
+      font-size: var(--pmi-fs-xs, 0.8125rem);
+      font-weight: var(--pmi-fw-bold, 700);
       line-height: 1.2;
     }
     .confidence-rating-sub {
@@ -374,11 +374,11 @@ export function generateCSS() {
     .confidence-diagnostic-panel {
       background-color: var(--bg-body, #F3F4F5);
       border: 1px solid var(--border-color, #DCDFE3);
-      border-radius: var(--att-radius-lg, 24px);
-      padding: var(--att-space-5, 24px);
+      border-radius: var(--pmi-radius-lg, 24px);
+      padding: var(--pmi-space-5, 24px);
       display: flex;
       flex-direction: column;
-      gap: var(--att-space-4, 16px);
+      gap: var(--pmi-space-4, 16px);
       animation: fadeIn 300ms ease;
     }
     @keyframes fadeIn {
@@ -390,35 +390,35 @@ export function generateCSS() {
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
-      gap: var(--att-space-2, 8px);
+      gap: var(--pmi-space-2, 8px);
     }
     .confidence-diagnostic-title {
-      font-size: var(--att-fs-h4, 1.125rem);
-      font-weight: var(--att-fw-bold, 700);
+      font-size: var(--pmi-fs-h4, 1.125rem);
+      font-weight: var(--pmi-fw-bold, 700);
       color: var(--text-color, #000000);
       margin: 0;
     }
     .confidence-tier-badge {
       display: inline-block;
-      padding: 4px var(--att-space-3, 12px);
+      padding: 4px var(--pmi-space-3, 12px);
       border-radius: 9999px;
       background-color: var(--primary, #00388F);
       color: #FFFFFF;
-      font-size: var(--att-fs-xs, 0.8125rem);
-      font-weight: var(--att-fw-bold, 700);
+      font-size: var(--pmi-fs-xs, 0.8125rem);
+      font-weight: var(--pmi-fw-bold, 700);
       text-transform: uppercase;
       letter-spacing: 0.04em;
     }
     .confidence-diagnostic-summary {
-      font-size: var(--att-fs-body, 1rem);
-      line-height: var(--att-lh-body, 1.5);
+      font-size: var(--pmi-fs-body, 1rem);
+      line-height: var(--pmi-lh-body, 1.5);
       color: var(--text-secondary, #4B5563);
       margin: 0;
     }
     .confidence-breakdown-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: var(--att-space-4, 16px);
+      gap: var(--pmi-space-4, 16px);
     }
     @media (max-width: 640px) {
       .confidence-breakdown-grid {
@@ -428,26 +428,26 @@ export function generateCSS() {
     .confidence-breakdown-col {
       background-color: var(--bg-card, #FFFFFF);
       border: 1px solid var(--border-color, #DCDFE3);
-      border-radius: var(--att-radius-md, 16px);
-      padding: var(--att-space-4, 16px);
+      border-radius: var(--pmi-radius-md, 16px);
+      padding: var(--pmi-space-4, 16px);
       display: flex;
       flex-direction: column;
-      gap: var(--att-space-3, 12px);
+      gap: var(--pmi-space-3, 12px);
     }
     .confidence-col-header {
       display: flex;
       align-items: center;
-      gap: var(--att-space-2, 8px);
+      gap: var(--pmi-space-2, 8px);
     }
     .strengths-col .confidence-col-icon {
-      color: var(--att-green, #91DC00);
+      color: var(--pmi-green, #91DC00);
     }
     .growth-col .confidence-col-icon {
-      color: var(--att-blue, #009FDB);
+      color: var(--pmi-blue, #009FDB);
     }
     .confidence-col-header h5 {
-      font-size: var(--att-fs-sm, 0.875rem);
-      font-weight: var(--att-fw-bold, 700);
+      font-size: var(--pmi-fs-sm, 0.875rem);
+      font-weight: var(--pmi-fw-bold, 700);
       color: var(--text-color, #000000);
       margin: 0;
     }
@@ -457,12 +457,12 @@ export function generateCSS() {
       margin: 0;
       display: flex;
       flex-direction: column;
-      gap: var(--att-space-2, 8px);
+      gap: var(--pmi-space-2, 8px);
     }
     .confidence-pill-item {
-      font-size: var(--att-fs-sm, 0.875rem);
-      padding: var(--att-space-2, 8px) var(--att-space-3, 12px);
-      border-radius: var(--att-radius-sm, 12px);
+      font-size: var(--pmi-fs-sm, 0.875rem);
+      padding: var(--pmi-space-2, 8px) var(--pmi-space-3, 12px);
+      border-radius: var(--pmi-radius-sm, 12px);
       background-color: var(--bg-body, #F3F4F5);
       color: var(--text-color, #000000);
       display: flex;
@@ -470,32 +470,32 @@ export function generateCSS() {
       align-items: center;
     }
     .confidence-pill-score {
-      font-weight: var(--att-fw-bold, 700);
-      font-size: var(--att-fs-xs, 0.8125rem);
+      font-weight: var(--pmi-fw-bold, 700);
+      font-size: var(--pmi-fs-xs, 0.8125rem);
       color: var(--primary, #00388F);
     }
     .confidence-reflection-box {
       display: flex;
       flex-direction: column;
-      gap: var(--att-space-2, 8px);
-      margin-top: var(--att-space-3, 12px);
-      padding-top: var(--att-space-4, 16px);
+      gap: var(--pmi-space-2, 8px);
+      margin-top: var(--pmi-space-3, 12px);
+      padding-top: var(--pmi-space-4, 16px);
       border-top: 1px solid var(--border-color, #DCDFE3);
     }
     .confidence-reflection-label {
-      font-size: var(--att-fs-sm, 0.875rem);
-      font-weight: var(--att-fw-bold, 700);
+      font-size: var(--pmi-fs-sm, 0.875rem);
+      font-weight: var(--pmi-fw-bold, 700);
       color: var(--text-color, #000000);
     }
     .confidence-reflection-input {
       width: 100%;
       box-sizing: border-box;
-      padding: var(--att-space-3, 12px);
-      font-family: var(--att-font-sans, sans-serif);
-      font-size: var(--att-fs-sm, 0.875rem);
-      line-height: var(--att-lh-body, 1.5);
+      padding: var(--pmi-space-3, 12px);
+      font-family: var(--pmi-font-sans, sans-serif);
+      font-size: var(--pmi-fs-sm, 0.875rem);
+      line-height: var(--pmi-lh-body, 1.5);
       border: 1px solid var(--border-color, #DCDFE3);
-      border-radius: var(--att-radius-md, 12px);
+      border-radius: var(--pmi-radius-md, 12px);
       background-color: var(--bg-card, #FFFFFF);
       color: var(--text-color, #000000);
       resize: vertical;
@@ -509,7 +509,7 @@ export function generateCSS() {
       display: flex;
       justify-content: flex-end;
       align-items: center;
-      gap: var(--att-space-3, 12px);
+      gap: var(--pmi-space-3, 12px);
       width: 100%;
       flex-wrap: wrap;
     }
@@ -518,14 +518,14 @@ export function generateCSS() {
       align-items: center;
       justify-content: center;
       min-height: 44px;
-      padding: var(--att-space-2, 8px) var(--att-space-5, 20px);
+      padding: var(--pmi-space-2, 8px) var(--pmi-space-5, 20px);
       border: 1px solid var(--primary, #00388F);
       border-radius: 9999px;
       background-color: var(--primary, #00388F);
       color: #FFFFFF;
-      font-family: var(--att-font-sans, sans-serif);
-      font-size: var(--att-fs-sm, 0.875rem);
-      font-weight: var(--att-fw-bold, 700);
+      font-family: var(--pmi-font-sans, sans-serif);
+      font-size: var(--pmi-fs-sm, 0.875rem);
+      font-weight: var(--pmi-fw-bold, 700);
       cursor: pointer;
       transition: all 150ms ease;
       box-shadow: 0 2px 6px rgba(0, 56, 143, 0.2);
@@ -548,14 +548,14 @@ export function generateCSS() {
       align-items: center;
       justify-content: center;
       min-height: 44px;
-      padding: var(--att-space-2, 8px) var(--att-space-4, 16px);
+      padding: var(--pmi-space-2, 8px) var(--pmi-space-4, 16px);
       border: 1px solid var(--border-color, #DCDFE3);
       border-radius: 9999px;
       background-color: transparent;
       color: var(--text-secondary, #4B5563);
-      font-family: var(--att-font-sans, sans-serif);
-      font-size: var(--att-fs-sm, 0.875rem);
-      font-weight: var(--att-fw-semibold, 600);
+      font-family: var(--pmi-font-sans, sans-serif);
+      font-size: var(--pmi-fs-sm, 0.875rem);
+      font-weight: var(--pmi-fw-semibold, 600);
       cursor: pointer;
       transition: all 150ms ease;
     }
@@ -576,7 +576,7 @@ export function generateCSS() {
       .confidence-matrix-card {
         box-shadow: none !important;
         border: 1px solid var(--border-color, #DCDFE3) !important;
-        padding: var(--att-space-4, 16px) !important;
+        padding: var(--pmi-space-4, 16px) !important;
         page-break-inside: avoid;
       }
       .confidence-diagnostic-panel {

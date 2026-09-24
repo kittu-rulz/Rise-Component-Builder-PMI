@@ -64,7 +64,7 @@ function preset(id, name, description, organization, tokens, options = {}) {
 // mutedText is a derived dark grey chosen for 7.56:1 contrast against white,
 // not a brand-specified color.
 export const BUILT_IN_THEMES = Object.freeze([
-  preset('att-standard', 'AT&T Standard', 'The standardized AT&T brand theme — the only theme in this build.', 'AT&T', {
+  preset('pmi-standard', 'AT&T Standard', 'The standardized AT&T brand theme — the only theme in this build.', 'AT&T', {
     fontFamily: 'ATT Aleck Sans', headingFontFamily: 'ATT Aleck Sans', primary: '#00388F', primaryHover: '#002A6B', accent: '#009FDB',
     background: '#FFFFFF', surface: '#FFFFFF', text: '#000000', mutedText: '#4B5563', border: '#DCDFE3',
     success: '#91DC00', warning: '#00388F', danger: '#00388F', borderRadius: 12, buttonRadius: 20,
@@ -72,7 +72,7 @@ export const BUILT_IN_THEMES = Object.freeze([
   }, { isLocked: true })
 ]);
 
-export const DEFAULT_THEME_ID = 'att-standard';
+export const DEFAULT_THEME_ID = 'pmi-standard';
 
 export function getBuiltInTheme(id = DEFAULT_THEME_ID) {
   return clone(BUILT_IN_THEMES.find(theme => theme.id === id) || BUILT_IN_THEMES.find(theme => theme.id === DEFAULT_THEME_ID));

@@ -1,6 +1,6 @@
 import { getEditorSchema } from '../js/editor-schemas.js';
 import { escapeAttribute, escapeHTML } from '../js/utilities.js';
-import { getAttIconSvg } from '../js/att-icons.js';
+import { getPmiIconSvg } from '../js/pmi-icons.js';
 
 export const id = 'pricing-comparison';
 export const name = 'Product Matrix Cards';
@@ -88,7 +88,7 @@ export function generateHTML(config, instanceId) {
               ` : '';
               return `
               <div class="pricing-feature-line">
-                ${getAttIconSvg('check', { className: 'tick-icon', width: 16, height: 16, ariaHidden: true })}
+                ${getPmiIconSvg('check', { className: 'tick-icon', width: 16, height: 16, ariaHidden: true })}
                 <span>${escapeHTML(text)}</span>
                 ${tooltipHtml}
               </div>
@@ -107,15 +107,15 @@ export function generateCSS() {
     .pricing-table-container {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: var(--att-space-5, 20px);
+      gap: var(--pmi-space-5, 20px);
       align-items: stretch;
     }
     .pricing-card-item {
       background-color: var(--bg-card);
       border: var(--border-style);
-      border-radius: var(--att-radius-lg, var(--border-radius, 20px));
+      border-radius: var(--pmi-radius-lg, var(--border-radius, 20px));
       box-shadow: var(--shadow-style);
-      padding: var(--att-space-5, 24px);
+      padding: var(--pmi-space-5, 24px);
       display: flex;
       flex-direction: column;
       position: relative;
@@ -127,7 +127,7 @@ export function generateCSS() {
     }
     .pricing-card-item.selected {
       border-color: var(--primary);
-      box-shadow: var(--att-shadow-2, 0 10px 15px -3px rgba(0, 0, 0, 0.1));
+      box-shadow: var(--pmi-shadow-2, 0 10px 15px -3px rgba(0, 0, 0, 0.1));
     }
     .popular-ribbon {
       position: absolute;
@@ -136,22 +136,22 @@ export function generateCSS() {
       transform: translateX(-50%);
       background-color: var(--accent);
       color: var(--text-main);
-      font-size: var(--att-fs-eyebrow, 0.75rem);
-      font-weight: var(--att-fw-bold, 700);
+      font-size: var(--pmi-fs-eyebrow, 0.75rem);
+      font-weight: var(--pmi-fw-bold, 700);
       padding: 3px 12px;
-      border-radius: var(--att-radius-pill, 999px);
+      border-radius: var(--pmi-radius-pill, 999px);
       letter-spacing: 0.5px;
       text-transform: uppercase;
     }
     .pricing-tier-header {
-      margin-bottom: var(--att-space-4, 16px);
+      margin-bottom: var(--pmi-space-4, 16px);
       border-bottom: 1px solid var(--border-color);
-      padding-bottom: var(--att-space-3, 12px);
+      padding-bottom: var(--pmi-space-3, 12px);
     }
     .pricing-tier-header h4 {
-      font-size: var(--att-fs-h4, 1.125rem);
-      font-weight: var(--att-fw-bold, 700);
-      line-height: var(--att-lh-heading, 1.25);
+      font-size: var(--pmi-fs-h4, 1.125rem);
+      font-weight: var(--pmi-fw-bold, 700);
+      line-height: var(--pmi-lh-heading, 1.25);
       color: var(--text-main);
       text-wrap: pretty;
       margin: 0;
@@ -159,16 +159,16 @@ export function generateCSS() {
     .pricing-features-list {
       display: flex;
       flex-direction: column;
-      gap: var(--att-space-3, 10px);
+      gap: var(--pmi-space-3, 10px);
       flex: 1;
-      margin-bottom: var(--att-space-5, 20px);
+      margin-bottom: var(--pmi-space-5, 20px);
     }
     .pricing-feature-line {
       display: flex;
       align-items: center;
-      gap: var(--att-space-2, 8px);
-      font-size: var(--att-fs-body, 1rem);
-      line-height: var(--att-lh-body, 1.5);
+      gap: var(--pmi-space-2, 8px);
+      font-size: var(--pmi-fs-body, 1rem);
+      line-height: var(--pmi-lh-body, 1.5);
       color: var(--text-main);
       position: relative;
     }
@@ -210,10 +210,10 @@ export function generateCSS() {
       width: 100%;
       background-color: var(--bg-card);
       border: 1px solid var(--primary);
-      border-radius: var(--button-radius, var(--att-radius-pill, 999px));
+      border-radius: var(--button-radius, var(--pmi-radius-pill, 999px));
       padding: 10px 16px;
-      font-size: var(--att-fs-body, 1rem);
-      font-weight: var(--att-fw-bold, 700);
+      font-size: var(--pmi-fs-body, 1rem);
+      font-weight: var(--pmi-fw-bold, 700);
       cursor: pointer;
       min-height: 44px;
       display: inline-flex;
@@ -229,7 +229,7 @@ export function generateCSS() {
       color: var(--on-primary);
     }
     .pricing-card-item:hover {
-      box-shadow: var(--att-shadow-2, 0 10px 15px -3px rgba(0, 0, 0, 0.1));
+      box-shadow: var(--pmi-shadow-2, 0 10px 15px -3px rgba(0, 0, 0, 0.1));
     }
     .pricing-action-btn:hover {
       border-color: var(--primary-hover);
@@ -244,7 +244,7 @@ export function generateCSS() {
       transform: scale(0.98);
     }
     .pricing-action-btn:focus-visible {
-      outline: 3px solid var(--att-cobalt, var(--primary));
+      outline: 3px solid var(--pmi-cobalt, var(--primary));
       outline-offset: 2px;
     }
 
@@ -253,7 +253,7 @@ export function generateCSS() {
       overflow-x: auto;
       background-color: var(--bg-card);
       border: var(--border-style);
-      border-radius: var(--att-radius-lg, 16px);
+      border-radius: var(--pmi-radius-lg, 16px);
       box-shadow: var(--shadow-style);
       padding: 16px;
     }
@@ -300,7 +300,7 @@ export function generateCSS() {
       margin-top: 2px;
     }
     .matrix-check {
-      color: var(--att-cta-bg, #00388F);
+      color: var(--pmi-cta-bg, #00388F);
       font-weight: 800;
       font-size: 16px;
     }

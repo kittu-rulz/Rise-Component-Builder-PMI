@@ -20,7 +20,7 @@ Projects are stored locally with `schemaVersion: 3`.
   "createdAt": "2026-09-13T21:44:07.134Z",
   "updatedAt": "2026-09-13T21:45:20.635Z",
   "isFavorite": false,
-  "theme": "att-standard",
+  "theme": "pmi-standard",
   "settings": {
     "targetAudience": "All Employees",
     "deliveryFormat": "rise-web"
@@ -42,7 +42,7 @@ Projects are stored locally with `schemaVersion: 3`.
       "order": 1,
       "sectionId": "sec-intro",
       "data": { ... },
-      "theme": "att-standard",
+      "theme": "pmi-standard",
       "status": "draft",
       "qa": { "passed": true, "issues": [] }
     }

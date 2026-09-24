@@ -1,7 +1,7 @@
 import { getEditorSchema } from '../js/editor-schemas.js';
 import { isEmpty } from '../js/field-validation.js';
 import { escapeAttribute, escapeHTML, normalizeDelimitedLines } from '../js/utilities.js';
-import { getAttIconSvg } from '../js/att-icons.js';
+import { getPmiIconSvg } from '../js/pmi-icons.js';
 
 export const id = 'audio-player';
 export const name = 'Interactive Learning Audio';
@@ -31,13 +31,13 @@ const AUDIO_COMPLETION_TAIL_SECONDS = 3;
 const AUDIO_RESUME_MIN_SECONDS = 10;
 
 // Replay/Forward, Volume, Transcript, Chapters, and Takeaways glyphs from the AT&T Icon Library
-const skipBackIcon = getAttIconSvg('step-back-15', { width: 18, height: 18, ariaHidden: true });
-const skipForwardIcon = getAttIconSvg('step-forward-15', { width: 18, height: 18, ariaHidden: true });
-const volumeOnIcon = getAttIconSvg('volume-3', { className: 'aud-volume-on-svg', width: 14, height: 14, ariaHidden: true });
-const volumeOffIcon = getAttIconSvg('volume-off', { className: 'aud-volume-off-svg', width: 14, height: 14, ariaHidden: true, style: 'display:none;' });
-const transcriptIcon = getAttIconSvg('text', { width: 14, height: 14, ariaHidden: true });
-const chaptersIcon = getAttIconSvg('list', { width: 14, height: 14, ariaHidden: true });
-const takeawaysIcon = getAttIconSvg('star-filled', { width: 14, height: 14, ariaHidden: true });
+const skipBackIcon = getPmiIconSvg('step-back-15', { width: 18, height: 18, ariaHidden: true });
+const skipForwardIcon = getPmiIconSvg('step-forward-15', { width: 18, height: 18, ariaHidden: true });
+const volumeOnIcon = getPmiIconSvg('volume-3', { className: 'aud-volume-on-svg', width: 14, height: 14, ariaHidden: true });
+const volumeOffIcon = getPmiIconSvg('volume-off', { className: 'aud-volume-off-svg', width: 14, height: 14, ariaHidden: true, style: 'display:none;' });
+const transcriptIcon = getPmiIconSvg('text', { width: 14, height: 14, ariaHidden: true });
+const chaptersIcon = getPmiIconSvg('list', { width: 14, height: 14, ariaHidden: true });
+const takeawaysIcon = getPmiIconSvg('star-filled', { width: 14, height: 14, ariaHidden: true });
 
 function renderCustomItemArtwork(item, fallbackMarkup = '') {
   if (!item?.iconImage) return fallbackMarkup;
@@ -169,8 +169,8 @@ export function generateHTML(config, instanceId) {
     <div class="aud-controls-row">
       <button type="button" class="aud-skip-btn aud-skip-back-btn" id="${instanceId}-skip-back" aria-label="Replay ${AUDIO_SKIP_SECONDS} seconds" disabled>${skipBackIcon}</button>
       <button type="button" class="aud-play-btn" id="${instanceId}-play-btn" aria-label="Play audio" aria-pressed="false">
-        ${getAttIconSvg('play', { className: 'aud-play-svg', width: 18, height: 18, ariaHidden: true })}
-        ${getAttIconSvg('pause', { className: 'aud-pause-svg', width: 18, height: 18, ariaHidden: true, style: 'display:none;' })}
+        ${getPmiIconSvg('play', { className: 'aud-play-svg', width: 18, height: 18, ariaHidden: true })}
+        ${getPmiIconSvg('pause', { className: 'aud-pause-svg', width: 18, height: 18, ariaHidden: true, style: 'display:none;' })}
       </button>
       <button type="button" class="aud-skip-btn aud-skip-forward-btn" id="${instanceId}-skip-forward" aria-label="Forward ${AUDIO_SKIP_SECONDS} seconds" disabled>${skipForwardIcon}</button>
       <div class="aud-scrub-wrap">
@@ -191,7 +191,7 @@ export function generateHTML(config, instanceId) {
     ? `<nav class="aud-chapter-nav" aria-label="Chapters">
         <button type="button" class="aud-chapter-toggle" id="${instanceId}-chapter-toggle" aria-expanded="true" aria-controls="${instanceId}-chapter-list">
           <span class="aud-chapter-toggle-label">${chaptersIcon}<span class="aud-section-heading">Chapters</span></span>
-          ${getAttIconSvg('chevron-down', { className: 'aud-chapter-chevron', width: 16, height: 16, ariaHidden: true })}
+          ${getPmiIconSvg('chevron-down', { className: 'aud-chapter-chevron', width: 16, height: 16, ariaHidden: true })}
         </button>
         <ul class="aud-chapter-list" id="${instanceId}-chapter-list">
           ${chapters.map((chapter, i) => `
@@ -276,22 +276,22 @@ export function generateCSS() {
     .aud-player {
       background-color: var(--bg-card);
       border: var(--border-style);
-      border-radius: var(--att-radius-lg, var(--border-radius, 20px));
+      border-radius: var(--pmi-radius-lg, var(--border-radius, 20px));
       box-shadow: var(--shadow-style);
-      padding: var(--att-space-4, 16px) var(--att-space-5, 24px);
+      padding: var(--pmi-space-4, 16px) var(--pmi-space-5, 24px);
       display: flex;
       flex-direction: column;
-      gap: var(--att-space-3, 12px);
+      gap: var(--pmi-space-3, 12px);
     }
     .aud-identity {
       display: flex;
-      gap: var(--att-space-3, 12px);
+      gap: var(--pmi-space-3, 12px);
       align-items: center;
     }
     .aud-art {
       width: 36px;
       height: 36px;
-      border-radius: var(--att-radius-sm, 8px);
+      border-radius: var(--pmi-radius-sm, 8px);
       /* Not a lighter shade of AT&T Blue: not part of the approved palette. A neutral
          brand-grey backdrop also gives the icon better contrast than blue-on-light-blue. */
       background-color: var(--border-color);
@@ -306,30 +306,30 @@ export function generateCSS() {
     .aud-art .custom-item-icon { width: 100%; height: 100%; }
     .aud-art-accent { fill: var(--accent); }
     .aud-series-label {
-      font-size: var(--att-fs-eyebrow, 0.75rem);
-      font-weight: var(--att-fw-bold, 700);
+      font-size: var(--pmi-fs-eyebrow, 0.75rem);
+      font-weight: var(--pmi-fw-bold, 700);
       text-transform: uppercase;
       letter-spacing: 0.5px;
       color: var(--text-muted);
       margin-bottom: 2px;
     }
     .aud-title {
-      font-size: var(--att-fs-h3, 1.25rem);
-      font-weight: var(--att-fw-bold, 700);
-      line-height: var(--att-lh-heading, 1.25);
+      font-size: var(--pmi-fs-h3, 1.25rem);
+      font-weight: var(--pmi-fw-bold, 700);
+      line-height: var(--pmi-lh-heading, 1.25);
       color: var(--text-main);
       text-wrap: pretty;
     }
     .aud-description {
-      font-size: var(--att-fs-body, 1rem);
-      line-height: var(--att-lh-body, 1.5);
+      font-size: var(--pmi-fs-body, 1rem);
+      line-height: var(--pmi-lh-body, 1.5);
       color: var(--text-muted);
       margin-top: 4px;
       max-width: 70ch;
     }
     .aud-current-chapter {
-      font-size: var(--att-fs-body-sm, 0.875rem);
-      font-weight: var(--att-fw-medium, 500);
+      font-size: var(--pmi-fs-body-sm, 0.875rem);
+      font-weight: var(--pmi-fw-medium, 500);
       color: var(--text-muted);
       margin: -4px 0 0;
     }
@@ -337,12 +337,12 @@ export function generateCSS() {
     .aud-resume-prompt {
       display: flex;
       align-items: center;
-      gap: var(--att-space-2, 8px);
+      gap: var(--pmi-space-2, 8px);
       flex-wrap: wrap;
       background-color: var(--bg-body);
-      border-radius: var(--att-radius-md, 12px);
+      border-radius: var(--pmi-radius-md, 12px);
       padding: 8px 10px;
-      font-size: var(--att-fs-body-sm, 0.875rem);
+      font-size: var(--pmi-fs-body-sm, 0.875rem);
     }
     .aud-resume-text { color: var(--text-main); margin-right: auto; }
     .aud-resume-btn,
@@ -351,9 +351,9 @@ export function generateCSS() {
       border: 1px solid var(--primary);
       color: var(--primary);
       padding: 6px 12px;
-      font-size: var(--att-fs-body-sm, 0.875rem);
-      font-weight: var(--att-fw-medium, 500);
-      border-radius: var(--button-radius, var(--att-radius-pill, 999px));
+      font-size: var(--pmi-fs-body-sm, 0.875rem);
+      font-weight: var(--pmi-fw-medium, 500);
+      border-radius: var(--button-radius, var(--pmi-radius-pill, 999px));
       cursor: pointer;
       min-height: 44px;
       display: inline-flex;
@@ -367,7 +367,7 @@ export function generateCSS() {
     .aud-controls-row {
       display: flex;
       align-items: center;
-      gap: var(--att-space-3, 10px);
+      gap: var(--pmi-space-3, 10px);
       flex-wrap: wrap;
       row-gap: 8px;
     }
@@ -390,7 +390,7 @@ export function generateCSS() {
       transform: scale(0.98);
     }
     .aud-play-btn:focus-visible, .aud-skip-btn:focus-visible, .aud-vol-btn:focus-visible, .aud-rate-btn:focus-visible, .aud-resume-btn:focus-visible, .aud-restart-choice-btn:focus-visible {
-      outline: 3px solid var(--att-cobalt, var(--primary));
+      outline: 3px solid var(--pmi-cobalt, var(--primary));
       outline-offset: 2px;
     }
     /* Replay/Forward are secondary to the main play button — smaller, outlined rather than
@@ -425,14 +425,14 @@ export function generateCSS() {
     }
     .aud-scrub-bar {
       height: 6px;
-      border-radius: var(--att-radius-pill, 999px);
+      border-radius: var(--pmi-radius-pill, 999px);
       background-color: var(--bg-body);
       cursor: pointer;
       position: relative;
     }
     .aud-scrub-fill {
       height: 100%;
-      border-radius: var(--att-radius-pill, 999px);
+      border-radius: var(--pmi-radius-pill, 999px);
       background-color: var(--accent);
     }
     .aud-chapter-markers {
@@ -470,7 +470,7 @@ export function generateCSS() {
     }
     .aud-chapter-marker:hover::before { background-color: var(--primary); }
     .aud-timer {
-      font-size: var(--att-fs-body-sm, 0.875rem);
+      font-size: var(--pmi-fs-body-sm, 0.875rem);
       color: var(--text-muted);
       white-space: nowrap;
     }
@@ -479,9 +479,9 @@ export function generateCSS() {
       border: 1px solid var(--primary);
       color: var(--primary);
       padding: 4px 10px;
-      font-size: var(--att-fs-body-sm, 0.875rem);
-      font-weight: var(--att-fw-medium, 500);
-      border-radius: var(--button-radius, var(--att-radius-pill, 999px));
+      font-size: var(--pmi-fs-body-sm, 0.875rem);
+      font-weight: var(--pmi-fw-medium, 500);
+      border-radius: var(--button-radius, var(--pmi-radius-pill, 999px));
       cursor: pointer;
       transition: all 0.2s;
       flex-shrink: 0;
@@ -509,8 +509,8 @@ export function generateCSS() {
     }
     .aud-mute-btn:hover { border-color: var(--primary-hover); color: var(--primary-hover); }
     .aud-section-heading {
-      font-size: var(--att-fs-eyebrow, 0.75rem);
-      font-weight: var(--att-fw-bold, 700);
+      font-size: var(--pmi-fs-eyebrow, 0.75rem);
+      font-weight: var(--pmi-fw-bold, 700);
       text-transform: uppercase;
       letter-spacing: 0.5px;
       color: var(--text-muted);
@@ -555,10 +555,10 @@ export function generateCSS() {
       text-align: left;
       background: none;
       border: none;
-      border-radius: var(--att-radius-sm, 8px);
+      border-radius: var(--pmi-radius-sm, 8px);
       padding: 8px 10px;
       cursor: pointer;
-      font-size: var(--att-fs-body-sm, 0.875rem);
+      font-size: var(--pmi-fs-body-sm, 0.875rem);
       color: var(--text-main);
       min-height: 44px;
       box-sizing: border-box;
@@ -566,14 +566,14 @@ export function generateCSS() {
     .aud-chapter-item:hover { background-color: var(--bg-body); }
     .aud-chapter-item.aud-chapter-active {
       background-color: var(--bg-body);
-      font-weight: var(--att-fw-bold, 700);
+      font-weight: var(--pmi-fw-bold, 700);
       /* Not color alone: the active row also gets aria-current="true" (generateJS) and a
          leading marker character, not just a background tint. */
     }
     .aud-chapter-item.aud-chapter-active .aud-chapter-title::before { content: '▸ '; color: var(--primary); }
     .aud-chapter-time { color: var(--text-muted); font-variant-numeric: tabular-nums; flex-shrink: 0; }
-    .aud-chapter-desc { display: block; width: 100%; font-size: var(--att-fs-body-sm, 0.875rem); color: var(--text-muted); margin-top: 2px; }
-    .aud-progress-status { font-size: var(--att-fs-body-sm, 0.875rem); color: var(--text-muted); }
+    .aud-chapter-desc { display: block; width: 100%; font-size: var(--pmi-fs-body-sm, 0.875rem); color: var(--text-muted); margin-top: 2px; }
+    .aud-progress-status { font-size: var(--pmi-fs-body-sm, 0.875rem); color: var(--text-muted); }
     .aud-transcript-section { border-top: var(--border-style); padding-top: 10px; }
     .aud-transcript-toggle {
       display: flex;
@@ -582,8 +582,8 @@ export function generateCSS() {
       background: none;
       border: none;
       color: var(--primary);
-      font-size: var(--att-fs-body-sm, 0.875rem);
-      font-weight: var(--att-fw-bold, 700);
+      font-size: var(--pmi-fs-body-sm, 0.875rem);
+      font-weight: var(--pmi-fw-bold, 700);
       cursor: pointer;
       padding: 4px 0;
       min-height: 44px;
@@ -594,7 +594,7 @@ export function generateCSS() {
       max-height: 260px;
       overflow-y: auto;
       border: var(--border-style);
-      border-radius: var(--att-radius-md, 12px);
+      border-radius: var(--pmi-radius-md, 12px);
       padding: 10px;
     }
     .aud-transcript-search-row { margin-bottom: 8px; }
@@ -602,14 +602,14 @@ export function generateCSS() {
       width: 100%;
       box-sizing: border-box;
       padding: 8px 12px;
-      font-size: var(--att-fs-body-sm, 0.875rem);
+      font-size: var(--pmi-fs-body-sm, 0.875rem);
       border: var(--border-style);
-      border-radius: var(--att-radius-sm, 8px);
+      border-radius: var(--pmi-radius-sm, 8px);
       background-color: var(--bg-card);
       color: var(--text-main);
       min-height: 44px;
     }
-    .aud-transcript-search-status { font-size: var(--att-fs-body-sm, 0.875rem); color: var(--text-muted); margin: 0 0 6px; }
+    .aud-transcript-search-status { font-size: var(--pmi-fs-body-sm, 0.875rem); color: var(--text-muted); margin: 0 0 6px; }
     .aud-transcript-segments { display: flex; flex-direction: column; gap: 2px; }
     .aud-transcript-segment {
       display: flex;
@@ -620,12 +620,12 @@ export function generateCSS() {
       text-align: left;
       background: none;
       border: none;
-      border-radius: var(--att-radius-sm, 8px);
+      border-radius: var(--pmi-radius-sm, 8px);
       padding: 8px 10px;
       cursor: pointer;
-      font-size: var(--att-fs-body, 1rem);
+      font-size: var(--pmi-fs-body, 1rem);
       color: var(--text-main);
-      line-height: var(--att-lh-body, 1.5);
+      line-height: var(--pmi-lh-body, 1.5);
       min-height: 44px;
       box-sizing: border-box;
     }
@@ -634,47 +634,47 @@ export function generateCSS() {
       background-color: var(--bg-body);
       border-left: 3px solid var(--primary);
       /* Not color alone: also carries a leading time-column emphasis and font-weight. */
-      font-weight: var(--att-fw-bold, 700);
+      font-weight: var(--pmi-fw-bold, 700);
     }
-    .aud-segment-time { color: var(--text-muted); font-variant-numeric: tabular-nums; flex-shrink: 0; font-weight: 400; font-size: var(--att-fs-body-sm, 0.875rem); }
-    .aud-segment-speaker { font-weight: var(--att-fw-bold, 700); flex-shrink: 0; }
+    .aud-segment-time { color: var(--text-muted); font-variant-numeric: tabular-nums; flex-shrink: 0; font-weight: 400; font-size: var(--pmi-fs-body-sm, 0.875rem); }
+    .aud-segment-speaker { font-weight: var(--pmi-fw-bold, 700); flex-shrink: 0; }
     .aud-segment-text { max-width: 70ch; }
     .aud-search-highlight { background-color: var(--warning); color: var(--text-main); border-radius: 2px; padding: 0 1px; }
-    .aud-transcript-plain { font-size: var(--att-fs-body, 1rem); line-height: var(--att-lh-body, 1.5); max-width: 70ch; }
-    .aud-transcript-no-results { font-size: var(--att-fs-body-sm, 0.875rem); color: var(--text-muted); font-style: italic; }
+    .aud-transcript-plain { font-size: var(--pmi-fs-body, 1rem); line-height: var(--pmi-lh-body, 1.5); max-width: 70ch; }
+    .aud-transcript-no-results { font-size: var(--pmi-fs-body-sm, 0.875rem); color: var(--text-muted); font-style: italic; }
     .aud-takeaways-panel {
       background-color: var(--bg-body);
-      border-radius: var(--att-radius-md, 12px);
+      border-radius: var(--pmi-radius-md, 12px);
       padding: 16px;
     }
     .aud-takeaways-heading {
       display: flex;
       align-items: center;
       gap: 6px;
-      font-size: var(--att-fs-h4, 1.125rem);
-      font-weight: var(--att-fw-bold, 700);
-      line-height: var(--att-lh-heading, 1.25);
+      font-size: var(--pmi-fs-h4, 1.125rem);
+      font-weight: var(--pmi-fw-bold, 700);
+      line-height: var(--pmi-lh-heading, 1.25);
       color: var(--text-main);
       margin-bottom: 8px;
     }
     .aud-takeaways-list {
       padding-left: 20px;
-      font-size: var(--att-fs-body, 1rem);
-      line-height: var(--att-lh-body, 1.5);
+      font-size: var(--pmi-fs-body, 1rem);
+      line-height: var(--pmi-lh-body, 1.5);
       max-width: 70ch;
       color: var(--text-main);
     }
-    .aud-takeaways-locked-msg { font-size: var(--att-fs-body-sm, 0.875rem); color: var(--text-muted); font-style: italic; }
+    .aud-takeaways-locked-msg { font-size: var(--pmi-fs-body-sm, 0.875rem); color: var(--text-muted); font-style: italic; }
 
     /* Podcast mode: larger artwork, laid out beside the identity text on wider screens. */
-    .aud-player[data-mode="podcast"] .aud-art { width: 72px; height: 72px; border-radius: var(--att-radius-md, 12px); }
-    .aud-player[data-mode="podcast"] .aud-title { font-size: var(--att-fs-h2, 1.5rem); }
+    .aud-player[data-mode="podcast"] .aud-art { width: 72px; height: 72px; border-radius: var(--pmi-radius-md, 12px); }
+    .aud-player[data-mode="podcast"] .aud-title { font-size: var(--pmi-fs-h2, 1.5rem); }
 
     /* Compact mode: condensed single-row control set, no secondary sections (those are
        simply not rendered for compact — see generateHTML — this only tightens sizing). */
     .aud-player[data-mode="compact"] { padding: 10px 12px; gap: 8px; }
     .aud-player[data-mode="compact"] .aud-art { width: 28px; height: 28px; }
-    .aud-player[data-mode="compact"] .aud-title { font-size: var(--att-fs-body, 1rem); }
+    .aud-player[data-mode="compact"] .aud-title { font-size: var(--pmi-fs-body, 1rem); }
     .aud-player[data-mode="compact"] .aud-play-btn { width: 34px; height: 34px; }
     .aud-player[data-mode="compact"] .aud-skip-btn { width: 30px; height: 30px; }
 

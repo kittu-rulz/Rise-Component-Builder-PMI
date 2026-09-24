@@ -1,10 +1,10 @@
 import { getEditorSchema } from '../js/editor-schemas.js';
 import { escapeHTML, sanitizeRichText, serializeForInlineScript } from '../js/utilities.js';
 import { validateQuizAnswers, combineValidationResults } from '../js/validation-utils.js';
-import { getAttIconSvg } from '../js/att-icons.js';
+import { getPmiIconSvg } from '../js/pmi-icons.js';
 
-const CHECK_ICON = getAttIconSvg('check-circle-filled', { width: 14, height: 14, ariaHidden: true });
-const CROSS_ICON = getAttIconSvg('close-circle-filled', { width: 14, height: 14, ariaHidden: true });
+const CHECK_ICON = getPmiIconSvg('check-circle-filled', { width: 14, height: 14, ariaHidden: true });
+const CROSS_ICON = getPmiIconSvg('close-circle-filled', { width: 14, height: 14, ariaHidden: true });
 
 /**
  * Multiple Select Component Configuration
@@ -68,22 +68,22 @@ export function generateCSS() {
     .quiz-block {
       display: flex;
       flex-direction: column;
-      gap: var(--att-space-3, 12px);
+      gap: var(--pmi-space-3, 12px);
     }
     .quiz-options {
       display: flex;
       flex-direction: column;
-      gap: var(--att-space-2, 8px);
+      gap: var(--pmi-space-2, 8px);
     }
     .quiz-option {
       background-color: var(--bg-card);
       border: var(--border-style);
-      border-radius: var(--att-radius-md, var(--border-radius, 12px));
+      border-radius: var(--pmi-radius-md, var(--border-radius, 12px));
       box-shadow: var(--shadow-style);
-      padding: var(--att-space-4, 16px) var(--att-space-5, 24px);
+      padding: var(--pmi-space-4, 16px) var(--pmi-space-5, 24px);
       display: flex;
       align-items: flex-start;
-      gap: var(--att-space-3, 12px);
+      gap: var(--pmi-space-3, 12px);
       cursor: pointer;
       transition: all 0.2s ease;
     }
@@ -101,7 +101,7 @@ export function generateCSS() {
     .option-check-square {
       width: 18px;
       height: 18px;
-      /* Fixed 4px: --att-radius-sm is 8px, which rounds an 18px box into a circle
+      /* Fixed 4px: --pmi-radius-sm is 8px, which rounds an 18px box into a circle
          and makes checkboxes indistinguishable from the single-select radios. */
       border-radius: 4px;
       border: 2px solid var(--text-muted);
@@ -132,15 +132,15 @@ export function generateCSS() {
       flex: 1;
     }
     .option-text {
-      font-size: var(--att-fs-body, 16px);
-      line-height: var(--att-lh-body, 1.5);
+      font-size: var(--pmi-fs-body, 16px);
+      line-height: var(--pmi-lh-body, 1.5);
       font-weight: 500;
     }
     .option-remediation {
-      font-size: var(--att-fs-body-sm, 13px);
+      font-size: var(--pmi-fs-body-sm, 13px);
       line-height: 1.4;
       padding: 4px 8px;
-      border-radius: var(--att-radius-sm, 6px);
+      border-radius: var(--pmi-radius-sm, 6px);
       margin-top: 4px;
     }
     .option-remediation.remed-correct {
@@ -153,17 +153,17 @@ export function generateCSS() {
     }
     .quiz-actions-row {
       display: flex;
-      gap: var(--att-space-3, 12px);
+      gap: var(--pmi-space-3, 12px);
       align-items: center;
       margin-top: 10px;
     }
     .quiz-submit-btn {
       padding: 10px 24px;
-      border-radius: var(--button-radius, var(--att-radius-pill, 999px));
+      border-radius: var(--button-radius, var(--pmi-radius-pill, 999px));
       border: none;
       background-color: var(--primary);
       color: var(--on-primary);
-      font-size: var(--att-fs-body, 16px);
+      font-size: var(--pmi-fs-body, 16px);
       font-weight: 600;
       cursor: pointer;
       min-height: 44px;
@@ -179,22 +179,22 @@ export function generateCSS() {
       transform: scale(0.98);
     }
     .quiz-submit-btn:focus-visible {
-      outline: 3px solid var(--att-cobalt, var(--primary));
+      outline: 3px solid var(--pmi-cobalt, var(--primary));
       outline-offset: 2px;
     }
     .quiz-submit-btn:disabled, .quiz-submit-btn[aria-disabled="true"] {
-      background-color: var(--att-grey-2, #DCDFE3);
-      color: var(--att-grey-3, #BDC2C7);
+      background-color: var(--pmi-grey-2, #DCDFE3);
+      color: var(--pmi-grey-3, #BDC2C7);
       opacity: 0.7;
       cursor: not-allowed;
     }
     .quiz-reset-btn {
       padding: 8px 20px;
-      border-radius: var(--button-radius, var(--att-radius-pill, 999px));
+      border-radius: var(--button-radius, var(--pmi-radius-pill, 999px));
       border: var(--border-style);
       background-color: transparent;
       color: var(--text-main);
-      font-size: var(--att-fs-body-sm, 14px);
+      font-size: var(--pmi-fs-body-sm, 14px);
       font-weight: 600;
       cursor: pointer;
       min-height: 44px;
@@ -207,15 +207,15 @@ export function generateCSS() {
       color: var(--primary);
     }
     .quiz-reset-btn:focus-visible {
-      outline: 3px solid var(--att-cobalt, var(--primary));
+      outline: 3px solid var(--pmi-cobalt, var(--primary));
       outline-offset: 2px;
     }
     .quiz-feedback {
-      margin-top: var(--att-space-4, 16px);
-      padding: var(--att-space-4, 16px) var(--att-space-5, 24px);
-      border-radius: var(--att-radius-lg, var(--border-radius, 20px));
-      font-size: var(--att-fs-body, 16px);
-      line-height: var(--att-lh-body, 1.5);
+      margin-top: var(--pmi-space-4, 16px);
+      padding: var(--pmi-space-4, 16px) var(--pmi-space-5, 24px);
+      border-radius: var(--pmi-radius-lg, var(--border-radius, 20px));
+      font-size: var(--pmi-fs-body, 16px);
+      line-height: var(--pmi-lh-body, 1.5);
       max-width: 70ch;
       animation: fadeIn 0.3s ease;
     }

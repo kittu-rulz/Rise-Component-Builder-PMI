@@ -10,7 +10,7 @@ import { createNewProjectFromTemplate } from '../../js/dashboard/dashboard-view.
 import { auditCourseProject } from '../../js/dashboard/project-qa.js';
 import { migrateProject, migrateProjectSafely } from '../../js/migration.js';
 import { compileCoursePreview } from '../../js/dashboard/course-preview.js';
-import { isolateModal, showPromptDialog, showConfirmDialog } from '../../js/dashboard/att-modal.js';
+import { isolateModal, showPromptDialog, showConfirmDialog } from '../../js/dashboard/pmi-modal.js';
 import { createGoldenAuditCourse } from '../fixtures/golden-audit-course.js';
 
 describe('Final 10/10 Stabilization Sprint — Comprehensive Verification Suite', () => {
@@ -168,29 +168,29 @@ describe('Final 10/10 Stabilization Sprint — Comprehensive Verification Suite'
         defaultValue: 'Module 1'
       });
 
-      const overlay = document.getElementById('att-dynamic-modal-overlay');
+      const overlay = document.getElementById('pmi-dynamic-modal-overlay');
       expect(overlay).toBeDefined();
       expect(overlay.getAttribute('role')).toBe('dialog');
       expect(overlay.getAttribute('aria-modal')).toBe('true');
 
-      const cancelBtn = overlay.querySelector('#att-modal-cancel-btn');
+      const cancelBtn = overlay.querySelector('#pmi-modal-cancel-btn');
       cancelBtn.click();
 
       const result = await promptPromise;
       expect(result).toBeNull();
-      expect(document.getElementById('att-dynamic-modal-overlay')).toBeNull();
+      expect(document.getElementById('pmi-dynamic-modal-overlay')).toBeNull();
 
       const confirmPromise = showConfirmDialog({
         title: 'Confirm Delete',
         message: 'Delete item?'
       });
-      const confirmOverlay = document.getElementById('att-dynamic-modal-overlay');
+      const confirmOverlay = document.getElementById('pmi-dynamic-modal-overlay');
       expect(confirmOverlay).toBeDefined();
-      const confirmBtn = confirmOverlay.querySelector('#att-modal-confirm-btn');
+      const confirmBtn = confirmOverlay.querySelector('#pmi-modal-confirm-btn');
       confirmBtn.click();
       const confirmed = await confirmPromise;
       expect(confirmed).toBe(true);
-      expect(document.getElementById('att-dynamic-modal-overlay')).toBeNull();
+      expect(document.getElementById('pmi-dynamic-modal-overlay')).toBeNull();
     });
   });
 

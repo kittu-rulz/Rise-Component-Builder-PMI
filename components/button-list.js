@@ -1,6 +1,6 @@
 import { getEditorSchema } from '../js/editor-schemas.js';
 import { escapeAttribute, escapeHTML, sanitizeURL } from '../js/utilities.js';
-import { getAttIconSvg } from '../js/att-icons.js';
+import { getPmiIconSvg } from '../js/pmi-icons.js';
 
 export const id = 'button-list';
 export const name = 'Quick Link Buttons';
@@ -14,9 +14,9 @@ export const defaultConfig = {
 };
 export const editorSchema = getEditorSchema(id);
 
-const openNewIcon = getAttIconSvg('open-new', { width: 14, height: 14, ariaHidden: true });
-const downloadIcon = getAttIconSvg('download', { width: 14, height: 14, ariaHidden: true });
-const searchIcon = getAttIconSvg('search', { width: 14, height: 14, ariaHidden: true });
+const openNewIcon = getPmiIconSvg('open-new', { width: 14, height: 14, ariaHidden: true });
+const downloadIcon = getPmiIconSvg('download', { width: 14, height: 14, ariaHidden: true });
+const searchIcon = getPmiIconSvg('search', { width: 14, height: 14, ariaHidden: true });
 
 function renderButton(item, idx) {
   const url = sanitizeURL(item.content, { allowRelative: true }) || '#';
@@ -111,7 +111,7 @@ export function generateCSS() {
     .button-list-wrapper {
       display: flex;
       flex-direction: column;
-      gap: var(--att-space-4, 16px);
+      gap: var(--pmi-space-4, 16px);
       width: 100%;
     }
     .button-list-search-wrap {
@@ -134,28 +134,28 @@ export function generateCSS() {
       width: 100%;
       padding: 10px 14px 10px 38px;
       border: 1px solid var(--border-color);
-      border-radius: var(--att-radius-pill, 999px);
+      border-radius: var(--pmi-radius-pill, 999px);
       background-color: var(--bg-card);
       color: var(--text-main);
-      font-size: var(--att-fs-body-sm, 14px);
+      font-size: var(--pmi-fs-body-sm, 14px);
       font-family: var(--font-family, inherit);
       min-height: 44px;
       box-sizing: border-box;
       transition: border-color 0.2s;
     }
     .button-list-search-input:focus-visible {
-      outline: 3px solid var(--att-cobalt, var(--primary));
+      outline: 3px solid var(--pmi-cobalt, var(--primary));
       outline-offset: 2px;
       border-color: var(--primary);
     }
     .button-group-section {
       display: flex;
       flex-direction: column;
-      gap: var(--att-space-2, 8px);
-      margin-bottom: var(--att-space-3, 12px);
+      gap: var(--pmi-space-2, 8px);
+      margin-bottom: var(--pmi-space-3, 12px);
     }
     .button-group-title {
-      font-size: var(--att-fs-body-sm, 14px);
+      font-size: var(--pmi-fs-body-sm, 14px);
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.5px;
@@ -165,19 +165,19 @@ export function generateCSS() {
     .buttons-container {
       display: flex;
       flex-wrap: wrap;
-      gap: var(--att-space-3, 12px);
+      gap: var(--pmi-space-3, 12px);
       justify-content: flex-start;
     }
     .link-button-item {
       display: inline-flex;
       align-items: center;
       justify-content: space-between;
-      gap: var(--att-space-3, 10px);
+      gap: var(--pmi-space-3, 10px);
       padding: 10px 20px;
-      border-radius: var(--button-radius, var(--att-radius-pill, 999px));
+      border-radius: var(--button-radius, var(--pmi-radius-pill, 999px));
       box-shadow: var(--shadow-style);
-      font-size: var(--att-fs-body, 1rem);
-      font-weight: var(--att-fw-bold, 700);
+      font-size: var(--pmi-fs-body, 1rem);
+      font-weight: var(--pmi-fw-bold, 700);
       min-height: 44px;
       box-sizing: border-box;
       transition: all var(--animation-speed);
@@ -192,7 +192,7 @@ export function generateCSS() {
     .link-button-item.variant-primary:hover {
       background-color: var(--primary-hover);
       border-color: var(--primary-hover);
-      box-shadow: var(--att-shadow-2);
+      box-shadow: var(--pmi-shadow-2);
     }
     .link-button-item.variant-secondary {
       background-color: var(--bg-card);
@@ -202,7 +202,7 @@ export function generateCSS() {
     .link-button-item.variant-secondary:hover {
       border-color: var(--primary);
       color: var(--primary);
-      box-shadow: var(--att-shadow-2);
+      box-shadow: var(--pmi-shadow-2);
     }
     .link-button-item.variant-outline {
       background-color: transparent;
@@ -217,7 +217,7 @@ export function generateCSS() {
       transform: scale(0.98);
     }
     .link-button-item:focus-visible {
-      outline: 3px solid var(--att-cobalt, var(--primary));
+      outline: 3px solid var(--pmi-cobalt, var(--primary));
       outline-offset: 2px;
     }
     .btn-label-wrap {
@@ -230,12 +230,12 @@ export function generateCSS() {
       gap: 4px;
     }
     .btn-meta-pill {
-      font-size: var(--att-fs-eyebrow, 11px);
+      font-size: var(--pmi-fs-eyebrow, 11px);
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.3px;
       padding: 2px 6px;
-      border-radius: var(--att-radius-pill, 999px);
+      border-radius: var(--pmi-radius-pill, 999px);
       background-color: rgba(255, 255, 255, 0.25);
       color: inherit;
     }
@@ -250,7 +250,7 @@ export function generateCSS() {
       flex-shrink: 0;
     }
     .button-list-no-results {
-      font-size: var(--att-fs-body, 14px);
+      font-size: var(--pmi-fs-body, 14px);
       color: var(--text-muted);
       font-style: italic;
       padding: 8px 0;

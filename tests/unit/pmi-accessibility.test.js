@@ -50,7 +50,7 @@ describe('Prompt 7: AT&T States, Focus, and Accessibility Standards', () => {
   describe('Global & Shared Focus-Visible and Reduced-Motion Foundation', () => {
     test('SHARED_A11Y_CSS covers buttons, links, inputs, and ARIA interactive roles with 3px Cobalt outline', () => {
       expect(SHARED_A11Y_CSS).toContain(':where(button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"]), [role="button"], [role="tab"], [role="radio"]):focus-visible');
-      expect(SHARED_A11Y_CSS).toContain('outline: 3px solid var(--att-cobalt, var(--primary));');
+      expect(SHARED_A11Y_CSS).toContain('outline: 3px solid var(--pmi-cobalt, var(--primary));');
       expect(SHARED_A11Y_CSS).toContain('outline-offset: 2px;');
     });
 
