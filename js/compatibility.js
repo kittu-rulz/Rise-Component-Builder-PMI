@@ -1,0 +1,103 @@
+// Single source of truth for how confident this project actually is that a given
+// export format works in a real host (Rise, an LMS, a plain browser). The tiers here
+// are the same ones used in docs/RISE-COMPATIBILITY-MATRIX.md — this module is the
+// UI-facing half of that classification; the doc is the narrative/testing-guidance half.
+// Neither invents a claim the other doesn't also make: if you change a tier here, update
+// the matching row in the matrix doc, and vice versa.
+
+/**
+ * CONFIRMED — verified by this project's own automated tests, or a recorded manual
+ *             test run logged in docs/COMPATIBILITY-RESULTS.md.
+ * PREVIEW   — technically built to the target's own documented capability, but never
+ *             independently run against that real target by this project.
+ * FALLBACK  — degrades gracefully rather than breaking outright, under a known,
+ *             documented condition (e.g. only with a non-default host setting).
+ * UNSUPPORTED — known not to work today, or no working implementation exists yet.
+ */
+export const COMPATIBILITY_TIERS = {
+  confirmed: { id: 'confirmed', label: 'Confirmed', badgeClass: 'compat-badge-confirmed' },
+  experimental: { id: 'experimental', label: 'Preview', badgeClass: 'compat-badge-experimental' },
+  fallback: { id: 'fallback', label: 'Fallback', badgeClass: 'compat-badge-fallback' },
+  unsupported: { id: 'unsupported', label: 'Unsupported', badgeClass: 'compat-badge-unsupported' }
+};
+
+// Keyed by the export modal's own `data-export-type` values, plus `standaloneDownload`
+// for the "Download .HTML File" action in the Option B pane.
+// Popup copy stays decision-focused: what this format is for, and what to watch out for.
+// File paths and engineering detail (which test file, which doc) belong in the docs
+// themselves (docs/COMPATIBILITY-RESULTS.md, docs/RISE-COMPATIBILITY-MATRIX.md), not here.
+export const EXPORT_FORMAT_COMPATIBILITY = {
+  iframe: {
+    tier: 'confirmed',
+    summary: 'Best for reliable isolation. Paste the snippet into a Rise 360 Code › Add code block.',
+    details: [
+      'Keeps the component’s styles and scripts separate from the Rise page.',
+      'Uses a fixed height, which you may need to adjust after pasting.',
+      'Some special features (like downloads, popups, forms, or autoplaying media) may need extra checking after pasting.',
+      'Using completion tracking? This format does not report completion to Rise — use "Copy for Rise" in the main panel instead.'
+    ]
+  },
+  code: {
+    tier: 'confirmed',
+    summary: 'Best when the component should expand naturally with its content. Paste it directly into a Rise 360 Code › Add code block.',
+    details: [
+      'Automatically expands with its content.',
+      'Shares the host page, so styles could conflict with other content.',
+      'Requires the host platform to allow inline JavaScript.',
+      'This is the only export format confirmed to report completion to Rise.'
+    ]
+  },
+  'rise-zip': {
+    tier: 'confirmed',
+    summary: 'Best for components containing uploaded audio, video, or large images.',
+    details: [
+      'Includes index.html and referenced media files in an assets folder.',
+      'Extract and host the files on a web server, then embed that hosted page in Rise.',
+      'Cannot be uploaded directly to Rise as a custom block.',
+      'This is not a SCORM package.',
+      'Using completion tracking? Reporting completion to Rise through this format is not confirmed to work — use "Copy for Rise" in the main panel instead if you need completion tracking.'
+    ]
+  },
+  'rise-embed': {
+    tier: 'confirmed',
+    summary: 'Best for embedding a hosted component inside Rise 360 Multimedia › Embed block.',
+    details: [
+      'Generates a responsive iframe code snippet linking to your hosted index.html.',
+      'Supports custom width/height and modern fullscreen/media permissions.',
+      'Keeps styles and scripts fully isolated from Rise 360 page styles.',
+      'Using completion tracking? Cross-domain iframe embeds cannot report completion back to parent Rise unless configured with postMessage parent origin.'
+    ]
+  },
+  storyline: {
+    tier: 'confirmed',
+    summary: 'Best for embedding inside Articulate Storyline 360 slides as an interactive Web Object.',
+    details: [
+      'Self-contained package with index.html, AT&T fonts, and assets folder formatted for Storyline 360.',
+      'Insert via Insert › Web Object in Storyline 360 and select the extracted folder.',
+      'Runs locally inside Storyline preview and published SCORM/xAPI packages.'
+    ]
+  },
+  standaloneDownload: {
+    tier: 'confirmed',
+    summary: 'Opens as a plain web page in any modern browser (Chrome, Firefox, Safari).',
+    details: [
+      'This only means the file works on its own — it doesn\'t say anything about how it behaves inside Rise or another host.'
+    ]
+  }
+};
+
+export function getExportFormatCompatibility(formatKey) {
+  return EXPORT_FORMAT_COMPATIBILITY[formatKey] || null;
+}
+
+// Central completion-compatibility rule (single source of truth — do not re-derive this
+// condition anywhere else). Only the HTML fragment ("code") export format is confirmed to
+// let Rise detect this component's completion; see docs/COMPLETION-INTEGRATION.md
+// "Export-format caveat". Both the export modal's own guidance (js/compatibility.js) and
+// the Preflight blocking check (js/validation.js) call this function rather than each
+// keeping their own copy of the condition.
+const COMPLETION_COMPATIBLE_EXPORT_FORMAT = 'code';
+
+export function isExportFormatCompletionCompatible(formatKey) {
+  return formatKey === COMPLETION_COMPATIBLE_EXPORT_FORMAT;
+}

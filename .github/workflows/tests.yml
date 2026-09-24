@@ -1,0 +1,98 @@
+name: Automated tests
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  # Everything that does not need a browser. Fast, and it fails the run before three
+  # browser jobs are spun up for a change that cannot pass lint or typecheck anyway.
+  checks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Type check
+        run: npm run typecheck
+
+      - name: Run unit and integration tests
+        run: npm run test:unit
+
+      - name: Enforce coverage thresholds
+        run: npm run test:coverage
+
+      - name: Verify production asset cache-busting is stamped
+        run: npm run stamp:check
+
+      - name: Production build
+        run: npm run build
+
+      - name: Upload coverage report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: coverage/
+          if-no-files-found: ignore
+          retention-days: 14
+
+  # One job per browser, in parallel. playwright.config.js pins workers to 1 in CI, so a
+  # single job running all three engines is necessarily serial: the last green run of that
+  # shape (2026-09-07) spent 27 minutes inside one step against a 32-minute cap, leaving
+  # about five minutes of headroom for a suite that keeps growing. Sharding by browser
+  # makes the step cost roughly one engine instead of three, so the wall clock no longer
+  # scales with the number of engines, and a failure names the browser that produced it.
+  e2e:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    strategy:
+      # Report every engine's result: a WebKit-only regression should not be hidden
+      # because Chromium happened to fail first.
+      fail-fast: false
+      matrix:
+        browser: [chromium, firefox, webkit]
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright browser
+        run: npx playwright install --with-deps ${{ matrix.browser }}
+
+      - name: Run browser and accessibility tests
+        timeout-minutes: 20
+        run: npx playwright test --project=${{ matrix.browser }}
+
+      - name: Upload Playwright failure artifacts
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          # Artifact names must be unique across the matrix or the upload conflicts.
+          name: playwright-failure-artifacts-${{ matrix.browser }}
+          path: |
+            playwright-report/
+            test-results/
+          if-no-files-found: ignore
+          retention-days: 14

@@ -1,0 +1,420 @@
+import { describe, expect, test } from 'vitest';
+import {
+  CATEGORIES, CLASSIFICATIONS, TIERS, LEARNING_PURPOSES, RISE_RECOMMENDATIONS,
+  COMPONENT_REGISTRY, getCategoriesWithCounts, getTiersWithCounts, getLearningPurposesWithCounts,
+  getComponentById, getDefaultConfig, searchComponents, validateRegistry
+} from '../../js/component-registry.js';
+import { componentCatalog, filterCatalog } from '../../js/catalog.js';
+import { createDefaultItem, getEditorSchema } from '../../js/editor-schemas.js';
+
+function baseEntry(overrides = {}) {
+  return {
+    id: 'sample',
+    name: 'Sample Component',
+    categoryId: 'interactive',
+    description: 'A sample component used for validation tests.',
+    keywords: ['sample'],
+    version: '1.0.0',
+    icon: '<svg></svg>',
+    editorSchema: { itemLabel: 'Item', minItems: 1, itemFields: [] },
+    defaultContent: { items: [] },
+    defaultDesign: {},
+    defaultBehaviour: {},
+    renderer: { type: 'module', generateHTML: () => '', generateCSS: () => '', generateJS: () => '' },
+    exporter: { type: 'shared', module: 'js/export.js#buildExportPayload' },
+    validate: null,
+    accessibilitySupport: true,
+    media: { required: false, kinds: [] },
+    completionSupport: true,
+    status: 'production',
+    classification: 'enhanced',
+    differentiator: 'A helpful, concrete reason to pick this over the native Rise block.',
+    tier: 'enhanced-rise',
+    learningPurposes: ['Explore'],
+    riseRecommendation: 'conditional',
+    riseRecommendationSummary: 'Use custom when advanced behavior is needed',
+    riseEquivalent: 'Rise Equivalent Block',
+    bestWhen: 'Best when custom features are needed.',
+    nativeRiseWhen: 'Native Rise is sufficient for basic use.',
+    keyCapabilities: ['Capability 1', 'Capability 2'],
+    complexity: 'Basic',
+    accessibilitySummary: 'Full keyboard and screen reader support.',
+    completionTracking: 'Exploration tracking',
+    readiness: {
+      score: 5,
+      max: 5,
+      status: 'Production',
+      dimensions: {
+        accessibility: true,
+        responsive: true,
+        riseTested: true,
+        completionTested: true,
+        mediaOptimized: true
+      }
+    },
+    ...overrides
+  };
+}
+
+describe('component registry integrity', () => {
+  test('every component id is unique', () => {
+    const ids = COMPONENT_REGISTRY.map(entry => entry.id);
+    expect(new Set(ids).size).toBe(ids.length);
+  });
+
+  test('every component belongs to a valid category', () => {
+    const categoryIds = new Set(CATEGORIES.map(category => category.id));
+    COMPONENT_REGISTRY.forEach(entry => {
+      expect(categoryIds.has(entry.categoryId)).toBe(true);
+    });
+  });
+
+  test('category counts are correct', () => {
+    const counts = getCategoriesWithCounts(COMPONENT_REGISTRY);
+    CATEGORIES.forEach(category => {
+      const expected = COMPONENT_REGISTRY.filter(entry => entry.categoryId === category.id).length;
+      expect(counts.find(entry => entry.id === category.id).count).toBe(expected);
+    });
+    expect(counts.find(entry => entry.id === 'knowledge').count).toBe(5);
+  });
+
+  test('every production component has an editor, renderer, and exporter', () => {
+    COMPONENT_REGISTRY.filter(entry => entry.status === 'production').forEach(entry => {
+      expect(entry.editorSchema).toBeTruthy();
+      expect(entry.renderer?.type).toBeTruthy();
+      expect(entry.exporter?.type).toBeTruthy();
+    });
+  });
+
+  test('default data passes its own editor schema', () => {
+    COMPONENT_REGISTRY.forEach(entry => {
+      const defaults = getDefaultConfig(entry);
+      expect(Array.isArray(defaults.items)).toBe(true);
+      expect(defaults.items.length).toBeGreaterThanOrEqual(entry.editorSchema.minItems || 0);
+      const requiredFields = (entry.editorSchema.itemFields || []).filter(field => field.required);
+      defaults.items.forEach(item => {
+        requiredFields.forEach(field => {
+          expect(item[field.id]).not.toBe(undefined);
+          expect(item[field.id]).not.toBe('');
+        });
+      });
+      if (typeof entry.validate === 'function') {
+        expect(entry.validate(defaults).valid).toBe(true);
+      }
+    });
+  });
+
+  test('createDefaultItem still produces a blank item matching each schema', () => {
+    COMPONENT_REGISTRY.forEach(entry => {
+      const blank = createDefaultItem(entry.editorSchema);
+      (entry.editorSchema.itemFields || []).forEach(field => {
+        expect(blank).toHaveProperty(field.id);
+      });
+    });
+  });
+
+  test('Knowledge Checks displays the correct number of components', () => {
+    expect(componentCatalog.filter(item => item.category === 'knowledge').length).toBe(5);
+    const filtered = filterCatalog(componentCatalog, { activeCategory: 'knowledge', searchQuery: '', favorites: new Set() });
+    expect(filtered.length).toBe(5);
+  });
+
+  test('the recent category is ordered by recency, not catalog order, and drops unknown ids', () => {
+    const filtered = filterCatalog(componentCatalog, {
+      activeCategory: 'recent', searchQuery: '', favorites: new Set(),
+      recentlyUsed: ['scenario', 'not-a-real-id', 'accordion']
+    });
+    expect(filtered.map(item => item.id)).toEqual(['scenario', 'accordion']);
+  });
+
+});
+
+describe('catalog-positioning metadata (classification + differentiator)', () => {
+  const classificationIds = new Set(CLASSIFICATIONS.map(c => c.id));
+
+  test('every registered component has a classification from the known set', () => {
+    COMPONENT_REGISTRY.forEach(entry => {
+      expect(classificationIds.has(entry.classification)).toBe(true);
+    });
+  });
+
+  test('every registered component has non-empty differentiator text', () => {
+    COMPONENT_REGISTRY.forEach(entry => {
+      expect(typeof entry.differentiator).toBe('string');
+      expect(entry.differentiator.trim().length).toBeGreaterThan(0);
+    });
+  });
+
+  test('CLASSIFICATIONS defines exactly the two required, distinctly-labeled options', () => {
+    const ids = CLASSIFICATIONS.map(c => c.id);
+    expect(new Set(ids).size).toBe(ids.length);
+    expect(CLASSIFICATIONS.map(c => c.name)).toEqual(
+      expect.arrayContaining(['Enhanced Rise Alternative', 'Advanced Custom Interaction']));
+    // Never ships an absolute "Rise Unique" style claim (P-series requirement — a future
+    // Rise update could make that claim inaccurate).
+    CLASSIFICATIONS.forEach(c => expect(c.name.toLowerCase()).not.toContain('rise unique'));
+  });
+
+  test('the classification split matches the assigned catalog positioning exactly', () => {
+    const enhanced = COMPONENT_REGISTRY.filter(e => e.classification === 'enhanced').map(e => e.id).sort();
+    const custom = COMPONENT_REGISTRY.filter(e => e.classification === 'custom').map(e => e.id).sort();
+    expect(enhanced).toEqual([
+      'accordion', 'button-list', 'fill-blank', 'flip-cards', 'hotspots', 'image-gallery',
+      'info-grid', 'multiple-choice', 'multiple-select', 'process-flow', 'scenario',
+      'sorting-activity', 'tab-blocks', 'vertical-timeline'
+    ].sort());
+    expect(custom).toEqual([
+      'audio-player', 'callout-box', 'card-carousel', 'comparison-slider', 'confidence-matrix', 'dial-gauge', 'horizontal-timeline', 'interactive-video', 'menu-list',
+      'pricing-comparison', 'profile-cards', 'video-frame'
+    ].sort());
+  });
+
+  test('componentCatalog carries the classification label and differentiator through from the registry', () => {
+    const accordion = componentCatalog.find(item => item.id === 'accordion');
+    expect(accordion.classification).toBe('enhanced');
+    expect(accordion.classificationLabel).toBe('Enhanced Rise Alternative');
+    expect(accordion.differentiator).toMatch(/branded styling/i);
+  });
+});
+
+describe('component registry validation', () => {
+  test('rejects a duplicate id', () => {
+    const registry = [baseEntry({ id: 'dup' }), baseEntry({ id: 'dup' })];
+    expect(() => validateRegistry(registry)).toThrow(/duplicate id.*"dup"/i);
+  });
+
+  test('rejects an entry with a missing required field', () => {
+    const registry = [baseEntry({ description: '' })];
+    expect(() => validateRegistry(registry)).toThrow(/description/i);
+  });
+
+  test('rejects an entry with an unknown category', () => {
+    const registry = [baseEntry({ categoryId: 'not-a-real-category' })];
+    expect(() => validateRegistry(registry)).toThrow(/unknown categoryId/i);
+  });
+
+  test('accepts a well-formed registry', () => {
+    expect(() => validateRegistry([baseEntry()])).not.toThrow();
+  });
+
+  test('rejects a non-array or empty registry', () => {
+    expect(() => validateRegistry(null)).toThrow(/non-empty array/i);
+    expect(() => validateRegistry([])).toThrow(/non-empty array/i);
+  });
+
+  test.each([
+    ['id', { id: '' }, /missing a valid id/i],
+    ['id', { id: '   ' }, /missing a valid id/i],
+    ['name', { name: '' }, /missing a display name/i],
+    ['description', { description: '' }, /missing a description/i],
+    ['keywords', { keywords: [] }, /at least one search keyword/i],
+    ['version', { version: '' }, /missing a version/i],
+    ['icon', { icon: '' }, /missing a thumbnail\/icon/i],
+    ['editorSchema', { editorSchema: null }, /missing an editor schema/i],
+    ['defaultContent', { defaultContent: {} }, /missing default content/i],
+    ['defaultDesign', { defaultDesign: null }, /missing default design values/i],
+    ['defaultBehaviour', { defaultBehaviour: null }, /missing default behaviour values/i],
+    ['renderer', { renderer: null }, /missing a renderer reference/i],
+    ['renderer methods', { renderer: { type: 'module', generateHTML: () => '' } }, /incomplete renderer/i],
+    ['exporter', { exporter: null }, /missing an exporter reference/i],
+    ['media', { media: { required: false } }, /invalid media requirements/i],
+    ['accessibilitySupport', { accessibilitySupport: undefined }, /missing accessibility support status/i],
+    ['completionSupport', { completionSupport: undefined }, /missing completion support status/i],
+    ['status', { status: 'unreleased' }, /invalid status/i],
+    ['classification', { classification: 'not-a-real-classification' }, /unknown classification/i],
+    ['classification', { classification: undefined }, /unknown classification/i],
+    ['differentiator', { differentiator: '' }, /missing a differentiator/i],
+    ['differentiator', { differentiator: '   ' }, /missing a differentiator/i],
+    ['differentiator', { differentiator: undefined }, /missing a differentiator/i],
+    ['tier', { tier: 'not-a-tier' }, /invalid tier/i],
+    ['tier', { tier: undefined }, /invalid tier/i],
+    ['learningPurposes', { learningPurposes: [] }, /invalid learning purposes/i],
+    ['learningPurposes', { learningPurposes: ['FakePurpose'] }, /invalid learning purposes/i],
+    ['riseRecommendation', { riseRecommendation: 'invalid-rec' }, /invalid riseRecommendation/i],
+    ['riseRecommendationSummary', { riseRecommendationSummary: '' }, /missing a riseRecommendationSummary/i],
+    ['riseEquivalent', { riseEquivalent: '' }, /missing riseEquivalent/i],
+    ['bestWhen', { bestWhen: '' }, /missing bestWhen/i],
+    ['nativeRiseWhen', { nativeRiseWhen: '' }, /missing nativeRiseWhen/i],
+    ['keyCapabilities', { keyCapabilities: ['Only one'] }, /at least 2 key capabilities/i],
+    ['complexity', { complexity: 'SuperHard' }, /invalid complexity/i],
+    ['accessibilitySummary', { accessibilitySummary: '' }, /missing an accessibilitySummary/i],
+    ['completionTracking', { completionTracking: '' }, /missing completionTracking/i],
+    ['readiness', { readiness: null }, /missing a valid readiness score/i]
+  ])('rejects an entry with an invalid %s', (_label, overrides, expectedMessage) => {
+    expect(() => validateRegistry([baseEntry(overrides)])).toThrow(expectedMessage);
+  });
+});
+
+describe('strategic component tiers & learning purposes (Prompt Section 1-3)', () => {
+  test('TIERS contains exactly the 5 defined tiers', () => {
+    expect(TIERS.map(t => t.id)).toEqual(['flagship', 'signature', 'strong-custom', 'enhanced-rise', 'rise-first']);
+  });
+
+  test('every component has a valid tier and tier counts match strategic distribution', () => {
+    const tierCounts = getTiersWithCounts(COMPONENT_REGISTRY);
+    expect(tierCounts.find(t => t.id === 'flagship').count).toBe(3);
+    expect(tierCounts.find(t => t.id === 'signature').count).toBe(4);
+    expect(tierCounts.find(t => t.id === 'strong-custom').count).toBe(5);
+    expect(tierCounts.find(t => t.id === 'enhanced-rise').count).toBe(7);
+    expect(tierCounts.find(t => t.id === 'rise-first').count).toBe(7);
+  });
+
+  test('LEARNING_PURPOSES contains the 8 controlled taxonomy values', () => {
+    expect(LEARNING_PURPOSES).toEqual([
+      'Explore', 'Compare', 'Practice', 'Reflect', 'Assess', 'Explain', 'Navigate', 'Media'
+    ]);
+  });
+
+  test('every component has at least one learning purpose and all purposes have matching components', () => {
+    const purposeCounts = getLearningPurposesWithCounts(COMPONENT_REGISTRY);
+    purposeCounts.forEach(pc => {
+      expect(pc.count).toBeGreaterThan(0);
+    });
+  });
+
+  test('RISE_RECOMMENDATIONS defines the 3 structured decision values', () => {
+    expect(RISE_RECOMMENDATIONS.map(r => r.id)).toEqual(['native-first', 'conditional', 'custom-recommended']);
+  });
+
+  test('every component has structured Rise decision guidance and readiness scores', () => {
+    COMPONENT_REGISTRY.forEach(entry => {
+      expect(entry.riseRecommendation).toBeTruthy();
+      expect(entry.riseRecommendationSummary.length).toBeGreaterThan(5);
+      expect(entry.riseEquivalent.length).toBeGreaterThan(2);
+      expect(entry.bestWhen.length).toBeGreaterThan(5);
+      expect(entry.nativeRiseWhen.length).toBeGreaterThan(5);
+      expect(entry.keyCapabilities.length).toBeGreaterThanOrEqual(2);
+      expect(entry.readiness.score).toBeGreaterThanOrEqual(4);
+      expect(entry.readiness.max).toBe(5);
+      expect(entry.readiness.dimensions.accessibility).toBe(true);
+      expect(entry.readiness.dimensions.responsive).toBe(true);
+    });
+  });
+
+  test('getComponentById resolves by canonical ID, display name, and legacy aliases', () => {
+    // Canonical IDs
+    expect(getComponentById(COMPONENT_REGISTRY, 'pricing-comparison')?.name).toBe('Comparison Matrix');
+    expect(getComponentById(COMPONENT_REGISTRY, 'dial-gauge')?.name).toBe('Interactive Gauge');
+    expect(getComponentById(COMPONENT_REGISTRY, 'callout-box')?.name).toBe('Policy & Alert Cards');
+    expect(getComponentById(COMPONENT_REGISTRY, 'flip-cards')?.name).toBe('Study Cards');
+    expect(getComponentById(COMPONENT_REGISTRY, 'menu-list')?.name).toBe('Reference Explorer');
+
+    // Display names
+    expect(getComponentById(COMPONENT_REGISTRY, 'Comparison Matrix')?.id).toBe('pricing-comparison');
+    expect(getComponentById(COMPONENT_REGISTRY, 'Interactive Gauge')?.id).toBe('dial-gauge');
+    expect(getComponentById(COMPONENT_REGISTRY, 'Study Cards')?.id).toBe('flip-cards');
+
+    // Legacy Aliases
+    expect(getComponentById(COMPONENT_REGISTRY, 'flashcards')?.id).toBe('flip-cards');
+    expect(getComponentById(COMPONENT_REGISTRY, 'metric explorer')?.id).toBe('dial-gauge');
+    expect(getComponentById(COMPONENT_REGISTRY, 'policy and alert cards')?.id).toBe('callout-box');
+  });
+});
+
+describe('editor schema resolution', () => {
+  test('getEditorSchema returns the registered schema for a known component id', () => {
+    // getEditorSchema merges in the shared componentFields (js/editor-schemas.js) on every
+    // call, so this is a structural match rather than the same cached object reference.
+    expect(getEditorSchema('accordion')).toEqual(COMPONENT_REGISTRY.find(entry => entry.id === 'accordion').editorSchema);
+  });
+
+  test('getEditorSchema falls back to a generic single-item-field schema for an unknown id', () => {
+    const fallback = getEditorSchema('not-a-real-component');
+    expect(fallback.itemLabel).toBe('Item');
+    expect(fallback.minItems).toBe(1);
+    expect(Array.isArray(fallback.itemFields)).toBe(true);
+    expect(fallback.itemFields.length).toBeGreaterThan(0);
+  });
+});
+
+describe('search', () => {
+  test('finds a component by name substring', () => {
+    const results = searchComponents(COMPONENT_REGISTRY, 'accordion');
+    expect(results.some(entry => entry.id === 'accordion')).toBe(true);
+  });
+
+  test('finds a component by description substring', () => {
+    const results = searchComponents(COMPONENT_REGISTRY, 'branching');
+    expect(results.some(entry => entry.id === 'scenario')).toBe(true);
+  });
+
+  test('finds a component by keyword substring', () => {
+    const results = searchComponents(COMPONENT_REGISTRY, 'faq');
+    expect(results.some(entry => entry.id === 'accordion')).toBe(true);
+  });
+
+  test('returns no results for a nonsense query', () => {
+    expect(searchComponents(COMPONENT_REGISTRY, 'zzznotarealquery')).toEqual([]);
+  });
+
+  test('catalog search matches names, descriptions, and keywords', () => {
+    const byKeyword = filterCatalog(componentCatalog, { activeCategory: 'interactive', searchQuery: 'faq', favorites: new Set() });
+    expect(byKeyword.some(item => item.id === 'accordion')).toBe(true);
+  });
+
+  test('finds a component by category display name substring', () => {
+    // "Knowledge Checks" is the display name, not the categoryId ("knowledge") — confirms
+    // the lookup, not just an accidental substring match.
+    const results = searchComponents(COMPONENT_REGISTRY, 'Knowledge Checks');
+    expect(results.some(entry => entry.id === 'multiple-choice')).toBe(true);
+    expect(results.every(entry => entry.categoryId === 'knowledge')).toBe(true);
+  });
+
+  test('finds a component by classification label substring', () => {
+    const enhanced = searchComponents(COMPONENT_REGISTRY, 'Enhanced Rise Alternative');
+    expect(enhanced.some(entry => entry.id === 'accordion')).toBe(true);
+    expect(enhanced.every(entry => entry.classification === 'enhanced')).toBe(true);
+
+    const custom = searchComponents(COMPONENT_REGISTRY, 'Advanced Custom Interaction');
+    expect(custom.some(entry => entry.id === 'audio-player')).toBe(true);
+    expect(custom.every(entry => entry.classification === 'custom')).toBe(true);
+  });
+
+  test('finds a component by differentiator text, isolated from name/description/keywords', () => {
+    // "behaviour" appears only in accordion's differentiator, not its name, description,
+    // or keywords — a clean signal that this match came from the new field.
+    const results = searchComponents(COMPONENT_REGISTRY, 'behaviour');
+    expect(results.some(entry => entry.id === 'accordion')).toBe(true);
+  });
+
+  test('catalog search (js/catalog.js#filterCatalog) matches category, classification, and differentiator text, across categories via Favorites', () => {
+    const favorites = new Set(['accordion', 'menu-list']);
+    const byCategory = filterCatalog(componentCatalog, { activeCategory: 'favorites', searchQuery: 'Interactive', favorites });
+    expect(byCategory.map(item => item.id)).toEqual(['accordion']);
+
+    const byClassification = filterCatalog(componentCatalog, { activeCategory: 'favorites', searchQuery: 'Advanced Custom Interaction', favorites });
+    expect(byClassification.map(item => item.id)).toEqual(['menu-list']);
+
+    const byDifferentiator = filterCatalog(componentCatalog, { activeCategory: 'favorites', searchQuery: 'behaviour', favorites });
+    expect(byDifferentiator.map(item => item.id)).toEqual(['accordion']);
+  });
+
+  test('catalog search trims surrounding whitespace and ignores case', () => {
+    const padded = filterCatalog(componentCatalog, { activeCategory: 'interactive', searchQuery: '  ACCORDION  ', favorites: new Set() });
+    expect(padded.some(item => item.id === 'accordion')).toBe(true);
+
+    // A whitespace-only query must behave like no query, not literally match every
+    // title that happens to contain a space (e.g. "Multiple Choice").
+    const whitespaceOnly = filterCatalog(componentCatalog, { activeCategory: 'interactive', searchQuery: '   ', favorites: new Set() });
+    const noQuery = filterCatalog(componentCatalog, { activeCategory: 'interactive', searchQuery: '', favorites: new Set() });
+    expect(whitespaceOnly.length).toBe(noQuery.length);
+  });
+});
+
+describe('favorites reference stable component ids', () => {
+  test('getComponentById resolves every catalog id', () => {
+    componentCatalog.forEach(item => {
+      expect(getComponentById(COMPONENT_REGISTRY, item.id)).not.toBeNull();
+    });
+  });
+
+  test('an unknown favorite id resolves to null instead of throwing', () => {
+    expect(getComponentById(COMPONENT_REGISTRY, 'removed-component')).toBeNull();
+  });
+
+  test('filterCatalog silently drops unknown favorite ids instead of corrupting results', () => {
+    const favorites = new Set(['accordion', 'removed-component']);
+    const filtered = filterCatalog(componentCatalog, { activeCategory: 'favorites', searchQuery: '', favorites });
+    expect(filtered.map(item => item.id)).toEqual(['accordion']);
+  });
+});

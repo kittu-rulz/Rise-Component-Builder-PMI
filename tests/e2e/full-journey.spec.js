@@ -1,0 +1,104 @@
+import { expect, test } from '@playwright/test';
+
+// End-to-end coverage of the complete authoring journey described in prompt 13's test
+// pyramid: start a project, select a component, edit content, verify the (locked) design
+// theme, change behavior, switch preview sizes, save, reopen, run export preflight,
+// export, open the standalone export, interact by keyboard, and verify completion. Each
+// step reuses the same selectors already exercised individually in
+// preview-device-modes.spec.js, persistence-export.spec.js, and completion.spec.js — this
+// spec's value is proving the full chain works end-to-end in one continuous session,
+// across a component other than Accordion (Tabs), rather than re-testing any single step
+// in isolation.
+
+test('a full authoring session: create, edit, save, reopen, preflight, export, and interact with a keyboard-driven completion flow', async ({ page, context }) => {
+  // 1. Start a project — a fresh session opens on the component catalog.
+  await page.goto('/?catalog');
+  await expect(page.locator('#catalog-state')).toBeVisible();
+
+  // 2. Select a component.
+  await page.locator('.component-select-card').filter({ hasText: 'Horizontal Tabs' }).click();
+  await expect(page.locator('#editor-state')).toBeVisible();
+
+  // 3. Edit content — updates the live preview immediately.
+  await page.locator('#input-block-headline').fill('Full Journey Tabs');
+  const previewFrame = page.frameLocator('#live-preview-iframe');
+  await expect(previewFrame.locator('[id$="-block-headline"]')).toHaveText('Full Journey Tabs');
+
+  // 4. Design is locked to the single AT&T theme (js/themes.js) in this build — no
+  // Design & Style tab exists to change it. Verify the locked theme token reaches the
+  // live preview instead of an author-chosen override.
+  await expect.poll(() => previewFrame.locator('html').evaluate(el => getComputedStyle(el).getPropertyValue('--primary').trim())).toBe('#00388F');
+
+  // 5. Enable completion tracking for this block.
+  await page.locator('.editor-tab[data-tab="completion"]').click();
+  await page.locator('#completion-mode-all-items').check();
+
+  // 6. Switch preview sizes.
+  await page.locator('[data-device="mobile"]').click();
+  await expect(page.locator('#preview-viewport')).toHaveClass(/mobile/);
+  await page.locator('[data-device="desktop"]').click();
+  await expect(page.locator('#preview-viewport')).toHaveClass(/desktop/);
+
+  // 7. Save the project.
+  await page.locator('#btn-save').click();
+  await page.locator('#save-component-name').fill('Full Journey Project');
+  await page.locator('#btn-confirm-save').click();
+  await expect(page.locator('.toast')).toContainText('Saved');
+
+  // 8. Reopen the project (simulating a new session) and confirm edits persisted.
+  // A reload lands on whichever screen the URL names, and #btn-open lives on the
+  // contextual authoring toolbar that app.js only shows in the editor state — so the fresh
+  // session starts from the editor deep link.
+  await page.goto('/?editor');
+  await expect(page.locator('#editor-state')).toBeVisible();
+  await page.locator('#btn-open').click();
+  await page.locator('.saved-component-card').filter({ hasText: 'Full Journey Project' }).getByRole('button', { name: 'Load' }).click();
+  await expect(page.locator('#input-block-headline')).toHaveText('Full Journey Tabs');
+  await expect(page.locator('#input-track-completion')).toBeChecked();
+
+  // 9. Run export preflight — a fully-filled-out Tabs component has no blocking errors
+  // (enabling completion tracking without a parent origin surfaces a non-blocking
+  // recommendation, which must not gate export).
+  await page.locator('#btn-preflight').click();
+  await expect(page.locator('#modal-preflight')).toBeVisible();
+  await expect(page.locator('#preflight-results')).not.toContainText(/blocking error/i);
+  await expect(page.locator('#preflight-badge')).not.toHaveAttribute('data-state', 'blocking');
+  await page.locator('#modal-preflight .modal-close-btn').click();
+
+  // 10. Export the component.
+  await page.locator('#btn-export').click();
+  await expect(page.locator('#modal-export')).toBeVisible();
+  await expect(page.locator('#export-html-code')).toContainText('Full Journey Tabs');
+  // The dialog's Advanced options disclosure and its single-file HTML download were
+  // removed in the two-card redesign; #export-html-code carries the same self-contained
+  // fragment the Copy for Rise button writes to the clipboard.
+  const html = await page.locator('#export-html-code').textContent();
+  expect(html).toContain('Full Journey Tabs');
+
+  // 11. Open the standalone export — it must work without the Builder app.
+  const errors = [];
+  const exportedPage = await context.newPage();
+  exportedPage.on('console', message => { if (message.type() === 'error') errors.push(message.text()); });
+  exportedPage.on('pageerror', error => errors.push(error.message));
+  await exportedPage.setContent(html);
+  const tabs = exportedPage.locator('.tab-btn');
+  await expect(tabs.first()).toBeVisible();
+
+  // 12. Interact using the keyboard, visiting every tab to satisfy completion. The tab
+  // that is active by default on load was never explicitly selected, so a full wrap
+  // around (tabCount presses, landing back on the first tab) is what actually visits
+  // every tab through a real selectTab() call.
+  await tabs.first().focus();
+  const tabCount = await tabs.count();
+  for (let i = 0; i < tabCount; i += 1) {
+    await exportedPage.keyboard.press('ArrowRight');
+  }
+  await expect(tabs.first()).toHaveAttribute('aria-selected', 'true');
+
+  // 13. Verify completion behavior — internal completion reaches 100% once every tab
+  // has been viewed (docs/COMPLETION-INTEGRATION.md).
+  await expect(exportedPage.locator('[id$="-completion-text"]')).toHaveText('100%');
+  expect(errors).toEqual([]);
+
+  await exportedPage.close();
+});

@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "rise-builder",
+      "runtimeExecutable": "node",
+      "runtimeArgs": [
+        "node_modules/http-server/bin/http-server",
+        ".",
+        "-p",
+        "8123",
+        "-c-1"
+      ],
+      "port": 8123
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "name": "rise-component-builder",
+  "version": "3.0.0+20260924.1551",
+  "private": true,
+  "type": "module",
+  "description": "Vanilla JavaScript component authoring tool with automated unit and browser testing.",
+  "scripts": {
+    "dev": "http-server . -p 8080 -c-1",
+    "test": "vitest run",
+    "test:unit": "vitest run",
+    "test:watch": "vitest",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "test:coverage": "vitest run --coverage",
+    "lint": "eslint .",
+    "lint:brand": "node scripts/lint-att-brand.mjs",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "typecheck": "tsc --noEmit",
+    "bump": "node scripts/bump-version.mjs",
+    "stamp": "node scripts/stamp-cache-busting.mjs",
+    "stamp:check": "node scripts/stamp-cache-busting.mjs --check",
+    "build": "node scripts/stamp-cache-busting.mjs && node build.mjs",
+    "pack": "node scripts/pack-production-zip.mjs",
+    "fixtures:exports": "node scripts/generate-export-fixtures.mjs",
+    "snapshots:brand": "node scripts/capture-brand-snapshots.mjs",
+    "validate": "npm run lint && npm run lint:brand && npm run typecheck && npm run test:coverage && npm run build"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.12.1",
+    "@eslint/js": "9.39.5",
+    "@playwright/test": "^1.61.1",
+    "@types/node": "22.20.1",
+    "@vitest/coverage-v8": "^4.1.10",
+    "eslint": "9.39.5",
+    "globals": "15.15.0",
+    "http-server": "^14.1.1",
+    "jsdom": "^29.1.1",
+    "prettier": "3.9.6",
+    "typescript": "5.9.3",
+    "vitest": "^4.1.10"
+  }
+}

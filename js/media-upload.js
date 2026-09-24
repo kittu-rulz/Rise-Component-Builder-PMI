@@ -1,0 +1,352 @@
+import {
+  createMediaReference, formatFileSize, IMAGE_RESIZE_THRESHOLD_PX, isMediaReference, MEDIA_LIMITS, prepareMediaFile
+} from './media.js';
+import { ensureMediaObjectURL, findDuplicateByHash, peekMediaObjectURL, saveMediaRecord } from './media-storage.js';
+import { showMediaPickerModal } from './dashboard/media-picker-modal.js';
+
+const ACCEPT = Object.freeze({
+  image: '.jpg,.jpeg,.png,.webp,.svg,.gif,image/jpeg,image/png,image/webp,image/svg+xml,image/gif',
+  audio: '.mp3,.wav,audio/mpeg,audio/wav,audio/x-wav',
+  video: '.mp4,.webm,video/mp4,video/webm',
+  captions: '.vtt,text/vtt'
+});
+
+async function readDuration(file, kind) {
+  if (!['audio', 'video'].includes(kind) || typeof document === 'undefined') return null;
+  return new Promise(resolve => {
+    const element = document.createElement(kind);
+    const url = URL.createObjectURL(file);
+    const finish = value => {
+      URL.revokeObjectURL(url);
+      element.removeAttribute('src');
+      resolve(Number.isFinite(value) ? value : null);
+    };
+    element.preload = 'metadata';
+    element.addEventListener('loadedmetadata', () => finish(element.duration), { once: true });
+    element.addEventListener('error', () => finish(null), { once: true });
+    element.src = url;
+  });
+}
+
+function createPreview(kind, source, name) {
+  if (!source || kind === 'captions') return null;
+  const element = document.createElement(kind === 'image' ? 'img' : kind);
+  element.className = 'media-upload-preview';
+  element.src = source;
+  if (kind === 'image') element.alt = `Preview of ${name || 'selected image'}`;
+  else element.controls = true;
+  if (kind === 'video') element.muted = true;
+  return element;
+}
+
+/**
+ * @param {{ field: any, controlId: any, value?: any, onChange: any, onMultiple?: any, store?: any, limits?: any, contextLabel?: string }} options
+ */
+export function createMediaUploadControl({
+  field, controlId, value, onChange, onMultiple, store, limits, contextLabel
+}) {
+  let currentValue = value || '';
+  const kind = field.uploadKind || field.type;
+  const targetContext = contextLabel || field.contextLabel || field.label || 'this component';
+  const kindLabel = kind === 'image' ? 'Image' : kind === 'audio' ? 'Audio' : kind === 'video' ? 'Video' : kind === 'captions' ? 'Captions' : 'Media';
+
+  const root = document.createElement('div');
+  root.className = 'media-upload-control';
+
+  const urlRow = document.createElement('div');
+  urlRow.className = 'media-url-row';
+  const urlInput = document.createElement('input');
+  urlInput.type = 'url';
+  urlInput.id = controlId;
+  urlInput.dataset.fieldId = field.id;
+  urlInput.placeholder = `Enter external ${kind === 'captions' ? 'captions' : field.type} URL`;
+  urlInput.value = typeof currentValue === 'string' ? currentValue : '';
+  urlInput.setAttribute('aria-label', `External ${kindLabel} URL for ${targetContext}`);
+
+  const externalButton = document.createElement('button');
+  externalButton.type = 'button';
+  externalButton.className = 'btn btn-text btn-small media-external-btn';
+  externalButton.textContent = 'Reset to external URL';
+  const resetLabel = `Reset to external ${kindLabel} URL for ${targetContext}`;
+  externalButton.setAttribute('aria-label', resetLabel);
+  externalButton.title = resetLabel;
+  urlRow.append(urlInput, externalButton);
+
+  const guidance = document.createElement('p');
+  guidance.className = 'media-upload-guidance';
+  guidance.id = `${controlId}-guidance`;
+  if (kind === 'image') {
+    const preferred = field.preferredDimensions || '1200 × 900 px or larger';
+    const imageLimit = formatFileSize((limits || MEDIA_LIMITS).image);
+    const svgLimit = formatFileSize((limits || MEDIA_LIMITS).svg);
+    guidance.textContent = `Supported formats: JPG, JPEG, PNG, WebP, SVG, GIF. Preferred dimensions: ${preferred}. Maximum file size: ${imageLimit}; SVG: ${svgLimit}.`;
+    urlInput.dataset.guidanceId = guidance.id;
+  } else if (kind === 'audio') {
+    const audioLimit = formatFileSize((limits || MEDIA_LIMITS).audio);
+    guidance.textContent = `Supported formats: MP3, WAV, M4A, OGG. Maximum file size: ${audioLimit}.`;
+    urlInput.dataset.guidanceId = guidance.id;
+  } else if (kind === 'video') {
+    const videoLimit = formatFileSize((limits || MEDIA_LIMITS).video);
+    guidance.textContent = `Supported formats: MP4, WebM. Maximum file size: ${videoLimit}.`;
+    urlInput.dataset.guidanceId = guidance.id;
+  } else if (kind === 'captions') {
+    guidance.textContent = 'Supported formats: WebVTT (.vtt).';
+    urlInput.dataset.guidanceId = guidance.id;
+  } else {
+    guidance.hidden = true;
+  }
+
+  const dropZone = document.createElement('div');
+  dropZone.className = 'media-drop-zone';
+  dropZone.tabIndex = 0;
+  dropZone.setAttribute('role', 'button');
+  dropZone.setAttribute('aria-label', `Upload ${kindLabel} for ${targetContext}. Browse or drop a file.`);
+  
+  const dropText = document.createElement('span');
+  dropText.textContent = 'Drop file here or';
+
+  const actionsGroup = document.createElement('div');
+  actionsGroup.className = 'media-dropzone-actions';
+  actionsGroup.style.display = 'inline-flex';
+  actionsGroup.style.gap = '6px';
+  actionsGroup.style.flexWrap = 'wrap';
+
+  const libraryButton = document.createElement('button');
+  libraryButton.type = 'button';
+  libraryButton.className = 'btn btn-secondary btn-small media-library-btn';
+  const chooseTitle = `Choose ${kindLabel} for ${targetContext} from Media Library`;
+  libraryButton.setAttribute('aria-label', chooseTitle);
+  libraryButton.title = chooseTitle;
+  libraryButton.innerHTML = `
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: -2px; margin-right: 4px;">
+      <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+      <circle cx="8.5" cy="8.5" r="1.5"></circle>
+      <polyline points="21 15 16 10 5 21"></polyline>
+    </svg>
+    Choose from Media Library
+  `;
+
+  const browseButton = document.createElement('button');
+  browseButton.type = 'button';
+  browseButton.className = 'btn btn-secondary btn-small media-browse-btn';
+  const uploadTitle = isMediaReference(currentValue)
+    ? `Replace ${kindLabel} for ${targetContext}`
+    : `Upload ${kindLabel} for ${targetContext}`;
+  browseButton.setAttribute('aria-label', uploadTitle);
+  browseButton.title = uploadTitle;
+  browseButton.textContent = isMediaReference(currentValue) ? 'Upload New' : 'Browse File';
+
+  const fileInput = document.createElement('input');
+  fileInput.type = 'file';
+  fileInput.accept = ACCEPT[kind] || '';
+  fileInput.multiple = Boolean(field.multiple);
+  fileInput.hidden = true;
+  fileInput.setAttribute('aria-label', `Choose ${kindLabel} file for ${targetContext}`);
+
+  actionsGroup.append(libraryButton, browseButton);
+  dropZone.append(dropText, actionsGroup, fileInput);
+
+  const details = document.createElement('div');
+  details.className = 'media-upload-details';
+  const preview = document.createElement('div');
+  preview.className = 'media-preview-shell';
+  const sourceBadge = document.createElement('span');
+  sourceBadge.className = 'media-source-badge';
+  const metadata = document.createElement('div');
+  metadata.className = 'media-file-metadata';
+  const removeButton = document.createElement('button');
+  removeButton.type = 'button';
+  removeButton.className = 'btn btn-text btn-small media-remove-btn';
+  removeButton.textContent = 'Remove media';
+  const removeTitle = `Remove ${kindLabel} from ${targetContext}`;
+  removeButton.setAttribute('aria-label', removeTitle);
+  removeButton.title = removeTitle;
+  details.append(preview, metadata, removeButton);
+
+  const error = document.createElement('div');
+  error.className = 'field-error media-upload-error';
+  error.setAttribute('role', 'alert');
+  const status = document.createElement('div');
+  status.className = 'sr-only';
+  status.setAttribute('role', 'status');
+  status.setAttribute('aria-live', 'polite');
+
+  function showError(message = '') {
+    error.textContent = message;
+    root.classList.toggle('has-error', Boolean(message));
+  }
+
+  function updateSourceBadge(hasUpload, isMissing) {
+    sourceBadge.hidden = false;
+    sourceBadge.classList.toggle('is-missing', isMissing);
+    sourceBadge.classList.toggle('is-external', !hasUpload && Boolean(currentValue));
+    sourceBadge.classList.toggle('is-empty', !hasUpload && !currentValue);
+    sourceBadge.textContent = isMissing
+      ? 'Missing library asset'
+      : hasUpload ? 'Shared Media Library (stored in this browser)'
+      : currentValue ? 'External URL'
+      : 'No media selected';
+  }
+
+  function renderValue() {
+    preview.replaceChildren();
+    metadata.replaceChildren();
+    const reference = isMediaReference(currentValue) ? currentValue : null;
+    const assetId = reference ? (reference.mediaId || reference.assetId) : '';
+    const source = assetId ? peekMediaObjectURL(assetId) : typeof currentValue === 'string' ? currentValue : '';
+    const isMissing = Boolean(reference) && !source;
+    const previewElement = createPreview(kind, source, reference?.name);
+    if (previewElement) preview.appendChild(previewElement);
+    if (reference) {
+      const name = document.createElement('strong');
+      name.textContent = reference.name || reference.fileName || 'Selected Asset';
+      const meta = document.createElement('span');
+      meta.textContent = `${formatFileSize(reference.size)} • ${reference.mimeType}${Number.isFinite(reference.duration) ? ` • ${Math.round(reference.duration)} seconds` : ''}`;
+      metadata.append(name, meta);
+      if (isMissing) {
+        const missingNotice = document.createElement('div');
+        missingNotice.className = 'media-missing-notice';
+        missingNotice.setAttribute('role', 'alert');
+        missingNotice.style.color = '#B91C1C';
+        missingNotice.style.fontSize = '12px';
+        missingNotice.style.marginTop = '4px';
+        missingNotice.innerHTML = `
+          <span>Asset (${assetId}) is missing from local storage.</span>
+          <div style="display: flex; gap: 6px; margin-top: 4px;">
+            <button type="button" class="btn btn-secondary btn-small" data-action="pick-replacement" style="font-size: 11px; padding: 2px 8px;">Choose Replacement</button>
+            <button type="button" class="btn btn-secondary btn-small" data-action="upload-replacement" style="font-size: 11px; padding: 2px 8px;">Upload Replacement</button>
+            <button type="button" class="btn btn-text btn-small" data-action="clear-reference" style="font-size: 11px; padding: 2px 8px; color: #DC2626;">Remove Reference</button>
+          </div>
+        `;
+
+        missingNotice.querySelector('[data-action="pick-replacement"]')?.addEventListener('click', async () => {
+          const chosen = await showMediaPickerModal({ filterKind: kind, triggerElement: libraryButton, limits, store });
+          if (chosen) {
+            currentValue = chosen;
+            await ensureMediaObjectURL(chosen.mediaId || chosen.assetId, store);
+            renderValue();
+            onChange(currentValue);
+          }
+        });
+        missingNotice.querySelector('[data-action="upload-replacement"]')?.addEventListener('click', () => fileInput.click());
+        missingNotice.querySelector('[data-action="clear-reference"]')?.addEventListener('click', () => {
+          currentValue = '';
+          renderValue();
+          onChange('');
+        });
+
+        metadata.appendChild(missingNotice);
+      }
+    }
+    const hasUpload = Boolean(reference);
+    updateSourceBadge(hasUpload, isMissing);
+    details.hidden = !hasUpload;
+    externalButton.hidden = !hasUpload;
+    urlInput.disabled = hasUpload;
+    browseButton.textContent = hasUpload ? 'Upload New' : 'Browse File';
+  }
+
+  async function processFiles(files) {
+    const selected = [...files];
+    if (!selected.length) return;
+    showError();
+    root.classList.add('is-processing');
+    dropZone.setAttribute('aria-busy', 'true');
+    try {
+      const references = [];
+      let resizedCount = 0;
+      let reusedCount = 0;
+      for (const file of selected) {
+        const duration = await readDuration(file, kind);
+        const record = await prepareMediaFile(file, kind, { duration, limits });
+        if (record.resized) resizedCount += 1;
+        const duplicate = await findDuplicateByHash(record.contentHash, kind, store);
+        let reference;
+        if (duplicate) {
+          reusedCount += 1;
+          reference = createMediaReference(duplicate);
+        } else {
+          reference = await saveMediaRecord(record, store);
+        }
+        await ensureMediaObjectURL(reference.mediaId || reference.assetId, store);
+        references.push(reference);
+      }
+      currentValue = references[0];
+      urlInput.value = '';
+      renderValue();
+      if (references.length > 1 && onMultiple) onMultiple(references);
+      else onChange(currentValue);
+      const uploadedMessage = `${references.length} file${references.length === 1 ? '' : 's'} uploaded and saved to Media Library.`;
+      const notices = [];
+      if (resizedCount) notices.push(`${resizedCount} image${resizedCount === 1 ? ' was' : 's were'} resized to fit within ${IMAGE_RESIZE_THRESHOLD_PX}px for optimal performance.`);
+      if (reusedCount) notices.push(`${reusedCount} file${reusedCount === 1 ? '' : 's'} matched an asset already uploaded to this project and reused it.`);
+      status.textContent = notices.length ? `${uploadedMessage} ${notices.join(' ')}` : uploadedMessage;
+    } catch (uploadError) {
+      showError(uploadError.message || 'The file could not be uploaded.');
+    } finally {
+      root.classList.remove('is-processing');
+      dropZone.removeAttribute('aria-busy');
+      fileInput.value = '';
+    }
+  }
+
+  libraryButton.addEventListener('click', async (event) => {
+    event.stopPropagation();
+    const chosen = await showMediaPickerModal({
+      filterKind: kind,
+      currentMediaId: isMediaReference(currentValue) ? (currentValue.mediaId || currentValue.assetId) : '',
+      triggerElement: libraryButton,
+      limits,
+      store
+    });
+    if (chosen) {
+      currentValue = chosen;
+      urlInput.value = '';
+      await ensureMediaObjectURL(chosen.mediaId || chosen.assetId, store);
+      renderValue();
+      onChange(currentValue);
+      status.textContent = `Selected “${chosen.name}” from Media Library.`;
+    }
+  });
+
+  urlInput.addEventListener('input', () => {
+    currentValue = urlInput.value;
+    showError();
+    updateSourceBadge(false, false);
+    onChange(currentValue);
+  });
+  browseButton.addEventListener('click', event => { event.stopPropagation(); fileInput.click(); });
+  dropZone.addEventListener('click', event => { if (event.target === dropZone || event.target === dropText) fileInput.click(); });
+  dropZone.addEventListener('keydown', event => {
+    if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); fileInput.click(); }
+  });
+  fileInput.addEventListener('change', () => processFiles(fileInput.files || []));
+  ['dragenter', 'dragover'].forEach(type => dropZone.addEventListener(type, event => {
+    event.preventDefault();
+    dropZone.classList.add('drag-over');
+  }));
+  ['dragleave', 'drop'].forEach(type => dropZone.addEventListener(type, event => {
+    event.preventDefault();
+    dropZone.classList.remove('drag-over');
+  }));
+  dropZone.addEventListener('drop', event => processFiles(event.dataTransfer?.files || []));
+  removeButton.addEventListener('click', () => {
+    currentValue = '';
+    urlInput.value = '';
+    renderValue();
+    onChange('');
+    status.textContent = 'Media reference removed from this component.';
+  });
+  externalButton.addEventListener('click', () => {
+    currentValue = '';
+    urlInput.value = '';
+    renderValue();
+    onChange('');
+    urlInput.focus();
+    status.textContent = 'External URL mode enabled.';
+  });
+
+  root.append(urlRow, sourceBadge, guidance, dropZone, details, error, status);
+  renderValue();
+  return { element: root, validationControl: urlInput, processFiles, getValue: () => currentValue };
+}
