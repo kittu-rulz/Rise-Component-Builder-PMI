@@ -100,9 +100,12 @@ export function layoutSymbolPattern({ cols = 3, rows = 2, size = 48, keys = PMI_
 /** The pattern as one decorative SVG (a single element, so it costs one aria-hidden node). */
 export function symbolPatternSvg(options = {}) {
   const layout = layoutSymbolPattern(options);
+  // `fill`: a single colour for every symbol. PMI shows the pattern "in white on top of photography",
+  // and a dark or photographic surface is that case; otherwise colours cycle per the adjacency rule.
+  const fillFor = cell => (options.fill && /^#[0-9a-f]{6}$/i.test(options.fill) ? options.fill : PMI_SYMBOL_COLORS[cell.color]);
   const scale = layout.size / 200; // each symbol's drawable area is 200 units
   const groups = layout.cells.map(cell =>
-    `<g transform="translate(${cell.x.toFixed(2)} ${cell.y.toFixed(2)}) scale(${scale}) translate(-50 -50)" fill="${PMI_SYMBOL_COLORS[cell.color]}">${pathMarkup(cell.key)}</g>`
+    `<g transform="translate(${cell.x.toFixed(2)} ${cell.y.toFixed(2)}) scale(${scale}) translate(-50 -50)" fill="${fillFor(cell)}">${pathMarkup(cell.key)}</g>`
   ).join('');
   return `<svg class="pmi-symbol-pattern" viewBox="0 0 ${layout.width.toFixed(2)} ${layout.height.toFixed(2)}" width="${layout.width.toFixed(0)}" height="${layout.height.toFixed(0)}" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">${groups}</svg>`;
 }

@@ -1342,3 +1342,28 @@
 }
 
 
+
+/* PMI symbol pattern in the hero's corner: white on the dark surface, decorative, and never over the
+   text column (hidden below 1000px, where it would meet the stats). */
+.hero-symbol-pattern {
+  position: absolute;
+  right: 40px;
+  bottom: 28px;
+  pointer-events: none;
+  opacity: 0.95;
+}
+.hero-symbol-pattern svg { display: block; }
+@media (max-width: 1000px) {
+  .hero-symbol-pattern { display: none; }
+}
+@media (forced-colors: active) {
+  .hero-symbol-pattern, .empty-state-symbol { display: none; }
+}
+
+/* One PMI symbol above an empty state (a hero symbol, not a pattern). */
+.empty-state-symbol {
+  display: flex;
+  justify-content: center;
+  margin-bottom: var(--pmi-space-4, 16px);
+}
+.empty-state-symbol + .empty-state-icon-wrap { display: none; }

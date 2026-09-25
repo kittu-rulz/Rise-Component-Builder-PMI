@@ -12,6 +12,7 @@ import {
 } from '../project-schema.js';
 import { showPromptDialog, showConfirmDialog, isolateModal } from './pmi-modal.js';
 import { showToast } from '../toast.js';
+import { symbolPatternSvg, symbolSvg } from '../pmi-symbols.js';
 
 export class DashboardView {
   constructor({
@@ -168,6 +169,8 @@ export class DashboardView {
 
           <!-- Hero Landing Header -->
           <header class="dashboard-hero-section">
+            <!-- PMI symbol pattern: white on the dark hero, in a corner (a fraction of the width), decorative. -->
+            <div class="hero-symbol-pattern" aria-hidden="true">${symbolPatternSvg({ cols: 4, rows: 3, size: 40, fill: '#FFFFFF' })}</div>
             <div class="dashboard-hero-content">
               <div class="dashboard-hero-eyebrow">
                 <span class="hero-brand-pill">Aptara Learning Interaction Studio · PMI edition</span>
@@ -334,6 +337,7 @@ export class DashboardView {
               </div>
             ` : `
               <div class="dashboard-empty-state">
+                <div class="empty-state-symbol" aria-hidden="true">${symbolSvg('circles', { color: 'violet', size: 64 })}</div>
                 <div class="empty-state-icon-wrap">
                   <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                     <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
