@@ -3,8 +3,9 @@ import { resolveMediaReferencesForPreview } from './media-storage.js';
 import { applyThemeToConfig, getBuiltInTheme, resolveThemeTokens } from './themes.js';
 import { renderCompletionTrackerHTML, renderSharedA11yScript, renderShell } from './export-shell.js';
 import { renderCompletionAdapterScript } from './completion.js';
-import { CUSTOM_FONT_FACES_BY_FAMILY } from './custom-fonts.js';
+import { CUSTOM_FONT_FACES_BY_FAMILY, GT_PRESSURA_MONO_FONT_FAMILY } from './custom-fonts.js';
 import { PMI_TOKENS_CSS } from './pmi-tokens.js';
+import { resolveHeaderSymbol } from './pmi-symbols.js';
 
 // The single source of truth for how wide an authored Rise block ever actually renders
 // (also referenced by the builder's own Desktop preview mode, js/device-preview.js).
@@ -82,7 +83,9 @@ export function generateIframeContent(appState, componentRegistry, colorToRgba) 
   const googleFamilies = uniqueFamilies.filter(font => !CUSTOM_FONT_FACES_BY_FAMILY[font]);
   const fontQuery = googleFamilies
     .map(font => `family=${font.replaceAll(' ', '+')}:wght@300;400;500;600;700`).join('&');
-  const customFontFaceCSS = uniqueFamilies
+  // GT Pressura Mono is PMI's secondary face (eyebrows, captions) and is used by the shared shell
+  // CSS regardless of which families the theme names, so it is always embedded.
+  const customFontFaceCSS = [...new Set([...uniqueFamilies, GT_PRESSURA_MONO_FONT_FAMILY])]
     .map(font => CUSTOM_FONT_FACES_BY_FAMILY[font]).filter(Boolean).join('\n\n');
   const density = c.spacingDensity || themeTokens.spacingDensity || 'standard';
   const spacingScale = { compact: 0.82, standard: 1, comfortable: 1, spacious: 1.18 }[density] || 1;
@@ -173,6 +176,8 @@ ${PMI_TOKENS_CSS}`;
     blockBackgroundImage: c.blockBackgroundImage,
     headerStyle: c.headerStyle || 'minimal',
     headerCyanRule: Boolean(c.headerCyanRule),
+    headerSymbol: resolveHeaderSymbol(c.headerSymbol, compId),
+    headerSymbolColor: c.headerSymbolColor || 'aqua',
     spacingDensity: density,
     contextBandEnabled: Boolean(c.contextBandEnabled),
     contextBandText: sanitizeRichText(c.contextBandText || ''),

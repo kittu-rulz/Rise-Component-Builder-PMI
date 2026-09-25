@@ -77,7 +77,7 @@ describe('Density presets', () => {
 
 describe('Header presentation styles', () => {
   test('minimal header renders header-minimal class without cyan rule', () => {
-    const html = compileComponent('accordion', { headerStyle: 'minimal', headerCyanRule: true });
+    const html = compileComponent('accordion', { headerStyle: 'minimal', headerCyanRule: true, headerSymbol: 'none' });
     expect(html).toContain('class="block-header header-minimal"');
     expect(html).not.toContain('<div class="header-cyan-rule"');
     expect(html).toContain('class="block-label">TEST BLOCK</div>');
@@ -86,7 +86,7 @@ describe('Header presentation styles', () => {
   });
 
   test('editorial header without cyan rule renders header-editorial class', () => {
-    const html = compileComponent('accordion', { headerStyle: 'editorial', headerCyanRule: false });
+    const html = compileComponent('accordion', { headerStyle: 'editorial', headerCyanRule: false, headerSymbol: 'none' });
     expect(html).toContain('class="block-header header-editorial"');
     expect(html).not.toContain('<div class="header-cyan-rule"');
     expect(html).toContain('class="block-label">TEST BLOCK</div>');
@@ -94,7 +94,7 @@ describe('Header presentation styles', () => {
   });
 
   test('editorial header with cyan rule renders short cyan rule element', () => {
-    const html = compileComponent('accordion', { headerStyle: 'editorial', headerCyanRule: true });
+    const html = compileComponent('accordion', { headerStyle: 'editorial', headerCyanRule: true, headerSymbol: 'none' });
     expect(html).toContain('class="block-header header-editorial"');
     expect(html).toContain('<div class="header-cyan-rule" aria-hidden="true"></div>');
   });

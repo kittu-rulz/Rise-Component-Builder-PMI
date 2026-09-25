@@ -1,3 +1,5 @@
+import { isSymbolColorKey, isSymbolKey } from './pmi-symbols.js';
+
 export function pluralize(count, singular, plural = `${singular}s`) {
   const n = typeof count === 'number' ? count : (Array.isArray(count) ? count.length : Number(count) || 0);
   return `${n} ${n === 1 ? singular : plural}`;
@@ -483,6 +485,8 @@ export function sanitizePreviewConfig(config, componentId) {
   result.blockHeadingLevel = normalizeHeadingLevel(config.blockHeadingLevel);
   result.headerStyle = ['minimal', 'editorial'].includes(config.headerStyle) ? config.headerStyle : 'minimal';
   result.headerCyanRule = Boolean(config.headerCyanRule);
+  result.headerSymbol = (config.headerSymbol === 'none' || isSymbolKey(config.headerSymbol)) ? config.headerSymbol : 'auto';
+  result.headerSymbolColor = isSymbolColorKey(config.headerSymbolColor) ? config.headerSymbolColor : 'aqua';
   result.spacingDensity = ['compact', 'standard', 'spacious'].includes(config.spacingDensity)
     ? config.spacingDensity
     : (config.spacingDensity === 'comfortable' ? 'standard' : 'standard');

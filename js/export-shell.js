@@ -4,6 +4,7 @@
 // of it. See docs/EXPORT-CONTRACT.md for the full pipeline description.
 
 import { escapeAttribute, normalizeHeadingLevel } from './utilities.js';
+import { symbolSvg } from './pmi-symbols.js';
 
 // 'self' is deliberately absent from img-src/media-src: this document is loaded into a
 // sandboxed iframe without allow-same-origin (index.html), which gives it a unique opaque
@@ -57,8 +58,30 @@ export const BASE_RESET_CSS = `
 
     /* Shared Block Header */
     .block-header {
+      position: relative;
       margin-bottom: calc(24px * var(--spacing-scale));
       text-align: left;
+    }
+
+    /* PMI symbol accent. Sits in the corner, in a column the header text is padded away from, so it
+       is never behind text; sparingly sized per the PMI guidelines (a corner, not a backdrop). */
+    .block-header.has-symbol { padding-right: 88px; min-height: 72px; }
+    .block-symbol {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 72px;
+      height: 72px;
+      pointer-events: none;
+    }
+    .block-symbol svg { display: block; width: 100%; height: 100%; }
+    @media (max-width: 480px) {
+      .block-header.has-symbol { padding-right: 60px; min-height: 48px; }
+      .block-symbol { width: 48px; height: 48px; }
+    }
+    @media (forced-colors: active) {
+      .block-symbol { display: none; }
+      .block-header.has-symbol { padding-right: 0; min-height: 0; }
     }
 
     /* Eyebrow: GT Pressura Mono (PMI's secondary face for subtitles, captions and labels), all caps. */
@@ -359,7 +382,7 @@ const BOOTSTRAP_JS = `
 export function renderShell({
   instanceId, tokensCSS, fontQuery, customFontFaceCSS = '', componentCSS, blockLabel, blockHeadline, blockDesc,
   blockHeadingLevel, componentHTML, completionTrackerHTML, sharedA11yScript, componentJS, blockBackgroundImage = '',
-  headerStyle = 'minimal', headerCyanRule = false, spacingDensity = 'standard',
+  headerStyle = 'minimal', headerCyanRule = false, headerSymbol = null, headerSymbolColor = 'aqua', spacingDensity = 'standard',
   contextBandEnabled = false, contextBandText = '', contextBandAlignment = 'left'
 }) {
   // Rise embeds this markup inside a lesson page that has its own h1, so the wrapping
@@ -386,10 +409,15 @@ export function renderShell({
   const cyanRuleHtml = (isEditorial && headerCyanRule) ? '\n      <div class="header-cyan-rule" aria-hidden="true"></div>' : '';
   const blockLabelHtml = blockLabel ? `\n      <div class="block-label">${blockLabel}</div>` : '';
   const blockDescHtml = blockDesc ? `\n      <div class="block-desc">${blockDesc}</div>` : '';
-  const headerClass = isEditorial ? 'block-header header-editorial' : 'block-header header-minimal';
+  // PMI symbol accent (on by default): one decorative symbol in the header's corner. The header
+  // reserves space for it (see .has-symbol), so it never sits behind text; aria-hidden, and hidden
+  // entirely in forced-colors mode.
+  const symbolHtml = headerSymbol ? `
+      <div class="block-symbol" aria-hidden="true">${symbolSvg(headerSymbol, { color: headerSymbolColor })}</div>` : '';
+  const headerClass = `${isEditorial ? 'block-header header-editorial' : 'block-header header-minimal'}${headerSymbol ? ' has-symbol' : ''}`;
 
   const headerHtml = (blockLabel || blockHeadline || blockDesc) ? `
-    <div class="${headerClass}">${blockLabelHtml}
+    <div class="${headerClass}">${symbolHtml}${blockLabelHtml}
       <${headingTag} class="block-headline" id="${instanceId}-block-headline">${blockHeadline}</${headingTag}>${cyanRuleHtml}${blockDescHtml}
     </div>` : '';
 

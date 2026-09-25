@@ -152,6 +152,8 @@ document.addEventListener('DOMContentLoaded', async () => {
   const inputBlockDesc = upgradeTextareaToRichText(document.getElementById('input-block-desc'), { fieldId: 'blockDesc', isSingleLine: false })?.validationControl || document.getElementById('input-block-desc');
   const selectHeadingLevel = document.getElementById('select-heading-level');
   const selectHeaderStyle = document.getElementById('select-header-style');
+  const selectHeaderSymbol = document.getElementById('select-header-symbol');
+  const selectHeaderSymbolColor = document.getElementById('select-header-symbol-color');
   const inputHeaderCyanRule = document.getElementById('input-header-cyan-rule');
   const headerCyanRuleWrapper = document.getElementById('header-cyan-rule-wrapper');
   const selectSpacingDensity = document.getElementById('select-spacing-density');
@@ -1865,6 +1867,22 @@ document.addEventListener('DOMContentLoaded', async () => {
       });
     }
 
+    if (selectHeaderSymbol) {
+      selectHeaderSymbol.addEventListener('change', (e) => {
+        history.pushState(appState.config);
+        appState.config.headerSymbol = e.target.value;
+        updateLivePreview();
+      });
+    }
+
+    if (selectHeaderSymbolColor) {
+      selectHeaderSymbolColor.addEventListener('change', (e) => {
+        history.pushState(appState.config);
+        appState.config.headerSymbolColor = e.target.value;
+        updateLivePreview();
+      });
+    }
+
     if (inputHeaderCyanRule) {
       inputHeaderCyanRule.addEventListener('change', (e) => {
         history.pushState(appState.config);
@@ -2744,6 +2762,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     config.blockHeadingLevel = normalizeHeadingLevel(config.blockHeadingLevel);
     selectHeadingLevel.value = config.blockHeadingLevel;
     if (selectHeaderStyle) selectHeaderStyle.value = config.headerStyle || 'minimal';
+    if (selectHeaderSymbol) selectHeaderSymbol.value = config.headerSymbol || 'auto';
+    if (selectHeaderSymbolColor) selectHeaderSymbolColor.value = config.headerSymbolColor || 'aqua';
     if (inputHeaderCyanRule) inputHeaderCyanRule.checked = config.headerCyanRule === true;
     if (headerCyanRuleWrapper) headerCyanRuleWrapper.style.display = config.headerStyle === 'editorial' ? 'flex' : 'none';
     if (selectSpacingDensity) selectSpacingDensity.value = config.spacingDensity || 'standard';

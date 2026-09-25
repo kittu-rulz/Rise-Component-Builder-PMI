@@ -9,6 +9,10 @@ const initialConfig = applyThemeToConfig({
   blockHeadingLevel: 'h2',
   headerStyle: 'minimal',
   headerCyanRule: false,
+  // PMI symbol accent in the block header's corner: 'auto' (a stable symbol per component type),
+  // 'none', or one of the eight symbol keys; and one of the three core colours.
+  headerSymbol: 'auto',
+  headerSymbolColor: 'aqua',
   spacingDensity: 'standard',
   contextBandEnabled: false,
   contextBandText: '',

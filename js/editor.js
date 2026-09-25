@@ -46,7 +46,7 @@ export function getFieldTabLocation(fieldId) {
     'mcShowCorrectAfterFinal', 'mcFinalExplanation', 'mcAllowReset', 'pauseVideo', 'required'
   ]);
   const appearanceFields = new Set([
-    'blockHeadingLevel', 'headerStyle', 'headerCyanRule', 'spacingDensity', 'contextBandEnabled',
+    'blockHeadingLevel', 'headerStyle', 'headerCyanRule', 'headerSymbol', 'headerSymbolColor', 'spacingDensity', 'contextBandEnabled',
     'contextBandText', 'contextBandAlignment', 'iconStyle', 'tabsOrientation', 'tabsNumbered',
     'textColor', 'focusRing', 'theme'
   ]);
