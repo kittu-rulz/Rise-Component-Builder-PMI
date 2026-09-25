@@ -1,6 +1,6 @@
 /**
  * @file pmi-modal.js
- * Accessible, AT&T Brand styled Promise-based modal dialogs and modal isolation utilities.
+ * Accessible, PMI Brand styled Promise-based modal dialogs and modal isolation utilities.
  * Handles role="dialog", aria-modal="true", background inert isolation, Tab focus trapping,
  * Escape key dismissal, and trigger focus restoration.
  */
@@ -296,7 +296,7 @@ export function isolateModal(modalElement, { triggerElement = null, fallbackSele
 }
 
 /**
- * Shows an accessible AT&T styled text input prompt modal dialog.
+ * Shows an accessible PMI styled text input prompt modal dialog.
  * @param {Object} options
  * @param {string} [options.title] - Dialog title
  * @param {string} [options.label] - Input field label
@@ -420,7 +420,7 @@ export function showPromptDialog({
 }
 
 /**
- * Shows an accessible AT&T styled confirmation modal dialog.
+ * Shows an accessible PMI styled confirmation modal dialog.
  * @param {Object} options
  * @param {string} [options.title] - Dialog title
  * @param {string} [options.message] - Confirmation message description

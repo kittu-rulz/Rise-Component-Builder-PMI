@@ -77,7 +77,7 @@ export function createDefaultPostPublishConfig() {
       launcherLabel: 'Course Tools',
       launcherStyle: 'icon-label', // 'icon-label' | 'icon-only'
       launcherPosition: 'bottom-right', // 'bottom-right' | 'bottom-left'
-      launcherTheme: 'default', // 'default' (AT&T Blue) | 'navy' | 'cobalt' | 'cyan'
+      launcherTheme: 'default', // 'default' (Aqua) | 'navy' | 'cobalt' | 'cyan'
       surfaceTheme: 'light', // 'light' | 'dark'
       defaultOpenTool: 'glossary', // 'glossary' | 'resources' | 'help'
       desktopOffsetBottom: 24,

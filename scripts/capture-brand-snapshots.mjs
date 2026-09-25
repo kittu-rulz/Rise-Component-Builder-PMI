@@ -28,7 +28,7 @@ const componentRegistry = Object.fromEntries(
 );
 
 async function captureAllComponentSnapshots() {
-  console.log(`Starting AT&T Brand Visual Regression Capture across ${COMPONENT_REGISTRY.length} components...`);
+  console.log(`Starting PMI Brand Visual Regression Capture across ${COMPONENT_REGISTRY.length} components...`);
   const browser = await chromium.launch({ headless: true });
 
   for (const component of COMPONENT_REGISTRY) {

@@ -977,7 +977,7 @@ describe.each(['audio-player', 'video-frame'])('%s: chapters/transcript Prefligh
   });
 });
 
-describe('Prompt 8: AT&T Brand Compliance Preflight Rules', () => {
+describe('Prompt 8: PMI Brand Compliance Preflight Rules', () => {
   test('brand-color-literal: non-brand color override is a Blocking error', () => {
     const issues = issuesFor('accordion', buildConfig('accordion'), {
       componentOverrides: { primary: '#C41E08' }
@@ -988,14 +988,14 @@ describe('Prompt 8: AT&T Brand Compliance Preflight Rules', () => {
     expect(found.explanation).toContain('#C41E08');
   });
 
-  test('brand-color-literal: approved AT&T brand tokens pass with zero errors', () => {
+  test('brand-color-literal: approved PMI brand tokens pass with zero errors', () => {
     const issues = issuesFor('accordion', buildConfig('accordion'), {
       componentOverrides: { primary: '#4F17A8', accent: '#00799E' }
     });
     expect(issues.some(item => item.ruleId === 'brand-color-literal')).toBe(false);
   });
 
-  test('brand-font-family: non-Aleck font family is a Blocking error', () => {
+  test('brand-font-family: non-PMI font family is a Blocking error', () => {
     const issues = issuesFor('accordion', buildConfig('accordion'), {
       componentOverrides: { fontFamily: 'Comic Sans MS' }
     });
@@ -1005,9 +1005,9 @@ describe('Prompt 8: AT&T Brand Compliance Preflight Rules', () => {
     expect(found.explanation).toContain('Comic Sans MS');
   });
 
-  test('brand-font-family: ATT Aleck Sans passes cleanly', () => {
+  test('brand-font-family: Aeonik passes cleanly', () => {
     const issues = issuesFor('accordion', buildConfig('accordion'), {
-      componentOverrides: { fontFamily: 'ATT Aleck Sans' }
+      componentOverrides: { fontFamily: 'Aeonik' }
     });
     expect(issues.some(item => item.ruleId === 'brand-font-family')).toBe(false);
   });
@@ -1043,7 +1043,7 @@ describe('Prompt 8: AT&T Brand Compliance Preflight Rules', () => {
     expect(issues.some(item => item.ruleId === 'brand-icon-source')).toBe(false);
   });
 
-  test('brand-contrast-ratio: AT&T Blue (#00799E) text on white is flagged as a Warning', () => {
+  test('brand-contrast-ratio: Aqua (#00799E) text on white is flagged as a Warning', () => {
     const issues = issuesFor('accordion', buildConfig('accordion'), {
       componentOverrides: { text: '#00799E' }
     });
@@ -1061,7 +1061,7 @@ describe('Prompt 8: AT&T Brand Compliance Preflight Rules', () => {
     const found = issues.find(item => item.ruleId === 'brand-focus-visible');
     expect(found).toBeDefined();
     expect(found.severity).toBe(SEVERITY.WARNING);
-    expect(found.explanation).toContain('Cobalt');
+    expect(found.explanation).toContain('Violet');
   });
 });
 

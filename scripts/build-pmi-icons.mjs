@@ -1,6 +1,6 @@
 import fs from 'fs';
 
-const rawFunctional = JSON.parse(fs.readFileSync('ATT Design System/Claude Promts/ATT Design System Icons/icons/pmi-functional-icons.json', 'utf8'));
+const rawFunctional = JSON.parse(fs.readFileSync('PMI branding guidelines/Claude Promts/PMI branding guidelines Icons/icons/pmi-functional-icons.json', 'utf8'));
 
 function cleanSvgMarkup(body) {
   let cleaned = body;
@@ -34,8 +34,8 @@ for (const [key, val] of Object.entries(rawFunctional.icons)) {
 }
 
 const jsContent = `/**
- * AT&T Icon Library Module (Functional Icons)
- * Authoritative SVG iconography extracted from the January 2026 AT&T Design System.
+ * PMI Icon Library Module (Functional Icons)
+ * Authoritative SVG iconography extracted from the January 2026 PMI Design System.
  *
  * Rules:
  * - Functional icons are black/white only, using \`fill="currentColor"\`.
@@ -46,7 +46,7 @@ const jsContent = `/**
 export const PMI_FUNCTIONAL_ICONS = ${JSON.stringify(functionalIcons, null, 2)};
 
 /**
- * Renders an inline AT&T functional SVG icon.
+ * Renders an inline PMI functional SVG icon.
  * @param {string} name - Icon name (e.g. 'chevron-down', 'play', 'check-circle-filled')
  * @param {Object} [options]
  * @param {string} [options.className=''] - CSS class names
@@ -60,7 +60,7 @@ export const PMI_FUNCTIONAL_ICONS = ${JSON.stringify(functionalIcons, null, 2)};
 export function getPmiIconSvg(name, options = {}) {
   const icon = PMI_FUNCTIONAL_ICONS[name];
   if (!icon) {
-    console.warn(\`[AT&T Icons] Unknown icon name: "\${name}"\`);
+    console.warn(\`[PMI Icons] Unknown icon name: "\${name}"\`);
     return '';
   }
 

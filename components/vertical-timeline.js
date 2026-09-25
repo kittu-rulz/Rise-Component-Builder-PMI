@@ -295,7 +295,7 @@ export function generateCSS() {
       color: var(--text-main);
     }
 
-    /* Visited/complete — check icon (already present) + Cobalt on a neutral grey
+    /* Visited/complete — check icon (already present) + Violet on a neutral grey
        fill, per the brand's "not colour alone" state rule. */
     .step-visited-badge {
       display: inline-flex;

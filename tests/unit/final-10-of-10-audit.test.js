@@ -21,7 +21,7 @@ import { buildProjectSchemaV3, createSection } from '../../js/project-schema.js'
 import { memoryLocalStorage } from '../fixtures/index.js';
 import { saveProject } from '../../js/storage.js';
 
-describe('Rise Component Builder AT&T — Final 10/10 Verification Suite', () => {
+describe('Rise Component Builder PMI — Final 10/10 Verification Suite', () => {
   let appShell;
   let modalRoot;
 
@@ -332,7 +332,7 @@ describe('Rise Component Builder AT&T — Final 10/10 Verification Suite', () =>
 
     beforeEach(() => {
       const container = document.getElementById('view-container');
-      mockProject = buildProjectSchemaV3({ name: 'AT&T 3-Module Starter' });
+      mockProject = buildProjectSchemaV3({ name: 'PMI 3-Module Starter' });
       const sec1 = createSection({ name: 'Module 1: Fiber Deployment' });
       const sec2 = createSection({ name: 'Module 2: 5G Architecture' });
       const sec3 = createSection({ name: 'Module 3: Compliance & Safety' });

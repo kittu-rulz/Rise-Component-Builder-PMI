@@ -53,7 +53,7 @@ export function migrateProjectToV3(rawProject) {
   const v3Project = buildProjectSchemaV3({
     id: v2Project.id,
     name: v2Project.name || 'Untitled Course Project',
-    clientLabel: 'AT&T',
+    clientLabel: 'PMI',
     description: '',
     favorite: false,
     settings: v2Project.settings,

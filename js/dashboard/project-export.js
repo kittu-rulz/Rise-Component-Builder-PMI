@@ -148,7 +148,7 @@ export async function buildCourseProjectZip(projectId, options = {}) {
   const entries = [];
   const manifest = {
     courseName: project.name,
-    client: project.clientLabel || 'AT&T',
+    client: project.clientLabel || 'PMI',
     exportedAt: new Date().toISOString(),
     schemaVersion: project.schemaVersion,
     totalSections: (project.sectionOrder || []).length,
@@ -198,7 +198,7 @@ export async function buildCourseProjectZip(projectId, options = {}) {
 
 function buildCourseReadme(project, manifest) {
   return `# ${project.name}
-Course Component Package — prepared for ${project.clientLabel || 'AT&T'}
+Course Component Package — prepared for ${project.clientLabel || 'PMI'}
 
 ## What this ZIP is
 A set of **standalone interactive components**, one folder per component. Each folder holds an
@@ -350,7 +350,7 @@ export function showPreExportReviewDialog(options, maybeOnProceed = null, maybeO
           <div style="background: var(--pmi-neutral-50, #F7F4EF); border: 1px solid var(--pmi-border, #E7E4DC); border-radius: 12px; padding: 16px;">
             <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px;">
               <div>
-                <span class="project-client-badge" style="margin-bottom: 4px; display: inline-block;">${escapeHtml(project.clientLabel || 'AT&T')}</span>
+                <span class="project-client-badge" style="margin-bottom: 4px; display: inline-block;">${escapeHtml(project.clientLabel || 'PMI')}</span>
                 <h3 style="margin: 0; font-size: 1.125rem; font-weight: 700; color: var(--pmi-heading-contrast, #200F3B);">${escapeHtml(project.name)}</h3>
               </div>
               <span class="project-card-status ${qaReport.overallStatusClass}" style="margin: 0; font-size: 0.75rem; font-weight: 700;">${escapeHtml(qaReport.overallStatus)}</span>

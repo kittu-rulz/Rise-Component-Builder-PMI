@@ -41,7 +41,7 @@ import { buildProjectSchemaV3, createComponentInstance } from '../../js/project-
 import { saveProject, getProject } from '../../js/storage.js';
 import { memoryLocalStorage } from '../fixtures/index.js';
 
-describe('Rise Component Builder AT&T — Complete Media Library Integration Suite', () => {
+describe('Rise Component Builder PMI — Complete Media Library Integration Suite', () => {
   let mockStore;
   let storedRecords;
 

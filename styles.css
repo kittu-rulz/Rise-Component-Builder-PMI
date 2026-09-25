@@ -1,9 +1,9 @@
-/* Rise Component Builder — Global Styles & Design System (AT&T brand) */
+/* Rise Component Builder — Global Styles & Design System (PMI brand) */
 
 /* CSS Variables */
 :root {
-  /* Colors — AT&T brand: #00799E is the brand identity color, #4F17A8 is the CTA color
-     (per AT&T brand guidance). #00799E only reaches 3.01:1 contrast against white, which
+  /* Colors — PMI brand: #00799E is the brand identity color, #4F17A8 is the CTA color
+     (per PMI brand guidance). #00799E only reaches 3.01:1 contrast against white, which
      fails WCAG AA for text/button labels, so it's used for non-text UI (icons, borders,
      focus rings, decorative fills) while --primary-text/--cta carry the CTA navy, which
      passes comfortably (10.7:1), for anything rendering actual text. */
@@ -65,7 +65,7 @@
   /* On dark panels, the brand blue itself passes AA for text (4.86–5.94:1) — no need
      for the light-mode CTA navy, which would nearly disappear here (1.37:1). */
   --primary-text: #00799E;
-  /* Dark-mode CTA fill: AT&T's own darker gradient stop of #00799E (also used as the
+  /* Dark-mode CTA fill: PMI's own darker gradient stop of #00799E (also used as the
      exported-component accent, js/themes.js) — keeps white button text readable
      (4.81:1) while still standing out against the dark app chrome. */
   --cta: #00799E;
@@ -87,7 +87,7 @@
   --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
   --shadow-inset: inset 0 2px 4px 0 rgba(0, 0, 0, 0.3);
 
-  /* AT&T Brand Token Dark Overrides */
+  /* PMI Brand Token Dark Overrides */
   --pmi-surface: #1A0837;
   --pmi-surface-sunken: #100522;
   --pmi-text: #EFEDF3;
@@ -128,7 +128,7 @@
 }
 
 body {
-  font-family: 'ATT Aleck Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-family: 'Aeonik', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   background-color: var(--bg-app);
   color: var(--text-main);
   height: 100vh;
@@ -1405,7 +1405,7 @@ a {
   color: #FFFFFF;
 }
 
-/* AT&T Blue with BLACK text — white on #00799E is only ~3:1 and fails AA at this
+/* Aqua with BLACK text — white on #00799E is only ~3:1 and fails AA at this
    badge's 9px size; black on #00799E is ~7:1. */
 .card-tier-strong-custom {
   background-color: #00799E;
@@ -1424,8 +1424,8 @@ a {
   border: 1px dashed var(--border-color);
 }
 
-/* AT&T has no amber; a Cobalt outline reads as "in progress / caution" and passes
-   contrast (Cobalt text on the app surface). */
+/* PMI has no amber; a Violet outline reads as "in progress / caution" and passes
+   contrast (Violet text on the app surface). */
 .badge-beta {
   background-color: var(--bg-app);
   color: var(--cta);
@@ -1756,7 +1756,7 @@ a {
 .category-pill {
   font-size: 11px;
   font-weight: 500;
-  /* Not Cobalt: a static category label, not a clickable control. */
+  /* Not Violet: a static category label, not a clickable control. */
   color: var(--text-muted);
   background-color: var(--primary-light);
   padding: 2px 8px;
@@ -1886,7 +1886,7 @@ a {
 .preflight-badge[data-state="warning"]::before { background-color: var(--warning); }
 .preflight-badge[data-state="blocking"]::before { background-color: var(--danger); }
 
-/* AT&T Compliance 4-Pillars Widget */
+/* PMI Compliance 4-Pillars Widget */
 .compliance-pillars-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -3657,7 +3657,7 @@ input[type="number"]:focus::-webkit-inner-spin-button {
 
 .compat-badge-confirmed { background-color: rgba(16, 185, 129, 0.14); color: #0D4409; }
 [data-theme="dark"] .compat-badge-confirmed { color: #1AB814; }
-/* Not Cobalt: a static compatibility-tier label, not a clickable control — a distinct
+/* Not Violet: a static compatibility-tier label, not a clickable control — a distinct
    purple/preview hue instead, so it doesn't reuse the clickable-only brand blue. */
 .compat-badge-experimental { background-color: rgba(109, 40, 217, 0.14); color: #4F17A8; }
 [data-theme="dark"] .compat-badge-experimental { color: #CC9BFC; }

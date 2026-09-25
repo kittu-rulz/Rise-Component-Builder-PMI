@@ -59,10 +59,10 @@ export function createSettingsEditor(config, onUpdate) {
         <div class="input-wrapper">
           <label>Brand Theme Color</label>
           <select class="select-launcher-theme">
-            <option value="default" ${settings.launcherTheme === 'default' ? 'selected' : ''}>AT&T Blue (#4F17A8)</option>
-            <option value="cobalt" ${settings.launcherTheme === 'cobalt' ? 'selected' : ''}>AT&T Cobalt (#4F17A8)</option>
+            <option value="default" ${settings.launcherTheme === 'default' ? 'selected' : ''}>Aqua (#4F17A8)</option>
+            <option value="cobalt" ${settings.launcherTheme === 'cobalt' ? 'selected' : ''}>PMI Violet (#4F17A8)</option>
             <option value="navy" ${settings.launcherTheme === 'navy' ? 'selected' : ''}>Dark Navy (#1A0837)</option>
-            <option value="cyan" ${settings.launcherTheme === 'cyan' ? 'selected' : ''}>AT&T Cyan (#00799E)</option>
+            <option value="cyan" ${settings.launcherTheme === 'cyan' ? 'selected' : ''}>PMI Cyan (#00799E)</option>
           </select>
         </div>
         <div class="input-wrapper">

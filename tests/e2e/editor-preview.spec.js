@@ -151,9 +151,9 @@ test('flip-card custom artwork uploads per face and removal restores the built-i
   await expect(front.locator('.card-icon-badge svg')).toBeVisible();
 });
 
-test('Builder Settings shows a read-only AT&T Aleck Sans brand summary, not a font picker', async ({ page }) => {
+test('Builder Settings shows a read-only Aeonik and GT Pressura Mono brand summary, not a font picker', async ({ page }) => {
   await page.locator('#btn-settings').click();
-  await expect(page.locator('#modal-settings')).toContainText('Brand font: AT&T Aleck Sans');
+  await expect(page.locator('#modal-settings')).toContainText('Brand fonts: Aeonik and GT Pressura Mono');
   await expect(page.locator('#modal-settings')).toContainText('Embedded automatically as self-hosted WOFF2 in all exported components');
   await expect(page.locator('#settings-default-font')).toHaveCount(0);
   await expect(page.locator('#modal-settings')).not.toContainText('Merriweather');

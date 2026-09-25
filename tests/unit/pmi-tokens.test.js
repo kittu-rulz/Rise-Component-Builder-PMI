@@ -83,7 +83,7 @@ describe('every compiled export carries the token layer and its fonts inline', (
         // Inlined, per docs/EXPORT-CONTRACT.md — a data: URI, never a bare/relative path.
         expect(src[1]).toMatch(/url\(\s*["']?data:/);
       }
-      expect([...embeddedFamilies]).toContain('ATT Aleck Sans');
+      expect([...embeddedFamilies]).toContain('Aeonik');
 
       // No font file referenced by a non-data URL anywhere in the document.
       expect(html).not.toMatch(/url\(\s*["']?(?!data:)[^)]*\.(woff2?|ttf|otf|eot)/i);

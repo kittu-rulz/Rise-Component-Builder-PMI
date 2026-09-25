@@ -639,8 +639,8 @@ export const WORKPLACE_PRESETS = [
   {
     id: 'ig-operational-pillars',
     componentId: 'info-grid',
-    title: 'AT&T Enterprise Operational Excellence Pillars',
-    name: 'AT&T Enterprise Operational Excellence Pillars',
+    title: 'PMI Enterprise Operational Excellence Pillars',
+    name: 'PMI Enterprise Operational Excellence Pillars',
     description: 'Core architectural and cultural principles guiding enterprise reliability, security by design, and proactive customer success.',
     domain: 'Core Strategy',
     config: {
@@ -681,7 +681,7 @@ export const WORKPLACE_PRESETS = [
           actionUrl: 'https://business.att.com/fiber-pro'
         },
         {
-          title: 'AT&T Dedicated Internet (ADI)',
+          title: 'PMI Dedicated Internet (ADI)',
           content: '100% Dedicated Unshared Bandwidth • 99.999% Availability SLA • Symmetrical Speeds 100 Mbps to 100 Gbps • 24/7/365 Proactive NOC Monitoring • 4-Hour MTTR Guarantee with SLA Credits',
           highlighted: true,
           actionUrl: 'https://business.att.com/adi'
@@ -1609,20 +1609,20 @@ export const WORKPLACE_PRESETS = [
     componentId: 'comparison-slider',
     title: 'Design System Inspection: Brand Compliant vs Non-Compliant Layout',
     name: 'Design System Inspection: Brand Compliant vs Non-Compliant Layout',
-    description: 'Interactive QA inspection highlighting compliant AT&T Blue/Aleck Sans typography vs unapproved legacy colors and low-contrast elements.',
+    description: 'Interactive QA inspection highlighting compliant Aqua/Aeonik typography vs unapproved legacy colors and low-contrast elements.',
     domain: 'Brand & UX Standards',
     config: {
       blockTitle: 'BRAND QUALITY CONTROL',
       blockHeadline: 'Enterprise Design System Compliance Review',
-      blockDesc: 'Drag the inspection slider to compare an unapproved, low-contrast legacy mockup against an official AT&T Brand Design System certified layout.',
+      blockDesc: 'Drag the inspection slider to compare an unapproved, low-contrast legacy mockup against an official PMI Brand Design System certified layout.',
       beforeLabel: 'Non-Compliant Mockup (Contrast & Color Violations)',
-      afterLabel: 'Certified AT&T Layout (100% Brand & WCAG AA)',
+      afterLabel: 'Certified PMI Layout (100% Brand & WCAG AA)',
       items: [
         {
           beforeLabel: 'Non-Compliant (Violations)',
           afterLabel: 'Certified (100% Brand)',
           beforeAltText: 'UI mockup with unapproved grey colors and failing contrast ratios',
-          afterAltText: 'UI mockup with official AT&T Blue, Aleck Sans typography, and passing WCAG contrast'
+          afterAltText: 'UI mockup with official Aqua, Aeonik typography, and passing WCAG contrast'
         }
       ]
     }

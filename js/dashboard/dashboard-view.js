@@ -170,7 +170,7 @@ export class DashboardView {
           <header class="dashboard-hero-section">
             <div class="dashboard-hero-content">
               <div class="dashboard-hero-eyebrow">
-                <span class="hero-brand-pill">Aptara Learning Interaction Studio · AT&amp;T edition</span>
+                <span class="hero-brand-pill">Aptara Learning Interaction Studio · PMI edition</span>
                 <span class="hero-compliance-pill">
                   <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
                   Built for WCAG 2.2 AA · brand-checked
@@ -384,7 +384,7 @@ export class DashboardView {
       <div class="project-card" data-project-id="${project.id}">
         <div class="project-card-header">
           <div class="project-card-tags">
-            <span class="project-client-badge">${this.escapeHtml(project.clientLabel || 'AT&T')}</span>
+            <span class="project-client-badge">${this.escapeHtml(project.clientLabel || 'PMI')}</span>
             ${project.schemaVersion === 3 ? `<span class="project-version-badge">Course Project</span>` : ''}
           </div>
           <div class="project-card-actions">
@@ -537,12 +537,12 @@ export class DashboardView {
               ` : `
                 <div class="form-group">
                   <label for="np-name" class="form-label">Project Name *</label>
-                  <input id="np-name" class="form-input" type="text" placeholder="e.g., 5G Network Fundamentals" required autofocus value="${selectedTemplate === 'standard' ? 'AT&T 3-Module Starter Course' : ''}" />
+                  <input id="np-name" class="form-input" type="text" placeholder="e.g., 5G Network Fundamentals" required autofocus value="${selectedTemplate === 'standard' ? 'PMI 3-Module Starter Course' : ''}" />
                 </div>
                 <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 12px;">
                   <div class="form-group">
                     <label for="np-client" class="form-label">Client / Brand Tag</label>
-                    <input id="np-client" class="form-input" type="text" value="AT&T" />
+                    <input id="np-client" class="form-input" type="text" value="PMI" />
                   </div>
                   <div class="form-group">
                     <label for="np-desc" class="form-label">Description (optional)</label>
@@ -590,8 +590,8 @@ export class DashboardView {
     if (starterCourse) {
       starterCourse.addEventListener('click', () => {
         const newProject = this.createNewProjectFromTemplate({
-          name: 'AT&T 3-Module Starter Course',
-          client: 'AT&T',
+          name: 'PMI 3-Module Starter Course',
+          client: 'PMI',
           desc: 'Interactive 3-module course structure with Introduction, Deep Dive, and Knowledge Check.',
           template: 'standard'
         });
@@ -826,7 +826,7 @@ export class DashboardView {
           }
 
           const name = form.querySelector('#np-name')?.value || 'New Project';
-          const client = form.querySelector('#np-client')?.value || 'AT&T';
+          const client = form.querySelector('#np-client')?.value || 'PMI';
           const desc = form.querySelector('#np-desc')?.value || '';
 
           const createdProject = this.createNewProjectFromTemplate({ name, client, desc, template });
@@ -1001,7 +1001,7 @@ export function createNewProjectFromTemplate(options = 'standard') {
   const view = new DashboardView({});
   return view.createNewProjectFromTemplate({
     name: opts.name || 'Demo Course',
-    client: opts.client || 'AT&T',
+    client: opts.client || 'PMI',
     desc: opts.desc || 'Interactive demonstration course',
     template: opts.template || 'standard'
   });

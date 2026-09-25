@@ -103,7 +103,7 @@ describe('versioned project persistence', () => {
   });
 
   // P03: the Builder Settings font picker is gone from the UI, but a version-1 project
-  // saved back when it existed can still carry a non-AT&T font choice in its embedded
+  // saved back when it existed can still carry a non-PMI font choice in its embedded
   // settings snapshot — that legacy data must keep migrating into componentOverrides.fontFamily
   // exactly as before, even though nothing can create a new project shaped like this anymore.
   test('a version-1 project carrying a legacy (pre-brand-lock) font choice still migrates it into componentOverrides.fontFamily', () => {

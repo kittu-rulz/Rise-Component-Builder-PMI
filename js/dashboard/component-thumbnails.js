@@ -1,7 +1,7 @@
 /**
  * @file component-thumbnails.js
  * Bespoke lightweight SVG wireframe illustrations for all 26 Rise interactive components.
- * Designed with clean AT&T brand wireframe aesthetics (Cobalt #4F17A8 accents, Slate #574E69 lines, #F7F4EF surfaces).
+ * Designed with clean PMI brand wireframe aesthetics (Violet #4F17A8 accents, Slate #574E69 lines, #F7F4EF surfaces).
  */
 
 /**

@@ -106,8 +106,8 @@ export function generateCSS() {
     }
 
     .quiz-option.selected {
-      /* Cobalt (--primary) border, not an AT&T Blue tint background: this is the
-         selected state of a clickable option, so it needs the Cobalt clickable
+      /* Violet (--primary) border, not an Aqua tint background: this is the
+         selected state of a clickable option, so it needs the Violet clickable
          treatment, not an invented translucent brand-color shade. */
       border-color: var(--primary);
       border-width: 2px;
@@ -128,7 +128,7 @@ export function generateCSS() {
       transition: all 0.2s ease;
     }
 
-    /* Selected radio: Cobalt ring with a Cobalt dot, not a filled disc. */
+    /* Selected radio: Violet ring with a Violet dot, not a filled disc. */
     .quiz-option.selected .option-check-circle {
       border-color: var(--primary);
       background-color: transparent;

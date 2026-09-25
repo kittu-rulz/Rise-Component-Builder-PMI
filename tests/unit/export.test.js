@@ -199,7 +199,7 @@ describe('buildRiseEmbedSnippet', () => {
     const snippet = buildRiseEmbedSnippet({ url: 'https://example.com/block.html' });
     expect(snippet).toContain('src="https://example.com/block.html"');
     expect(snippet).toContain('height="560px"');
-    expect(snippet).toContain('title="AT&amp;T Interactive Block"');
+    expect(snippet).toContain('title="PMI Interactive Block"');
   });
 });
 
@@ -367,7 +367,7 @@ describe('buildRiseEmbedSnippet placeholder defaults', () => {
     const { buildRiseEmbedSnippet } = await import('../../js/export.js');
     const snippet = buildRiseEmbedSnippet();
     expect(snippet).toContain('src="https://your-server.com/path-to-component/index.html"');
-    expect(snippet).toContain('title="AT&amp;T Interactive Block"');
+    expect(snippet).toContain('title="PMI Interactive Block"');
     expect(snippet).toContain('height="560px"');
   });
 });

@@ -20,7 +20,7 @@ export const category = 'cards';
 /** @type {CardCarouselConfig} */
 export const defaultConfig = {
   title: '5G Enterprise Solutions Portfolio',
-  content: 'Explore how AT&T 5G and dedicated cellular infrastructure empower modern enterprise operations.',
+  content: 'Explore how PMI 5G and dedicated cellular infrastructure empower modern enterprise operations.',
   showPaginationDots: true,
   loop: false,
   cardsPerView: 1,
@@ -44,9 +44,9 @@ export const defaultConfig = {
       buttonUrl: ''
     },
     {
-      title: 'AT&T Dynamic Defense',
+      title: 'PMI Dynamic Defense',
       category: 'Cybersecurity',
-      content: 'First-of-its-kind network security embedded directly into the AT&T core. Automatically intercepts and neutralizes distributed threat vectors before malicious traffic reaches customer premises.',
+      content: 'First-of-its-kind network security embedded directly into the PMI core. Automatically intercepts and neutralizes distributed threat vectors before malicious traffic reaches customer premises.',
       image: '',
       altText: '',
       buttonLabel: 'Learn More',

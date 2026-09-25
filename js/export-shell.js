@@ -90,7 +90,7 @@ export const BASE_RESET_CSS = `
       max-width: 70ch;
     }
 
-    /* AT&T Editorial Header Presentation */
+    /* PMI Editorial Header Presentation */
     .block-header.header-editorial {
       margin-bottom: calc(32px * var(--spacing-scale));
     }

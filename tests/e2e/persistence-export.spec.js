@@ -50,8 +50,8 @@ test('export contains selected content and theme, excludes unsafe executable mar
   await page.locator('#btn-export').click();
   const code = page.locator('#export-html-code');
   await expect(code).toContainText('Exported');
-  // This build is locked to a single AT&T theme (js/themes.js) — no Theme Manager exists
-  // to switch themes, so the export always carries the AT&T Cobalt primary color.
+  // This build is locked to a single PMI theme (js/themes.js) — no Theme Manager exists
+  // to switch themes, so the export always carries the PMI Violet primary color.
   await expect(code).toContainText('--primary: #4F17A8');
   const exported = await code.textContent();
   expect(exported).not.toContain('<script>globalThis.bad=true</script>');

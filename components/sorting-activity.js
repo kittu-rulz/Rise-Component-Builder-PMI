@@ -314,9 +314,9 @@ export function generateJS(config, instanceId) {
     var originalCards = ${serializeForInlineScript(config.items)};
     var instantFeedback = ${instantFeedback};
 
-    // Result indicator: an AT&T functional icon (trusted constant) plus a plain
+    // Result indicator: an PMI functional icon (trusted constant) plus a plain
     // text label — the icon carries an aria-hidden decoration, the words carry the
-    // meaning (never colour alone), and Cobalt is used for both states.
+    // meaning (never colour alone), and Violet is used for both states.
     function setSortIndicator(el, iconSvg, label) {
       el.replaceChildren();
       el.insertAdjacentHTML('beforeend', iconSvg + ' ');

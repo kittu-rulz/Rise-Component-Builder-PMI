@@ -93,7 +93,7 @@ export function createSection({
 export function buildProjectSchemaV3({
   id = null,
   name = 'Untitled Course Project',
-  clientLabel = 'AT&T',
+  clientLabel = 'PMI',
   description = '',
   favorite = false,
   settings = undefined,
@@ -137,7 +137,7 @@ export function buildProjectSchemaV3({
     schemaVersion: SCHEMA_VERSION_V3,
     id: id || createProjectId(),
     name: String(name || 'Untitled Course Project').trim() || 'Untitled Course Project',
-    clientLabel: String(clientLabel || 'AT&T').trim() || 'AT&T',
+    clientLabel: String(clientLabel || 'PMI').trim() || 'PMI',
     description: String(description || '').trim(),
     favorite: Boolean(favorite),
     createdAt: createdAt && validDate(createdAt) ? new Date(createdAt).toISOString() : now,

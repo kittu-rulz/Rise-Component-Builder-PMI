@@ -30,7 +30,7 @@ const VID_COMPLETION_THRESHOLD = 0.9;
 const VID_COMPLETION_TAIL_SECONDS = 3;
 const VID_RESUME_MIN_SECONDS = 10;
 
-// Replay/Forward, volume/mute, and transcript glyphs from AT&T Icon Library
+// Replay/Forward, volume/mute, and transcript glyphs from PMI Icon Library
 const skipBackIcon = getPmiIconSvg('step-back-15', { width: 16, height: 16, ariaHidden: true });
 const skipForwardIcon = getPmiIconSvg('step-forward-15', { width: 16, height: 16, ariaHidden: true });
 const volumeOnIcon = getPmiIconSvg('volume-3', { className: 'video-volume-on-svg', width: 14, height: 14, ariaHidden: true });
@@ -282,8 +282,8 @@ export function generateCSS() {
       width: 60px;
       height: 60px;
       border-radius: 50%;
-      /* White icon on Cobalt Blue (--primary): the brand's clickable treatment,
-         not a neutral dark wash or AT&T Blue. */
+      /* White icon on Violet Blue (--primary): the brand's clickable treatment,
+         not a neutral dark wash or Aqua. */
       background-color: var(--primary);
       color: var(--on-primary);
       display: flex;
@@ -343,7 +343,7 @@ export function generateCSS() {
       row-gap: 8px;
     }
     /* Replay/Forward are secondary to the main play control — small and outlined,
-       Cobalt-outlined at rest like sorting-activity's .target-btn, since these are
+       Violet-outlined at rest like sorting-activity's .target-btn, since these are
        clickable at all times, matching components/audio-player.js's own convention. */
     .video-skip-btn {
       width: 44px;

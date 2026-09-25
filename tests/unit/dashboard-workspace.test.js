@@ -48,7 +48,7 @@ describe('Project Dashboard & Workspace Controller Tests', () => {
     // Template project creation
     const newProject = view.createNewProjectFromTemplate({
       name: '5G Architecture',
-      client: 'AT&T',
+      client: 'PMI',
       desc: 'Intro to 5G',
       template: 'standard'
     });
@@ -139,7 +139,7 @@ describe('Project Dashboard & Workspace Controller Tests', () => {
     });
     const project = buildProjectSchemaV3({
       name: 'Data Networks',
-      clientLabel: 'AT&T',
+      clientLabel: 'PMI',
       sectionOrder: ['s1'],
       sections: { s1: sec1 },
       components: { c1: comp1 }

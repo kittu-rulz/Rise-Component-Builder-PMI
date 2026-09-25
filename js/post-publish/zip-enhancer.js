@@ -214,7 +214,7 @@ ${ENHANCEMENT_SIGNATURE}
 
     // Add Human-Readable Enhancement Report
     const reportText = `================================================================================
-AT&T RISE POST-PUBLISH TOOLS — ENHANCEMENT SUMMARY
+PMI RISE POST-PUBLISH TOOLS — ENHANCEMENT SUMMARY
 ================================================================================
 Enhancement: Rise Post-Publish Tools
 Version: 1.0.0

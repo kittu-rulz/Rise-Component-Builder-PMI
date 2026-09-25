@@ -67,9 +67,9 @@ describe('sanitizeRichText with inline formatting', () => {
   });
 
   test('preserves valid hyperlinks with target and rel attributes', () => {
-    const input = '<a href="https://www.att.com/portal" target="_blank" rel="noopener noreferrer">AT&amp;T Portal</a>';
+    const input = '<a href="https://www.att.com/portal" target="_blank" rel="noopener noreferrer">PMI Portal</a>';
     const output = sanitizeRichText(input);
-    expect(output).toContain('<a href="https://www.att.com/portal" target="_blank" rel="noopener noreferrer">AT&amp;T Portal</a>');
+    expect(output).toContain('<a href="https://www.att.com/portal" target="_blank" rel="noopener noreferrer">PMI Portal</a>');
   });
 
   test('preserves mailto and tel hyperlinks safely', () => {
@@ -197,7 +197,7 @@ describe('createRichTextEditor UI component', () => {
     expect(editor.getValue()).toBe('<strong>Updated</strong>');
   });
 
-  test('contains AT&T brand color palette and font sizes', () => {
+  test('contains PMI brand color palette and font sizes', () => {
     expect(PMI_BRAND_COLORS.length).toBeGreaterThanOrEqual(8);
     expect(PMI_BRAND_COLORS.some(c => c.hex === '#4F17A8')).toBe(true);
     expect(FONT_SIZES.length).toBeGreaterThanOrEqual(4);

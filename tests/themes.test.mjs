@@ -13,7 +13,7 @@ import {
 import { generateIframeContent } from '../js/preview.js';
 import { toRgba } from '../js/utilities.js';
 import * as accordion from '../components/accordion.js';
-import { PMI_ALECK_SANS_FONT_FAMILY } from '../js/custom-fonts.js';
+import { AEONIK_FONT_FAMILY } from '../js/custom-fonts.js';
 
 function memoryStorage() {
   const values = new Map();
@@ -35,9 +35,9 @@ function baseConfig() {
   };
 }
 
-test('the single locked AT&T theme validates and applies to legacy style fields', () => {
+test('the single locked PMI theme validates and applies to legacy style fields', () => {
   assert.equal(BUILT_IN_THEMES.length, 1);
-  assert.deepEqual(BUILT_IN_THEMES.map(theme => theme.name), ['AT&T Standard']);
+  assert.deepEqual(BUILT_IN_THEMES.map(theme => theme.name), ['PMI Standard']);
   BUILT_IN_THEMES.forEach(theme => assert.equal(validateTheme(theme).valid, true));
   const theme = BUILT_IN_THEMES[0];
   assert.equal(theme.isLocked, true);
@@ -150,10 +150,10 @@ test('generated and exported HTML uses the selected component theme while builde
   delete globalThis.localStorage;
 });
 
-test('a self-hosted custom font (ATT Aleck Sans) is embedded as @font-face and skips the Google Fonts request entirely', () => {
+test('a self-hosted custom font (Aeonik) is embedded as @font-face and skips the Google Fonts request entirely', () => {
   const theme = structuredClone(BUILT_IN_THEMES.find(item => item.id === DEFAULT_THEME_ID));
-  theme.tokens.fontFamily = PMI_ALECK_SANS_FONT_FAMILY;
-  theme.tokens.headingFontFamily = PMI_ALECK_SANS_FONT_FAMILY;
+  theme.tokens.fontFamily = AEONIK_FONT_FAMILY;
+  theme.tokens.headingFontFamily = AEONIK_FONT_FAMILY;
   const state = { selectedComponent: { id: 'accordion' }, activeTheme: theme, componentOverrides: {}, config: baseConfig() };
   const html = generateIframeContent(state, { accordion }, toRgba);
   assert.match(html, /@font-face/);
@@ -163,12 +163,12 @@ test('a self-hosted custom font (ATT Aleck Sans) is embedded as @font-face and s
   assert.match(html, /data:font\/woff2;base64,/);
   assert.ok(!html.includes('data:font/ttf'), 'no TTF fallback should be embedded alongside WOFF2');
   assert.ok(!html.includes('<link href="https://fonts.googleapis.com'), 'no Google Fonts request should be made when every font role is self-hosted');
-  assert.match(html, new RegExp(`--font-family: '${PMI_ALECK_SANS_FONT_FAMILY}'`));
+  assert.match(html, new RegExp(`--font-family: '${AEONIK_FONT_FAMILY}'`));
 });
 
 test('mixing a self-hosted font with a Google Fonts family still requests only the Google family', () => {
   const theme = structuredClone(BUILT_IN_THEMES.find(item => item.id === DEFAULT_THEME_ID));
-  theme.tokens.fontFamily = PMI_ALECK_SANS_FONT_FAMILY;
+  theme.tokens.fontFamily = AEONIK_FONT_FAMILY;
   theme.tokens.headingFontFamily = 'Montserrat';
   const state = { selectedComponent: { id: 'accordion' }, activeTheme: theme, componentOverrides: {}, config: baseConfig() };
   const html = generateIframeContent(state, { accordion }, toRgba);

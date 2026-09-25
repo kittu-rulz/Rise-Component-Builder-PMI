@@ -12,7 +12,7 @@ test('application loads without console errors and renders the catalog', async (
   page.on('console', message => { if (message.type() === 'error') errors.push(message.text()); });
   page.on('pageerror', error => errors.push(error.message));
   await page.goto('/?catalog');
-  await expect(page.getByRole('heading', { name: 'AT&T Learning Interaction Builder' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'PMI Learning Interaction Builder' })).toBeVisible();
   // Default landing category is "Interactive" (6 components).
   await expect(page.locator('.component-select-card')).toHaveCount(6);
   expect(errors).toEqual([]);

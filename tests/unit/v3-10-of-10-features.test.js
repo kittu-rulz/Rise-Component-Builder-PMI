@@ -21,7 +21,7 @@ import { saveProject } from '../../js/storage.js';
 import { buildProjectSchemaV3 } from '../../js/project-schema.js';
 import { memoryLocalStorage } from '../fixtures/index.js';
 
-describe('Rise Component Builder AT&T 10/10 Production-Readiness Standards', () => {
+describe('Rise Component Builder PMI 10/10 Production-Readiness Standards', () => {
   beforeEach(() => {
     globalThis.localStorage = memoryLocalStorage();
     document.body.innerHTML = '<div id="container"></div>';
@@ -42,7 +42,7 @@ describe('Rise Component Builder AT&T 10/10 Production-Readiness Standards', () 
     it('correctly audits projects with clean components and scores 100%', () => {
       const mockProject = buildProjectSchemaV3({
         name: 'Telecommunications Foundations',
-        clientLabel: 'AT&T'
+        clientLabel: 'PMI'
       });
       mockProject.components = {
         'c-1': {

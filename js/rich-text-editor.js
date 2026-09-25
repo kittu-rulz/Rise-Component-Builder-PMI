@@ -2,9 +2,9 @@
 import { sanitizeRichText } from './utilities.js';
 
 export const PMI_BRAND_COLORS = [
-  { name: 'AT&T Blue', hex: '#4F17A8' },
-  { name: 'AT&T Navy', hex: '#4F17A8' },
-  { name: 'AT&T Cyan', hex: '#00799E' },
+  { name: 'Aqua', hex: '#4F17A8' },
+  { name: 'PMI Navy', hex: '#4F17A8' },
+  { name: 'PMI Cyan', hex: '#00799E' },
   { name: 'Charcoal', hex: '#100522' },
   { name: 'Muted Gray', hex: '#574E69' },
   { name: 'Alert Red', hex: '#C41E08' },

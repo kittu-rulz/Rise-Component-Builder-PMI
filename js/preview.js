@@ -91,9 +91,9 @@ export function generateIframeContent(appState, componentRegistry, colorToRgba) 
   const focusRing = toRgba(c.colorPrimary, 0.16, 'rgba(79, 23, 168, 0.16)');
   const accentLight = toRgba(c.colorAccent, 0.14, 'rgba(0, 121, 158, 0.14)');
   const accentTint = toRgba(c.colorAccent, 0.07, 'rgba(0, 121, 158, 0.07)');
-  // Feedback-panel tints: not AT&T brand colors (success/danger are neutral-palette
+  // Feedback-panel tints: not PMI brand colors (success/danger are neutral-palette
   // status tokens, not derived from --primary/--accent), so opacity-based tinting here
-  // isn't the "improvised brand shade" the AT&T theme rules prohibit — it only bars
+  // isn't the "improvised brand shade" the PMI theme rules prohibit — it only bars
   // inventing tints of the blue brand colors themselves.
   const successTint = toRgba(themeTokens.success, 0.1, 'rgba(25, 127, 16, 0.1)');
   const dangerTint = toRgba(themeTokens.danger, 0.1, 'rgba(79, 23, 168, 0.1)');
@@ -133,7 +133,7 @@ export function generateIframeContent(appState, componentRegistry, colorToRgba) 
       --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.06);
       --component-max-width: ${COMPONENT_MAX_WIDTH}px;
 
-      /* AT&T brand token layer (js/pmi-tokens.js ← design/pmi-tokens.css). Present in
+      /* PMI brand token layer (js/pmi-tokens.js ← design/pmi-tokens.css). Present in
          every artifact; not yet consumed by component CSS — the color/type/curvature
          passes wire it in. Theme tokens above stay the active layer for now. */
 ${PMI_TOKENS_CSS}`;

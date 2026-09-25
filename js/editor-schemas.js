@@ -93,7 +93,7 @@ export const editorSchemas = {
         options: [
           { value: 'number', label: 'Numbered (1, 2, 3...)' },
           { value: 'letter', label: 'Lettered (A, B, C...)' },
-          { value: 'icon', label: 'AT&T Vector Icon' }
+          { value: 'icon', label: 'PMI Vector Icon' }
         ]
       }),
       field('iconName', 'Marker Vector Icon (When style is Icon)', 'select', {
@@ -144,9 +144,9 @@ export const editorSchemas = {
       field('styleVariant', 'Button Style Variant', 'select', {
         default: 'primary',
         options: [
-          { value: 'primary', label: 'Primary Brand (Filled Cobalt)' },
+          { value: 'primary', label: 'Primary Brand (Filled Violet)' },
           { value: 'secondary', label: 'Secondary (Card Surface)' },
-          { value: 'outline', label: 'Outline (Cobalt Border)' }
+          { value: 'outline', label: 'Outline (Violet Border)' }
         ]
       })
     ]
@@ -555,10 +555,10 @@ export const editorSchemas = {
       field('tone', 'Callout Tone / Icon Style', 'select', {
         default: 'info',
         options: [
-          { value: 'info', label: 'Information (AT&T Blue)' },
-          { value: 'primary', label: 'Brand Directive (Cobalt)' },
+          { value: 'info', label: 'Information (Aqua)' },
+          { value: 'primary', label: 'Brand Directive (Violet)' },
           { value: 'warning', label: 'Safety / Caution (Warning)' },
-          { value: 'tip', label: 'Pro Tip (AT&T Green)' },
+          { value: 'tip', label: 'Pro Tip (PMI Green)' },
           { value: 'security', label: 'Security / Compliance (Shield)' }
         ]
       }),
@@ -571,7 +571,7 @@ export const editorSchemas = {
     componentLabel: 'Carousel Settings & Controls',
     componentFields: [
       field('title', 'Header Title', 'text', { required: false, default: '5G Enterprise Solutions Portfolio' }),
-      field('content', 'Description / Instructions', 'richtext', { required: false, default: 'Explore how AT&T 5G and dedicated cellular infrastructure empower modern enterprise operations.' }),
+      field('content', 'Description / Instructions', 'richtext', { required: false, default: 'Explore how PMI 5G and dedicated cellular infrastructure empower modern enterprise operations.' }),
       field('cardsPerView', 'Visible Cards Density', 'select', {
         default: '1',
         options: [

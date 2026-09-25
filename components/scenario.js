@@ -258,13 +258,13 @@ export function generateCSS() {
       border-radius: 4px;
       flex-shrink: 0;
     }
-    /* Positive score — AT&T Lime as a low-alpha accent fill with black text
+    /* Positive score — PMI Lime as a low-alpha accent fill with black text
        (brand rule: Lime is an accent, never a text colour). */
     .choice-points-badge.pos {
       background-color: rgba(25, 127, 16, 0.22);
       color: #200F3B;
     }
-    /* Negative score — AT&T has no red; Cobalt plus the explicit minus value
+    /* Negative score — PMI has no red; Violet plus the explicit minus value
        carries the meaning (never colour alone). */
     .choice-points-badge.neg {
       background-color: rgba(79, 23, 168, 0.10);

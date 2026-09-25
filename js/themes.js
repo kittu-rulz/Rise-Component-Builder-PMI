@@ -1,10 +1,10 @@
 export const THEME_SCHEMA_VERSION = 1;
 
-// 'ATT Aleck Sans' is a self-hosted, base64-embedded brand font (js/custom-fonts.js) rather
+// 'Aeonik' is a self-hosted, base64-embedded brand font (js/custom-fonts.js) rather
 // than a Google Fonts family — js/preview.js and js/export-shell.js branch on
 // CUSTOM_FONT_FACES_BY_FAMILY to load it correctly either way.
 export const ALLOWED_THEME_FONTS = Object.freeze([
-  'Merriweather', 'Lato', 'Roboto', 'Montserrat', 'Open Sans', 'ATT Aleck Sans'
+  'Merriweather', 'Lato', 'Roboto', 'Montserrat', 'Open Sans', 'Aeonik'
 ]);
 export const ALLOWED_THEME_SHADOWS = Object.freeze(['none', 'soft', 'medium', 'premium']);
 export const ALLOWED_SPACING_DENSITIES = Object.freeze(['compact', 'comfortable', 'spacious']);
@@ -43,31 +43,26 @@ function preset(id, name, description, organization, tokens, options = {}) {
   };
 }
 
-// This build is locked to a single theme derived from AT&T's own design system
-// (ATT Design System/All_ATTAleck_Fonts, ATT design system.xd — kept local-only,
-// see .gitignore). Values traced directly to the brand source:
-//   - primary (#4F17A8, Cobalt): "Cobalt is typically used for CTA buttons."
-//   - accent (#00799E, AT&T Primary Blue): per explicit brand direction, this is
-//     the literal brand primary — not a substitute. Note: at this weight/size it
-//     only reaches 3.01:1 contrast against white, below the 4.5:1 WCAG AA
-//     threshold for small text (e.g. the block label), which is a known,
-//     accepted tradeoff rather than an oversight.
-//   - buttonRadius (20): measured directly from the brand's own button spec
-//     artboard (a 150x40 button rectangle with a 20px corner radius — fully
-//     pill-shaped, not a modest rounding).
-//   - background/surface/text/border: White, White, Black, Grey 2 (#E7E4DC) from
-//     the brand's neutral-tones swatch — background kept flat white (not Grey 1)
-//     per explicit direction to keep every component's base color white only.
-// Values the brand book never specifies (mutedText, success/warning/danger,
-// general container borderRadius, spacingDensity, animationSpeed) use
-// best-judgment defaults consistent with this project's other presets —
-// mutedText is a derived dark grey chosen for 7.56:1 contrast against white,
-// not a brand-specified color.
+// This build is locked to a single theme derived from PMI's brand guidelines and pmi.org's
+// published design tokens (see design/PMI-BRAND-EXTRACT.md for every value and the reasoning):
+//   - primary (#4F17A8, Violet 500): PMI's primary colour; 10.4:1 on white, so it is safe for
+//     text, buttons and focus rings. primaryHover is Violet 600 (#371075).
+//   - accent (#00799E, Aqua 500): the text-safe Aqua (5.0:1 on white). The logo Aqua 300
+//     (#05BFE0) is only 2.2:1, so it is a decorative token (--pmi-aqua-bright), never text.
+//   - text (#200F3B, Off-Black / Violet 800) and mutedText (#574E69, Off-Black at 75% on white,
+//     ~8:1): PMI text colours; border (#E7E4DC) is pmi.org's warm border.
+//   - success (#197F10), danger (#C41E08), warning (#D5340B): pmi.org's Green 500, Red 500 and
+//     Tangerine 500. The colour guide has no status colours; these are the site's own and each
+//     clears 4.5:1 on white.
+//   - buttonRadius (4) and borderRadius (24): pmi.org uses 4px controls and 24px cards.
+//   - Aeonik is the primary typeface (headings and body), GT Pressura Mono the secondary.
+// spacingDensity and animationSpeed are best-judgment defaults consistent with this project's
+// other presets.
 export const BUILT_IN_THEMES = Object.freeze([
-  preset('pmi-standard', 'AT&T Standard', 'The standardized AT&T brand theme — the only theme in this build.', 'AT&T', {
-    fontFamily: 'ATT Aleck Sans', headingFontFamily: 'ATT Aleck Sans', primary: '#4F17A8', primaryHover: '#371075', accent: '#00799E',
-    background: '#FFFFFF', surface: '#FFFFFF', text: '#200F3B', mutedText: '#200F3B', border: '#E7E4DC',
-    success: '#197F10', warning: '#4F17A8', danger: '#4F17A8', borderRadius: 12, buttonRadius: 20,
+  preset('pmi-standard', 'PMI Standard', 'The standardized PMI brand theme — the only theme in this build.', 'PMI', {
+    fontFamily: 'Aeonik', headingFontFamily: 'Aeonik', primary: '#4F17A8', primaryHover: '#371075', accent: '#00799E',
+    background: '#FFFFFF', surface: '#FFFFFF', text: '#200F3B', mutedText: '#574E69', border: '#E7E4DC',
+    success: '#197F10', warning: '#D5340B', danger: '#C41E08', borderRadius: 24, buttonRadius: 4,
     shadow: 'soft', spacingDensity: 'comfortable', animationSpeed: 200
   }, { isLocked: true })
 ]);

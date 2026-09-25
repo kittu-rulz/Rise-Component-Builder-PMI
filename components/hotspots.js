@@ -81,7 +81,7 @@ export const defaultConfig = {
 export const editorSchema = getEditorSchema(id);
 
 /**
- * Curated map of supported AT&T vector marker icons
+ * Curated map of supported PMI vector marker icons
  */
 const MARKER_ICONS = {
   info: 'information-circle-filled',
@@ -278,7 +278,7 @@ export function generateCSS() {
       display: flex;
       flex-direction: column;
       gap: var(--pmi-space-4, 16px);
-      font-family: var(--pmi-font-family, var(--font-family, "ATT Aleck Sans", -apple-system, BlinkMacSystemFont, sans-serif));
+      font-family: var(--pmi-font-family, var(--font-family, "Aeonik", -apple-system, BlinkMacSystemFont, sans-serif));
     }
 
     .hotspot-header {

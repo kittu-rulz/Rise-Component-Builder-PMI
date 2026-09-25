@@ -1,5 +1,5 @@
 /**
- * AT&T Rise Post-Publish Tools — Runtime Asset Loader
+ * PMI Rise Post-Publish Tools — Runtime Asset Loader
  * Provides the learner runtime JS and CSS payloads for iframe preview and ZIP injection.
  */
 

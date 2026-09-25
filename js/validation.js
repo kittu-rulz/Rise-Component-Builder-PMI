@@ -113,8 +113,8 @@ const RULE_TITLES = Object.freeze({
   'video-frame-invalid-chapter-line': 'Chapter row has an invalid timestamp or missing title',
   'video-frame-duplicate-chapter-timestamps': 'Two chapters share the same timestamp',
   'video-frame-invalid-transcript-segment': 'Synchronized transcript row has an invalid timestamp',
-  'brand-color-literal': 'Color literal is not an approved AT&T brand token',
-  'brand-font-family': 'Font family is not AT&T Aleck',
+  'brand-color-literal': 'Color literal is not an approved PMI brand token',
+  'brand-font-family': 'Font family is not a PMI brand font',
   'brand-font-size-floor': 'Learner-facing body text is below 16px floor',
   'brand-icon-source': 'Non-library icon or emoji character used',
   'brand-contrast-ratio': 'Color contrast below WCAG AA standards',
@@ -1227,13 +1227,13 @@ function checkSortingActivityCategories(config) {
 }
 
 // ---------------------------------------------------------------------------
-// AT&T Brand Compliance Rules (Prompt 8)
+// PMI Brand Compliance Rules (Prompt 8)
 // ---------------------------------------------------------------------------
 
-// Official AT&T token hex palette (from design/pmi-tokens.css and themes.js)
+// Official PMI token hex palette (from design/pmi-tokens.css and themes.js)
 const PMI_BRAND_HEX_VALUES = new Set([
-  '#00799E', // --pmi-aqua (Primary AT&T Blue)
-  '#4F17A8', // --pmi-violet (CTA / Secondary Cobalt)
+  '#00799E', // --pmi-aqua (Primary Aqua)
+  '#4F17A8', // --pmi-violet (CTA / Secondary Violet)
   '#68D8ED', // --pmi-aqua-soft (Secondary Mint)
   '#197F10', // --pmi-green (Secondary Lime accent)
   '#F7F4EF', // --pmi-neutral-50 (Sunken surface neutral)
@@ -1243,7 +1243,7 @@ const PMI_BRAND_HEX_VALUES = new Set([
   '#FFFFFF', // --pmi-white (Surface neutral)
   '#00799E', // --pmi-aqua-dark (Gradient stop)
   '#68D8ED', // --pmi-aqua-soft (Gradient stop)
-  '#371075', // --pmi-cta-bg-hover (Cobalt hover state)
+  '#371075', // --pmi-cta-bg-hover (Violet hover state)
   '#200F3B'  // Muted text high-contrast neutral
 ]);
 
@@ -1279,7 +1279,7 @@ function checkBrandColorLiterals(componentOverrides = {}, config = {}) {
       const hex = normalizeBrandHex(val);
       if (!PMI_BRAND_HEX_VALUES.has(hex)) {
         issues.push(issue('brand-color-literal', SEVERITY.BLOCKING, CATEGORY.BRAND,
-          `${label} ("${val}") is not an approved AT&T brand color token. Use AT&T Blue (#00799E), Cobalt (#4F17A8), Neutrals, or standard design tokens.`,
+          `${label} ("${val}") is not an approved PMI brand color token. Use Aqua (#00799E), Violet (#4F17A8), Neutrals, or standard design tokens.`,
           { fieldId: key }));
       }
     }
@@ -1288,16 +1288,16 @@ function checkBrandColorLiterals(componentOverrides = {}, config = {}) {
   return issues;
 }
 
-// 2. Font family rule (BLOCKING) — ensures learner-facing text uses AT&T Aleck
+// 2. Font family rule (BLOCKING) — ensures learner-facing text uses Aeonik or GT Pressura Mono
 function checkBrandFontFamily(componentOverrides = {}, config = {}) {
   const issues = [];
   const fontVal = componentOverrides?.fontFamily ?? config?.fontFamily ?? config?.headingFontFamily;
   if (fontVal && typeof fontVal === 'string') {
     const lower = fontVal.toLowerCase();
-    const isApproved = lower.includes('att aleck') || lower.includes('var(--pmi-font') || lower.includes('var(--font-family');
+    const isApproved = lower.includes('aeonik') || lower.includes('gt pressura mono') || lower.includes('var(--pmi-font') || lower.includes('var(--font-family');
     if (!isApproved) {
       issues.push(issue('brand-font-family', SEVERITY.BLOCKING, CATEGORY.BRAND,
-        `Font family "${fontVal}" is not AT&T Aleck. All learner-facing components must use the AT&T Aleck font family.`,
+        `Font family "${fontVal}" is not a PMI brand font. Learner-facing components must use Aeonik (primary) or GT Pressura Mono (secondary).`,
         { fieldId: 'fontFamily' }));
     }
   }
@@ -1312,7 +1312,7 @@ function checkBrandFontSizeFloor(config = {}) {
     const num = Number(sizeVal);
     if (Number.isFinite(num) && num < 16) {
       issues.push(issue('brand-font-size-floor', SEVERITY.BLOCKING, CATEGORY.BRAND,
-        `Learner-facing body font size (${num}px) is below the required 16px floor for AT&T learning experiences.`,
+        `Learner-facing body font size (${num}px) is below the required 16px floor for PMI learning experiences.`,
         { fieldId: 'bodyFontSize' }));
     }
   }
@@ -1329,7 +1329,7 @@ function checkBrandIconSource(schema = {}, config = {}) {
     const match = value.match(EMOJI_AND_UNAPPROVED_ICONS_REGEX);
     if (match) {
       issues.push(issue('brand-icon-source', SEVERITY.BLOCKING, CATEGORY.BRAND,
-        `${fieldLabel || 'Field'} contains a non-library icon or emoji character ("${match[0]}"). Use official AT&T SVG functional icons instead of emoji or ad-hoc glyphs.`,
+        `${fieldLabel || 'Field'} contains a non-library icon or emoji character ("${match[0]}"). Use official PMI SVG functional icons instead of emoji or ad-hoc glyphs.`,
         { fieldId, itemIndex }));
     }
   };
@@ -1359,11 +1359,11 @@ function checkBrandContrastRatio(theme, componentOverrides) {
   const textHex = normalizeBrandHex(tokens.text);
   const surfaceHex = normalizeBrandHex(tokens.surface);
 
-  // Specifically check AT&T Blue (#00799E) used as text color against white/light surface for small text
+  // Specifically check Aqua (#00799E) used as text color against white/light surface for small text
   if (textHex === '#00799E' && (surfaceHex === '#FFFFFF' || surfaceHex === '#F7F4EF')) {
     const ratio = contrastRatio('#00799E', surfaceHex);
     issues.push(issue('brand-contrast-ratio', SEVERITY.WARNING, CATEGORY.BRAND,
-      `AT&T Blue (#00799E) has a ${ratio.toFixed(1)}:1 contrast ratio on ${surfaceHex} and passes WCAG AA only for large text (≥24px or ≥18.66px bold). Use Black (#200F3B) or Cobalt (#4F17A8) for copy under 24px.`,
+      `Aqua (#00799E) has a ${ratio.toFixed(1)}:1 contrast ratio on ${surfaceHex} and passes WCAG AA only for large text (≥24px or ≥18.66px bold). Use Black (#200F3B) or Violet (#4F17A8) for copy under 24px.`,
       { fieldId: 'textColor' }));
   }
 
@@ -1375,7 +1375,7 @@ function checkBrandFocusVisible(componentOverrides = {}) {
   const issues = [];
   if (componentOverrides?.focusOutline === 'none' || componentOverrides?.disableFocusRing === true) {
     issues.push(issue('brand-focus-visible', SEVERITY.WARNING, CATEGORY.BRAND,
-      'Focus outlines must not be removed on interactive elements. AT&T standards require a 3px Cobalt (#4F17A8) focus ring with 2px offset for keyboard accessibility.',
+      'Focus outlines must not be removed on interactive elements. PMI standards require a 3px Violet (#4F17A8) focus ring with 2px offset for keyboard accessibility.',
       { fieldId: 'focusRing' }));
   }
   return issues;

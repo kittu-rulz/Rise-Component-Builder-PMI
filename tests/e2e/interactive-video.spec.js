@@ -535,7 +535,7 @@ test.describe('Interactive Video: accessibility (Phase 6)', () => {
   // every component. It used to have the same real color-contrast issue (--accent at
   // small/bold size) this scan caught in .iv-panel-type-label, so it was excluded here as a
   // cross-component design-system decision out of this component-level audit's scope. The
-  // AT&T branding pass fixed it at the source (export-shell.js now uses --text-muted), so
+  // PMI branding pass fixed it at the source (export-shell.js now uses --text-muted), so
   // the exclusion is no longer needed and stays removed as a regression check.
   function scan(page) {
     return new AxeBuilder({ page }).withRules(A11Y_RULES).analyze();

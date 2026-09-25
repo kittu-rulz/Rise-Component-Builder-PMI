@@ -216,7 +216,7 @@ describe('PMI brand: no improvised tints/shades of the brand blues', () => {
     expect(infoGrid.generateCSS()).toContain('.info-grid-icon-accent-dots');
   });
 
-  test('flip-cards default front icon is a real AT&T Brand Center icon (question-circle), not hand-drawn', () => {
+  test('flip-cards default front icon is a real PMI Brand Center icon (question-circle), not hand-drawn', () => {
     const html = flipCards.generateHTML({
       items: [{ title: 'Front', content: 'Front body' }, { title: 'Back', content: 'Back body' }]
     }, INSTANCE_ID);
@@ -228,7 +228,7 @@ describe('PMI brand: no improvised tints/shades of the brand blues', () => {
     expect(html).not.toContain('viewBox="0 0 24 24"');
   });
 
-  test('profile-cards default avatar icon matches the AT&T Brand Center "person" icon verbatim', () => {
+  test('profile-cards default avatar icon matches the PMI Brand Center "person" icon verbatim', () => {
     const html = profileCards.generateHTML({ items: [{ title: 'Name', content: 'Bio' }] });
     expect(html).toContain('M20 15.8C21.8 14.5 23 12.4 23 10 23 6.1 19.9 3 16 3');
   });
@@ -399,9 +399,11 @@ describe('PMI brand: new authoring features (Slides 6 and 10)', () => {
 describe('Prompt 3: PMI brand color tokenization and absence of off-brand literals', () => {
   test('theme semantic status colors adhere to PMI brand rules', () => {
     const theme = getBuiltInTheme();
-    expect(theme.tokens.success).toBe('#197F10'); // AT&T Lime
-    expect(theme.tokens.warning).toBe('#4F17A8'); // AT&T Violet (no brand amber/orange)
-    expect(theme.tokens.danger).toBe('#4F17A8');  // AT&T Violet (no brand red)
+    // The colour guide defines no status colours; these are pmi.org's own 500 shades, each
+    // 4.5:1 or better on white (asserted in the contrast tests).
+    expect(theme.tokens.success).toBe('#197F10'); // Green 500
+    expect(theme.tokens.warning).toBe('#D5340B'); // Tangerine 500
+    expect(theme.tokens.danger).toBe('#C41E08');  // Red 500
   });
 
   test('component CSS does not contain raw off-brand color literals', () => {

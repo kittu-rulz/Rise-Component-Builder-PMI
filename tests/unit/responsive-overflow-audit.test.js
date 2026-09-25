@@ -12,7 +12,7 @@
  *   1. Root element scrollWidth ≤ containerWidth (no unintended horizontal overflow).
  *   2. All visible text nodes are non-empty (no phantom whitespace-only nodes).
  *   3. Interactive elements (button, a, input, select) have a minimum touch
- *      target bounding box of 44 × 44 px (AT&T / WCAG 2.5.5).
+ *      target bounding box of 44 × 44 px (PMI / WCAG 2.5.5).
  *   4. No element has a computed width wider than containerWidth + 1 px tolerance
  *      (catches fixed-width elements exceeding the viewport).
  *   5. Generated HTML is well-formed (no unclosed tags that JSDOM would silently
@@ -205,7 +205,7 @@ describe('Phase 4: Touch-target minimum size — structural presence check', () 
       const { window: { document } } = getDom(html);
 
       const buttons = Array.from(document.querySelectorAll('button'));
-      // Most buttons don't need inline min-height since the AT&T token CSS provides it,
+      // Most buttons don't need inline min-height since the PMI token CSS provides it,
       // but we assert they have a `class` (which the CSS can target) — unclassed bare
       // buttons cannot receive the minimum-height rule.
       const unclassedButtons = buttons.filter(btn => !btn.className && !btn.getAttribute('aria-label'));

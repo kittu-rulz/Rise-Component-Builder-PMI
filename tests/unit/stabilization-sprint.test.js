@@ -194,8 +194,8 @@ describe('Final 10/10 Stabilization Sprint — Comprehensive Verification Suite'
     });
   });
 
-  describe('4. P0 — Standard AT&T Demonstration Project Starter', () => {
-    test('creates polished 3-module AT&T demonstration starter with 0 blockers and 0 errors', () => {
+  describe('4. P0 — Standard PMI Demonstration Project Starter', () => {
+    test('creates polished 3-module PMI demonstration starter with 0 blockers and 0 errors', () => {
       const project = createNewProjectFromTemplate('standard');
       expect(project).toBeDefined();
       expect(project.sectionOrder.length).toBe(3);
@@ -252,7 +252,7 @@ describe('Final 10/10 Stabilization Sprint — Comprehensive Verification Suite'
           items: [{ title: 'Tab 1', content: 'Content 1' }]
         },
         uiTheme: 'light',
-        settings: { defaultFont: 'Aleck Sans' }
+        settings: { defaultFont: 'Aeonik' }
       };
 
       const result = migrateProject(v2Project);

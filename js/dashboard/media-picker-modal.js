@@ -1,6 +1,6 @@
 /**
  * @file media-picker-modal.js
- * Accessible, AT&T Brand styled Media Picker Modal Dialog ("Choose Media").
+ * Accessible, PMI Brand styled Media Picker Modal Dialog ("Choose Media").
  * Allows instructional designers to browse, preview, search, filter, upload,
  * and select assets from the project Media Library into any component media field.
  */

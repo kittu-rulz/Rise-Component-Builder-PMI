@@ -10,7 +10,7 @@ export const defaultConfig = {
   indexingMode: 'none',
   showQuickJump: false,
   items: [
-    { title: 'Module 1: Getting Started', content: 'Introduction and setup basics for modern AT&T enterprise interfaces.', category: 'Fundamentals', badge: 'Core' },
+    { title: 'Module 1: Getting Started', content: 'Introduction and setup basics for modern PMI enterprise interfaces.', category: 'Fundamentals', badge: 'Core' },
     { title: 'Module 2: Advanced Design', content: 'Explore layouts, responsive grids, shadows, and WCAG spacing tokens.', category: 'Architecture', badge: 'Design' },
     { title: 'Module 3: Code Exporting', content: 'Embedding components inside Articulate Rise SCORM packages and web packages.', category: 'Deployment', badge: 'SCORM' }
   ]

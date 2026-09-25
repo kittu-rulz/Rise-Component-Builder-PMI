@@ -1,5 +1,5 @@
-/* AT&T Rise Component Builder — Project Dashboard Styles
-   Conforms strictly to AT&T Brand Standards & Design Tokens */
+/* PMI Rise Component Builder — Project Dashboard Styles
+   Conforms strictly to PMI Brand Standards & Design Tokens */
 
 .project-dashboard-view {
   display: flex;
@@ -7,7 +7,7 @@
   min-height: 100vh;
   background-color: var(--pmi-surface-sunken, #F7F4EF);
   color: var(--pmi-text, #200F3B);
-  font-family: var(--pmi-font-sans, "ATT Aleck Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif);
+  font-family: var(--pmi-font-sans, "Aeonik", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif);
 }
 
 /* App Header & Top Bar */

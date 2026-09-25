@@ -25,7 +25,7 @@ export const defaultConfig = {
   items: [
     {
       title: 'Mandatory Multi-Factor Authentication (MFA)',
-      content: 'All technicians and administrative personnel must verify identity via AT&T Global Logon Authenticator prior to accessing staging infrastructure.',
+      content: 'All technicians and administrative personnel must verify identity via PMI Global Logon Authenticator prior to accessing staging infrastructure.',
       tone: 'security',
       badgeLabel: 'Policy Requirement'
     },

@@ -14,7 +14,7 @@ import * as buttonList from '../../components/button-list.js';
 import * as pricingComparison from '../../components/pricing-comparison.js';
 import * as profileCards from '../../components/profile-cards.js';
 
-describe('AT&T Functional Icons Utility (Prompt 6)', () => {
+describe('PMI Functional Icons Utility (Prompt 6)', () => {
   test('PMI_FUNCTIONAL_ICONS contains 400+ authoritative icons from January 2026 design system', () => {
     const iconKeys = Object.keys(PMI_FUNCTIONAL_ICONS);
     expect(iconKeys.length).toBeGreaterThan(400);
@@ -74,10 +74,10 @@ describe('AT&T Functional Icons Utility (Prompt 6)', () => {
   });
 });
 
-describe('Component Integration with Official AT&T Icons', () => {
+describe('Component Integration with Official PMI Icons', () => {
   const instanceId = 'test-icon-instance';
 
-  test('accordion uses padlock and chevron/arrow icons from AT&T library', () => {
+  test('accordion uses padlock and chevron/arrow icons from PMI library', () => {
     const html = accordion.generateHTML({
       items: [
         { title: 'Item 1', content: 'Body 1' },
@@ -90,7 +90,7 @@ describe('Component Integration with Official AT&T Icons', () => {
     expect(html).toContain('fill="currentColor"');
   });
 
-  test('tabs uses padlock and check icons from AT&T library', () => {
+  test('tabs uses padlock and check icons from PMI library', () => {
     const html = tabs.generateHTML({
       items: [
         { title: 'Tab 1', content: 'Content 1' },

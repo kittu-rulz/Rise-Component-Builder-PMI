@@ -340,7 +340,7 @@ export function generateCSS() {
       text-transform: uppercase;
       letter-spacing: 0.5px;
       /* --text-muted (matching .iv-marker-nav-title/.iv-marker-type-label below), not
-         --accent: at this size/weight, the AT&T brand blue only reaches ~3:1 contrast on
+         --accent: at this size/weight, the PMI brand blue only reaches ~3:1 contrast on
          a white card background — short of WCAG AA's 4.5:1 for non-large text, caught by
          an axe-core color-contrast scan (Phase 6). --text-muted is designed for exactly
          this kind of small caption text. */
@@ -410,8 +410,8 @@ export function generateCSS() {
       border-color: var(--primary);
     }
     .iv-mc-option.iv-mc-selected {
-      /* Cobalt (--primary) border, not an AT&T-Blue tint background: the
-         selected state of a clickable option needs the Cobalt clickable
+      /* Violet (--primary) border, not an Aqua tint background: the
+         selected state of a clickable option needs the Violet clickable
          treatment, not an invented translucent brand-color shade. */
       border-color: var(--primary);
       border-width: 2px;
@@ -532,7 +532,7 @@ export function generateCSS() {
       transition: box-shadow 0.2s ease;
     }
     .iv-marker-item.iv-marker-item-active {
-      /* Cobalt (--primary), not AT&T Blue: the active-state highlight of a
+      /* Violet (--primary), not Aqua: the active-state highlight of a
          clickable marker-list row. */
       box-shadow: 0 0 0 2px var(--primary) inset;
     }
@@ -553,7 +553,7 @@ export function generateCSS() {
       box-sizing: border-box;
     }
     .iv-marker-item-btn:hover {
-      /* Not an invented AT&T-Blue tint: matches .iv-restart-btn's own neutral
+      /* Not an invented Aqua tint: matches .iv-restart-btn's own neutral
          hover fill elsewhere in this file. */
       background-color: var(--bg-body);
     }
@@ -572,7 +572,7 @@ export function generateCSS() {
     }
     .iv-marker-state-badge.iv-state-completed {
       /* Matches .iv-state-visited's neutral treatment — not an invented
-         AT&T-Blue tint. */
+         Aqua tint. */
       background-color: var(--border-color);
       color: var(--text-main);
     }

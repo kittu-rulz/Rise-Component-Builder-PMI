@@ -46,15 +46,15 @@ function lintComponentFile(filePath, filename) {
         if (!APPROVED_BRAND_HEXES.has(upper)) {
           // Check if it's within a CSS template or style block
           if (lineText.includes('background') || lineText.includes('color') || lineText.includes('border') || lineText.includes('fill') || lineText.includes('stroke')) {
-            reportViolation(`components/${filename}`, lineNum, `Hardcoded color literal "${hex}" is outside AT&T brand token system.`);
+            reportViolation(`components/${filename}`, lineNum, `Hardcoded color literal "${hex}" is outside PMI brand token system.`);
           }
         }
       });
     }
 
-    // 2. Check for non-Aleck font-family in CSS declarations
-    if (lineText.includes('font-family:') && !lineText.includes('ATT Aleck') && !lineText.includes('var(--pmi-font') && !lineText.includes('var(--font-family') && !lineText.includes('var(--heading-font-family')) {
-      reportViolation(`components/${filename}`, lineNum, `Learner-facing font-family declaration must use AT&T Aleck font family.`);
+    // 2. Check for non-PMI font-family in CSS declarations
+    if (lineText.includes('font-family:') && !lineText.includes('Aeonik') && !lineText.includes('GT Pressura') && !lineText.includes('var(--pmi-font') && !lineText.includes('var(--font-family') && !lineText.includes('var(--heading-font-family')) {
+      reportViolation(`components/${filename}`, lineNum, `Learner-facing font-family declaration must use Aeonik or GT Pressura Mono.`);
     }
 
     // 3. Check for sub-16px font size on body/content copy
@@ -62,7 +62,7 @@ function lintComponentFile(filePath, filename) {
     if (fsMatch) {
       const px = parseInt(fsMatch[1], 10);
       if (px < 16 && (lineText.includes('body') || lineText.includes('desc') || lineText.includes('content') || lineText.includes('text') || lineText.includes('card-p') || lineText.includes('item-text'))) {
-        reportViolation(`components/${filename}`, lineNum, `Learner-facing body copy font-size (${px}px) is below the 16px AT&T standard floor.`);
+        reportViolation(`components/${filename}`, lineNum, `Learner-facing body copy font-size (${px}px) is below the 16px PMI standard floor.`);
       }
     }
 
@@ -79,13 +79,13 @@ function lintComponentFile(filePath, filename) {
       // Check if subsequent lines delegate focus to a child element (e.g. .node-marker or .flip-card-front)
       const nextFewLines = lines.slice(lineIdx, Math.min(lines.length, lineIdx + 8)).join('\n');
       if (!nextFewLines.includes('outline: 3px')) {
-        reportViolation(`components/${filename}`, lineNum, `Removed focus outline without providing AT&T 3px Cobalt focus ring.`, false);
+        reportViolation(`components/${filename}`, lineNum, `Removed focus outline without providing PMI 3px Violet focus ring.`, false);
       }
     }
   });
 }
 
-console.log('\n--- Running AT&T Brand Compliance Linter (Prompt 8) ---\n');
+console.log('\n--- Running PMI Brand Compliance Linter (Prompt 8) ---\n');
 
 const componentFiles = readdirSync(componentsDir).filter(f => f.endsWith('.js'));
 for (const file of componentFiles) {

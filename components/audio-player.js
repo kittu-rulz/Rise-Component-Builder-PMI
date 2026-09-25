@@ -30,7 +30,7 @@ const AUDIO_COMPLETION_TAIL_SECONDS = 3;
 // meaningfully different from just pressing Play.
 const AUDIO_RESUME_MIN_SECONDS = 10;
 
-// Replay/Forward, Volume, Transcript, Chapters, and Takeaways glyphs from the AT&T Icon Library
+// Replay/Forward, Volume, Transcript, Chapters, and Takeaways glyphs from the PMI Icon Library
 const skipBackIcon = getPmiIconSvg('step-back-15', { width: 18, height: 18, ariaHidden: true });
 const skipForwardIcon = getPmiIconSvg('step-forward-15', { width: 18, height: 18, ariaHidden: true });
 const volumeOnIcon = getPmiIconSvg('volume-3', { className: 'aud-volume-on-svg', width: 14, height: 14, ariaHidden: true });
@@ -292,7 +292,7 @@ export function generateCSS() {
       width: 36px;
       height: 36px;
       border-radius: var(--pmi-radius-sm, 8px);
-      /* Not a lighter shade of AT&T Blue: not part of the approved palette. A neutral
+      /* Not a lighter shade of Aqua: not part of the approved palette. A neutral
          brand-grey backdrop also gives the icon better contrast than blue-on-light-blue. */
       background-color: var(--border-color);
       color: var(--accent);
@@ -395,7 +395,7 @@ export function generateCSS() {
     }
     /* Replay/Forward are secondary to the main play button — smaller, outlined rather than
        filled, so the play control stays visually dominant (still ~40px, a real touch
-       target). Cobalt-outlined at rest like sorting-activity's .target-btn, since these
+       target). Violet-outlined at rest like sorting-activity's .target-btn, since these
        are clickable at all times. */
     .aud-skip-btn {
       width: 44px;

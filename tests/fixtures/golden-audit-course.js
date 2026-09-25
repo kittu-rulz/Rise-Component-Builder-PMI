@@ -1,6 +1,6 @@
 /**
  * Golden 26-Component Audit Course Fixture
- * Contains every registered component configured with valid AT&T sample content,
+ * Contains every registered component configured with valid PMI sample content,
  * block labels, headlines, instructions, valid item titles, feedback, and completion settings.
  */
 
@@ -20,7 +20,7 @@ export function createGoldenAuditCourse() {
     const baseConfig = structuredClone(compDef.defaultContent || {});
     
     // Ensure standard block header fields
-    baseConfig.blockTitle = `AT&T ${compDef.name.toUpperCase()}`;
+    baseConfig.blockTitle = `PMI ${compDef.name.toUpperCase()}`;
     baseConfig.title = baseConfig.title || baseConfig.blockTitle;
     baseConfig.blockHeadline = `${compDef.name} Demonstration`;
     baseConfig.blockDesc = `Interactive learning module demonstrating the ${compDef.name} component.`;
@@ -68,14 +68,14 @@ export function createGoldenAuditCourse() {
   return {
     id: 'golden-26-audit-course',
     schemaVersion: 3,
-    name: 'AT&T Golden 26-Component Audit Course',
-    description: 'Comprehensive 26-component verification suite for AT&T Rise Component Builder.',
+    name: 'PMI Golden 26-Component Audit Course',
+    description: 'Comprehensive 26-component verification suite for PMI Rise Component Builder.',
     structure: {
       sections
     },
     components,
     settings: {
-      defaultFont: 'Aleck Sans',
+      defaultFont: 'Aeonik',
       exportFormat: 'web'
     },
     uiTheme: 'light',

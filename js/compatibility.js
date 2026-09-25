@@ -72,7 +72,7 @@ export const EXPORT_FORMAT_COMPATIBILITY = {
     tier: 'confirmed',
     summary: 'Best for embedding inside Articulate Storyline 360 slides as an interactive Web Object.',
     details: [
-      'Self-contained package with index.html, AT&T fonts, and assets folder formatted for Storyline 360.',
+      'Self-contained package with index.html, PMI fonts, and assets folder formatted for Storyline 360.',
       'Insert via Insert › Web Object in Storyline 360 and select the extracted folder.',
       'Runs locally inside Storyline preview and published SCORM/xAPI packages.'
     ]

@@ -22,7 +22,7 @@ describe('Project Schema v3 & Migration Unit Tests', () => {
 
     const project = buildProjectSchemaV3({
       name: 'Cybersecurity 101',
-      clientLabel: 'AT&T',
+      clientLabel: 'PMI',
       sectionOrder: ['sec-1'],
       sections: { 'sec-1': section1 },
       unsectionedComponentOrder: ['comp-2'],
@@ -31,7 +31,7 @@ describe('Project Schema v3 & Migration Unit Tests', () => {
 
     expect(project.schemaVersion).toBe(SCHEMA_VERSION_V3);
     expect(project.name).toBe('Cybersecurity 101');
-    expect(project.clientLabel).toBe('AT&T');
+    expect(project.clientLabel).toBe('PMI');
     expect(project.sectionOrder).toEqual(['sec-1']);
     expect(project.sections['sec-1'].name).toBe('Module 1: Intro');
     expect(project.components['comp-1'].name).toBe('Intro Accordion');
@@ -66,7 +66,7 @@ describe('Project Schema v3 & Migration Unit Tests', () => {
     const v3Migrated = migrateProjectToV3(legacyV2);
     expect(v3Migrated.schemaVersion).toBe(3);
     expect(v3Migrated.name).toBe('Legacy Telecom Basics');
-    expect(v3Migrated.clientLabel).toBe('AT&T');
+    expect(v3Migrated.clientLabel).toBe('PMI');
     expect(v3Migrated.unsectionedComponentOrder.length).toBe(1);
 
     const mainCompId = v3Migrated.unsectionedComponentOrder[0];

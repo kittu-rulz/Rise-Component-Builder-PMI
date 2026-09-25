@@ -136,7 +136,7 @@ describe('Optional Context Band', () => {
 });
 
 describe('Responsive Accordion reference integration', () => {
-  test('accordion CSS defines AT&T cyan active indicators, 44px min touch targets, and focus-visible', () => {
+  test('accordion CSS defines PMI cyan active indicators, 44px min touch targets, and focus-visible', () => {
     const html = compileComponent('accordion');
     expect(html).toContain('.accordion-item.active {');
     expect(html).toContain('border-left: 4px solid var(--pmi-aqua');

@@ -1,5 +1,5 @@
 /**
- * Rise Component Builder AT&T — Project Overview & Multi-Component Workspace Controller
+ * Rise Component Builder PMI — Project Overview & Multi-Component Workspace Controller
  * Manages course sections, component instances, editorial lifecycle, contextual inspector,
  * live component canvas, component drawer, and focus editor continuity.
  */
@@ -382,7 +382,7 @@ export class ProjectOverviewView {
               <button type="button" class="workspace-banner-select-target" data-action="select-node" data-node-type="course" aria-label="Select Course Overview" aria-pressed="${this.state.selectedType === 'course'}">
                 <div class="workspace-banner-info">
                   <div class="workspace-banner-tags">
-                    <span class="project-client-badge">${escapeHTML(project.clientLabel || 'AT&T')}</span>
+                    <span class="project-client-badge">${escapeHTML(project.clientLabel || 'PMI')}</span>
                   </div>
                   <h1 class="workspace-title">
                     <span>${escapeHTML(project.name)}</span>
@@ -1070,7 +1070,7 @@ export class ProjectOverviewView {
           <div class="modal-header">
             <div>
               <h2 id="picker-modal-title" class="modal-title">Component Library</h2>
-              <p class="modal-subtitle">Pick from 26 AT&amp;T brand-aligned interactive blocks.</p>
+              <p class="modal-subtitle">Pick from 26 PMI brand-aligned interactive blocks.</p>
             </div>
             <button id="picker-close-btn" class="project-menu-btn" aria-label="Close component library" type="button">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>

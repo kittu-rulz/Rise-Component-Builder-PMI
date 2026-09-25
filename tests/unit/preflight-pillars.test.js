@@ -3,7 +3,7 @@ import { collectSyncIssues, summarizePreflight } from '../../js/validation.js';
 import { COMPONENT_REGISTRY, getComponentById, getDefaultConfig } from '../../js/component-registry.js';
 import { applyThemeToConfig, getBuiltInTheme, DEFAULT_THEME_ID } from '../../js/themes.js';
 
-describe('AT&T Compliance Preflight & Export Flow (Phase 6)', () => {
+describe('PMI Compliance Preflight & Export Flow (Phase 6)', () => {
   const theme = getBuiltInTheme(DEFAULT_THEME_ID);
 
   function buildContext(componentId, overrides = {}) {

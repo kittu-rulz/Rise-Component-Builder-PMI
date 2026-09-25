@@ -1,6 +1,6 @@
 /**
  * @file migration.js
- * Rise Component Builder AT&T — Backward-Compatible Project Migration
+ * Rise Component Builder PMI — Backward-Compatible Project Migration
  * Non-destructively migrates legacy v1/v2 single-component records, early v3 structures,
  * and aliased component types to current Schema v3 standard.
  */
@@ -68,7 +68,7 @@ export function migrateProject(rawProject) {
       const migratedV3 = buildProjectSchemaV3({
         id: raw.id,
         name: raw.name || 'Untitled Course',
-        clientLabel: raw.clientLabel || 'AT&T',
+        clientLabel: raw.clientLabel || 'PMI',
         description: raw.description || '',
         createdAt: raw.createdAt,
         updatedAt: raw.updatedAt,
@@ -116,7 +116,7 @@ export function migrateProject(rawProject) {
     const migrated = buildProjectSchemaV3({
       id: raw.id,
       name: raw.name || 'Migrated Course',
-      clientLabel: raw.clientLabel || 'AT&T',
+      clientLabel: raw.clientLabel || 'PMI',
       description: raw.description || 'Migrated from standalone component project.',
       createdAt: raw.createdAt,
       updatedAt: raw.updatedAt || new Date().toISOString(),

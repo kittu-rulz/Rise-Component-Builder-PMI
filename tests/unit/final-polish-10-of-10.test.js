@@ -19,7 +19,7 @@ import { buildProjectSchemaV3, createSection, createComponentInstance } from '..
 import { memoryLocalStorage } from '../fixtures/index.js';
 import { saveProject, loadFavorites } from '../../js/storage.js';
 
-describe('Rise Component Builder AT&T — 10/10 Final Polish Suite', () => {
+describe('Rise Component Builder PMI — 10/10 Final Polish Suite', () => {
   let container;
   let modalRoot;
 
@@ -326,8 +326,8 @@ describe('Rise Component Builder AT&T — 10/10 Final Polish Suite', () => {
       dash.mount();
 
       const newProj = dash.createNewProjectFromTemplate({
-        name: 'AT&T 5G Starter',
-        client: 'AT&T',
+        name: 'PMI 5G Starter',
+        client: 'PMI',
         desc: 'Standard 3-Module Starter',
         template: 'standard'
       });

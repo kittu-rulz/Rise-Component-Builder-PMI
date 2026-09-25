@@ -1,5 +1,5 @@
 /**
- * Rise Component Builder AT&T — Real Full-Course Sequential Preview Controller
+ * Rise Component Builder PMI — Real Full-Course Sequential Preview Controller
  * Compiles and renders real authored components in sequence using the canonical preview compiler.
  */
 

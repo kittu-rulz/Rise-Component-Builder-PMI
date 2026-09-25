@@ -147,8 +147,8 @@ export function generateCSS() {
       justify-content: center;
     }
     .tabs-toolbar-btn[aria-pressed="true"] {
-      /* Cobalt (--primary), not AT&T Blue: this is the pressed/active state of a
-          clickable toggle button, which must use the Cobalt clickable treatment. */
+      /* Violet (--primary), not Aqua: this is the pressed/active state of a
+          clickable toggle button, which must use the Violet clickable treatment. */
       border-color: var(--primary);
       box-shadow: 0 0 0 1px var(--primary) inset;
     }
@@ -224,9 +224,9 @@ export function generateCSS() {
     .tab-btn {
       /* Complete capsule (full var(--button-radius)), not an underline tab —
           capsule shapes are reserved for clickable elements and must be a whole
-          pill, never a partial rounding. Cobalt outline at rest, filled Cobalt
+          pill, never a partial rounding. Violet outline at rest, filled Violet
           when active/selected: every tab is clickable at all times, not only
-          once selected, so it carries the Cobalt treatment throughout. */
+          once selected, so it carries the Violet treatment throughout. */
       display: inline-flex;
       align-items: center;
       gap: 6px;

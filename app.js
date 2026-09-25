@@ -1896,7 +1896,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       });
     }
 
-    // Colors, fonts, border radius, and shadow are permanently locked to the single AT&T
+    // Colors, fonts, border radius, and shadow are permanently locked to the single PMI
     // theme (js/themes.js) — no per-component override UI exists in this build.
 
     selectIconStyle.addEventListener('change', (e) => {
@@ -2851,7 +2851,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     appState.settings = { ...project.settings };
     // This build is locked to a single theme (js/themes.js) — always re-resolve the
     // current live theme rather than trust a project's stored snapshot, so a brand
-    // color update (e.g. the AT&T palette) reaches every previously-saved project
+    // color update (e.g. the PMI palette) reaches every previously-saved project
     // and draft, not just newly-created ones.
     appState.activeTheme = getBuiltInTheme(DEFAULT_THEME_ID);
     appState.activeThemeId = appState.activeTheme.id;
@@ -3982,7 +3982,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         </ul>
       </div>`).join('');
 
-    const statusBanner = `<div class="preflight-summary-line" style="font-size: 13px; font-weight: 600; margin-bottom: 12px; color: ${summary.blocking.length ? 'var(--danger)' : 'var(--text-main)'};">AT&T Compliance Status: ${passingCount}/4 Pillars Verified${summary.blocking.length ? ' · Fix blocking errors before export' : ''}</div>`;
+    const statusBanner = `<div class="preflight-summary-line" style="font-size: 13px; font-weight: 600; margin-bottom: 12px; color: ${summary.blocking.length ? 'var(--danger)' : 'var(--text-main)'};">PMI Compliance Status: ${passingCount}/4 Pillars Verified${summary.blocking.length ? ' · Fix blocking errors before export' : ''}</div>`;
 
     container.innerHTML = statusBanner + pillarsHTML + (sectionsHTML || '<div class="preflight-empty">No issues found — this component is clean and ready for Rise.</div>');
     container.querySelectorAll('.preflight-issue-jump').forEach(button => {
