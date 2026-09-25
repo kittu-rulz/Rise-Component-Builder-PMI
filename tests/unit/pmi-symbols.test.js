@@ -132,3 +132,62 @@ describe('header accent setting', () => {
     expect(html).not.toContain('class="block-symbol"');
   });
 });
+
+describe('media holding shapes (images cropped into a PMI symbol)', () => {
+  const imageMedia = extra => ({
+    type: 'image', sourceType: 'url', src: 'https://learn.example.org/photo.jpg', alt: 'A trainer at a whiteboard',
+    placement: 'above', aspectRatio: 'original', fit: 'contain', ...extra
+  });
+  const accordionWith = media => compile('accordion', { items: [{ title: 'One', content: 'Body', media }] });
+
+  test('a shaped image gets the mask, a square crop, and unchanged alt text and caption', async () => {
+    const html = accordionWith(imageMedia({ holdingShape: 'circles', caption: 'Figure 1' }));
+    expect(html).toMatch(/<figure class="item-media-figure [^"]*item-media-shaped"/);
+    expect(html).toContain('--item-media-mask: url(');
+    expect(html).toContain('alt="A trainer at a whiteboard"');
+    expect(html).toContain('Figure 1');
+    expect(html).toMatch(/\.item-media-shaped \.item-media-img\s*{[^}]*aspect-ratio: 1 \/ 1/);
+    expect(html).toMatch(/\.item-media-shaped \.item-media-img\s*{[^}]*mask: var\(--item-media-mask\)/);
+    expect(html).toContain('@media (forced-colors: active)');
+  });
+
+  test('the mask value is safe inside a double-quoted style attribute', async () => {
+    const { symbolMaskCssUrl, PMI_SYMBOL_KEYS } = await import('../../js/pmi-symbols.js');
+    for (const key of PMI_SYMBOL_KEYS) {
+      const css = symbolMaskCssUrl(key);
+      expect(css, key).toMatch(/^url\('data:image\/svg\+xml,[^'"]+'\)$/);
+    }
+    expect(symbolMaskCssUrl('nope')).toBe('');
+  });
+
+  test('without a shape, output is unchanged: no shaped class, no mask variable', () => {
+    for (const media of [imageMedia({}), imageMedia({ holdingShape: 'none' }), imageMedia({ holdingShape: 'bogus' })]) {
+      const html = accordionWith(media);
+      expect(html).not.toMatch(/<figure class="item-media-figure [^"]*item-media-shaped"/);
+      expect(html).not.toContain('--item-media-mask: url(');
+    }
+  });
+
+  test('only images can be shaped, and the value is validated when sanitising', () => {
+    const clean = items => sanitizePreviewConfig({ items }, 'accordion').items[0].media;
+    expect(clean([{ title: 'a', media: imageMedia({ holdingShape: 'pentagram' }) }]).holdingShape).toBe('pentagram');
+    expect(clean([{ title: 'a', media: imageMedia({ holdingShape: '"><script>' }) }]).holdingShape).toBe('none');
+    const audio = accordionWith({ type: 'audio', sourceType: 'url', src: 'https://learn.example.org/a.mp3', holdingShape: 'circles', placement: 'above' });
+    expect(audio).not.toMatch(/<figure class="item-media-figure [^"]*item-media-shaped"/);
+    expect(audio).not.toContain('--item-media-mask: url(');
+  });
+
+  test('preflight reminds authors to check the subject, as a recommendation only', async () => {
+    const { runPreflight, SEVERITY } = await import('../../js/validation.js');
+    const entry = getComponentById(COMPONENT_REGISTRY, 'accordion');
+    const config = { ...getDefaultConfig(entry), blockTitle: 'T', blockHeadline: 'H', items: [{ title: 'One', content: 'Body', media: imageMedia({ holdingShape: 'half-circles' }) }] };
+    const issues = await runPreflight({ componentId: 'accordion', schema: entry.editorSchema, config, theme, componentOverrides: {}, settings: {} });
+    const found = issues.find(i => i.ruleId === 'media-holding-shape-check');
+    expect(found).toBeDefined();
+    expect(found.severity).toBe(SEVERITY.RECOMMENDATION);
+    expect(found.explanation).toMatch(/Half Circles/);
+    expect(found.explanation).toMatch(/subject/);
+    const none = await runPreflight({ componentId: 'accordion', schema: entry.editorSchema, config: { ...config, items: [{ title: 'One', content: 'Body', media: imageMedia({ holdingShape: 'none' }) }] }, theme, componentOverrides: {}, settings: {} });
+    expect(none.some(i => i.ruleId === 'media-holding-shape-check')).toBe(false);
+  });
+});

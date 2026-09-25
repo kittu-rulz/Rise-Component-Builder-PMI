@@ -554,6 +554,7 @@ export function sanitizePreviewConfig(config, componentId) {
       if (typeof safeMedia.captionsSrc === 'string') {
         safeMedia.captionsSrc = sanitizeURL(safeMedia.captionsSrc, { allowBlob: true, allowRelative: true });
       }
+      if (safeMedia.holdingShape !== undefined) safeMedia.holdingShape = isSymbolKey(safeMedia.holdingShape) ? safeMedia.holdingShape : 'none';
       if (safeMedia.alt !== undefined) safeMedia.alt = String(safeMedia.alt || '');
       if (safeMedia.caption !== undefined) safeMedia.caption = String(safeMedia.caption || '');
       if (safeMedia.transcript !== undefined) safeMedia.transcript = sanitizeRichText(safeMedia.transcript);

@@ -1,4 +1,5 @@
 import { escapeAttribute, escapeHTML, sanitizeRichText } from './utilities.js';
+import { PMI_SYMBOL_DATA, PMI_SYMBOL_KEYS, SYMBOL_PHOTO_COVERAGE, isSymbolKey, symbolMaskCssUrl } from './pmi-symbols.js';
 import { isMediaReference, MEDIA_LIMITS } from './media.js';
 import { createMediaUploadControl } from './media-upload.js';
 import { mediaStore, peekMediaObjectURL } from './media-storage.js';
@@ -25,6 +26,7 @@ import { mediaStore, peekMediaObjectURL } from './media-storage.js';
  * @property {ItemMediaPlacement} [placement]
  * @property {ItemMediaAspectRatio} [aspectRatio]
  * @property {ItemMediaFit} [fit]
+ * @property {string} [holdingShape] PMI symbol key the image is cropped to, or 'none'
  * @property {string} [focalPosition]
  * @property {string} [posterSrc]
  * @property {string} [posterMediaId]
@@ -87,6 +89,7 @@ export function createEmptyItemMedia(type) {
         placement: 'above',
         aspectRatio: 'original',
         fit: 'contain',
+        holdingShape: 'none',
         focalPosition: 'center center',
         posterSrc: '',
         posterMediaId: '',
@@ -200,6 +203,8 @@ export function normalizeItemMedia(item) {
     placement,
     aspectRatio,
     fit,
+    // Only images carry a holding shape, so other types keep their exact previous shape.
+    ...(type === 'image' ? { holdingShape: isSymbolKey(raw.holdingShape) ? raw.holdingShape : 'none' } : {}),
     focalPosition: typeof raw.focalPosition === 'string' ? raw.focalPosition : 'center center',
     posterSrc,
     posterMediaId,
@@ -529,7 +534,30 @@ export function createItemMediaControl({ item, index, onChange, limits = MEDIA_L
       });
       fitWrapper.append(fitLabel, fitSelect);
 
-      layoutRow.append(placementWrapper, ratioWrapper, fitWrapper);
+      // PMI holding shape
+      const shapeWrapper = document.createElement('div');
+      shapeWrapper.className = 'input-wrapper';
+      const shapeLabel = document.createElement('label');
+      shapeLabel.textContent = 'PMI Holding Shape';
+      const shapeSelect = document.createElement('select');
+      shapeSelect.setAttribute('aria-label', `PMI Holding Shape for ${contextLabel}`);
+      [{ value: 'none', label: 'None (full image)' }, ...PMI_SYMBOL_KEYS.map(key => ({ value: key, label: `${PMI_SYMBOL_DATA[key].label} (${SYMBOL_PHOTO_COVERAGE[key]})` }))].forEach(opt => {
+        const el = document.createElement('option');
+        el.value = opt.value;
+        el.textContent = opt.label;
+        if ((media.holdingShape || 'none') === opt.value) el.selected = true;
+        shapeSelect.appendChild(el);
+      });
+      shapeSelect.addEventListener('change', () => {
+        media.holdingShape = shapeSelect.value;
+        onChange();
+      });
+      const shapeHint = document.createElement('p');
+      shapeHint.className = 'field-hint';
+      shapeHint.textContent = 'Crops the image into a PMI symbol. Pentagram and Anvil keep most of a photo; the others have cut-outs that can hide the subject, so check it stays visible.';
+      shapeWrapper.append(shapeLabel, shapeSelect, shapeHint);
+
+      layoutRow.append(placementWrapper, ratioWrapper, fitWrapper, shapeWrapper);
       subControls.appendChild(layoutRow);
     }
 
@@ -841,8 +869,10 @@ export function renderItemMediaElement(media, instanceId, itemIndex) {
   let mediaMarkup = '';
 
   if (normalized.type === 'image') {
+    const holdingShape = normalized.holdingShape || 'none';
+    const shaped = holdingShape !== 'none';
     mediaMarkup = `
-      <figure class="item-media-figure item-media-aspect-${ratio.replace(':', '-')}" style="--item-media-fit: ${fit};">
+      <figure class="item-media-figure item-media-aspect-${ratio.replace(':', '-')}${shaped ? ' item-media-shaped' : ''}" style="--item-media-fit: ${fit};${shaped ? ` --item-media-mask: ${symbolMaskCssUrl(holdingShape)};` : ''}">
         <img src="${src}" alt="${alt}" class="item-media-img" loading="lazy" />
         ${normalized.caption ? `<figcaption class="item-media-caption">${escapeHTML(normalized.caption)}</figcaption>` : ''}
       </figure>
@@ -987,6 +1017,21 @@ export function getItemMediaCSS() {
       max-width: 100%;
       object-fit: var(--item-media-fit, contain);
       object-position: center center;
+    }
+
+    /* PMI holding shape: the image is cropped to one of PMI's symbols (a square crop, masked). The
+       mask only affects the picture; alt text, caption and layout are unchanged. */
+    .item-media-shaped .item-media-img {
+      width: min(100%, 320px);
+      height: auto;
+      aspect-ratio: 1 / 1;
+      margin-inline: auto;
+      object-fit: cover;
+      -webkit-mask: var(--item-media-mask) center / contain no-repeat;
+      mask: var(--item-media-mask) center / contain no-repeat;
+    }
+    @media (forced-colors: active) {
+      .item-media-shaped .item-media-img { -webkit-mask: none; mask: none; }
     }
 
     .item-media-aspect-16-9 {

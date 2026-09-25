@@ -107,6 +107,32 @@ export function symbolPatternSvg(options = {}) {
   return `<svg class="pmi-symbol-pattern" viewBox="0 0 ${layout.width.toFixed(2)} ${layout.height.toFixed(2)}" width="${layout.width.toFixed(0)}" height="${layout.height.toFixed(0)}" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">${groups}</svg>`;
 }
 
+/**
+ * A symbol as a CSS `url('data:image/svg+xml,…')` value for `mask-image`, so a photo can be cropped
+ * to the shape (PMI: symbols may be "holding shapes" for photography). Single-quoted and with the
+ * quote escaped, so it is safe inside a double-quoted style attribute.
+ */
+export function symbolMaskCssUrl(key) {
+  if (!isSymbolKey(key)) return '';
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${PMI_SYMBOL_VIEWBOX}"><g fill="#000">${pathMarkup(key)}</g></svg>`;
+  return `url('data:image/svg+xml,${encodeURIComponent(svg).replace(/'/g, '%27')}')`;
+}
+
+/**
+ * How much of a photo each symbol keeps, from looking at each one applied to an image: PMI warns
+ * that "negative spaces of some of the symbols may obscure important details".
+ */
+export const SYMBOL_PHOTO_COVERAGE = Object.freeze({
+  pentagram: 'shows most of the photo',
+  anvil: 'keeps the centre, cuts the sides',
+  circles: 'shows the photo in pieces',
+  'half-circles': 'cuts out the centre',
+  square: 'large cut-outs',
+  'four-triangles': 'large cut-outs',
+  'two-triangles-angled': 'large cut-outs',
+  'two-triangles-stacked': 'large cut-outs'
+});
+
 /** Share of a `containerWidth x containerHeight` area a pattern fills (must stay <= 75%). */
 export function symbolPatternCoverage(layout, containerWidth, containerHeight) {
   return (layout.width * layout.height) / (containerWidth * containerHeight);

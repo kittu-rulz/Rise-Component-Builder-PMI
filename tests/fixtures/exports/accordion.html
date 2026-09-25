@@ -722,6 +722,21 @@
       object-position: center center;
     }
 
+    /* PMI holding shape: the image is cropped to one of PMI's symbols (a square crop, masked). The
+       mask only affects the picture; alt text, caption and layout are unchanged. */
+    .item-media-shaped .item-media-img {
+      width: min(100%, 320px);
+      height: auto;
+      aspect-ratio: 1 / 1;
+      margin-inline: auto;
+      object-fit: cover;
+      -webkit-mask: var(--item-media-mask) center / contain no-repeat;
+      mask: var(--item-media-mask) center / contain no-repeat;
+    }
+    @media (forced-colors: active) {
+      .item-media-shaped .item-media-img { -webkit-mask: none; mask: none; }
+    }
+
     .item-media-aspect-16-9 {
       aspect-ratio: 16 / 9;
     }

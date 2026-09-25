@@ -34,6 +34,7 @@ import { isMediaReference, resolveMediaLimits, validateMediaAccessibility } from
 import { getMediaRecord } from './media-storage.js';
 import { formatItemLabel, normalizeDelimitedLines, sanitizeRichText, sanitizeURL } from './utilities.js';
 import { contrastRatio, resolveThemeTokens } from './themes.js';
+import { PMI_SYMBOL_DATA, SYMBOL_PHOTO_COVERAGE, isSymbolKey } from './pmi-symbols.js';
 import { isExportFormatCompletionCompatible } from './compatibility.js';
 import { formatExportedFileSize } from './export.js';
 
@@ -92,6 +93,7 @@ const RULE_TITLES = Object.freeze({
   'media-external-asset-dependency': 'External media URL, not an uploaded file',
   'media-insecure-http-url': 'Insecure media URL',
   'media-broken-reference': 'Uploaded media file is missing',
+  'media-holding-shape-check': 'Image is cropped to a PMI shape',
   'knowledge-no-correct-answer': 'No correct answer marked',
   'knowledge-impossible-passing': 'Knowledge check can never be passed',
   'knowledge-multiple-correct-single-allowed': 'Multiple correct answers on a single-answer question',
@@ -508,6 +510,21 @@ function mediaFields(schema) {
   return [...(schema.componentFields || []), ...(schema.itemFields || [])].filter(field => ['image', 'audio', 'video'].includes(field.type));
 }
 
+// An image cropped into a PMI symbol (a "holding shape") is a deliberate brand treatment, but some
+// shapes have cut-outs that can hide part of a photo, so authors are reminded to check the subject.
+function checkHoldingShapes(config) {
+  const issues = [];
+  (config.items || []).forEach((item, itemIndex) => {
+    const media = item?.media;
+    if (media?.type === 'image' && media.holdingShape && media.holdingShape !== 'none' && isSymbolKey(media.holdingShape)) {
+      issues.push(issue('media-holding-shape-check', SEVERITY.RECOMMENDATION, CATEGORY.MEDIA,
+        `Item ${itemIndex + 1}: the image is cropped to the “${PMI_SYMBOL_DATA[media.holdingShape].label}” shape. This shape ${SYMBOL_PHOTO_COVERAGE[media.holdingShape]}, so check the subject is still clearly visible (Pentagram and Anvil keep the most of a photo).`,
+        { itemIndex }));
+    }
+  });
+  return issues;
+}
+
 function checkMediaRules(schema, config, settings) {
   const issues = [];
   const limits = resolveMediaLimits(settings?.mediaLimitsMb);
@@ -800,6 +817,7 @@ registerValidationRule({
 registerValidationRule({ id: 'external-url-destinations', check: ({ schema, config }) => checkExternalUrlDestinations(schema, config) });
 registerValidationRule({ id: 'completion-config', check: ({ config, settings }) => checkCompletionConfig(config, settings) });
 registerValidationRule({ id: 'media-rules', check: ({ schema, config, settings }) => checkMediaRules(schema, config, settings) });
+registerValidationRule({ id: 'media-holding-shapes', check: ({ config }) => checkHoldingShapes(config) });
 registerValidationRule({
   id: 'knowledge-check-rules',
   appliesTo: ({ componentId }) => KNOWLEDGE_CHECK_COMPONENTS.has(componentId),
