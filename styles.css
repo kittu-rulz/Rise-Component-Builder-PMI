@@ -62,9 +62,10 @@
   --bg-panel: #1A0837;
   --bg-sidebar: #100522;
   --bg-toolbar: #100522;
-  /* On dark panels, the brand blue itself passes AA for text (4.86–5.94:1) — no need
-     for the light-mode CTA navy, which would nearly disappear here (1.37:1). */
-  --primary-text: #00799E;
+  /* On dark panels PMI's bright Aqua 300 carries text (about 9:1 on the dark violet). Aqua 500,
+     which is the text-safe Aqua on light surfaces, is only ~3.7-4.0:1 here, and the light-mode
+     Violet CTA colour would nearly disappear. */
+  --primary-text: #05BFE0;
   /* Dark-mode CTA fill: PMI's own darker gradient stop of #00799E (also used as the
      exported-component accent, js/themes.js) — keeps white button text readable
      (4.81:1) while still standing out against the dark app chrome. */
@@ -92,7 +93,7 @@
   --pmi-surface-sunken: #100522;
   --pmi-text: #EFEDF3;
   --pmi-text-on-dark: #FFFFFF;
-  --pmi-heading: #00799E;
+  --pmi-heading: #05BFE0;
   --pmi-heading-contrast: #FFFFFF;
   --pmi-border: #200F3B;
   --pmi-border-strong: #200F3B;
@@ -283,7 +284,7 @@ a {
 
 [data-theme="dark"] .brand-badge-pill {
   background: linear-gradient(135deg, rgba(56, 189, 248, 0.15) 0%, rgba(14, 165, 233, 0.25) 100%);
-  color: #00799E;
+  color: #05BFE0;
   border-color: rgba(56, 189, 248, 0.3);
 }
 
@@ -416,7 +417,7 @@ a {
 }
 
 [data-theme="dark"] .tubelight-nav-item:hover {
-  color: #00799E;
+  color: #05BFE0;
 }
 
 .tubelight-nav-item.is-active {
@@ -425,7 +426,7 @@ a {
 }
 
 [data-theme="dark"] .tubelight-nav-item.is-active {
-  color: #00799E;
+  color: #05BFE0;
   background: rgba(56, 189, 248, 0.12);
 }
 
@@ -700,7 +701,7 @@ a {
 [data-theme="dark"] .utility-btn:hover {
   background: rgba(51, 65, 85, 0.85);
   border-color: rgba(56, 189, 248, 0.4);
-  color: #00799E;
+  color: #05BFE0;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
 }
 
@@ -741,7 +742,7 @@ a {
 
 [data-theme="dark"] .avatar {
   background-color: #100522;
-  color: #00799E;
+  color: #05BFE0;
 }
 
 .user-status-dot {
@@ -1405,11 +1406,11 @@ a {
   color: #FFFFFF;
 }
 
-/* Aqua with BLACK text — white on #00799E is only ~3:1 and fails AA at this
-   badge's 9px size; black on #00799E is ~7:1. */
+/* Aqua 500 with WHITE text: 5.0:1, which clears AA at this badge's small size (dark text on Aqua
+   500 is only ~3.5:1). */
 .card-tier-strong-custom {
   background-color: #00799E;
-  color: #200F3B;
+  color: #FFFFFF;
 }
 
 .card-tier-enhanced-rise {
@@ -1469,7 +1470,7 @@ a {
 [data-theme="dark"] .card-rise-rec-custom-recommended {
   background-color: #100522;
   border-color: rgba(0, 121, 158, 0.35);
-  color: #00799E;
+  color: #05BFE0;
 }
 
 .card-rise-rec-conditional {
@@ -1485,7 +1486,7 @@ a {
 }
 
 [data-theme="dark"] .card-rise-rec-conditional {
-  color: #EB4D0A;
+  color: #FF610F;
 }
 
 
@@ -1672,7 +1673,7 @@ a {
 }
 
 [data-theme="dark"] .guidance-rec-conditional {
-  color: #EB4D0A;
+  color: #FF610F;
 }
 
 .guidance-rec-native-first {
@@ -3440,7 +3441,7 @@ input[type="number"]:focus::-webkit-inner-spin-button {
 }
 
 [data-theme="dark"] .media-source-badge.is-missing {
-  color: #EB4D0A;
+  color: #FF610F;
   background-color: rgba(251, 191, 36, 0.12);
   border-color: rgba(251, 191, 36, 0.3);
 }
@@ -3453,7 +3454,7 @@ input[type="number"]:focus::-webkit-inner-spin-button {
   margin-top: 4px;
 }
 
-[data-theme="dark"] .media-missing-notice { color: #EB4D0A; }
+[data-theme="dark"] .media-missing-notice { color: #FF610F; }
 
 .field-hint {
   margin: -2px 0 0;
@@ -3543,10 +3544,10 @@ input[type="number"]:focus::-webkit-inner-spin-button {
   line-height: 1.4;
   margin-top: 5px;
 }
-[data-theme="dark"] .field-warning { color: #EB4D0A; }
+[data-theme="dark"] .field-warning { color: #FF610F; }
 .field-warning:empty { display: none; }
 .has-warning > label::after { content: ' — accessibility warning'; color: #741C06; font-size: 10px; font-weight: 500; }
-[data-theme="dark"] .has-warning > label::after { color: #EB4D0A; }
+[data-theme="dark"] .has-warning > label::after { color: #FF610F; }
 
 .component-fields-card { cursor: default; }
 .component-fields-title { padding: 14px 16px 0; font-size: 13px; font-weight: 600; }
@@ -3662,7 +3663,7 @@ input[type="number"]:focus::-webkit-inner-spin-button {
 .compat-badge-experimental { background-color: rgba(109, 40, 217, 0.14); color: #4F17A8; }
 [data-theme="dark"] .compat-badge-experimental { color: #CC9BFC; }
 .compat-badge-fallback { background-color: rgba(245, 158, 11, 0.16); color: #741C06; }
-[data-theme="dark"] .compat-badge-fallback { color: #EB4D0A; }
+[data-theme="dark"] .compat-badge-fallback { color: #FF610F; }
 .compat-badge-unsupported { background-color: rgba(239, 68, 68, 0.14); color: var(--danger); }
 
 .compat-report-summary {
@@ -3922,7 +3923,7 @@ input[type="number"]:focus::-webkit-inner-spin-button {
 }
 
 .copy-btn:focus-visible {
-  outline: 3px solid #EB4D0A;
+  outline: 3px solid #D5340B;
   outline-offset: 2px;
 }
 
@@ -4261,7 +4262,7 @@ input[type="number"]:focus::-webkit-inner-spin-button {
 }
 
 [data-theme="dark"] .project-status.is-unsaved {
-  color: #EB4D0A;
+  color: #FF610F;
 }
 
 .project-status.is-saving .status-dot {
@@ -5687,3 +5688,8 @@ input[type="number"]:focus::-webkit-inner-spin-button {
     color: HighlightText;
   }
 }
+
+/* The preview area stays white in dark mode (it holds the white component canvas), so its empty
+   state needs dark text rather than the light dark-mode text colour. */
+[data-theme="dark"] .preview-content-area .empty-state-title { color: #200F3B; }
+[data-theme="dark"] .preview-content-area .empty-state-desc { color: #574E69; }

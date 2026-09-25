@@ -470,7 +470,7 @@ export class ProjectQaView {
       case 'error':
         return 'background: rgba(216, 67, 21, 0.05); border-left: 3px solid #C41E08;';
       case 'warning':
-        return 'background: rgba(245, 127, 23, 0.05); border-left: 3px solid #EB4D0A;';
+        return 'background: rgba(245, 127, 23, 0.05); border-left: 3px solid #D5340B;';
       case 'recommendation':
         return 'background: rgba(2, 119, 189, 0.05); border-left: 3px solid #00799E;';
       default:
@@ -485,7 +485,7 @@ export class ProjectQaView {
       case 'error':
         return 'background: #FEF7F3; color: #C41E08; border: 1px solid #FFBC9C;';
       case 'warning':
-        return 'background: #FEF7F3; color: #EB4D0A; border: 1px solid #FFBC9C;';
+        return 'background: #FEF7F3; color: #D5340B; border: 1px solid #FFBC9C;';
       case 'recommendation':
         return 'background: #EEFAFA; color: #00799E; border: 1px solid #C8F0F9;';
       default:
