@@ -1012,7 +1012,9 @@ export function getItemMediaCSS() {
       object-fit: var(--item-media-fit, contain);
     }
 
+    /* Captions and labels use GT Pressura Mono, PMI's secondary face. */
     .item-media-caption {
+      font-family: var(--pmi-font-mono, "GT Pressura Mono", "Courier New", monospace);
       font-size: 11px;
       color: var(--text-muted, #574E69);
       padding: 6px 8px;
@@ -1030,6 +1032,7 @@ export function getItemMediaCSS() {
     }
 
     .item-media-audio-label {
+      font-family: var(--pmi-font-mono, "GT Pressura Mono", "Courier New", monospace);
       font-size: 12px;
       font-weight: 600;
       color: var(--text-main, #200F3B);

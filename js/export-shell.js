@@ -61,10 +61,12 @@ export const BASE_RESET_CSS = `
       text-align: left;
     }
 
+    /* Eyebrow: GT Pressura Mono (PMI's secondary face for subtitles, captions and labels), all caps. */
     .block-label {
+      font-family: var(--pmi-font-mono, "GT Pressura Mono", "Courier New", monospace);
       font-size: 19px;
       font-weight: 700;
-      letter-spacing: 0.6px;
+      letter-spacing: 0.075em;
       color: var(--accent);
       text-transform: uppercase;
       margin-bottom: 4px;
@@ -96,6 +98,7 @@ export const BASE_RESET_CSS = `
     }
 
     .block-header.header-editorial .block-label {
+      font-family: var(--pmi-font-mono, "GT Pressura Mono", "Courier New", monospace);
       font-size: var(--pmi-fs-eyebrow, 0.75rem);
       font-weight: var(--pmi-w-bold, 700);
       letter-spacing: var(--pmi-ls-eyebrow, 0.08em);
