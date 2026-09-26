@@ -9,6 +9,7 @@ const componentsDir = join(rootDir, 'components');
 
 const APPROVED_BRAND_HEXES = new Set([
   '#00799E', '#4F17A8', '#68D8ED', '#197F10', '#F7F4EF',
+  '#808080', '#05BFE0', '#FF610F', // soft gray, Aqua 300, Tangerine 300: decorative tokens in design/pmi-tokens.css
   '#E7E4DC', '#CFCBC2', '#200F3B', '#FFFFFF', '#00799E',
   '#68D8ED', '#371075', '#200F3B', '#FFFFFF', '#200F3B'
 ]);
