@@ -44,7 +44,7 @@ Inspect rich component previews, capability breakdowns, native Rise comparison a
 - **Undo / Redo Manager**: 50-step bounded history stack with `Ctrl+Z` (Undo), `Ctrl+Y` / `Ctrl+Shift+Z` (Redo), and debounced input coalescing.
 
 ### 6. Authentic Workplace Starter Presets
-Production-ready workplace scenarios (Cybersecurity Incident Response, CSAT Target Milestone, CPNI Customer Privacy Guidelines, SLA Uptime Compliance, 5-Step Operational Coaching Framework) that instantly populate components with realistic domain content.
+Realistic project-management scenarios (project kickoff, delivery approaches, risk and scope handling, stakeholder conversations, status reporting, retrospectives) that instantly populate components with sample content to adapt. They are illustrative, not PMI policy.
 
 ### 7. Rise Canvas & 4-Pillars Preflight Widget
 - **Rise Canvas**: Simulated 960px Rise 360 block container with multi-viewport testing (`Desktop`, `Tablet 768px`, `Mobile 430px`, `Mobile 375px`, `Full Popout`).

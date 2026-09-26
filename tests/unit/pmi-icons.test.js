@@ -177,7 +177,7 @@ describe('Component Integration with Official PMI Icons', () => {
   test('button-list uses open-new icon for external links', () => {
     const html = buttonList.generateHTML({
       items: [
-        { title: 'External Resource', content: 'https://att.com' }
+        { title: 'External Resource', content: 'https://example.com' }
       ]
     }, instanceId);
     expect(html).toContain('class="link-button-item"');

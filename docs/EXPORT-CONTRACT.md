@@ -32,7 +32,7 @@ This document specifies the guarantee that keeps the live preview and every expo
 
 Every one of the 21 catalog components is a real module in `components/*.js` implementing the full contract (`docs/ARCHITECTURE.md` §1). `generateIframeContent()` (`js/preview.js`) is a thin orchestrator over the following stages — nothing else in the codebase assembles a compiled document:
 
-1. **Shared design tokens** — `js/themes.js` resolves the active theme + per-component overrides into token values; `generateIframeContent()` turns them into the `:root { --primary: ...; }` CSS custom properties every component's CSS references. The same `:root` block also carries the fixed **AT&T brand token layer** (`--pmi-*`, from `js/pmi-tokens.js` ← `design/pmi-tokens.css`) — present in every artifact so component CSS can build on it; the theme `--primary`/`--accent`/… layer above it is still the one components actually consume today. Kept in sync with the app's own copy by `tests/unit/pmi-tokens.test.js`.
+1. **Shared design tokens** — `js/themes.js` resolves the active theme + per-component overrides into token values; `generateIframeContent()` turns them into the `:root { --primary: ...; }` CSS custom properties every component's CSS references. The same `:root` block also carries the fixed **PMI brand token layer** (`--pmi-*`, from `js/pmi-tokens.js` ← `design/pmi-tokens.css`) — present in every artifact so component CSS can build on it; the theme `--primary`/`--accent`/… layer above it is still the one components actually consume today. Kept in sync with the app's own copy by `tests/unit/pmi-tokens.test.js`.
 2. **Shared export shell** (`js/export-shell.js`) — owns the outer document shape: the `<!DOCTYPE html>`/`<head>`/CSP meta/fonts link, the `<style>`/`<script>` wrapper, the block header (title/headline/description), and the completion-tracker widget markup (`renderShell`, `renderCompletionTrackerHTML`).
 3. **Shared accessibility utilities** (`js/export-shell.js#renderSharedA11yScript`) — the `announce`/`updateProgress`/`updateTrackerComplete`/`setProgressAccessibility` functions every component calls into (`viewedItems.add(idx); updateProgress();`), plus the fixed `.sr-only`/focus-visible/`prefers-reduced-motion`/`forced-colors` CSS (`SHARED_A11Y_CSS`) and the reset/block-chrome CSS (`BASE_RESET_CSS`).
 4. **Component-specific markup** — `entry.generateHTML(config, instanceId)`.
@@ -72,6 +72,8 @@ Every one of the 21 catalog components is a real module in `components/*.js` imp
 The exported file size (`getExportedFileSize`/`formatExportedFileSize`, `js/export.js`) is computed and shown in the export modal (`#export-file-size`) before the author downloads — Requirement 13.
 
 ## Export size baseline (P04, 2026-08-14)
+
+> **PMI edition:** the measurements below were taken on the AT&T build (five AT&T Aleck Sans weights) and are kept as history. This edition embeds six PMI cuts (Aeonik 400/400 italic/500/700, GT Pressura Mono 400/700), which `tests/unit/export-fixtures.test.js` holds under a 240 KB font ceiling.
 
 Every compiled export embeds the same six PMI font cuts (Aeonik Regular/Italic/Medium/Bold and GT Pressura Mono Regular/Bold) inline as base64 — before P04 this was the single largest fixed cost in every export by a wide margin, dwarfing a typical component's own markup.
 

@@ -16,7 +16,7 @@ A single-track `<audio>` block (`components/audio-player.js`, `id: 'audio-player
 - **Resume and local progress** — `localStorage`-backed position/furthest-position/completion tracking, offering "Resume from M:SS" / "Start Over" when there's meaningful prior progress; entirely optional (`progressPersistence`) and never a substitute for or claim about Rise/LMS/SCORM completion.
 - **Key takeaways** — an optional list, either always visible or revealed only once the component's own internal completion state is reached.
 - **Three presentation modes** — Compact (short clips/pronunciations), Learning (default — the full feature set), Podcast (longer-form, larger artwork/eyebrow/description) — one shared `generateHTML`/`generateCSS`/`generateJS`, gated by `config.presentationMode`, not three separate implementations.
-- Everything the component already had: title, uploaded/external audio, optional artwork, play/pause, seek, elapsed/total duration, playback speed (1x/1.25x/1.5x/2x), mute, AT&T theme tokens, responsive layout, keyboard accessibility, and the same export pipeline every component already goes through (`docs/EXPORT-CONTRACT.md`) — none of it removed or behaviorally changed.
+- Everything the component already had: title, uploaded/external audio, optional artwork, play/pause, seek, elapsed/total duration, playback speed (1x/1.25x/1.5x/2x), mute, PMI theme tokens, responsive layout, keyboard accessibility, and the same export pipeline every component already goes through (`docs/EXPORT-CONTRACT.md`) — none of it removed or behaviorally changed.
 
 ## Data model
 

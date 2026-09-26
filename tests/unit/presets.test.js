@@ -33,10 +33,10 @@ describe('Workplace Starter Presets', () => {
   });
 
   test('getPresetById finds specific preset or null', () => {
-    const preset = getPresetById('cybersecurity-incident-response');
+    const preset = getPresetById('project-kickoff-essentials');
     expect(preset).toBeDefined();
     expect(preset.componentId).toBe('accordion');
-    expect(preset.domain).toBe('Cybersecurity');
+    expect(preset.domain).toBe('Project Kickoff');
 
     expect(getPresetById('invalid-preset-id')).toBeNull();
   });

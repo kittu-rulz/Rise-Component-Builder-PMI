@@ -67,15 +67,15 @@ describe('sanitizeRichText with inline formatting', () => {
   });
 
   test('preserves valid hyperlinks with target and rel attributes', () => {
-    const input = '<a href="https://www.att.com/portal" target="_blank" rel="noopener noreferrer">PMI Portal</a>';
+    const input = '<a href="https://www.example.com/portal" target="_blank" rel="noopener noreferrer">PMI Portal</a>';
     const output = sanitizeRichText(input);
-    expect(output).toContain('<a href="https://www.att.com/portal" target="_blank" rel="noopener noreferrer">PMI Portal</a>');
+    expect(output).toContain('<a href="https://www.example.com/portal" target="_blank" rel="noopener noreferrer">PMI Portal</a>');
   });
 
   test('preserves mailto and tel hyperlinks safely', () => {
-    const input = '<a href="mailto:support@att.com">Email Us</a> <a href="tel:+18001234567">Call Us</a>';
+    const input = '<a href="mailto:support@example.com">Email Us</a> <a href="tel:+18001234567">Call Us</a>';
     const output = sanitizeRichText(input);
-    expect(output).toContain('<a href="mailto:support@att.com">Email Us</a>');
+    expect(output).toContain('<a href="mailto:support@example.com">Email Us</a>');
     expect(output).toContain('<a href="tel:+18001234567">Call Us</a>');
   });
 
