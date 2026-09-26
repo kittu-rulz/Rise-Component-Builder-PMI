@@ -561,6 +561,9 @@ a {
 }
 
 @media (max-width: 900px) {
+  /* The wordmark title would run under the centred navigation at this width; the logo stays. */
+  .brand-divider,
+  .logo-text { display: none; }
   #btn-duplicate  { display: none; }
   .logo-text h1   { display: none; }
   .version-tag    { display: none; }
