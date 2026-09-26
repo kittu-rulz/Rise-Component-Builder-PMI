@@ -22,8 +22,8 @@ export const category = 'interactive';
 
 /** @type {ComparisonSliderConfig} */
 export const defaultConfig = {
-  title: '5G Infrastructure Modernization',
-  content: 'Drag the slider handle or use the arrow keys to compare network capabilities before and after fiber modernization.',
+  title: 'Status Report Makeover',
+  content: 'Drag the slider handle or use the arrow keys to compare a project status report before and after it was redesigned for stakeholders.',
   initialPosition: 50,
   orientation: 'horizontal',
   aspectRatio: '16/9',
@@ -34,10 +34,10 @@ export const defaultConfig = {
     {
       beforeImage: '',
       afterImage: '',
-      beforeLabel: 'Before (Legacy Copper)',
-      afterLabel: 'After (Fiber Optic 5G)',
-      beforeAltText: 'Legacy copper wire network diagram with bandwidth constraints',
-      afterAltText: 'Modern ultra-fast fiber optic 5G infrastructure diagram',
+      beforeLabel: 'Before (Task List)',
+      afterLabel: 'After (Outcome Summary)',
+      beforeAltText: 'A status report listing dozens of tasks with no priorities',
+      afterAltText: 'A one-page status report showing health, top risks and decisions needed',
       imageFit: 'cover'
     }
   ]
@@ -76,7 +76,7 @@ function renderSchematicAfterSvg() {
     <circle cx="510" cy="225" r="28" fill="var(--pmi-aqua, #00799E)"/>
     <rect x="560" y="200" width="90" height="12" rx="6" fill="var(--primary, #4F17A8)"/>
     <rect x="560" y="225" width="60" height="10" rx="5" fill="var(--pmi-aqua, #00799E)"/>
-    <text x="400" y="235" font-family="var(--pmi-font-sans, sans-serif)" font-size="20" font-weight="700" fill="var(--primary, #4F17A8)" text-anchor="middle">Upgraded 5G Fiber Core</text>
+    <text x="400" y="235" font-family="var(--pmi-font-sans, sans-serif)" font-size="20" font-weight="700" fill="var(--primary, #4F17A8)" text-anchor="middle">One-Page Outcome Summary</text>
   </svg>`;
 }
 

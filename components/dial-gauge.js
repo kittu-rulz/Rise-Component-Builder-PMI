@@ -7,7 +7,7 @@ import { getPmiIconSvg } from '../js/pmi-icons.js';
  * @typedef {Object} DialGaugeConfig
  * @property {string} [title] - Header title
  * @property {string} [content] - Explanatory caption / instructions
- * @property {string} [unit] - Metric unit (e.g., Mbps, ms, %, Gbps)
+ * @property {string} [unit] - Metric unit (e.g., hrs, days, %, pts)
  * @property {number} [minValue] - Minimum scale value
  * @property {number} [maxValue] - Maximum scale value
  * @property {number} [initialValue] - Starting dial value
@@ -21,37 +21,37 @@ export const category = 'interactive';
 
 /** @type {DialGaugeConfig} */
 export const defaultConfig = {
-  title: '5G Network Throughput & Latency Explorer',
-  content: 'Adjust the metric dial or select a scenario below to explore operational characteristics across network operating tiers.',
-  unit: 'Mbps',
+  title: 'Work Package Effort Explorer',
+  content: 'Adjust the dial or select a scenario below to see how planning needs change as the effort in a work package grows.',
+  unit: 'hrs',
   minValue: 0,
   maxValue: 1000,
   initialValue: 450,
   step: 10,
   items: [
     {
-      title: 'Legacy Wireless Tier',
+      title: 'Small Task',
       rangeMin: 0,
       rangeMax: 100,
-      badgeLabel: 'Basic Throughput',
+      badgeLabel: 'Light Planning',
       badgeTone: 'neutral',
-      content: '<strong>Latency: 65–120 ms</strong><br>Sufficient for standard email, static web browsing, and compressed audio streaming. Experiences buffering during concurrent high-definition video streams or large cloud data synchronization.'
+      content: '<strong>Typical owner: one team member</strong><br>A short checklist and a due date are enough. Track it on the team board and review it at the next stand-up.'
     },
     {
-      title: 'Enhanced 5G Mid-Band',
+      title: 'Standard Work Package',
       rangeMin: 100,
       rangeMax: 600,
-      badgeLabel: 'Optimized Broadband',
+      badgeLabel: 'Structured Planning',
       badgeTone: 'info',
-      content: '<strong>Latency: 20–35 ms</strong><br>Empowers seamless 4K multi-device video streaming, real-time collaboration platforms, and rapid multi-gigabyte file transfers with minimal latency.'
+      content: '<strong>Typical owner: a team lead</strong><br>Break the work into activities, estimate each one, name dependencies and agree acceptance criteria before work starts.'
     },
     {
-      title: '5G+ Ultra-Wideband & Fiber Core',
+      title: 'Major Deliverable',
       rangeMin: 600,
       rangeMax: 1000,
-      badgeLabel: 'Enterprise Gigabit',
+      badgeLabel: 'Formal Control',
       badgeTone: 'primary',
-      content: '<strong>Latency: < 10 ms</strong><br>Mission-critical tier supporting augmented reality (AR), remote precision robotics, ultra-dense enterprise campuses, and instantaneous cloud synchronization.'
+      content: '<strong>Typical owner: a project manager</strong><br>Plan in phases with milestones, track earned value, keep a risk register and review progress with the sponsor on a fixed cadence.'
     }
   ]
 };
@@ -66,7 +66,7 @@ export function generateHTML(config, instanceId) {
   const rawInit = Number.isFinite(Number(config.initialValue)) ? Number(config.initialValue) : (minVal + maxVal) / 2;
   const initialVal = Math.max(minVal, Math.min(maxVal, rawInit));
   const step = Number.isFinite(Number(config.step)) && Number(config.step) > 0 ? Number(config.step) : 1;
-  const unit = config.unit !== undefined ? String(config.unit) : 'Mbps';
+  const unit = config.unit !== undefined ? String(config.unit) : 'hrs';
   const items = Array.isArray(config.items) && config.items.length ? config.items : defaultConfig.items;
 
   // Compute active item index

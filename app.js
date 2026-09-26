@@ -2537,8 +2537,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
       <div class="input-wrapper">
         <label for="input-mc-hint-text" id="label-mc-hint-text">Hint (shown after an incorrect attempt, if attempts remain)</label>
-        <textarea id="input-mc-hint-text" rows="2" placeholder="e.g. Consider optical insertion loss" aria-describedby="hint-mc-hint-text"></textarea>
-        <p class="field-hint" id="hint-mc-hint-text">e.g. Consider optical insertion loss</p>
+        <textarea id="input-mc-hint-text" rows="2" placeholder="e.g. Think about who needs to be told first" aria-describedby="hint-mc-hint-text"></textarea>
+        <p class="field-hint" id="hint-mc-hint-text">e.g. Think about who needs to be told first</p>
       </div>
 
       <div class="checkbox-wrapper">
@@ -2548,8 +2548,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
       <div class="input-wrapper">
         <label for="input-mc-final-explanation" id="label-mc-final-explanation">Final Explanation (shown once the question concludes)</label>
-        <textarea id="input-mc-final-explanation" rows="2" placeholder="e.g. OTDR trace testing is required" aria-describedby="hint-mc-final-explanation"></textarea>
-        <p class="field-hint" id="hint-mc-final-explanation">e.g. OTDR trace testing is required</p>
+        <textarea id="input-mc-final-explanation" rows="2" placeholder="e.g. Escalating early gives the sponsor time to act" aria-describedby="hint-mc-final-explanation"></textarea>
+        <p class="field-hint" id="hint-mc-final-explanation">e.g. Escalating early gives the sponsor time to act</p>
       </div>
 
       <div class="checkbox-wrapper">

@@ -18,32 +18,32 @@ export const category = 'cards';
 
 /** @type {CalloutBoxConfig} */
 export const defaultConfig = {
-  title: 'Security & Operational Directives',
-  content: 'Review the critical operational standards and security compliance guidelines before initiating network maintenance.',
+  title: 'Project Governance Essentials',
+  content: 'Review the key delivery standards and governance expectations before you start project work.',
   layout: 'grid-2',
   requireAcknowledgment: true,
   items: [
     {
-      title: 'Mandatory Multi-Factor Authentication (MFA)',
-      content: 'All technicians and administrative personnel must verify identity via PMI Global Logon Authenticator prior to accessing staging infrastructure.',
+      title: 'Confirm Sponsor Approval',
+      content: 'Every project charter must be approved by the sponsor before the team commits people, budget or vendor contracts.',
       tone: 'security',
       badgeLabel: 'Policy Requirement'
     },
     {
-      title: 'Live Optical Fiber Safety Warning',
-      content: 'Never look directly into active fiber optic terminations or patch panel couplers. Invisible infrared laser radiation can cause permanent retinal damage within milliseconds.',
+      title: 'Escalate Risks Early',
+      content: 'Raise any risk that could move the critical path by more than a week with your sponsor within one business day, not at the next status meeting.',
       tone: 'warning',
-      badgeLabel: 'Safety Warning'
+      badgeLabel: 'Risk Warning'
     },
     {
-      title: 'Maintenance Window Protocols',
-      content: 'Scheduled network changes must only occur between 01:00 and 04:00 local time with prior NOC notification and automated rollback triggers active.',
+      title: 'Change Control Cadence',
+      content: 'Requests that change scope, schedule or budget go to the weekly change board, and approved changes are logged before work begins.',
       tone: 'info',
-      badgeLabel: 'Operational Guideline'
+      badgeLabel: 'Governance Guideline'
     },
     {
-      title: 'Clean Workspace Best Practice',
-      content: 'Always clean connector end-faces with approved lint-free optical wipes and isopropyl alcohol before mating to prevent return loss.',
+      title: 'Keep One Source of Truth',
+      content: 'Update the shared project plan rather than a private copy so the whole team works from the same schedule and scope.',
       tone: 'tip',
       badgeLabel: 'Pro Tip'
     }

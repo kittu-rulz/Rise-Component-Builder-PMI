@@ -18,30 +18,30 @@ export const category = 'knowledge';
 
 /** @type {ConfidenceMatrixConfig} */
 export const defaultConfig = {
-  title: 'Engineering & Cloud Architecture Self-Assessment',
-  content: 'Evaluate your technical proficiency and execution confidence across core enterprise domains to identify strengths and personalized growth pathways.',
+  title: 'Project Leadership Self-Assessment',
+  content: 'Rate your confidence across core project management skills to identify strengths and personalised growth pathways.',
   showBreakdown: true,
   scaleLabel: 'Competency Rating Scale',
   items: [
     {
-      title: '5G Standalone Core Architecture',
-      category: 'Infrastructure',
-      content: 'Design, deploy, and troubleshoot cloud-native 5G core network functions, user plane separation (CUPS), and dynamic network slicing.'
+      title: 'Stakeholder Engagement',
+      category: 'People',
+      content: 'Identify stakeholders, understand what each needs, and keep them engaged and informed throughout the project.'
     },
     {
-      title: 'Multi-Access Edge Computing (MEC)',
-      category: 'Edge Cloud',
-      content: 'Configure edge compute clusters, implement local traffic breakout policies, and optimize deterministic sub-10ms enterprise latency.'
+      title: 'Risk Management',
+      category: 'Process',
+      content: 'Identify, analyse and respond to risks, and keep the risk register current as the project changes.'
     },
     {
-      title: 'Zero-Trust SASE Security Architecture',
-      category: 'Cybersecurity',
-      content: 'Implement identity-first access control policies, secure access service edge (SASE) gateways, and continuous threat verification.'
+      title: 'Benefits and Value Delivery',
+      category: 'Business Environment',
+      content: 'Link project outcomes to the strategy, track the benefits the organisation expects, and show the value delivered.'
     },
     {
-      title: 'BGP Routing & Peering Automation',
-      category: 'Network Routing',
-      content: 'Manage multi-protocol BGP route reflectors, automated peering session failover, and real-time telemetry streaming pipelines.'
+      title: 'Adaptive Planning',
+      category: 'Process',
+      content: 'Choose and tailor predictive, agile or hybrid approaches to fit the project context and the team.'
     }
   ]
 };

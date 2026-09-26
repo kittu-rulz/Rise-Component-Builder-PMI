@@ -253,7 +253,7 @@ export class DashboardView {
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
                 </div>
                 <h3 class="starter-card-title">3-Module Sample Course</h3>
-                <p class="starter-card-desc">Generate a multi-module sample course with Fiber Deployment, 5G Architecture, and Safety &amp; Compliance blocks.</p>
+                <p class="starter-card-desc">Generate a multi-module sample course with Project Foundations, Ways of Working, and Governance &amp; Risk blocks.</p>
                 <div class="starter-card-footer">
                   <span class="starter-card-cta">Launch Course Builder →</span>
                 </div>
@@ -508,7 +508,7 @@ export class DashboardView {
                       <span style="font-weight: 700; font-size: 0.875rem; color: var(--pmi-violet, #4F17A8);">3-Module Sample Course</span>
                       <span style="font-size: 0.75rem; color: ${selectedTemplate === 'standard' ? 'var(--pmi-violet, #4F17A8)' : '#808080'};">★</span>
                     </div>
-                    <p style="margin: 0; font-size: 0.75rem; color: #200F3B; line-height: 1.3;">Fiber Deployment, 5G Architecture &amp; Compliance.</p>
+                    <p style="margin: 0; font-size: 0.75rem; color: #200F3B; line-height: 1.3;">Project Foundations, Ways of Working &amp; Governance.</p>
                     <span style="font-size: 0.6875rem; background: rgba(79, 23, 168, 0.08); color: var(--pmi-violet, #4F17A8); padding: 1px 6px; border-radius: 4px; align-self: flex-start; margin-top: auto;">Recommended</span>
                   </div>
 
@@ -544,7 +544,7 @@ export class DashboardView {
               ` : `
                 <div class="form-group">
                   <label for="np-name" class="form-label">Project Name *</label>
-                  <input id="np-name" class="form-input" type="text" placeholder="e.g., 5G Network Fundamentals" required autofocus value="${selectedTemplate === 'standard' ? 'PMI 3-Module Starter Course' : ''}" />
+                  <input id="np-name" class="form-input" type="text" placeholder="e.g., Project Management Fundamentals" required autofocus value="${selectedTemplate === 'standard' ? 'PMI 3-Module Starter Course' : ''}" />
                 </div>
                 <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 12px;">
                   <div class="form-group">
@@ -553,7 +553,7 @@ export class DashboardView {
                   </div>
                   <div class="form-group">
                     <label for="np-desc" class="form-label">Description (optional)</label>
-                    <input id="np-desc" class="form-input" type="text" placeholder="Course overview and objectives..." value="${selectedTemplate === 'standard' ? 'Interactive 3-module course structure with Fiber Deployment, 5G Architecture, and Safety & Compliance Check.' : ''}" />
+                    <input id="np-desc" class="form-input" type="text" placeholder="Course overview and objectives..." value="${selectedTemplate === 'standard' ? 'Interactive 3-module course structure with Project Foundations, Ways of Working, and Governance & Risk blocks.' : ''}" />
                   </div>
                 </div>
               `}
@@ -850,68 +850,68 @@ export class DashboardView {
 
   createNewProjectFromTemplate({ name, client, desc, template }) {
     if (template === 'standard') {
-      const sec1 = createSection({ name: 'Module 1: Fiber Deployment', description: 'Foundational concepts and physical infrastructure rollout' });
-      const sec2 = createSection({ name: 'Module 2: 5G Architecture', description: 'Core technical pillars, RAN, and mobile edge topology' });
-      const sec3 = createSection({ name: 'Module 3: Compliance & Safety', description: 'Interactive knowledge check and optical safety standards' });
+      const sec1 = createSection({ name: 'Module 1: Project Foundations', description: 'Charter, scope and the roles that keep a project on track' });
+      const sec2 = createSection({ name: 'Module 2: Ways of Working', description: 'Predictive, agile and hybrid approaches and when to use each' });
+      const sec3 = createSection({ name: 'Module 3: Governance & Risk', description: 'Interactive knowledge check on escalation and change control' });
 
       const comp1 = createComponentInstance({
-        name: 'Fiber Deployment Process',
+        name: 'Project Lifecycle Overview',
         type: 'accordion',
         status: 'draft',
         config: {
-          blockTitle: 'Fiber Network Deployment',
-          blockHeadline: 'Enterprise Fiber Rollout',
-          blockSubtext: 'Explore the key technical phases and engineering standards for enterprise fiber optic deployment.',
-          title: 'Fiber Network Deployment',
-          description: 'Explore the key technical phases and engineering standards for enterprise fiber optic deployment.',
+          blockTitle: 'Project Foundations',
+          blockHeadline: 'From Idea to Delivery',
+          blockSubtext: 'Explore the key stages every project moves through, whatever approach it uses.',
+          title: 'Project Foundations',
+          description: 'Explore the key stages every project moves through, whatever approach it uses.',
           accordionMulti: true,
           accordionAnimation: true,
           iconStyle: 'chevron',
           items: [
-            { title: 'Permitting & Right-of-Way', content: 'Secure municipal permits, utility pole attachment agreements, and environmental clearances prior to construction.' },
-            { title: 'Trenching & Conduit Placement', content: 'Execute directional boring and trenching to place heavy-duty HDPE micro-duct conduits following strict depth standards.' },
-            { title: 'Fiber Splicing & Optical Testing', content: 'Perform precision fusion splicing, OTDR trace analysis, and power meter testing to certify optical signal loss under 0.2 dB/km.' }
+            { title: 'Initiate & Charter', content: 'Confirm the business need, name the sponsor and project manager, and agree the objectives and success measures in a charter.' },
+            { title: 'Plan & Prepare', content: 'Define scope, build the schedule and budget, identify stakeholders and risks, and agree how the team will communicate.' },
+            { title: 'Deliver & Close', content: 'Produce the deliverables, manage change and risk as work progresses, confirm acceptance, and capture lessons learned.' }
           ]
         }
       });
 
       const comp2 = createComponentInstance({
-        name: '5G Architecture & Core Pillars',
+        name: 'Ways of Working',
         type: 'tab-blocks',
         status: 'draft',
         config: {
-          blockTitle: 'Next-Gen 5G Architecture',
-          blockHeadline: 'Network Core & Edge Topology',
-          blockSubtext: 'Examine the multi-tier architectural components delivering ultra-reliable low-latency connectivity.',
-          title: 'Next-Gen 5G Architecture',
-          description: 'Examine the multi-tier architectural components delivering ultra-reliable low-latency connectivity.',
+          blockTitle: 'Ways of Working',
+          blockHeadline: 'Choosing an Approach',
+          blockSubtext: 'Compare the three main delivery approaches and the situations where each one fits.',
+          title: 'Ways of Working',
+          description: 'Compare the three main delivery approaches and the situations where each one fits.',
           tabsOrientation: 'horizontal',
           items: [
-            { title: 'Radio Access Network (RAN)', content: 'Massive MIMO active antenna units and baseband units dynamically allocate cellular spectrum across mmWave and sub-6GHz bands.' },
-            { title: '5G Standalone Core', content: 'Cloud-native service-based architecture (SBA) featuring User Plane Function (UPF) routing and granular network slicing.' },
-            { title: 'Multi-Access Edge Computing (MEC)', content: 'Distributed compute nodes co-located near cell towers reduce round-trip application latency to single-digit milliseconds.' }
+            { title: 'Predictive', content: 'Scope, schedule and cost are planned up front and changes go through formal control. It suits stable requirements and regulated work.' },
+            { title: 'Agile', content: 'Work is delivered in short iterations with regular feedback, and the backlog is reprioritised each cycle. It suits uncertain requirements.' },
+            { title: 'Hybrid', content: 'A predictive governance frame surrounds agile delivery teams. It suits large programs with fixed milestones and evolving detail.' }
           ]
         }
       });
 
       const comp3 = createComponentInstance({
-        name: 'Fiber Safety & Compliance Check',
+        name: 'Escalation Knowledge Check',
         type: 'multiple-choice',
         status: 'draft',
         config: {
-          blockTitle: 'Optical Safety & Compliance',
-          blockHeadline: 'Knowledge Check: Field Protocols',
-          blockSubtext: 'Test your understanding of laser safety standards and optical field splicing protocols.',
-          title: 'Optical Safety & Compliance',
-          description: 'Test your understanding of laser safety standards and optical field splicing protocols.',
-          mcQuestionPrompt: 'Which optical test must be completed and certified before connecting customer terminal equipment to a newly spliced fiber run?',
+          blockTitle: 'Governance & Risk',
+          blockHeadline: 'Knowledge Check: Escalation',
+          blockSubtext: 'Test your understanding of when and how to escalate a project risk.',
+          title: 'Governance & Risk',
+          description: 'Test your understanding of when and how to escalate a project risk.',
+          mcQuestionPrompt: 'A supplier delay could push your critical path back by two weeks. What should you do first?',
           mcSubmitButtonText: 'Submit Answer',
           mcMaxAttempts: 1,
           mcConfidenceMode: false,
           items: [
-            { title: 'Visual Fault Locator (VFL) Red Light Check Only', label: 'Visual Fault Locator (VFL) Red Light Check Only', content: 'VFL is a quick continuity indicator, not an insertion-loss certification tool.', correct: false },
-            { title: 'OTDR Trace & Power Meter Loss Certification', label: 'OTDR Trace & Power Meter Loss Certification (Required)', content: 'Optical Time-Domain Reflectometry (OTDR) and calibrated optical power loss measurements certify that insertion loss meets enterprise dB specifications.', correct: true },
-            { title: 'Standard Ethernet Loopback Ping', label: 'Standard Ethernet Loopback Ping', content: 'Ethernet loopback checks Layer 2 data links after active electronics are powered, not physical fiber cable integrity.', correct: false }
+            { title: 'Wait for the next monthly status report', label: 'Wait for the next monthly status report', content: 'Waiting removes the sponsor\'s chance to help while options are still open.', correct: false },
+            { title: 'Log the risk and tell the sponsor promptly with options', label: 'Log the risk and tell the sponsor promptly with options (Recommended)', content: 'Recording the risk and raising it early, with the options you have considered, lets the sponsor act while there is still time.', correct: true },
+            { title: 'Quietly absorb the delay by asking the team to work overtime', label: 'Quietly absorb the delay by asking the team to work overtime', content: 'Hiding the problem risks team burnout and leaves the sponsor unaware of a threat to the plan.', correct: false }
           ]
         }
       });

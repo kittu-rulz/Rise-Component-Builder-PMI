@@ -202,9 +202,9 @@ describe('Final 10/10 Stabilization Sprint — Comprehensive Verification Suite'
 
       const sectionNames = project.sectionOrder.map(id => project.sections[id].name);
       expect(sectionNames).toEqual([
-        'Module 1: Fiber Deployment',
-        'Module 2: 5G Architecture',
-        'Module 3: Compliance & Safety'
+        'Module 1: Project Foundations',
+        'Module 2: Ways of Working',
+        'Module 3: Governance & Risk'
       ]);
 
       const compKeys = Object.keys(project.components);
@@ -213,20 +213,20 @@ describe('Final 10/10 Stabilization Sprint — Comprehensive Verification Suite'
       const [c1, c2, c3] = compKeys.map(k => project.components[k]);
       expect(c1.type).toBe('accordion');
       expect(c1.config.items.map(i => i.title)).toEqual([
-        'Permitting & Right-of-Way',
-        'Trenching & Conduit Placement',
-        'Fiber Splicing & Optical Testing'
+        'Initiate & Charter',
+        'Plan & Prepare',
+        'Deliver & Close'
       ]);
 
       expect(c2.type).toBe('tab-blocks');
       expect(c2.config.items.map(i => i.title)).toEqual([
-        'Radio Access Network (RAN)',
-        '5G Standalone Core',
-        'Multi-Access Edge Computing (MEC)'
+        'Predictive',
+        'Agile',
+        'Hybrid'
       ]);
 
       expect(c3.type).toBe('multiple-choice');
-      expect(c3.config.mcQuestionPrompt).toContain('Which optical test');
+      expect(c3.config.mcQuestionPrompt).toContain('supplier delay');
       expect(c3.config.items.length).toBe(3);
       expect(c3.config.items.filter(o => o.correct).length).toBe(1);
 

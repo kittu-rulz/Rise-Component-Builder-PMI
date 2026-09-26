@@ -38,40 +38,40 @@ export const category = 'interactive';
 
 /** @type {HotspotsConfig} */
 export const defaultConfig = {
-  title: 'Interactive Facility & Infrastructure Explorer',
-  content: 'Select the highlighted markers or use the zoom controls to inspect network components and operational zones.',
+  title: 'Interactive Project Workspace Explorer',
+  content: 'Select the highlighted markers or use the zoom controls to explore the key areas of a project workspace.',
   calloutMode: 'tooltip',
   showProgress: true,
   enableZoomPan: true,
   autoplayAudio: false,
   items: [
     {
-      title: 'High-Density Optical Fiber Hub',
-      content: 'Central distribution termination managing multi-gigabit fiber backbones with redundant routing pathways.',
+      title: 'Project Charter Board',
+      content: 'Records the objectives, scope and sponsor sign-off that authorise the project.',
       x: '25',
       y: '40',
       markerType: 'icon',
-      iconName: 'fiber',
+      iconName: 'info',
       audioUrl: '',
       audioTranscript: ''
     },
     {
-      title: 'Cloud Edge Routing Engine',
-      content: 'Low-latency distributed switching cluster providing intelligent load-balancing and edge telemetry.',
+      title: 'Risk Register Wall',
+      content: 'Tracks each risk with its owner, likelihood, impact and agreed response.',
       x: '50',
       y: '25',
       markerType: 'icon',
-      iconName: 'cloud',
+      iconName: 'alert',
       audioUrl: '',
       audioTranscript: ''
     },
     {
-      title: 'Dual-Line Power & UPS Subsystem',
-      content: 'Enterprise uninterruptible power supply and generator backup maintaining five-nines (99.999%) operational uptime.',
+      title: 'Team Stand-up Area',
+      content: 'Where the team meets briefly each day to share progress, plans and blockers.',
       x: '75',
       y: '65',
       markerType: 'icon',
-      iconName: 'ethernet',
+      iconName: 'star',
       audioUrl: '',
       audioTranscript: ''
     }

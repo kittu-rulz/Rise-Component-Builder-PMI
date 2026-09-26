@@ -19,34 +19,34 @@ export const category = 'cards';
 
 /** @type {CardCarouselConfig} */
 export const defaultConfig = {
-  title: '5G Enterprise Solutions Portfolio',
-  content: 'Explore how PMI 5G and dedicated cellular infrastructure empower modern enterprise operations.',
+  title: 'Ways of Working Portfolio',
+  content: 'Explore three approaches to delivering projects and when each one fits best.',
   showPaginationDots: true,
   loop: false,
   cardsPerView: 1,
   items: [
     {
-      title: 'Dedicated Private 5G Networks',
-      category: 'Enterprise Security',
-      content: 'High-security, custom-engineered cellular networks for manufacturing facilities, healthcare campuses, and defense sites requiring localized data processing and deterministic sub-10ms latency.',
+      title: 'Predictive Delivery',
+      category: 'Predictive',
+      content: 'Plan scope, schedule and cost up front, then manage change through formal control. Best where requirements are stable and traceability matters.',
       image: '',
       altText: '',
-      buttonLabel: 'Explore Architecture',
+      buttonLabel: 'Explore Approach',
       buttonUrl: ''
     },
     {
-      title: 'Multi-Access Edge Computing (MEC)',
-      category: 'Edge Cloud',
-      content: 'Brings cloud processing power directly to local facility boundaries. Accelerates automated optical inspection, real-time analytics, and high-frame-rate computer vision with zero cloud egress bottlenecks.',
+      title: 'Agile Delivery',
+      category: 'Agile',
+      content: 'Deliver in short iterations, gather feedback each cycle and adapt the backlog. Best where requirements are uncertain and stakeholders can engage often.',
       image: '',
       altText: '',
-      buttonLabel: 'View Case Studies',
+      buttonLabel: 'View Examples',
       buttonUrl: ''
     },
     {
-      title: 'PMI Dynamic Defense',
-      category: 'Cybersecurity',
-      content: 'First-of-its-kind network security embedded directly into the PMI core. Automatically intercepts and neutralizes distributed threat vectors before malicious traffic reaches customer premises.',
+      title: 'Hybrid Delivery',
+      category: 'Hybrid',
+      content: 'Combine a predictive governance frame with agile delivery inside it. Best for large programs with fixed milestones and details that keep evolving.',
       image: '',
       altText: '',
       buttonLabel: 'Learn More',

@@ -28,7 +28,7 @@ describe('interactive metric dial / gauge component', () => {
     expect(slider.getAttribute('aria-valuemin')).toBe('0');
     expect(slider.getAttribute('aria-valuemax')).toBe('1000');
     expect(slider.getAttribute('aria-valuenow')).toBe('450');
-    expect(slider.getAttribute('aria-valuetext')).toContain('450 Mbps');
+    expect(slider.getAttribute('aria-valuetext')).toContain('450 hrs');
 
     const numberInput = document.querySelector('.dial-number-input');
     expect(numberInput).not.toBeNull();
@@ -59,9 +59,9 @@ describe('interactive metric dial / gauge component', () => {
     const presetButtons = document.querySelectorAll('.dial-preset-btn');
     expect(presetButtons.length).toBe(3);
 
-    expect(presetButtons[0].textContent).toContain('Legacy Wireless Tier');
-    expect(presetButtons[1].textContent).toContain('Enhanced 5G Mid-Band');
-    expect(presetButtons[2].textContent).toContain('5G+ Ultra-Wideband');
+    expect(presetButtons[0].textContent).toContain('Small Task');
+    expect(presetButtons[1].textContent).toContain('Standard Work Package');
+    expect(presetButtons[2].textContent).toContain('Major Deliverable');
 
     // Middle tier (450) should be active by default
     expect(presetButtons[1].classList.contains('is-active')).toBe(true);
@@ -75,11 +75,11 @@ describe('interactive metric dial / gauge component', () => {
 
     const insightTitle = document.querySelector('.dial-insight-title');
     expect(insightTitle).not.toBeNull();
-    expect(insightTitle.textContent.trim()).toBe('Enhanced 5G Mid-Band');
+    expect(insightTitle.textContent.trim()).toBe('Standard Work Package');
 
     const insightBadge = document.querySelector('.dial-insight-badge');
     expect(insightBadge).not.toBeNull();
-    expect(insightBadge.textContent.trim()).toBe('Optimized Broadband');
+    expect(insightBadge.textContent.trim()).toBe('Structured Planning');
   });
 
   test('generates valid CSS and JS without errors', () => {

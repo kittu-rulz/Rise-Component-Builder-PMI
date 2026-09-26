@@ -65,8 +65,8 @@ export const editorSchemas = {
     itemLabel: 'Hotspot Marker', minItems: 1, maxItems: 16,
     componentLabel: 'Exploration Settings & Map Background',
     componentFields: [
-      field('title', 'Header Title (Optional)', 'text', { required: false, default: 'Interactive Facility & Infrastructure Explorer' }),
-      field('content', 'Description / Instructions (Optional)', 'richtext', { required: false, default: 'Select the highlighted markers or use the zoom controls to inspect network components and operational zones.' }),
+      field('title', 'Header Title (Optional)', 'text', { required: false, default: 'Interactive Project Workspace Explorer' }),
+      field('content', 'Description / Instructions (Optional)', 'richtext', { required: false, default: 'Select the highlighted markers or use the zoom controls to explore the key areas of a project workspace.' }),
       field('calloutMode', 'Callout Presentation Mode', 'select', {
         default: 'tooltip',
         options: [
@@ -463,8 +463,8 @@ export const editorSchemas = {
     itemLabel: 'Comparison Slide', minItems: 1, maxItems: 1,
     componentLabel: 'Presentation & Instructions',
     componentFields: [
-      field('title', 'Header Title', 'text', { required: false, default: '5G Infrastructure Modernization' }),
-      field('content', 'Description / Instructions', 'richtext', { required: false, default: 'Drag the slider handle or use the arrow keys to compare network capabilities before and after fiber modernization.' }),
+      field('title', 'Header Title', 'text', { required: false, default: 'Status Report Makeover' }),
+      field('content', 'Description / Instructions', 'richtext', { required: false, default: 'Drag the slider handle or use the arrow keys to compare a project status report before and after it was redesigned for stakeholders.' }),
       field('orientation', 'Split Orientation', 'select', {
         default: 'horizontal',
         options: [
@@ -500,7 +500,7 @@ export const editorSchemas = {
     ],
     itemFields: [
       field('beforeLabel', 'Before Label', 'text', { required: true, default: 'Before (Legacy Copper)' }),
-      field('afterLabel', 'After Label', 'text', { required: true, default: 'After (Fiber Optic 5G)' }),
+      field('afterLabel', 'After Label', 'text', { required: true, default: 'After (Outcome Summary)' }),
       field('beforeImage', 'Before Image', 'image', { required: false, default: '', preferredDimensions: '1600 × 900 px (16:9)' }),
       field('beforeAltText', 'Before Image Alternative Text', 'textarea', { default: '' }),
       field('afterImage', 'After Image', 'image', { required: false, default: '', preferredDimensions: '1600 × 900 px (16:9)' }),
@@ -518,9 +518,9 @@ export const editorSchemas = {
     itemLabel: 'Operating Tier', minItems: 1, maxItems: 6,
     componentLabel: 'Gauge Settings & Scale',
     componentFields: [
-      field('title', 'Header Title', 'text', { required: false, default: '5G Network Throughput & Latency Explorer' }),
-      field('content', 'Description / Instructions', 'richtext', { required: false, default: 'Adjust the metric dial or select a scenario below to explore operational characteristics across network operating tiers.' }),
-      field('unit', 'Metric Unit', 'text', { required: false, default: 'Mbps', maxLength: 15 }),
+      field('title', 'Header Title', 'text', { required: false, default: 'Work Package Effort Explorer' }),
+      field('content', 'Description / Instructions', 'richtext', { required: false, default: 'Adjust the dial or select a scenario below to see how planning needs change as the effort in a work package grows.' }),
+      field('unit', 'Metric Unit', 'text', { required: false, default: 'hrs', maxLength: 15 }),
       field('minValue', 'Minimum Scale Value', 'number', { required: true, default: 0, step: 1 }),
       field('maxValue', 'Maximum Scale Value', 'number', { required: true, default: 1000, step: 1 }),
       field('initialValue', 'Initial Value', 'number', { required: true, default: 450, step: 1 }),
@@ -531,15 +531,15 @@ export const editorSchemas = {
       field('rangeMin', 'Range Minimum', 'number', { required: true, default: 0, step: 1 }),
       field('rangeMax', 'Range Maximum', 'number', { required: true, default: 100, step: 1 }),
       field('badgeLabel', 'Badge Label', 'text', { required: false, default: 'Standard Tier', maxLength: 30 }),
-      field('content', 'Tier Insight & Impact Details', 'richtext', { required: true, default: 'Add tier performance and operational insights here.' })
+      field('content', 'Tier Insight & Impact Details', 'richtext', { required: true, default: 'Add the planning guidance for this tier here.' })
     ]
   },
   'callout-box': {
     itemLabel: 'Callout Notice', minItems: 1, maxItems: 8,
     componentLabel: 'Matrix Layout & Options',
     componentFields: [
-      field('title', 'Header Title', 'text', { required: false, default: 'Security & Operational Directives' }),
-      field('content', 'Description / Instructions', 'richtext', { required: false, default: 'Review the critical operational standards and security compliance guidelines before initiating network maintenance.' }),
+      field('title', 'Header Title', 'text', { required: false, default: 'Project Governance Essentials' }),
+      field('content', 'Description / Instructions', 'richtext', { required: false, default: 'Review the key delivery standards and governance expectations before you start project work.' }),
       field('layout', 'Matrix Layout', 'select', {
         default: 'grid-2',
         options: [
@@ -570,8 +570,8 @@ export const editorSchemas = {
     itemLabel: 'Carousel Card', minItems: 1, maxItems: 10,
     componentLabel: 'Carousel Settings & Controls',
     componentFields: [
-      field('title', 'Header Title', 'text', { required: false, default: '5G Enterprise Solutions Portfolio' }),
-      field('content', 'Description / Instructions', 'richtext', { required: false, default: 'Explore how PMI 5G and dedicated cellular infrastructure empower modern enterprise operations.' }),
+      field('title', 'Header Title', 'text', { required: false, default: 'Ways of Working Portfolio' }),
+      field('content', 'Description / Instructions', 'richtext', { required: false, default: 'Explore three approaches to delivering projects and when each one fits best.' }),
       field('cardsPerView', 'Visible Cards Density', 'select', {
         default: '1',
         options: [
