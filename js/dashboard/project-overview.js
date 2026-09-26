@@ -558,8 +558,8 @@ export class ProjectOverviewView {
         <div class="canvas-viewport-container" style="display: flex; justify-content: center; width: 100%; overflow-x: auto; background: var(--pmi-surface-sunken, #EFEDF3); border-radius: 12px; padding: 16px;">
           <div class="canvas-device-wrapper" style="${deviceWidthStyle} transition: width 0.2s ease; background: #FFFFFF; border: 1px solid var(--pmi-border, #E7E4DC); border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.04); overflow: hidden;">
             <div class="canvas-component-topbar" style="padding: 8px 14px; background: var(--pmi-surface-sunken, #F7F4EF); border-bottom: 1px solid var(--pmi-border, #E7E4DC); display: flex; justify-content: space-between; align-items: center;">
-              <span style="font-size: 0.75rem; font-weight: 700; color: #200F3B;">Live Preview</span>
-              <button class="btn btn-primary btn-sm" data-action="open-focus-editor" data-comp-id="${selectedComp.id}" style="padding: 3px 10px; font-size: 0.75rem; display: inline-flex; align-items: center; gap: 4px;">
+              <span style="font-size: 0.875rem; font-weight: 700; color: #200F3B;">Live Preview</span>
+              <button class="btn btn-primary btn-sm" data-action="open-focus-editor" data-comp-id="${selectedComp.id}" style="padding: 3px 10px; font-size: 0.875rem; display: inline-flex; align-items: center; gap: 4px;">
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg>
                 <span>Open Focus Editor</span>
               </button>
@@ -591,9 +591,9 @@ export class ProjectOverviewView {
           <div style="max-width: 580px; display: flex; flex-direction: column; gap: 14px; text-align: left; width: 100%;">
             <div>
               <h3 style="margin: 0 0 4px 0; font-size: 1.125rem; font-weight: 700; color: var(--text-main, #200F3B);">${escapeHTML(selectedSec.name)}</h3>
-              <p style="margin: 0; font-size: 0.875rem; color: #574E69;">${escapeHTML(selectedSec.description || 'Section Module Overview')}</p>
+              <p style="margin: 0; font-size: 0.9375rem; color: #574E69;">${escapeHTML(selectedSec.description || 'Section Module Overview')}</p>
             </div>
-            <div style="font-size: 0.8125rem; font-weight: 600; color: #200F3B;">
+            <div style="font-size: 0.875rem; font-weight: 600; color: #200F3B;">
               ${compIds.length} ${compIds.length === 1 ? 'Component' : 'Components'} in this section:
             </div>
             <div style="display: flex; flex-direction: column; gap: 8px;">
@@ -604,10 +604,10 @@ export class ProjectOverviewView {
                 return `
                   <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; background: #FFFFFF; border: 1px solid var(--pmi-border, #E7E4DC); border-radius: 8px;">
                     <div>
-                      <span style="font-weight: 700; font-size: 0.875rem; color: #200F3B;">${escapeHTML(c.name)}</span>
-                      <span style="margin-left: 8px; font-size: 0.6875rem; background: rgba(79, 23, 168, 0.08); color: var(--pmi-violet, #4F17A8); padding: 1px 6px; border-radius: 4px;">${escapeHTML(reg?.name || c.type)}</span>
+                      <span style="font-weight: 700; font-size: 0.9375rem; color: #200F3B;">${escapeHTML(c.name)}</span>
+                      <span style="margin-left: 8px; font-size: 0.8125rem; background: rgba(79, 23, 168, 0.08); color: var(--pmi-violet, #4F17A8); padding: 1px 6px; border-radius: 4px;">${escapeHTML(reg?.name || c.type)}</span>
                     </div>
-                    <button class="btn btn-secondary btn-sm" data-action="select-comp-preview" data-comp-id="${c.id}" style="padding: 4px 10px; font-size: 0.75rem;">
+                    <button class="btn btn-secondary btn-sm" data-action="select-comp-preview" data-comp-id="${c.id}" style="padding: 4px 10px; font-size: 0.875rem;">
                       Preview Block
                     </button>
                   </div>
@@ -615,7 +615,7 @@ export class ProjectOverviewView {
               }).join('')}
               ${compIds.length === 0 ? `
                 <div style="padding: 24px; text-align: center; background: #FFFFFF; border: 1px dashed var(--pmi-border, #E7E4DC); border-radius: 8px;">
-                  <p style="font-size: 0.8125rem; color: #574E69; margin: 0 0 8px 0;">No components added to this section yet.</p>
+                  <p style="font-size: 0.875rem; color: #574E69; margin: 0 0 8px 0;">No components added to this section yet.</p>
                   <button class="btn btn-primary btn-sm" data-action="add-comp-to-sec" data-sec-id="${selectedId}">+ Add Component</button>
                 </div>
               ` : ''}
@@ -640,8 +640,8 @@ export class ProjectOverviewView {
             <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
           </div>
           <h2 style="font-size: 1.125rem; font-weight: 700; margin: 0; color: var(--text-main, #200F3B);">Course Authoring &amp; Flow Canvas</h2>
-          <p style="font-size: 0.875rem; color: #574E69; margin: 0; line-height: 1.5;">Select any component from the Course Outline to preview, configure its properties, or enter the full Focus Editor.</p>
-          <button class="btn btn-primary btn-sm" id="wp-preview-canvas-btn" style="margin-top: 6px; padding: 8px 18px; font-size: 0.8125rem;">
+          <p style="font-size: 0.9375rem; color: #574E69; margin: 0; line-height: 1.5;">Select any component from the Course Outline to preview, configure its properties, or enter the full Focus Editor.</p>
+          <button class="btn btn-primary btn-sm" id="wp-preview-canvas-btn" style="margin-top: 6px; padding: 8px 18px; font-size: 0.875rem;">
             Launch Full Course Preview
           </button>
         </div>
@@ -667,12 +667,12 @@ export class ProjectOverviewView {
         <div class="inspector-body">
           <div class="inspector-prop-group">
             <label class="inspector-label" for="insp-comp-name">Component Title</label>
-            <input id="insp-comp-name" class="form-input" type="text" value="${escapeHTML(comp.name)}" style="font-size: 0.8125rem;" />
+            <input id="insp-comp-name" class="form-input" type="text" value="${escapeHTML(comp.name)}" style="font-size: 0.875rem;" />
           </div>
 
           <div class="inspector-prop-group">
             <label class="inspector-label" for="insp-comp-status">Editorial Status</label>
-            <select id="insp-comp-status" class="form-select" style="font-size: 0.8125rem;">
+            <select id="insp-comp-status" class="form-select" style="font-size: 0.875rem;">
               <option value="draft" ${comp.status === 'draft' ? 'selected' : ''}>Draft</option>
               <option value="in_review" ${comp.status === 'in_review' || comp.status === 'in-review' ? 'selected' : ''}>In Review</option>
               <option value="ready" ${comp.status === 'ready' ? 'selected' : ''}>Ready</option>
@@ -681,12 +681,12 @@ export class ProjectOverviewView {
 
           <div class="inspector-prop-group">
             <span class="inspector-label">Learning Purpose</span>
-            <span style="font-size: 0.8125rem; color: #200F3B;">${escapeHTML(regEntry?.description || 'Interactive Learning Block')}</span>
+            <span style="font-size: 0.875rem; color: #200F3B;">${escapeHTML(regEntry?.description || 'Interactive Learning Block')}</span>
           </div>
 
           <div class="inspector-prop-group">
             <span class="inspector-label">Standards & Compatibility</span>
-            <div style="display: flex; flex-direction: column; gap: 4px; font-size: 0.75rem; color: #200F3B;">
+            <div style="display: flex; flex-direction: column; gap: 4px; font-size: 0.875rem; color: #200F3B;">
               <span>• Designed for Articulate Rise 360</span>
               <span>• Built to support WCAG 2.2 AA requirements</span>
               <span>• Responsive mobile/desktop layout</span>
@@ -695,12 +695,12 @@ export class ProjectOverviewView {
         </div>
 
         <div class="inspector-footer">
-          <button class="btn btn-primary" data-action="open-focus-editor" data-comp-id="${comp.id}" style="width: 100%; justify-content: center; font-size: 0.8125rem; font-weight: 700;">
+          <button class="btn btn-primary" data-action="open-focus-editor" data-comp-id="${comp.id}" style="width: 100%; justify-content: center; font-size: 0.875rem; font-weight: 700;">
             Open Focus Editor
           </button>
           <div style="display: flex; gap: 6px;">
-            <button class="btn btn-secondary btn-sm" data-action="duplicate-comp" data-comp-id="${comp.id}" style="flex: 1; font-size: 0.75rem;">Duplicate</button>
-            <button class="btn btn-secondary btn-sm text-danger" data-action="delete-comp" data-comp-id="${comp.id}" style="flex: 1; font-size: 0.75rem;">Delete</button>
+            <button class="btn btn-secondary btn-sm" data-action="duplicate-comp" data-comp-id="${comp.id}" style="flex: 1; font-size: 0.875rem;">Duplicate</button>
+            <button class="btn btn-secondary btn-sm text-danger" data-action="delete-comp" data-comp-id="${comp.id}" style="flex: 1; font-size: 0.875rem;">Delete</button>
           </div>
         </div>
       `;
@@ -720,28 +720,28 @@ export class ProjectOverviewView {
         <div class="inspector-body">
           <div class="inspector-prop-group">
             <label class="inspector-label">Section Name</label>
-            <span style="font-weight: 700; font-size: 0.875rem; color: #200F3B;">${escapeHTML(sec?.name || 'Section')}</span>
+            <span style="font-weight: 700; font-size: 0.9375rem; color: #200F3B;">${escapeHTML(sec?.name || 'Section')}</span>
           </div>
 
           <div class="inspector-prop-group">
             <label class="inspector-label">Description</label>
-            <span style="font-size: 0.8125rem; color: #200F3B;">${escapeHTML(sec?.description || 'No section description.')}</span>
+            <span style="font-size: 0.875rem; color: #200F3B;">${escapeHTML(sec?.description || 'No section description.')}</span>
           </div>
 
           <div class="inspector-prop-group">
             <span class="inspector-label">Section Summary</span>
-            <span style="font-size: 0.8125rem; color: #200F3B;">Contains ${count} component instances.</span>
+            <span style="font-size: 0.875rem; color: #200F3B;">Contains ${count} component instances.</span>
           </div>
         </div>
 
         <div class="inspector-footer">
-          <button class="btn btn-primary" data-action="add-comp-to-sec" data-sec-id="${selectedId}" style="width: 100%; justify-content: center; font-size: 0.8125rem;">
+          <button class="btn btn-primary" data-action="add-comp-to-sec" data-sec-id="${selectedId}" style="width: 100%; justify-content: center; font-size: 0.875rem;">
             + Add Component
           </button>
           ${!isUnsec ? `
             <div style="display: flex; gap: 6px;">
-              <button class="btn btn-secondary btn-sm" data-action="rename-sec" data-sec-id="${selectedId}" style="flex: 1; font-size: 0.75rem;">Rename</button>
-              <button class="btn btn-secondary btn-sm text-danger" data-action="delete-sec" data-sec-id="${selectedId}" style="flex: 1; font-size: 0.75rem;">Delete</button>
+              <button class="btn btn-secondary btn-sm" data-action="rename-sec" data-sec-id="${selectedId}" style="flex: 1; font-size: 0.875rem;">Rename</button>
+              <button class="btn btn-secondary btn-sm text-danger" data-action="delete-sec" data-sec-id="${selectedId}" style="flex: 1; font-size: 0.875rem;">Delete</button>
             </div>
           ` : ''}
         </div>
@@ -760,17 +760,17 @@ export class ProjectOverviewView {
       <div class="inspector-body">
         <div class="inspector-prop-group">
           <span class="inspector-label">Course Title</span>
-          <span style="font-weight: 700; font-size: 0.875rem; color: #200F3B;">${escapeHTML(project.name)}</span>
+          <span style="font-weight: 700; font-size: 0.9375rem; color: #200F3B;">${escapeHTML(project.name)}</span>
         </div>
 
         <div class="inspector-prop-group">
           <span class="inspector-label">Course Target</span>
-          <span style="color: var(--pmi-violet, #4F17A8); font-weight: 600; font-size: 0.8125rem;">Designed for Articulate Rise 360</span>
+          <span style="color: var(--pmi-violet, #4F17A8); font-weight: 600; font-size: 0.875rem;">Designed for Articulate Rise 360</span>
         </div>
 
         <div class="inspector-prop-group">
           <span class="inspector-label">Editorial Scope</span>
-          <span style="font-size: 0.8125rem; color: #200F3B;">${totalComponents} interactive ${totalComponents === 1 ? 'component' : 'components'} across ${Object.keys(project.sections || {}).length} sections</span>
+          <span style="font-size: 0.875rem; color: #200F3B;">${totalComponents} interactive ${totalComponents === 1 ? 'component' : 'components'} across ${Object.keys(project.sections || {}).length} sections</span>
         </div>
 
         <div class="inspector-prop-group" style="border-top: 1px solid var(--pmi-border, #F7F4EF); padding-top: 10px;">
@@ -778,35 +778,35 @@ export class ProjectOverviewView {
           ${hasContent ? `
             <div style="display: flex; flex-direction: column; gap: 6px;">
               <div style="display: flex; justify-content: space-between; align-items: center;">
-                <span style="font-size: 0.8125rem; font-weight: 600; color: #1A0837;">Overall Readiness:</span>
-                <span class="badge ${qa.overallStatusClass}" style="font-size: 0.75rem;">${escapeHTML(qa.overallStatus)} (${qa.overallScore}%)</span>
+                <span style="font-size: 0.875rem; font-weight: 600; color: #1A0837;">Overall Readiness:</span>
+                <span class="badge ${qa.overallStatusClass}" style="font-size: 0.875rem;">${escapeHTML(qa.overallStatus)} (${qa.overallScore}%)</span>
               </div>
-              <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.75rem; color: #574E69;">
+              <div style="display: flex; justify-content: space-between; align-items: center; font-size: 0.875rem; color: #574E69;">
                 <span>Technical Checks:</span>
                 <span style="font-weight: 600; color: #200F3B;">${qa.technicalScore}%</span>
               </div>
-              <div style="display: flex; gap: 6px; font-size: 0.6875rem; color: #574E69; margin-top: 2px;">
+              <div style="display: flex; gap: 6px; font-size: 0.8125rem; color: #574E69; margin-top: 2px;">
                 <span>${qa.editorial.readyCount} Ready</span> • 
                 <span>${qa.editorial.inReviewCount} In Review</span> • 
                 <span>${qa.editorial.draftCount} Draft</span>
               </div>
               ${(qa.counts.blockers > 0 || qa.counts.errors > 0 || qa.counts.warnings > 0) ? `
-                <div style="font-size: 0.6875rem; color: ${qa.counts.blockers > 0 ? '#C41E08' : '#A12608'}; font-weight: 600;">
+                <div style="font-size: 0.8125rem; color: ${qa.counts.blockers > 0 ? '#C41E08' : '#A12608'}; font-weight: 600;">
                   ${qa.counts.blockers > 0 ? `${qa.counts.blockers} blocker(s) ` : ''}${qa.counts.errors > 0 ? `${qa.counts.errors} error(s) ` : ''}${qa.counts.warnings > 0 ? `${qa.counts.warnings} warning(s)` : ''}
                 </div>
               ` : ''}
             </div>
           ` : `
-            <span style="font-size: 0.8125rem; color: #574E69; font-style: italic;">No content to evaluate</span>
+            <span style="font-size: 0.875rem; color: #574E69; font-style: italic;">No content to evaluate</span>
           `}
         </div>
       </div>
 
       <div class="inspector-footer">
-        <button class="btn btn-secondary btn-sm" id="wp-inspector-qa-btn" style="width: 100%; justify-content: center; font-size: 0.8125rem;" ${!hasContent ? 'disabled' : ''}>
+        <button class="btn btn-secondary btn-sm" id="wp-inspector-qa-btn" style="width: 100%; justify-content: center; font-size: 0.875rem;" ${!hasContent ? 'disabled' : ''}>
           Run QA Preflight
         </button>
-        <button class="btn btn-primary btn-sm" id="wp-inspector-export-btn" style="width: 100%; justify-content: center; font-size: 0.8125rem;" ${!hasContent ? 'disabled' : ''}>
+        <button class="btn btn-primary btn-sm" id="wp-inspector-export-btn" style="width: 100%; justify-content: center; font-size: 0.875rem;" ${!hasContent ? 'disabled' : ''}>
           Export Course Package
         </button>
       </div>
@@ -931,8 +931,8 @@ export class ProjectOverviewView {
             ${filteredCompIds.map((cId, idx) => this.renderComponentRow(project, cId, sectionId, idx, filteredCompIds.length)).join('')}
           ` : allCompIds.length === 0 ? `
             <div class="section-quick-start-box">
-              <p style="font-size: 0.875rem; font-weight: 600; color: #1A0837; margin: 0 0 4px 0;">Start building ${escapeHTML(section.name)}</p>
-              <p style="font-size: 0.8125rem; color: #574E69; margin: 0 0 10px 0;">Add an interactive component to this section:</p>
+              <p style="font-size: 0.9375rem; font-weight: 600; color: #1A0837; margin: 0 0 4px 0;">Start building ${escapeHTML(section.name)}</p>
+              <p style="font-size: 0.875rem; color: #574E69; margin: 0 0 10px 0;">Add an interactive component to this section:</p>
               <div class="quick-add-chips-grid">
                 <button type="button" class="btn btn-secondary btn-sm quick-add-chip" data-action="quick-add-comp" data-sec-id="${sectionId}" data-comp-type="accordion">
                   + Accordion
@@ -1294,25 +1294,25 @@ export class ProjectOverviewView {
             </div>
 
             <div>
-              <h4 style="margin: 0 0 4px 0; font-size: 0.875rem; font-weight: 700; color: var(--text-main, #200F3B);">Description &amp; Purpose</h4>
-              <p style="margin: 0; font-size: 0.8125rem; color: #200F3B; line-height: 1.5;">${escapeHTML(comp.description)}</p>
+              <h4 style="margin: 0 0 4px 0; font-size: 0.9375rem; font-weight: 700; color: var(--text-main, #200F3B);">Description &amp; Purpose</h4>
+              <p style="margin: 0; font-size: 0.875rem; color: #200F3B; line-height: 1.5;">${escapeHTML(comp.description)}</p>
             </div>
 
             ${comp.bestWhen ? `
               <div>
-                <h4 style="margin: 0 0 4px 0; font-size: 0.875rem; font-weight: 700; color: var(--text-main, #200F3B);">Recommended Use Cases</h4>
-                <p style="margin: 0; font-size: 0.8125rem; color: #200F3B; line-height: 1.5;">${escapeHTML(comp.bestWhen)}</p>
+                <h4 style="margin: 0 0 4px 0; font-size: 0.9375rem; font-weight: 700; color: var(--text-main, #200F3B);">Recommended Use Cases</h4>
+                <p style="margin: 0; font-size: 0.875rem; color: #200F3B; line-height: 1.5;">${escapeHTML(comp.bestWhen)}</p>
               </div>
             ` : ''}
 
             ${comp.differentiator ? `
               <div style="background: #F2F5F2; border: 1px solid #BDFDBD; padding: 10px 14px; border-radius: 8px;">
-                <h4 style="margin: 0 0 2px 0; font-size: 0.8125rem; font-weight: 700; color: #13600C;">Why Choose This Component:</h4>
-                <p style="margin: 0; font-size: 0.75rem; color: #0D4409; line-height: 1.4;">${escapeHTML(comp.differentiator)}</p>
+                <h4 style="margin: 0 0 2px 0; font-size: 0.875rem; font-weight: 700; color: #13600C;">Why Choose This Component:</h4>
+                <p style="margin: 0; font-size: 0.875rem; color: #0D4409; line-height: 1.4;">${escapeHTML(comp.differentiator)}</p>
               </div>
             ` : ''}
 
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; font-size: 0.8125rem; background: var(--pmi-surface-sunken, #F7F4EF); padding: 12px; border-radius: 8px;">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; font-size: 0.875rem; background: var(--pmi-surface-sunken, #F7F4EF); padding: 12px; border-radius: 8px;">
               <div>
                 <strong>Rise Compatibility:</strong>
                 <p style="margin: 2px 0 0 0; color: #200F3B;">${escapeHTML(comp.riseEquivalent || 'Designed for seamless Rise integration')}</p>
@@ -1836,6 +1836,15 @@ export class ProjectOverviewView {
         const nodeType = btn.dataset.nodeType;
         const nodeId = btn.dataset.nodeId || null;
         this.selectNode(nodeType, nodeId);
+      });
+    });
+
+    // A component row can wrap its controls onto a second line in a narrow outline, so a click on
+    // the row's own empty space selects it too (the row's controls keep their own behaviour).
+    this.container.querySelectorAll('.component-row').forEach(row => {
+      row.addEventListener('click', (e) => {
+        if (e.target.closest('button, select, a, input, textarea, label')) return;
+        row.querySelector('[data-action="select-node"]')?.click();
       });
     });
 

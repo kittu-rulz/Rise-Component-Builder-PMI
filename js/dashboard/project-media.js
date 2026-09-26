@@ -113,7 +113,7 @@ export class ProjectMediaView {
               <p class="workspace-desc">
                 Assets are stored in this browser on this device (IndexedDB). The library is <strong>shared by every project in this browser</strong>, not kept per course. <strong>Export JSON</strong> saves media references only, not the files; use <strong>Export Package</strong> (in the Open Project menu) or a course ZIP to carry the files themselves.
               </p>
-              <div style="margin-top: 8px; font-size: 0.8125rem; color: #200F3B; display: flex; gap: 16px;">
+              <div style="margin-top: 8px; font-size: 0.875rem; color: #200F3B; display: flex; gap: 16px;">
                 <span>Total Assets: <strong>${this.state.mediaList.length}</strong></span>
                 <span>Storage Footprint: <strong>${totalMb} MB</strong></span>
               </div>
@@ -174,18 +174,18 @@ export class ProjectMediaView {
         </div>
 
         <h4 class="project-card-title" style="font-size: 1rem; word-break: break-all;">${this.escapeHtml(item.name)}</h4>
-        <p class="project-card-desc" style="font-size: 0.75rem;">
+        <p class="project-card-desc" style="font-size: 0.875rem;">
           Size: ${sizeKb} KB · Uploaded ${new Date(item.createdAt).toLocaleDateString()}
         </p>
 
         <div class="project-card-stats" style="flex-direction: column; align-items: flex-start; gap: 4px;">
-          <span style="font-size: 0.75rem; font-weight: 700; color: #200F3B;">Used in ${refs.length} ${refs.length === 1 ? 'place' : 'places'}:</span>
+          <span style="font-size: 0.875rem; font-weight: 700; color: #200F3B;">Used in ${refs.length} ${refs.length === 1 ? 'place' : 'places'}:</span>
           ${refs.length > 0 ? `
             <div style="display: flex; flex-wrap: wrap; gap: 4px;">
-              ${refs.map(r => `<span class="component-status-badge draft" style="font-size: 11px;">${this.escapeHtml(r)}</span>`).join('')}
+              ${refs.map(r => `<span class="component-status-badge draft" style="font-size: 13px;">${this.escapeHtml(r)}</span>`).join('')}
             </div>
           ` : `
-            <span style="font-size: 11px; color: #808080;">Unreferenced</span>
+            <span style="font-size: 13px; color: #808080;">Unreferenced</span>
           `}
         </div>
       </div>
@@ -318,14 +318,14 @@ export class ProjectMediaView {
           <div class="modal-header" style="padding: 16px 20px; border-bottom: 1px solid #E7E4DC; background: #FFEDEC;">
             <h3 style="margin: 0; color: #931706; font-size: 1.125rem; font-weight: 700;">⚠️ Asset In Use (${usage.totalUses} ${usage.totalUses === 1 ? 'Reference' : 'References'})</h3>
           </div>
-          <div class="modal-body" style="padding: 20px; font-size: 0.875rem; color: #200F3B; line-height: 1.5;">
+          <div class="modal-body" style="padding: 20px; font-size: 0.9375rem; color: #200F3B; line-height: 1.5;">
             <p style="margin: 0 0 12px;"><strong>“${this.escapeHtml(asset?.name || 'Asset')}”</strong> is currently used in the following components:</p>
             <div style="max-height: 140px; overflow-y: auto; background: #EFEDF3; padding: 10px 14px; border-radius: 6px; border: 1px solid #E7E4DC; margin-bottom: 14px;">
-              <ul style="margin: 0; padding-left: 20px; font-size: 0.8125rem;">
+              <ul style="margin: 0; padding-left: 20px; font-size: 0.875rem;">
                 ${affectedList}
               </ul>
             </div>
-            <p style="margin: 0; color: #574E69; font-size: 0.8125rem;">
+            <p style="margin: 0; color: #574E69; font-size: 0.875rem;">
               Deleting this asset will leave missing media placeholders in the affected components. You can replace all references with another asset first.
             </p>
           </div>

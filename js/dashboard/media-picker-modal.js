@@ -95,9 +95,9 @@ export async function showMediaPickerModal({
           <div class="modal-header" style="display: flex; justify-content: space-between; align-items: center; padding: 18px 24px; border-bottom: 1px solid #E7E4DC; background: #EFEDF3;">
             <div>
               <h2 id="${overlay.id}-title" class="modal-title" style="margin: 0; font-size: 1.25rem; font-weight: 700; color: #100522;">Choose Media</h2>
-              <p style="margin: 4px 0 0; font-size: 0.8125rem; color: #200F3B;">
+              <p style="margin: 4px 0 0; font-size: 0.875rem; color: #200F3B;">
                 Select an asset from the Course Media Library or upload a new file.
-                ${filterKind !== 'all' ? `<span class="badge" style="margin-left: 6px; background: #EEFAFA; color: #005C77; padding: 2px 8px; border-radius: 12px; font-size: 0.75rem; font-weight: 600;">Filtering for: ${kindLabels[filterKind] || filterKind}</span>` : ''}
+                ${filterKind !== 'all' ? `<span class="badge" style="margin-left: 6px; background: #EEFAFA; color: #005C77; padding: 2px 8px; border-radius: 12px; font-size: 0.875rem; font-weight: 600;">Filtering for: ${kindLabels[filterKind] || filterKind}</span>` : ''}
               </p>
             </div>
             <button type="button" class="modal-close-btn" id="picker-close-btn" aria-label="Close Choose Media dialog" style="background: transparent; border: none; font-size: 1.5rem; cursor: pointer; color: #574E69; padding: 4px 8px; border-radius: 4px;">&times;</button>
@@ -118,7 +118,7 @@ export async function showMediaPickerModal({
 
             <div style="display: flex; gap: 10px; align-items: center;">
               <div class="search-input-wrapper" style="position: relative; width: 220px;">
-                <input type="text" id="picker-search-input" class="dashboard-search-input" placeholder="Search assets..." value="${escapeHtml(searchQuery)}" style="width: 100%; padding: 6px 12px; font-size: 0.8125rem; border: 1px solid #E7E4DC; border-radius: 6px;" />
+                <input type="text" id="picker-search-input" class="dashboard-search-input" placeholder="Search assets..." value="${escapeHtml(searchQuery)}" style="width: 100%; padding: 6px 12px; font-size: 0.875rem; border: 1px solid #E7E4DC; border-radius: 6px;" />
               </div>
               <input type="file" id="picker-upload-input" accept="${filterKind === 'image' ? 'image/*' : filterKind === 'audio' ? 'audio/*' : filterKind === 'video' ? 'video/*' : 'image/*,audio/*,video/*'}" style="display:none;" />
               <button type="button" id="picker-upload-btn" class="btn btn-secondary btn-small" style="display: inline-flex; align-items: center; gap: 6px; white-space: nowrap;">
@@ -134,7 +134,7 @@ export async function showMediaPickerModal({
               <div class="dashboard-empty-state" style="text-align: center; padding: 48px 20px;">
                 <div style="font-size: 2.5rem; margin-bottom: 8px;">🖼️</div>
                 <h3 class="empty-state-title" style="font-size: 1.125rem; font-weight: 700; color: #1A0837; margin-bottom: 4px;">${allAssets.length === 0 ? 'No media uploaded yet.' : 'No matching assets'}</h3>
-                <p class="empty-state-subtitle" style="font-size: 0.875rem; color: #574E69; margin-bottom: 16px;">
+                <p class="empty-state-subtitle" style="font-size: 0.9375rem; color: #574E69; margin-bottom: 16px;">
                   ${allAssets.length === 0
                     ? 'Upload a file to add it to the library, which is shared by every project in this browser.'
                     : searchQuery ? `No assets match "${escapeHtml(searchQuery)}". The library has ${allAssets.length} asset${allAssets.length === 1 ? '' : 's'}.` : `No ${filterKind !== 'all' ? filterKind : ''} assets match this filter (the library has ${allAssets.length}).`}
@@ -169,14 +169,14 @@ export async function showMediaPickerModal({
                         ` : asset.kind === 'video' ? `
                           <div style="position: relative; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: #200F3B;">
                             <video src="${objUrl}" style="width: 100%; height: 100%; object-fit: contain;" preload="metadata" muted onclick="event.stopPropagation()"></video>
-                            <span style="position: absolute; top: 8px; left: 8px; background: rgba(0,0,0,0.7); color: #FFFFFF; font-size: 10px; font-weight: 700; padding: 2px 6px; border-radius: 4px; text-transform: uppercase;">VIDEO</span>
+                            <span style="position: absolute; top: 8px; left: 8px; background: rgba(0,0,0,0.7); color: #FFFFFF; font-size: 13px; font-weight: 700; padding: 2px 6px; border-radius: 4px; text-transform: uppercase;">VIDEO</span>
                           </div>
                         ` : `
-                          <span style="color: #CFCBC2; font-size: 0.8125rem;">File Asset</span>
+                          <span style="color: #CFCBC2; font-size: 0.875rem;">File Asset</span>
                         `}
 
                         ${isSelected ? `
-                          <div style="position: absolute; top: 8px; right: 8px; width: 24px; height: 24px; border-radius: 50%; background: #4F17A8; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: bold; box-shadow: 0 2px 4px rgba(0,0,0,0.3);">
+                          <div style="position: absolute; top: 8px; right: 8px; width: 24px; height: 24px; border-radius: 50%; background: #4F17A8; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: bold; box-shadow: 0 2px 4px rgba(0,0,0,0.3);">
                             ✓
                           </div>
                         ` : ''}
@@ -186,14 +186,14 @@ export async function showMediaPickerModal({
                       <div class="media-card-info" style="padding: 12px; flex: 1; display: flex; flex-direction: column; justify-content: space-between;">
                         <div>
                           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
-                            <span style="font-size: 10px; font-weight: 700; text-transform: uppercase; color: #574E69; background: #EFEDF3; padding: 2px 6px; border-radius: 4px;">${asset.kind}</span>
-                            <span style="font-size: 11px; color: #574E69;">${sizeKb} KB</span>
+                            <span style="font-size: 13px; font-weight: 700; text-transform: uppercase; color: #574E69; background: #EFEDF3; padding: 2px 6px; border-radius: 4px;">${asset.kind}</span>
+                            <span style="font-size: 13px; color: #574E69;">${sizeKb} KB</span>
                           </div>
-                          <h4 style="margin: 0 0 4px; font-size: 0.875rem; font-weight: 600; color: #1A0837; word-break: break-all; line-height: 1.3;" title="${escapeHtml(asset.name)}">${escapeHtml(asset.name)}</h4>
+                          <h4 style="margin: 0 0 4px; font-size: 0.9375rem; font-weight: 600; color: #1A0837; word-break: break-all; line-height: 1.3;" title="${escapeHtml(asset.name)}">${escapeHtml(asset.name)}</h4>
                         </div>
-                        <div style="margin-top: 8px; font-size: 11px; color: #574E69; display: flex; justify-content: space-between; align-items: center;">
+                        <div style="margin-top: 8px; font-size: 13px; color: #574E69; display: flex; justify-content: space-between; align-items: center;">
                           <span>${new Date(asset.createdAt).toLocaleDateString()}</span>
-                          <span class="badge ${usage.isInUse ? 'badge-primary' : 'badge-neutral'}" style="font-size: 10px; padding: 2px 6px; border-radius: 10px; background: ${usage.isInUse ? '#EEFAFA' : '#EFEDF3'}; color: ${usage.isInUse ? '#005C77' : '#574E69'};">
+                          <span class="badge ${usage.isInUse ? 'badge-primary' : 'badge-neutral'}" style="font-size: 13px; padding: 2px 6px; border-radius: 10px; background: ${usage.isInUse ? '#EEFAFA' : '#EFEDF3'}; color: ${usage.isInUse ? '#005C77' : '#574E69'};">
                             ${usage.totalUses} ${usage.totalUses === 1 ? 'use' : 'uses'}
                           </span>
                         </div>
@@ -207,7 +207,7 @@ export async function showMediaPickerModal({
 
           <!-- Modal Footer Actions -->
           <div class="modal-footer" style="padding: 16px 24px; border-top: 1px solid #E7E4DC; background: #FFFFFF; display: flex; justify-content: space-between; align-items: center;">
-            <div style="font-size: 0.8125rem; color: #574E69;">
+            <div style="font-size: 0.875rem; color: #574E69;">
               ${selectedAsset ? `Selected: <strong>${escapeHtml(selectedAsset.name)}</strong> (${selectedAsset.kind})` : 'No asset selected'}
             </div>
             <div style="display: flex; gap: 10px;">

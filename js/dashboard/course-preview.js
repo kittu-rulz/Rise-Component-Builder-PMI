@@ -286,7 +286,7 @@ export class CoursePreviewView {
         <main class="workspace-container course-preview-workspace-main" style="display: flex; flex-direction: column; align-items: center; background: var(--bg-canvas, #F7F4EF); min-height: calc(100vh - 120px); padding: 24px 16px;">
           <div class="course-preview-header-meta" style="width: 100%; max-width: ${maxCanvasWidth}; transition: max-width 0.25s ease; margin-bottom: 16px; display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 8px;">
             <h1 class="workspace-title" style="font-size: 1.5rem; font-weight: 700; margin: 0; color: #200F3B;">Course Preview</h1>
-            <div class="preview-viewport-info-banner" style="font-size: 0.8125rem; color: #200F3B;">
+            <div class="preview-viewport-info-banner" style="font-size: 0.875rem; color: #200F3B;">
               Showing: <strong>${deviceLabel}</strong> · ${pluralize(orderedItems.filter(i => i.type === 'component').length, 'component')} in sequence
             </div>
           </div>
@@ -300,7 +300,7 @@ export class CoursePreviewView {
                   return `
                     <div class="course-preview-section-header" style="border-bottom: 2px solid var(--pmi-violet, #4F17A8); padding-bottom: 10px; margin-top: ${index === 0 ? '0' : '20px'};">
                       <h2 style="font-size: 1.375rem; font-weight: 700; color: var(--pmi-violet, #4F17A8); margin: 0 0 4px 0;">${escapeHTML(item.title)}</h2>
-                      ${item.description ? `<p style="font-size: 0.875rem; color: #574E69; margin: 0;">${escapeHTML(item.description)}</p>` : ''}
+                      ${item.description ? `<p style="font-size: 0.9375rem; color: #574E69; margin: 0;">${escapeHTML(item.description)}</p>` : ''}
                     </div>
                   `;
                 }
@@ -317,12 +317,12 @@ export class CoursePreviewView {
                        style="background: #FFFFFF; border: 1px solid #E7E4DC; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.04); position: relative;">
                     <div class="course-preview-block-header" style="display: flex; justify-content: space-between; align-items: center; padding: 10px 18px; background: #F7F4EF; border-bottom: 1px solid #F7F4EF;">
                       <div style="display: flex; align-items: center; gap: 10px; min-width: 0;">
-                        <span class="preview-comp-order-badge preview-sequence-badge" style="font-size: 0.75rem; font-weight: 700; background: #E7E4DC; color: #200F3B; padding: 2px 8px; border-radius: 12px; flex-shrink: 0;">${compCounter}</span>
-                        <h3 style="font-size: 0.9375rem; font-weight: 600; color: #200F3B; margin: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${escapeHTML(comp.name)}</h3>
-                        <span class="component-type-badge" style="font-size: 0.75rem; background: rgba(79, 23, 168, 0.08); color: var(--pmi-violet, #4F17A8); padding: 2px 8px; border-radius: 4px; flex-shrink: 0;">${escapeHTML(typeName)}</span>
+                        <span class="preview-comp-order-badge preview-sequence-badge" style="font-size: 0.875rem; font-weight: 700; background: #E7E4DC; color: #200F3B; padding: 2px 8px; border-radius: 12px; flex-shrink: 0;">${compCounter}</span>
+                        <h3 style="font-size: 1rem; font-weight: 600; color: #200F3B; margin: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">${escapeHTML(comp.name)}</h3>
+                        <span class="component-type-badge" style="font-size: 0.875rem; background: rgba(79, 23, 168, 0.08); color: var(--pmi-violet, #4F17A8); padding: 2px 8px; border-radius: 4px; flex-shrink: 0;">${escapeHTML(typeName)}</span>
                       </div>
                       <div style="display: flex; align-items: center; gap: 8px; flex-shrink: 0;">
-                        <button type="button" class="btn btn-secondary btn-sm" data-action="edit-preview-comp" data-comp-id="${comp.id}" aria-label="Edit component: ${escapeHTML(comp.name)}" style="padding: 6px 12px; font-size: 0.8125rem; display: inline-flex; align-items: center; gap: 6px;">
+                        <button type="button" class="btn btn-secondary btn-sm" data-action="edit-preview-comp" data-comp-id="${comp.id}" aria-label="Edit component: ${escapeHTML(comp.name)}" style="padding: 6px 12px; font-size: 0.875rem; display: inline-flex; align-items: center; gap: 6px;">
                           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg>
                           <span>Edit Component</span>
                         </button>
@@ -342,8 +342,8 @@ export class CoursePreviewView {
                       </iframe>
                     ` : `
                       <div class="course-preview-error-card" style="padding: 20px; background: #FFEDEC; border: 1px solid #FFB0A9; border-radius: 8px; color: #C41E08;">
-                        <h4 style="margin: 0 0 8px 0; font-size: 0.9375rem; font-weight: 700;">Could not render ${escapeHTML(comp.name)}</h4>
-                        <p style="margin: 0 0 12px 0; font-size: 0.875rem;">${escapeHTML(compiled.error)}</p>
+                        <h4 style="margin: 0 0 8px 0; font-size: 1rem; font-weight: 700;">Could not render ${escapeHTML(comp.name)}</h4>
+                        <p style="margin: 0 0 12px 0; font-size: 0.9375rem;">${escapeHTML(compiled.error)}</p>
                         <button type="button" class="btn btn-secondary btn-sm" data-action="edit-preview-comp" data-comp-id="${comp.id}">
                           Open in Editor to Fix
                         </button>

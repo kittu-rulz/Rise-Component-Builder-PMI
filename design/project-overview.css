@@ -94,7 +94,7 @@
   gap: 5px;
   padding: 4.5px 12px;
   border-radius: 9999px;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--text-muted, #574E69);
   text-decoration: none;
@@ -258,7 +258,7 @@
 }
 
 .workspace-desc {
-  font-size: 0.75rem;
+  font-size: 0.875rem;
   color: #574E69;
   margin: 0;
   line-height: 1.4;
@@ -287,7 +287,7 @@
 
 .workspace-search-group input[type="search"] {
   padding: 4px 8px;
-  font-size: 0.75rem;
+  font-size: 0.875rem;
   width: 120px;
 }
 
@@ -298,7 +298,7 @@
 
 .filter-chip {
   padding: 2px 6px;
-  font-size: 0.6875rem;
+  font-size: 0.8125rem;
   border-radius: 6px;
   border: 1px solid var(--pmi-border, #E7E4DC);
   background: var(--pmi-surface, #FFFFFF);
@@ -374,7 +374,7 @@
 }
 
 .section-title {
-  font-size: 0.9375rem;
+  font-size: 1rem;
   font-weight: 700;
   margin: 0;
   color: var(--text-main, #200F3B);
@@ -382,7 +382,7 @@
 
 .section-component-badge {
   background: var(--pmi-neutral-50, #E7E4DC);
-  font-size: 0.6875rem;
+  font-size: 0.8125rem;
   font-weight: 700;
   padding: 2px 8px;
   border-radius: 12px;
@@ -413,6 +413,8 @@
   border-radius: 8px;
   position: relative;
   cursor: pointer;
+  flex-wrap: wrap;
+  gap: 6px;
   transition: all 0.15s ease;
 }
 
@@ -427,13 +429,18 @@
   box-shadow: 0 0 0 1.5px var(--pmi-violet, #4F17A8);
 }
 
+.component-row > .component-select-target {
+  flex: 1 1 140px;
+  min-width: 0;
+}
+
 .component-row-left {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 3px;
   min-width: 0;
-  flex: 1;
+  flex: 1 1 140px;
 }
 
 .component-row-title-line {
@@ -453,13 +460,13 @@
 
 .component-drag-handle {
   color: #808080;
-  font-size: 0.6875rem;
+  font-size: 0.8125rem;
   font-weight: 700;
   user-select: none;
 }
 
 .component-type-badge {
-  font-size: 0.6875rem;
+  font-size: 0.8125rem;
   background: rgba(79, 23, 168, 0.08);
   color: var(--pmi-violet, #4F17A8);
   padding: 2px 6px;
@@ -469,7 +476,7 @@
 }
 
 .component-name {
-  font-size: 0.8125rem;
+  font-size: 0.875rem;
   font-weight: 600;
   color: var(--text-main, #200F3B);
   margin: 0;
@@ -479,7 +486,7 @@
 }
 
 .editorial-status-dropdown-wrapper select {
-  font-size: 0.6875rem;
+  font-size: 0.8125rem;
   font-weight: 700;
   padding: 1px 6px;
   border-radius: 10px;
@@ -491,6 +498,7 @@
 .component-row-right {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 4px;
 }
 
@@ -515,7 +523,7 @@
 }
 
 .quick-add-chip {
-  font-size: 0.75rem !important;
+  font-size: 0.875rem !important;
   background: #FFFFFF !important;
   border: 1px solid #E7E4DC !important;
   padding: 4px 10px !important;
@@ -539,7 +547,7 @@
 
 .canvas-active-title {
   font-weight: 700;
-  font-size: 0.9375rem;
+  font-size: 1rem;
   color: var(--text-main, #200F3B);
 }
 
@@ -579,7 +587,7 @@
 }
 
 .inspector-title {
-  font-size: 0.9375rem;
+  font-size: 1rem;
   font-weight: 700;
   margin: 0;
   color: var(--text-main, #200F3B);
@@ -599,7 +607,7 @@
 
 .inspector-label {
   font-weight: 600;
-  font-size: 0.75rem;
+  font-size: 0.875rem;
   color: #200F3B;
   text-transform: uppercase;
   letter-spacing: 0.04em;
@@ -657,7 +665,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 0.8125rem;
+  font-size: 0.875rem;
 }
 
 .picker-category-tabs {
@@ -670,7 +678,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 0.8125rem;
+  font-size: 0.875rem;
   color: #200F3B;
 }
 
@@ -723,7 +731,7 @@
 }
 
 .picker-item-title {
-  font-size: 0.875rem;
+  font-size: 0.9375rem;
   font-weight: 700;
   margin: 0;
   color: var(--text-main, #200F3B);
@@ -744,7 +752,7 @@
 }
 
 .picker-item-desc {
-  font-size: 0.75rem;
+  font-size: 0.875rem;
   color: #200F3B;
   margin: 0;
   line-height: 1.35;
@@ -755,7 +763,7 @@
 }
 
 .picker-card-bestfor {
-  font-size: 0.6875rem;
+  font-size: 0.8125rem;
   color: #200F3B;
   background: var(--pmi-surface-sunken, #EFEDF3);
   padding: 4px 6px;
@@ -801,7 +809,7 @@
   padding: 6px 14px;
   background: transparent;
   border: none;
-  font-size: 0.8125rem;
+  font-size: 0.875rem;
   color: var(--text-main, #200F3B);
   text-align: left;
   cursor: pointer;
@@ -878,6 +886,16 @@
 
 /* Responsive Media Queries */
 @media (max-width: 1200px) {
+  /* The centred workflow pill would sit on top of the breadcrumb here, so it joins the flow. */
+  .workspace-header {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .workflow-nav-segment {
+    position: static;
+    transform: none;
+    order: 3;
+  }
   .workspace-container.workspace-3zone-layout {
     grid-template-columns: minmax(280px, 340px) 1fr;
   }
