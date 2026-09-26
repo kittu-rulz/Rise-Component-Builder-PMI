@@ -15,7 +15,7 @@ Projects are stored locally with `schemaVersion: 3`.
   "schemaVersion": 3,
   "id": "proj-1789316047134-xyz",
   "name": "Complete Compliance Course",
-  "client": "AT&T Enterprise Learning",
+  "client": "PMI Learning",
   "description": "Comprehensive compliance course covering cybersecurity and data privacy.",
   "createdAt": "2026-09-13T21:44:07.134Z",
   "updatedAt": "2026-09-13T21:45:20.635Z",

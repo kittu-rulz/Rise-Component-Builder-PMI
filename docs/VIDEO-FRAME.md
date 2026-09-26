@@ -78,7 +78,7 @@ No new export pipeline — goes through the same `generateIframeContent()` compi
 
 ## Icons
 
-Replay/Forward, volume-on/off, and transcript glyphs are the exact same real AT&T Brand Center icons already sourced and verified for `components/audio-player.js` — reused verbatim rather than sourcing a second, redundant set for the same meaning. The chevron is copied from `components/accordion.js`'s existing `.acc-arrow` path. See `docs/AUDIO-PLAYER.md` "Icons" for the sourcing method and why the "10" numeral is composited typography rather than the icon library's own "restart-15" glyph.
+Replay/Forward, volume-on/off, and transcript glyphs are the exact same functional icons from `js/pmi-icons.js` already sourced and verified for `components/audio-player.js` — reused verbatim rather than sourcing a second, redundant set for the same meaning. The chevron is copied from `components/accordion.js`'s existing `.acc-arrow` path. See `docs/AUDIO-PLAYER.md` "Icons" for the sourcing method and why the "10" numeral is composited typography rather than the icon library's own "restart-15" glyph.
 
 ## Testing status
 

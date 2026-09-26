@@ -1,6 +1,6 @@
-# Rise Component Builder (AT&T Edition)
+# Rise Component Builder (PMI Edition)
 
-Rise Component Builder is a standalone browser-based authoring tool designed to create, preview, and export interactive eLearning components built specifically to **AT&T Brand Identity Standards** for Articulate Rise 360 and compatible HTML learning platforms.
+Rise Component Builder is a standalone browser-based authoring tool designed to create, preview, and export interactive eLearning components built specifically to **PMI (Project Management Institute) brand standards** for Articulate Rise 360 and compatible HTML learning platforms.
 
 ---
 
@@ -15,7 +15,7 @@ Rise Component Builder is a standalone browser-based authoring tool designed to 
 ### 0. Course Projects Dashboard & Multi-Component Workspace (Schema v3)
 - **Projects Dashboard**: Centralized course management with search, filter chips (*All*, *Favorites*, *Recent*), sorting, and template creation (*Standard*, *Compliance*, *Microlearning*, *Blank*).
 - **Multi-Module Workspace**: Organize courses into sections/modules containing multiple component instances.
-- **Component Picker**: Browse and insert any of the 26 AT&T interactive components directly into course sections.
+- **Component Picker**: Browse and insert any of the 26 interactive components directly into course sections.
 - **Course Tools**: Full Course Preview (with Desktop/Tablet/Mobile viewports), Shared Media Library (with usage reference tracking), and Course QA Readiness Auditor.
 - **Structured Multi-Component Export**: Download structured ZIP packages containing all modules, HTML blocks, media assets, and course navigation.
 - *Detailed Architecture*: See [`docs/PROJECT-DASHBOARD.md`](docs/PROJECT-DASHBOARD.md).
@@ -36,7 +36,7 @@ Inspect rich component previews, capability breakdowns, native Rise comparison a
 ### 4. 4-Section Editor Information Architecture
 - **Content**: Block titles, descriptions, and dynamic item cards with instant inline editing.
 - **Interaction**: Sequencing, shuffle, retry limits, hints, search, and branching behavior.
-- **Appearance**: Heading levels (`<h1>`–`<h6>`), AT&T Editorial headline styling with cyan rule, spacing density (`Compact`, `Standard`, `Spacious`), and context bands.
+- **Appearance**: Heading levels (`<h1>`–`<h6>`), PMI editorial headline styling with an Aqua rule and an optional PMI symbol accent, spacing density (`Compact`, `Standard`, `Spacious`), and context bands.
 - **Completion**: Plain-language exploration criteria, Rise iframe postMessage integration guidance, and host gating rules.
 
 ### 5. Standardized Item Authoring & Bounded History
@@ -46,7 +46,7 @@ Inspect rich component previews, capability breakdowns, native Rise comparison a
 ### 6. Authentic Workplace Starter Presets
 Production-ready workplace scenarios (Cybersecurity Incident Response, CSAT Target Milestone, CPNI Customer Privacy Guidelines, SLA Uptime Compliance, 5-Step Operational Coaching Framework) that instantly populate components with realistic domain content.
 
-### 7. Rise Canvas & 4-Pillars AT&T Preflight Widget
+### 7. Rise Canvas & 4-Pillars Preflight Widget
 - **Rise Canvas**: Simulated 960px Rise 360 block container with multi-viewport testing (`Desktop`, `Tablet 768px`, `Mobile 430px`, `Mobile 375px`, `Full Popout`).
 - **4-Pillars Preflight**: Real-time compliance verification across *Brand & Typography*, *WCAG 2.1 AA Accessibility*, *Rise 360 Compatibility*, and *Media Budgets*.
 
@@ -54,33 +54,38 @@ Production-ready workplace scenarios (Cybersecurity Incident Response, CSAT Targ
 
 ## Brand Compliance Standards
 
-All component templates, stylesheets, and export generators strictly adhere to the official **AT&T Brand Standards** specified in [`design/ATT-Rise-Design-Standards.md`](design/ATT-Rise-Design-Standards.md).
+All component templates, stylesheets, and export generators follow PMI's brand identity, summarised in [`design/PMI-Rise-Design-Standards.md`](design/PMI-Rise-Design-Standards.md) and extracted from the source guidelines in [`design/PMI-BRAND-EXTRACT.md`](design/PMI-BRAND-EXTRACT.md). The 2024 colour guide is current; the 2019 Visual Identity Guidelines still govern logos and symbols.
 
 ### 1. Color System & Design Tokens
-- Sourced directly from `design/pmi-tokens.css`.
-- **AT&T Blue (`#009FDB`)** is the primary brand color.
-- **Cobalt (`#00388F`)** is reserved for actionable CTA buttons and interactive emphasis.
-- **Neutrals**: Surface White (`#FFFFFF`), Sunken Neutral (`#F3F4F5`), Border Grey 2 (`#DCDFE3`), Border Strong Grey 3 (`#BDC2C7`), Text Black (`#000000`).
+- Sourced from `design/pmi-tokens.css` (mirrored verbatim in `js/pmi-tokens.js`).
+- **Violet 500 (`#4F17A8`)** is the primary brand colour and carries CTAs, links and focus rings (10.4:1 on white).
+- **Aqua 500 (`#00799E`)** is the text-safe accent (5.0:1 on white). **Aqua 300 (`#05BFE0`)** and **Tangerine 300 (`#FF610F`)** are decorative only; on dark surfaces they may carry text.
+- **Tangerine** (`#D5340B`) is the warning colour; Saddle is not used.
+- **Neutrals**: warm neutrals (`#F7F4EF`, `#E7E4DC`, `#CFCBC2`), Off-Black `#200F3B`, muted text `#574E69`.
 
 ### 2. Typography
-- Standardized on the official **AT&T Aleck Sans** font family (`var(--pmi-font-sans)`).
-- **Five self-hosted WOFF2 cuts** embedded directly into exported HTML (Regular 400, Italic 400, Medium 500, Bold 700, Bold Italic 700).
-- **16px body floor**: All learner-facing body copy maintains a 16px minimum floor with `1.5` line-height.
+- **Aeonik** is the primary face (headlines, page titles, body; Bold for emphasis). **GT Pressura Mono** is secondary (subtitles, captions, footers). Fallback: Aptos, then Arial.
+- **Six WOFF2 cuts** are subset to Latin and embedded in every export (Aeonik 400, 400 italic, 500, 700; GT Pressura Mono 400, 700), generated by `scripts/build-pmi-fonts.py` from the licensed files in `PMI branding guidelines/Fonts/` (not in git). These are commercial fonts embedded on the project owner's confirmation that PMI permits it; reconfirm before reusing this repository.
+- **16px body floor**: All learner-facing body copy keeps a 16px minimum with `1.5` line-height.
 
 ### 3. Curvature & Geometry
-- Outer block shells: `--pmi-radius-xl` (32px)
-- Content cards & accordion rows: `--pmi-radius-lg` (20px)
-- Buttons & form controls: `--pmi-radius-md` (12px)
-- Badges & progress tracks: `--pmi-radius-pill` / `--pmi-radius-sm` (8px)
+- Outer block shells and content cards: `--pmi-radius-xl` / `--pmi-radius-lg` (24px)
+- Buttons & form controls: `--pmi-radius-sm` (4px)
+- Small cards & menus: `--pmi-radius-md` (8px)
+- Chips & tags: `--pmi-radius-pill`
 
-### 4. Iconography
-- Standardized on the official **AT&T Functional SVG Icon Library**.
+### 4. Symbols and logos
+- Eight PMI symbols (`js/pmi-symbols.js`, generated from PMI's SVGs) are used as an optional block-header accent (on by default, "auto" picks one per component type), as photo "holding shapes" for item media, and as a dashboard pattern. Rules enforced in code: three core colours, spacing 1/7 of the symbol width, no same colour adjacent, under 75% coverage, decorative (`aria-hidden`), never behind text.
+- The PMI logo (`js/pmi-logos.js`, generated by `scripts/build-pmi-logos.mjs`) is placed on the dashboard hero: white on dark, at least 32px tall with 1/2X clear space.
 
-### 5. Interaction States & Accessibility
-- **Focus visible**: 3px solid `--pmi-cobalt` (`#00388F`) outline with 2px offset.
+### 5. Iconography
+- Functional icons come from `js/pmi-icons.js` (the icon set inherited from the AT&T build, kept by decision; they are generic functional glyphs).
+
+### 6. Interaction States & Accessibility
+- **Focus visible**: 3px solid `--pmi-focus` (Violet `#4F17A8`) outline with 2px offset.
 - **Touch targets**: 44×44px minimum touch target size.
 - **Motion**: Zeroed out under `@media (prefers-reduced-motion: reduce)`.
-- **WCAG AA Compliance**: High-contrast text/surface pairs with contrast ratios >= 4.5:1.
+- **WCAG AA Compliance**: text pairs at 4.5:1 or better, non-text at 3:1, checked with axe in the end-to-end suite.
 
 ---
 

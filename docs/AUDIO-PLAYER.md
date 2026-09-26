@@ -78,7 +78,7 @@ No new export pipeline — this component goes through the exact same `generateI
 
 ## Icons
 
-Replay/Forward glyphs are real AT&T Brand Center icons (Navigation & Controls "restart," a matched counterclockwise/clockwise pair), verified by rasterizing the source library and inspecting the result — the same method already used and documented for this component's volume/mute/document icons. The "10" numeral is ordinary typography composited over the real icon path, not an invented pictogram; the icon library's own "restart-15" glyphs (with a literal "15" baked into the path) were deliberately not reused, since presenting "15" for a 10-second skip would be factually wrong, not just a style mismatch.
+Replay/Forward glyphs are the functional icons in `js/pmi-icons.js` (Navigation & Controls "restart," a matched counterclockwise/clockwise pair), verified by rasterizing the source library and inspecting the result — the same method already used and documented for this component's volume/mute/document icons. The "10" numeral is ordinary typography composited over the real icon path, not an invented pictogram; the icon library's own "restart-15" glyphs (with a literal "15" baked into the path) were deliberately not reused, since presenting "15" for a 10-second skip would be factually wrong, not just a style mismatch.
 
 ## Sample configuration
 

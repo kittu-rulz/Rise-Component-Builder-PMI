@@ -1,6 +1,6 @@
 /**
- * AT&T Icon Library Module (Functional Icons)
- * Authoritative SVG iconography extracted from the January 2026 AT&T Design System.
+ * PMI Icon Library Module (Functional Icons)
+ * SVG functional iconography, carried over from the earlier AT&T build of this tool (kept by decision).
  *
  * Rules:
  * - Functional icons are black/white only, using `fill="currentColor"`.
@@ -2207,7 +2207,7 @@ export const PMI_FUNCTIONAL_ICONS = {
 };
 
 /**
- * Renders an inline AT&T functional SVG icon.
+ * Renders an inline functional SVG icon.
  * @param {string} name - Icon name (e.g. 'chevron-down', 'play', 'check-circle-filled')
  * @param {Object} [options]
  * @param {string} [options.className=''] - CSS class names
@@ -2221,7 +2221,7 @@ export const PMI_FUNCTIONAL_ICONS = {
 export function getPmiIconSvg(name, options = {}) {
   const icon = PMI_FUNCTIONAL_ICONS[name];
   if (!icon) {
-    console.warn(`[AT&T Icons] Unknown icon name: "${name}"`);
+    console.warn(`[PMI Icons] Unknown icon name: "${name}"`);
     return '';
   }
 

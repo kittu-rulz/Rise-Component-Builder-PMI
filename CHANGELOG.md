@@ -6,6 +6,22 @@ version tracks `js/version.js`'s `APP_VERSION` / `package.json` `version` (base
 semver plus a `+YYYYMMDD.HHmm` build-metadata stamp). History before 2.1.0 predates
 this file.
 
+## [Unreleased] — PMI edition
+
+This repository is the PMI fork of the AT&T build; the entries below 2.1.0 describe the AT&T
+lineage.
+
+### Changed
+
+- **Rebranded to PMI**: Violet/Aqua/Tangerine tokens, Aeonik + GT Pressura Mono embedded in every
+  export, PMI curvature, dark-mode pairings, symbol header accents, photo holding shapes, dashboard
+  pattern and logo. See `design/PMI-Rise-Design-Standards.md`.
+- Documentation and sample content no longer refer to AT&T.
+
+### Removed
+
+- AT&T-only design notes, audit prompts and UI-redesign reports (still in git history).
+
 ## [2.1.0] — 2026-09-07
 
 ### Added

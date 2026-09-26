@@ -46,7 +46,7 @@ Usage rules from the guide: stay within one palette per touchpoint (monochromati
 | **Soft Gray on white** | **4.0** | **fail for body text** |
 | **Saddle 500 on white** | **2.7** | **fail** |
 
-Consequence: the logo colours Aqua 300 and Tangerine 300 cannot carry text on white. The same split the AT&T build already uses (a non-text `--primary` vs a text-safe `--primary-text`) applies: Violet 500 is a good text-safe primary; Aqua 500/600 and Tangerine 500/600 are the text-safe variants of the accents.
+Consequence: the logo colours Aqua 300 and Tangerine 300 cannot carry text on white. The same split the previous (AT&T) build already used (a non-text `--primary` vs a text-safe `--primary-text`) applies: Violet 500 is a good text-safe primary; Aqua 500/600 and Tangerine 500/600 are the text-safe variants of the accents.
 
 ## Typography (confirmed by the user: primary is Aeonik)
 

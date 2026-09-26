@@ -67,14 +67,13 @@ test-results/
 screenshots/.temp/
 
 # Client design-source files (large binaries, not versioned — see README/PROJECT.md)
-ATT Design System/
-ATT Design System.zip
 
 # Production upload bundle
 Upload/
 
 # design/ holds the *processed* brand spec that IS versioned (standards MD, token +
-# font CSS, the migration prompts, BRAND-AUDIT.md); the raw icon dump is not copied here.
+# font CSS, generated brand data); the raw client asset files are not copied here.
 
-# PMI client brand assets (licensed fonts, guideline PDF/PPTX) - keep out of git until licensing is confirmed
+# PMI client brand assets (licensed font files, guideline PDF/PPTX, logo/shape sources). The
+# generated, subset data derived from them (js/custom-fonts.js, fonts.css, js/pmi-*.js) is committed.
 PMI branding guidelines/

@@ -115,7 +115,7 @@ Two independent things a component can depend on over the network, both already 
 
 ## Reusable Item Media Attachment Architecture (`js/item-media.js`)
 
-The AT&T Rise Component Builder includes a reusable Media Attachment system designed for repeatable item cards across interactive components, debuted in the **Accordion** component.
+The PMI Rise Component Builder includes a reusable Media Attachment system designed for repeatable item cards across interactive components, debuted in the **Accordion** component.
 
 ### 1. Data Schema and Safe Defaults
 Every item can optionally hold a `media` object with normalized defaults:
