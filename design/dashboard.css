@@ -677,6 +677,18 @@
   max-width: 860px;
 }
 
+/* PMI logo clearspace is half the logo height (1/2X): 20px around a 40px logo. */
+.hero-pmi-logo {
+  margin: 0 0 20px;
+  line-height: 0;
+}
+
+.hero-pmi-logo .pmi-logo {
+  display: block;
+  height: 40px;
+  width: auto;
+}
+
 .dashboard-hero-eyebrow {
   display: flex;
   flex-wrap: wrap;
@@ -1344,7 +1356,7 @@
 
 
 /* PMI symbol pattern in the hero's corner: white on the dark surface, decorative, and never over the
-   text column (hidden below 1000px, where it would meet the stats). */
+   text column (hidden below 1200px, where it would meet the stats). */
 .hero-symbol-pattern {
   position: absolute;
   right: 40px;
@@ -1353,7 +1365,7 @@
   opacity: 0.95;
 }
 .hero-symbol-pattern svg { display: block; }
-@media (max-width: 1000px) {
+@media (max-width: 1200px) {
   .hero-symbol-pattern { display: none; }
 }
 @media (forced-colors: active) {

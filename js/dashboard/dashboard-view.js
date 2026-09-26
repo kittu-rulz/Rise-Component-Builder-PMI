@@ -13,6 +13,7 @@ import {
 import { showPromptDialog, showConfirmDialog, isolateModal } from './pmi-modal.js';
 import { showToast } from '../toast.js';
 import { symbolPatternSvg, symbolSvg } from '../pmi-symbols.js';
+import { pmiLogoSvg } from '../pmi-logos.js';
 
 export class DashboardView {
   constructor({
@@ -172,6 +173,8 @@ export class DashboardView {
             <!-- PMI symbol pattern: white on the dark hero, in a corner (a fraction of the width), decorative. -->
             <div class="hero-symbol-pattern" aria-hidden="true">${symbolPatternSvg({ cols: 4, rows: 3, size: 40, fill: '#FFFFFF' })}</div>
             <div class="dashboard-hero-content">
+              <!-- PMI logo: white on the dark hero, 40px tall (min 32px) with 1/2X clearspace (20px). -->
+              <div class="hero-pmi-logo">${pmiLogoSvg({ variant: 'horizontal', tone: 'white', height: 40 })}</div>
               <div class="dashboard-hero-eyebrow">
                 <span class="hero-brand-pill">Aptara Learning Interaction Studio · PMI edition</span>
                 <span class="hero-compliance-pill">
