@@ -459,6 +459,10 @@ export const WORKPLACE_PRESETS = [
         {
           title: 'Uncontrolled growth in scope without matching changes to time or cost is called scope [blank].',
           content: 'creep'
+        },
+        {
+          title: 'Every project is limited by three constraints: [blank], [blank] and [blank].',
+          content: 'scope\ntime, schedule\ncost, budget'
         }
       ]
     }

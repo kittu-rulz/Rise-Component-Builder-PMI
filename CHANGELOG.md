@@ -18,6 +18,8 @@ lineage.
   pattern and logo. See `design/PMI-Rise-Design-Standards.md`.
 - Documentation and sample content no longer refer to AT&T.
 
+- **Fill-in-the-Blank** takes several blanks in one sentence (one answer line per blank); **Tabs, Study Cards, both Timelines and Guided Process** can attach media to each item, as Accordion does.
+
 ### Removed
 
 - AT&T-only design notes, audit prompts and UI-redesign reports (still in git history).
