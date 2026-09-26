@@ -17,6 +17,7 @@
   border-bottom: 1px solid var(--pmi-border, #E7E4DC);
   padding: 8px var(--pmi-space-6, 32px);
   min-height: 48px;
+  flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -335,7 +336,9 @@
   background: var(--pmi-surface, #FFFFFF);
   border: 1px solid var(--pmi-border, #E7E4DC);
   border-radius: 12px;
-  overflow: hidden;
+  /* Visible, not hidden: a component's three-dots menu opens over the card's edge. The header
+     rounds its own top corners instead of relying on the card to clip them. */
+  overflow: visible;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
   transition: all 0.15s ease;
 }
@@ -349,7 +352,12 @@
   box-shadow: 0 0 0 2px rgba(79, 23, 168, 0.2);
 }
 
+.section-card-header:last-child {
+  border-radius: 11px;
+}
+
 .section-card-header {
+  border-radius: 11px 11px 0 0;
   background: var(--pmi-surface-sunken, #F7F4EF);
   border-bottom: 1px solid var(--pmi-border, #F7F4EF);
   padding: 10px 14px;
@@ -362,7 +370,10 @@
 .section-header-left {
   display: flex;
   align-items: center;
-  gap: 8px;
+  flex-wrap: wrap;
+  gap: 4px 8px;
+  min-width: 0;
+  text-align: left;
 }
 
 .section-toggle-icon {
@@ -387,6 +398,7 @@
   padding: 2px 8px;
   border-radius: 12px;
   color: #200F3B;
+  white-space: nowrap;
 }
 
 .section-header-right {
@@ -799,6 +811,18 @@
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
   padding: 4px 0;
   min-width: 150px;
+}
+
+.project-menu-anchor {
+  position: relative;
+  display: inline-flex;
+}
+
+/* A component's menu opens directly under its own three-dots button, wherever the row wraps it. */
+.project-menu-anchor > .project-action-menu {
+  z-index: 60;
+  top: calc(100% + 4px);
+  right: 0;
 }
 
 .project-menu-item {

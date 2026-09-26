@@ -1014,12 +1014,12 @@ export class ProjectOverviewView {
           ${index > 0 ? `<button class="btn btn-secondary btn-sm btn-icon" data-action="move-comp-up" data-comp-id="${compId}" data-sec-id="${sectionId || ''}" title="Move Up" aria-label="Move ${escapeHTML(comp.name)} Up"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="18 15 12 9 6 15"></polyline></svg></button>` : ''}
           ${index < totalInGroup - 1 ? `<button class="btn btn-secondary btn-sm btn-icon" data-action="move-comp-down" data-comp-id="${compId}" data-sec-id="${sectionId || ''}" title="Move Down" aria-label="Move ${escapeHTML(comp.name)} Down"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg></button>` : ''}
 
-          <button class="project-menu-btn" data-action="comp-menu" data-comp-id="${compId}" aria-label="Component options for ${escapeHTML(comp.name)}">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg>
-          </button>
-        </div>
+          <div class="project-menu-anchor">
+            <button class="project-menu-btn" data-action="comp-menu" data-comp-id="${compId}" aria-label="Component options for ${escapeHTML(comp.name)}">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg>
+            </button>
 
-        ${isMenuOpen ? `
+          ${isMenuOpen ? `
           <div class="project-action-menu">
             <button class="project-menu-item" data-action="open-focus-editor" data-comp-id="${compId}">Open Focus Editor</button>
             <button class="project-menu-item" data-action="duplicate-comp" data-comp-id="${compId}">Duplicate</button>
@@ -1027,6 +1027,8 @@ export class ProjectOverviewView {
             <button class="project-menu-item text-danger" data-action="delete-comp" data-comp-id="${compId}" data-sec-id="${sectionId || ''}">Delete</button>
           </div>
         ` : ''}
+          </div>
+        </div>
       </div>
     `;
   }
