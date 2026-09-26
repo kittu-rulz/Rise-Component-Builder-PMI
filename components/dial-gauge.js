@@ -416,7 +416,8 @@ export function generateCSS() {
       color: #FFFFFF;
     }
     .dial-preset-btn.is-active .dial-preset-val {
-      color: var(--pmi-aqua, #00799E);
+      /* The active button is filled Violet; Aqua 500 on it is only ~2:1, soft Aqua is ~5:1. */
+      color: var(--pmi-aqua-soft, #68D8ED);
     }
     .dial-preset-label {
       font-size: var(--pmi-fs-xs, 0.8125rem);

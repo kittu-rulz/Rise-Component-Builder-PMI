@@ -135,7 +135,8 @@ export function generateCSS() {
       left: 50%;
       transform: translateX(-50%);
       background-color: var(--accent);
-      color: var(--text-main);
+      /* White on Aqua 500 is 5.0:1; the dark text colour is only ~3.5:1 on it. */
+      color: #FFFFFF;
       font-size: var(--pmi-fs-eyebrow, 0.75rem);
       font-weight: var(--pmi-fw-bold, 700);
       padding: 3px 12px;

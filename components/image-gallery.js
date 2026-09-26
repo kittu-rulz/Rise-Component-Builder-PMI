@@ -164,7 +164,8 @@ export function generateCSS() {
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.5px;
-      color: var(--accent);
+      /* Sits on the dark caption bar: bright Aqua is ~8:1 there, Aqua 500 only ~3.5:1. */
+      color: var(--pmi-aqua-bright, #05BFE0);
     }
     .lightbox-overlay {
       position: fixed;

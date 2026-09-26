@@ -223,6 +223,11 @@ export function generateCSS() {
       z-index: 5;
       pointer-events: none;
       box-shadow: var(--shadow-sm);
+      /* Each badge keeps to its own half of the stage, so a long label wraps instead of running
+         under the other badge or the handle (they overlapped at phone width). */
+      max-width: calc(50% - 22px);
+      overflow-wrap: anywhere;
+      line-height: 1.25;
     }
     .orientation-horizontal .badge-before {
       top: 14px;

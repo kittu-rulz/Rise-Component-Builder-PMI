@@ -111,7 +111,9 @@ export function generateCSS() {
       color: var(--text-main);
     }
     .blank-input {
-      border: 1.5px solid var(--border-color, #E7E4DC);
+      /* A form-field boundary needs 3:1 against its background (WCAG 1.4.11); PMI's soft border tone
+         is only ~1.3:1 on white and disappears entirely when block outlines are switched off. */
+      border: 1.5px solid var(--pmi-soft-gray, #808080);
       border-radius: var(--pmi-radius-sm, 6px);
       background-color: var(--bg-card, #FFFFFF);
       padding: 6px 12px;
