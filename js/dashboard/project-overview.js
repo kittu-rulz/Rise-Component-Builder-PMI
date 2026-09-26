@@ -920,9 +920,20 @@ export class ProjectOverviewView {
             <button class="btn btn-secondary btn-sm" data-action="add-comp-to-sec" data-sec-id="${sectionId}">
               + Component
             </button>
-            <button class="project-menu-btn" data-action="section-menu" data-sec-id="${sectionId}" aria-label="Section options">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg>
-            </button>
+            <div class="project-menu-anchor">
+              <button class="project-menu-btn" data-action="section-menu" data-sec-id="${sectionId}" aria-label="Section options">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="1"></circle><circle cx="12" cy="5" r="1"></circle><circle cx="12" cy="19" r="1"></circle></svg>
+              </button>
+          ${isMenuOpen ? `
+            <div class="project-action-menu">
+              <button class="project-menu-item" data-action="rename-sec" data-sec-id="${sectionId}">Rename Section</button>
+              <button class="project-menu-item" data-action="duplicate-sec" data-sec-id="${sectionId}">Duplicate Section</button>
+              ${index > 0 ? `<button class="project-menu-item" data-action="move-sec-up" data-sec-id="${sectionId}">Move Up</button>` : ''}
+              ${index < (project.sectionOrder.length - 1) ? `<button class="project-menu-item" data-action="move-sec-down" data-sec-id="${sectionId}">Move Down</button>` : ''}
+              <button class="project-menu-item text-danger" data-action="delete-sec" data-sec-id="${sectionId}">Delete Section</button>
+            </div>
+          ` : ''}
+            </div>
           </div>
         </div>
 
@@ -957,16 +968,6 @@ export class ProjectOverviewView {
             </div>
           `}
         </div>
-
-        ${isMenuOpen ? `
-          <div class="project-action-menu">
-            <button class="project-menu-item" data-action="rename-sec" data-sec-id="${sectionId}">Rename Section</button>
-            <button class="project-menu-item" data-action="duplicate-sec" data-sec-id="${sectionId}">Duplicate Section</button>
-            ${index > 0 ? `<button class="project-menu-item" data-action="move-sec-up" data-sec-id="${sectionId}">Move Up</button>` : ''}
-            ${index < (project.sectionOrder.length - 1) ? `<button class="project-menu-item" data-action="move-sec-down" data-sec-id="${sectionId}">Move Down</button>` : ''}
-            <button class="project-menu-item text-danger" data-action="delete-sec" data-sec-id="${sectionId}">Delete Section</button>
-          </div>
-        ` : ''}
       </div>
     `;
   }
